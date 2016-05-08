@@ -19,8 +19,17 @@
 
 //通用类
 #import "FlexibleFrame.h"//比例适配
+#import "EMSDK.h"//环信
+#import "EMErrorDefs.h"
+#import "ConvertToCommonEmoticonsHelper.h"//表情映射
+
+
+#import "UIImageView+WebCache.h"//图片缓存
+#import "UIButton+WebCache.h"
+
 
 //延展
+#import "NSDate+Category.h"
 #import "NSString+Category.h"
 #import "UIView+Category.h"
 
@@ -44,6 +53,10 @@
 #define FLEXIBLE_FONT(superView) [FlexibleFrame flexibleFontSizeWithSuperView:(superView)]
 #define FLEXIBLE_SUBVIEW(superView) [FlexibleFrame flexibleWithSuperView:(superView)]
 
+
+//默认图片
+#define PLACEHOLDERIMAGE_USER [UIImage imageNamed:@"choujiang"]
+#define PLACEHOLDERIMAGE_GROUP [UIImage imageNamed:@"choujiang"]
 
 //TGA
 #define LINEVIEW_TAG 500

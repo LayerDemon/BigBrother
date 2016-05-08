@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     [self initializeDataSource];
     [self initializeUserInterface];
@@ -30,14 +31,25 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.tabBarController.navigationItem setTitleView:nil];
+    
+    //移除环信代理
+    [self.messageView unregisterNotifications];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tabBarController.navigationItem.titleView = self.segmentedControl;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    
+    //设置环信代理
+    [self.messageView registerNotifications];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
 
 #pragma mark - 数据初始化
 - (void)initializeDataSource
@@ -48,8 +60,7 @@
 #pragma mark - 视图初始化
 - (void)initializeUserInterface
 {
-    
-    [self.view addSubview:self.messageView];
+    [self indexDidChangeForSegmentedControl:self.segmentedControl];
 }
 #pragma mark - 各种Getter
 - (UISegmentedControl *)segmentedControl
@@ -81,7 +92,10 @@
 -(void)indexDidChangeForSegmentedControl:(UISegmentedControl *)SegC{
     if (SegC.selectedSegmentIndex == 0){
         NSLog(@"message");
+        //移除contactView
+        [self.messageView addWithSuperView:self.view];
     }else{
+        [self.messageView removeFromSuperview];
         NSLog(@"address");
     }
 }
