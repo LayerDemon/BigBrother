@@ -42,7 +42,7 @@
     self.tabBarController.navigationItem.titleView = self.segmentedControl;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    
+    self.tabBarController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     //设置环信代理
     [self.messageView registerNotifications];
 }

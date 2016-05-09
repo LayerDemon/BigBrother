@@ -8,6 +8,7 @@
 
 #import "MessageView.h"
 #import "MessageViewCell.h"
+#import "ChatViewController.h"
 
 @interface MessageView ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EMGroupManagerDelegate>
 
@@ -124,7 +125,8 @@
 #pragma mark - <UITableViewDataSource,UITableViewDelegate>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+//    return self.dataSource.count;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,9 +138,10 @@
     }
     
     //获取对话：
-    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+//    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     
-    [cell loadDataWithConversation:conversation];
+//    [cell loadDataWithConversation:conversation];
+    [cell testLoadDataWithConversation:nil];
     
     return cell;
 }
@@ -147,6 +150,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MessageViewCell *cell = (MessageViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    ChatViewController *chatVC = [[ChatViewController alloc]init];
+    chatVC.chatDic = cell.chatterDic;
+    chatVC.conversation = cell.conversation;
+    [self.viewController.navigationController pushViewController:chatVC animated:YES];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

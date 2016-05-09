@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) EMConversation *conversation;
 
+
+- (void)testLoadDataWithConversation:(EMConversation *)conversation;
 - (void)loadDataWithConversation:(EMConversation *)conversation;
 
 @end

@@ -79,7 +79,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     //    键盘监听
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     //从后台恢复到前台监听
@@ -709,7 +709,7 @@
     CGFloat duration = [userInfo[@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue];
     
     CGRect keyFrame = [userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    CGFloat toolMoveY = keyFrame.origin.y - NAVBAR_H - self.toolBar.frame.size.height;
+    CGFloat toolMoveY = keyFrame.origin.y - self.toolBar.frame.size.height-NAVBAR_H;
     CGFloat tableMoveY = 0;
     if (keyFrame.origin.y < self.tableView.contentSize.height+NAVBAR_H) {
         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {

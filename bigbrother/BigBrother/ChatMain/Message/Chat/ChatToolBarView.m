@@ -44,6 +44,7 @@
         ChatMoreInputView *inputView = [[ChatMoreInputView alloc]init];
         inputView.delegate = self;
         self.moreTempField.inputView = inputView;
+//        self.emojiBoard.frame = self.emojiBoard.frame;
     }
     return self;
 }

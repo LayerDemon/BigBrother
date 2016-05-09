@@ -300,6 +300,43 @@
 		8C63E58F1CE066FF00B4EC1D /* UILabel+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E58E1CE066FF00B4EC1D /* UILabel+Category.m */; };
 		8C63E5921CE0677700B4EC1D /* UIImage+ResizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5911CE0677700B4EC1D /* UIImage+ResizeImage.m */; };
 		8C63E5951CE069B100B4EC1D /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5941CE069B100B4EC1D /* UIImage+Category.m */; };
+		8C63E59A1CE09A8B00B4EC1D /* chat_emoji_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5961CE09A8B00B4EC1D /* chat_emoji_btn.png */; };
+		8C63E59B1CE09A8B00B4EC1D /* chat_emoji_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5971CE09A8B00B4EC1D /* chat_emoji_btn@2x.png */; };
+		8C63E59C1CE09A8B00B4EC1D /* chat_more_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5981CE09A8B00B4EC1D /* chat_more_btn.png */; };
+		8C63E59D1CE09A8B00B4EC1D /* chat_more_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5991CE09A8B00B4EC1D /* chat_more_btn@2x.png */; };
+		8C63E59F1CE09E8600B4EC1D /* EmojisList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E59E1CE09E8600B4EC1D /* EmojisList.plist */; };
+		8C63E5BE1CE09FA900B4EC1D /* emoji_tab0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5A21CE09FA900B4EC1D /* emoji_tab0@2x.png */; };
+		8C63E5BF1CE09FA900B4EC1D /* emoji_tab0@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5A31CE09FA900B4EC1D /* emoji_tab0@3x.png */; };
+		8C63E5C01CE09FA900B4EC1D /* emoji_tab0Press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5A41CE09FA900B4EC1D /* emoji_tab0Press@2x.png */; };
+		8C63E5C11CE09FA900B4EC1D /* emoji_tab0Press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5A51CE09FA900B4EC1D /* emoji_tab0Press@3x.png */; };
+		8C63E5C21CE09FA900B4EC1D /* emoji_tab1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5A61CE09FA900B4EC1D /* emoji_tab1@2x.png */; };
+		8C63E5C31CE09FA900B4EC1D /* emoji_tab1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5A71CE09FA900B4EC1D /* emoji_tab1@3x.png */; };
+		8C63E5C41CE09FA900B4EC1D /* emoji_tab1Press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5A81CE09FA900B4EC1D /* emoji_tab1Press@2x.png */; };
+		8C63E5C51CE09FA900B4EC1D /* emoji_tab1Press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5A91CE09FA900B4EC1D /* emoji_tab1Press@3x.png */; };
+		8C63E5C61CE09FA900B4EC1D /* emoji_tab2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5AA1CE09FA900B4EC1D /* emoji_tab2@2x.png */; };
+		8C63E5C71CE09FA900B4EC1D /* emoji_tab2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5AB1CE09FA900B4EC1D /* emoji_tab2@3x.png */; };
+		8C63E5C81CE09FA900B4EC1D /* emoji_tab2Press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5AC1CE09FA900B4EC1D /* emoji_tab2Press@2x.png */; };
+		8C63E5C91CE09FA900B4EC1D /* emoji_tab2Press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5AD1CE09FA900B4EC1D /* emoji_tab2Press@3x.png */; };
+		8C63E5CA1CE09FA900B4EC1D /* emoji_tab3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5AE1CE09FA900B4EC1D /* emoji_tab3@2x.png */; };
+		8C63E5CB1CE09FA900B4EC1D /* emoji_tab3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5AF1CE09FA900B4EC1D /* emoji_tab3@3x.png */; };
+		8C63E5CC1CE09FA900B4EC1D /* emoji_tab3Press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B01CE09FA900B4EC1D /* emoji_tab3Press@2x.png */; };
+		8C63E5CD1CE09FA900B4EC1D /* emoji_tab3Press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B11CE09FA900B4EC1D /* emoji_tab3Press@3x.png */; };
+		8C63E5CE1CE09FA900B4EC1D /* emoji_tab4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B21CE09FA900B4EC1D /* emoji_tab4@2x.png */; };
+		8C63E5CF1CE09FA900B4EC1D /* emoji_tab4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B31CE09FA900B4EC1D /* emoji_tab4@3x.png */; };
+		8C63E5D01CE09FA900B4EC1D /* emoji_tab4Press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B41CE09FA900B4EC1D /* emoji_tab4Press@2x.png */; };
+		8C63E5D11CE09FA900B4EC1D /* emoji_tab4Press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B51CE09FA900B4EC1D /* emoji_tab4Press@3x.png */; };
+		8C63E5D21CE09FA900B4EC1D /* emoji_tab5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B61CE09FA900B4EC1D /* emoji_tab5@2x.png */; };
+		8C63E5D31CE09FA900B4EC1D /* emoji_tab5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B71CE09FA900B4EC1D /* emoji_tab5@3x.png */; };
+		8C63E5D41CE09FA900B4EC1D /* emoji_tab5Press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B81CE09FA900B4EC1D /* emoji_tab5Press@2x.png */; };
+		8C63E5D51CE09FA900B4EC1D /* emoji_tab5Press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5B91CE09FA900B4EC1D /* emoji_tab5Press@3x.png */; };
+		8C63E5D61CE09FA900B4EC1D /* KBSkinFilter_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5BA1CE09FA900B4EC1D /* KBSkinFilter_delete@2x.png */; };
+		8C63E5D71CE09FA900B4EC1D /* KBSkinFilter_delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5BB1CE09FA900B4EC1D /* KBSkinFilter_delete@3x.png */; };
+		8C63E5D81CE09FA900B4EC1D /* KBSkinFilter_delete_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5BC1CE09FA900B4EC1D /* KBSkinFilter_delete_press@2x.png */; };
+		8C63E5D91CE09FA900B4EC1D /* KBSkinFilter_delete_press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5BD1CE09FA900B4EC1D /* KBSkinFilter_delete_press@3x.png */; };
+		8C63E5DC1CE0A03000B4EC1D /* bt_search_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5DA1CE0A03000B4EC1D /* bt_search_btn.png */; };
+		8C63E5DD1CE0A03000B4EC1D /* bt_search_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5DB1CE0A03000B4EC1D /* bt_search_btn@2x.png */; };
+		8C63E5E01CE0A07000B4EC1D /* chat_jianpan_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5DE1CE0A07000B4EC1D /* chat_jianpan_btn.png */; };
+		8C63E5E11CE0A07000B4EC1D /* chat_jianpan_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C63E5DF1CE0A07000B4EC1D /* chat_jianpan_btn@2x.png */; };
 		B80131451C7FF17D0070612B /* SingleRoomRentPostToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B80131441C7FF17D0070612B /* SingleRoomRentPostToViewController.m */; };
 		B80131481C8001E50070612B /* WholeHouseRentPostToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B80131471C8001E50070612B /* WholeHouseRentPostToViewController.m */; };
 		B801314B1C8002020070612B /* WholeHouseWantRentPostToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B801314A1C8002020070612B /* WholeHouseWantRentPostToViewController.m */; };
@@ -936,6 +973,43 @@
 		8C63E5911CE0677700B4EC1D /* UIImage+ResizeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeImage.m"; sourceTree = "<group>"; };
 		8C63E5931CE069B100B4EC1D /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
 		8C63E5941CE069B100B4EC1D /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
+		8C63E5961CE09A8B00B4EC1D /* chat_emoji_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_emoji_btn.png; sourceTree = "<group>"; };
+		8C63E5971CE09A8B00B4EC1D /* chat_emoji_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_emoji_btn@2x.png"; sourceTree = "<group>"; };
+		8C63E5981CE09A8B00B4EC1D /* chat_more_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_more_btn.png; sourceTree = "<group>"; };
+		8C63E5991CE09A8B00B4EC1D /* chat_more_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_more_btn@2x.png"; sourceTree = "<group>"; };
+		8C63E59E1CE09E8600B4EC1D /* EmojisList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EmojisList.plist; sourceTree = "<group>"; };
+		8C63E5A21CE09FA900B4EC1D /* emoji_tab0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab0@2x.png"; sourceTree = "<group>"; };
+		8C63E5A31CE09FA900B4EC1D /* emoji_tab0@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab0@3x.png"; sourceTree = "<group>"; };
+		8C63E5A41CE09FA900B4EC1D /* emoji_tab0Press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab0Press@2x.png"; sourceTree = "<group>"; };
+		8C63E5A51CE09FA900B4EC1D /* emoji_tab0Press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab0Press@3x.png"; sourceTree = "<group>"; };
+		8C63E5A61CE09FA900B4EC1D /* emoji_tab1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab1@2x.png"; sourceTree = "<group>"; };
+		8C63E5A71CE09FA900B4EC1D /* emoji_tab1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab1@3x.png"; sourceTree = "<group>"; };
+		8C63E5A81CE09FA900B4EC1D /* emoji_tab1Press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab1Press@2x.png"; sourceTree = "<group>"; };
+		8C63E5A91CE09FA900B4EC1D /* emoji_tab1Press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab1Press@3x.png"; sourceTree = "<group>"; };
+		8C63E5AA1CE09FA900B4EC1D /* emoji_tab2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab2@2x.png"; sourceTree = "<group>"; };
+		8C63E5AB1CE09FA900B4EC1D /* emoji_tab2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab2@3x.png"; sourceTree = "<group>"; };
+		8C63E5AC1CE09FA900B4EC1D /* emoji_tab2Press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab2Press@2x.png"; sourceTree = "<group>"; };
+		8C63E5AD1CE09FA900B4EC1D /* emoji_tab2Press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab2Press@3x.png"; sourceTree = "<group>"; };
+		8C63E5AE1CE09FA900B4EC1D /* emoji_tab3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab3@2x.png"; sourceTree = "<group>"; };
+		8C63E5AF1CE09FA900B4EC1D /* emoji_tab3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab3@3x.png"; sourceTree = "<group>"; };
+		8C63E5B01CE09FA900B4EC1D /* emoji_tab3Press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab3Press@2x.png"; sourceTree = "<group>"; };
+		8C63E5B11CE09FA900B4EC1D /* emoji_tab3Press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab3Press@3x.png"; sourceTree = "<group>"; };
+		8C63E5B21CE09FA900B4EC1D /* emoji_tab4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab4@2x.png"; sourceTree = "<group>"; };
+		8C63E5B31CE09FA900B4EC1D /* emoji_tab4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab4@3x.png"; sourceTree = "<group>"; };
+		8C63E5B41CE09FA900B4EC1D /* emoji_tab4Press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab4Press@2x.png"; sourceTree = "<group>"; };
+		8C63E5B51CE09FA900B4EC1D /* emoji_tab4Press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab4Press@3x.png"; sourceTree = "<group>"; };
+		8C63E5B61CE09FA900B4EC1D /* emoji_tab5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab5@2x.png"; sourceTree = "<group>"; };
+		8C63E5B71CE09FA900B4EC1D /* emoji_tab5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab5@3x.png"; sourceTree = "<group>"; };
+		8C63E5B81CE09FA900B4EC1D /* emoji_tab5Press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab5Press@2x.png"; sourceTree = "<group>"; };
+		8C63E5B91CE09FA900B4EC1D /* emoji_tab5Press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoji_tab5Press@3x.png"; sourceTree = "<group>"; };
+		8C63E5BA1CE09FA900B4EC1D /* KBSkinFilter_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KBSkinFilter_delete@2x.png"; sourceTree = "<group>"; };
+		8C63E5BB1CE09FA900B4EC1D /* KBSkinFilter_delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KBSkinFilter_delete@3x.png"; sourceTree = "<group>"; };
+		8C63E5BC1CE09FA900B4EC1D /* KBSkinFilter_delete_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KBSkinFilter_delete_press@2x.png"; sourceTree = "<group>"; };
+		8C63E5BD1CE09FA900B4EC1D /* KBSkinFilter_delete_press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KBSkinFilter_delete_press@3x.png"; sourceTree = "<group>"; };
+		8C63E5DA1CE0A03000B4EC1D /* bt_search_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_search_btn.png; sourceTree = "<group>"; };
+		8C63E5DB1CE0A03000B4EC1D /* bt_search_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_search_btn@2x.png"; sourceTree = "<group>"; };
+		8C63E5DE1CE0A07000B4EC1D /* chat_jianpan_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_jianpan_btn.png; sourceTree = "<group>"; };
+		8C63E5DF1CE0A07000B4EC1D /* chat_jianpan_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_jianpan_btn@2x.png"; sourceTree = "<group>"; };
 		B80131431C7FF17D0070612B /* SingleRoomRentPostToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleRoomRentPostToViewController.h; sourceTree = "<group>"; };
 		B80131441C7FF17D0070612B /* SingleRoomRentPostToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleRoomRentPostToViewController.m; sourceTree = "<group>"; };
 		B80131461C8001E50070612B /* WholeHouseRentPostToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WholeHouseRentPostToViewController.h; sourceTree = "<group>"; };
@@ -1645,6 +1719,12 @@
 		8C18624E1CDF79C900632CDC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8C63E5DE1CE0A07000B4EC1D /* chat_jianpan_btn.png */,
+				8C63E5DF1CE0A07000B4EC1D /* chat_jianpan_btn@2x.png */,
+				8C63E5961CE09A8B00B4EC1D /* chat_emoji_btn.png */,
+				8C63E5971CE09A8B00B4EC1D /* chat_emoji_btn@2x.png */,
+				8C63E5981CE09A8B00B4EC1D /* chat_more_btn.png */,
+				8C63E5991CE09A8B00B4EC1D /* chat_more_btn@2x.png */,
 				8C18624F1CDF79C900632CDC /* cm_title_btn_nor.png */,
 				8C1862501CDF79C900632CDC /* cm_title_btn_nor@2x.png */,
 				8C1862511CDF79C900632CDC /* cm_title_btn_sel.png */,
@@ -2178,6 +2258,8 @@
 		8C63E5271CE056A800B4EC1D /* AGEmojiKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				8C63E5A11CE09FA900B4EC1D /* EmojiBoardImages */,
+				8C63E59E1CE09E8600B4EC1D /* EmojisList.plist */,
 				8C63E5281CE056A800B4EC1D /* AGEmojiKeyBoardView.h */,
 				8C63E5291CE056A800B4EC1D /* AGEmojiKeyBoardView.m */,
 				8C63E52A1CE056A800B4EC1D /* AGEmojiPageView.h */,
@@ -2313,6 +2395,43 @@
 				8C63E58B1CE0662D00B4EC1D /* CustomIndicatorView.m */,
 			);
 			path = CustomIndicatorView;
+			sourceTree = "<group>";
+		};
+		8C63E5A11CE09FA900B4EC1D /* EmojiBoardImages */ = {
+			isa = PBXGroup;
+			children = (
+				8C63E5DA1CE0A03000B4EC1D /* bt_search_btn.png */,
+				8C63E5DB1CE0A03000B4EC1D /* bt_search_btn@2x.png */,
+				8C63E5A21CE09FA900B4EC1D /* emoji_tab0@2x.png */,
+				8C63E5A31CE09FA900B4EC1D /* emoji_tab0@3x.png */,
+				8C63E5A41CE09FA900B4EC1D /* emoji_tab0Press@2x.png */,
+				8C63E5A51CE09FA900B4EC1D /* emoji_tab0Press@3x.png */,
+				8C63E5A61CE09FA900B4EC1D /* emoji_tab1@2x.png */,
+				8C63E5A71CE09FA900B4EC1D /* emoji_tab1@3x.png */,
+				8C63E5A81CE09FA900B4EC1D /* emoji_tab1Press@2x.png */,
+				8C63E5A91CE09FA900B4EC1D /* emoji_tab1Press@3x.png */,
+				8C63E5AA1CE09FA900B4EC1D /* emoji_tab2@2x.png */,
+				8C63E5AB1CE09FA900B4EC1D /* emoji_tab2@3x.png */,
+				8C63E5AC1CE09FA900B4EC1D /* emoji_tab2Press@2x.png */,
+				8C63E5AD1CE09FA900B4EC1D /* emoji_tab2Press@3x.png */,
+				8C63E5AE1CE09FA900B4EC1D /* emoji_tab3@2x.png */,
+				8C63E5AF1CE09FA900B4EC1D /* emoji_tab3@3x.png */,
+				8C63E5B01CE09FA900B4EC1D /* emoji_tab3Press@2x.png */,
+				8C63E5B11CE09FA900B4EC1D /* emoji_tab3Press@3x.png */,
+				8C63E5B21CE09FA900B4EC1D /* emoji_tab4@2x.png */,
+				8C63E5B31CE09FA900B4EC1D /* emoji_tab4@3x.png */,
+				8C63E5B41CE09FA900B4EC1D /* emoji_tab4Press@2x.png */,
+				8C63E5B51CE09FA900B4EC1D /* emoji_tab4Press@3x.png */,
+				8C63E5B61CE09FA900B4EC1D /* emoji_tab5@2x.png */,
+				8C63E5B71CE09FA900B4EC1D /* emoji_tab5@3x.png */,
+				8C63E5B81CE09FA900B4EC1D /* emoji_tab5Press@2x.png */,
+				8C63E5B91CE09FA900B4EC1D /* emoji_tab5Press@3x.png */,
+				8C63E5BA1CE09FA900B4EC1D /* KBSkinFilter_delete@2x.png */,
+				8C63E5BB1CE09FA900B4EC1D /* KBSkinFilter_delete@3x.png */,
+				8C63E5BC1CE09FA900B4EC1D /* KBSkinFilter_delete_press@2x.png */,
+				8C63E5BD1CE09FA900B4EC1D /* KBSkinFilter_delete_press@3x.png */,
+			);
+			path = EmojiBoardImages;
 			sourceTree = "<group>";
 		};
 		B80131361C7FF0470070612B /* 整套租赁 */ = {
@@ -3230,6 +3349,7 @@
 				8C1864311CDF9C4C00632CDC /* tabbarSelectBg@2x.png in Resources */,
 				8C1862551CDF79C900632CDC /* cm_title_btn_sel.png in Resources */,
 				8C1864191CDF9C4C00632CDC /* group_header@2x.png in Resources */,
+				8C63E5D21CE09FA900B4EC1D /* emoji_tab5@2x.png in Resources */,
 				8C1863E01CDF9C4C00632CDC /* chatBar_colorMore_cameraSelected@2x.png in Resources */,
 				8C18639D1CDF9C4C00632CDC /* VoiceSearchFeedback014.png in Resources */,
 				B8A6AF571C8C181400DC84BC /* UIAlertView-Blocks.podspec in Resources */,
@@ -3238,6 +3358,7 @@
 				8C18642D1CDF9C4C00632CDC /* tabbar_settingHL@2x.png in Resources */,
 				8C1864271CDF9C4C00632CDC /* tabbar_contacts@2x.png in Resources */,
 				8C1864071CDF9C4C00632CDC /* chat_sender_audio_playing_002@2x.png in Resources */,
+				8C63E5C81CE09FA900B4EC1D /* emoji_tab2Press@2x.png in Resources */,
 				8C1863ED1CDF9C4C00632CDC /* chatBar_more_location.png in Resources */,
 				8C1864061CDF9C4C00632CDC /* chat_sender_audio_playing_002.png in Resources */,
 				8C1862561CDF79C900632CDC /* cm_title_btn_sel@2x.png in Resources */,
@@ -3250,7 +3371,9 @@
 				8C1863BF1CDF9C4C00632CDC /* chat_location_annotation_someone.png in Resources */,
 				8C18639B1CDF9C4C00632CDC /* VoiceSearchFeedback013.png in Resources */,
 				8C1863831CDF9C4C00632CDC /* VoiceSearchFeedback001.png in Resources */,
+				8C63E5D51CE09FA900B4EC1D /* emoji_tab5Press@3x.png in Resources */,
 				8C18640D1CDF9C4C00632CDC /* chat_sender_bg@2x.png in Resources */,
+				8C63E59A1CE09A8B00B4EC1D /* chat_emoji_btn.png in Resources */,
 				8C1863F01CDF9C4C00632CDC /* chatBar_more_locationSelected@2x.png in Resources */,
 				8C18641F1CDF9C4C00632CDC /* groupPublicHeader@2x.png in Resources */,
 				8C1863891CDF9C4C00632CDC /* VoiceSearchFeedback004.png in Resources */,
@@ -3261,13 +3384,16 @@
 				8C63E5191CE055F800B4EC1D /* ChatToolBarView.xib in Resources */,
 				8C1863E51CDF9C4C00632CDC /* chatBar_colorMore_video@2x.png in Resources */,
 				8C1863D41CDF9C4C00632CDC /* chatBar_moreSelected@2x.png in Resources */,
+				8C63E5C31CE09FA900B4EC1D /* emoji_tab1@3x.png in Resources */,
 				8C18638C1CDF9C4C00632CDC /* VoiceSearchFeedback005@2x.png in Resources */,
 				8C1863DF1CDF9C4C00632CDC /* chatBar_colorMore_camera@2x.png in Resources */,
 				8C1862541CDF79C900632CDC /* cm_title_btn_nor@2x.png in Resources */,
 				8C1863F21CDF9C4C00632CDC /* chatBar_more_photo@2x.png in Resources */,
 				8C1863D21CDF9C4C00632CDC /* chatBar_more@2x.png in Resources */,
+				8C63E5C51CE09FA900B4EC1D /* emoji_tab1Press@3x.png in Resources */,
 				8C1863851CDF9C4C00632CDC /* VoiceSearchFeedback002.png in Resources */,
 				8C1863C91CDF9C4C00632CDC /* chatBar_face.png in Resources */,
+				8C63E5BF1CE09FA900B4EC1D /* emoji_tab0@3x.png in Resources */,
 				8C1862531CDF79C900632CDC /* cm_title_btn_nor.png in Resources */,
 				8C1863CF1CDF9C4C00632CDC /* chatBar_keyboardSelected.png in Resources */,
 				8C1863941CDF9C4C00632CDC /* VoiceSearchFeedback009@2x.png in Resources */,
@@ -3278,7 +3404,9 @@
 				8C1863BB1CDF9C4C00632CDC /* chatBar_more_faceSelected.png in Resources */,
 				8C1863861CDF9C4C00632CDC /* VoiceSearchFeedback002@2x.png in Resources */,
 				8C1863A01CDF9C4C00632CDC /* VoiceSearchFeedback015@2x.png in Resources */,
+				8C63E5C21CE09FA900B4EC1D /* emoji_tab1@2x.png in Resources */,
 				8C1863981CDF9C4C00632CDC /* VoiceSearchFeedback011@2x.png in Resources */,
+				8C63E5C61CE09FA900B4EC1D /* emoji_tab2@2x.png in Resources */,
 				8C1863F71CDF9C4C00632CDC /* chat_receiver_audio_playing000@2x.png in Resources */,
 				8C1863A31CDF9C4C00632CDC /* VoiceSearchFeedback017.png in Resources */,
 				8C18639E1CDF9C4C00632CDC /* VoiceSearchFeedback014@2x.png in Resources */,
@@ -3286,6 +3414,7 @@
 				8C1863EC1CDF9C4C00632CDC /* chatBar_more_cameraSelected@2x.png in Resources */,
 				8C1863AD1CDF9C4C00632CDC /* call_out_h.png in Resources */,
 				8C1863971CDF9C4C00632CDC /* VoiceSearchFeedback011.png in Resources */,
+				8C63E5C41CE09FA900B4EC1D /* emoji_tab1Press@2x.png in Resources */,
 				8C18640F1CDF9C4C00632CDC /* account@2x.png in Resources */,
 				8C1863AF1CDF9C4C00632CDC /* call_silence.png in Resources */,
 				8C1863F81CDF9C4C00632CDC /* chat_receiver_audio_playing001.png in Resources */,
@@ -3295,13 +3424,17 @@
 				8C1864101CDF9C4C00632CDC /* password.png in Resources */,
 				8C18639C1CDF9C4C00632CDC /* VoiceSearchFeedback013@2x.png in Resources */,
 				8C63E5711CE05B6B00B4EC1D /* MJRefresh.bundle in Resources */,
+				8C63E5DC1CE0A03000B4EC1D /* bt_search_btn.png in Resources */,
 				8C18642B1CDF9C4C00632CDC /* tabbar_setting@2x.png in Resources */,
 				8C1863811CDF9C4C00632CDC /* chatListCellHead.png in Resources */,
 				8C1863C31CDF9C4C00632CDC /* chat_location_detail_disclosureHL.png in Resources */,
+				8C63E5D61CE09FA900B4EC1D /* KBSkinFilter_delete@2x.png in Resources */,
 				8C18641B1CDF9C4C00632CDC /* group_joinpublicgroup@2x.png in Resources */,
 				8C18638F1CDF9C4C00632CDC /* VoiceSearchFeedback007.png in Resources */,
 				8C1864251CDF9C4C00632CDC /* tabbar_chatsHL@2x.png in Resources */,
 				8C1864131CDF9C4C00632CDC /* back@2x.png in Resources */,
+				8C63E5C71CE09FA900B4EC1D /* emoji_tab2@3x.png in Resources */,
+				8C63E5D71CE09FA900B4EC1D /* KBSkinFilter_delete@3x.png in Resources */,
 				8C1864211CDF9C4C00632CDC /* newFriends@2x.png in Resources */,
 				8C1863F91CDF9C4C00632CDC /* chat_receiver_audio_playing001@2x.png in Resources */,
 				8C1863871CDF9C4C00632CDC /* VoiceSearchFeedback003.png in Resources */,
@@ -3309,15 +3442,19 @@
 				8C1863BD1CDF9C4C00632CDC /* chatBar_textBg.png in Resources */,
 				8C1863A61CDF9C4C00632CDC /* VoiceSearchFeedback018@2x.png in Resources */,
 				8C18642C1CDF9C4C00632CDC /* tabbar_settingHL.png in Resources */,
+				8C63E5D01CE09FA900B4EC1D /* emoji_tab4Press@2x.png in Resources */,
 				8C1863E71CDF9C4C00632CDC /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
 				8C1863D81CDF9C4C00632CDC /* chatBar_recordBg@2x.png in Resources */,
+				8C63E5CC1CE09FA900B4EC1D /* emoji_tab3Press@2x.png in Resources */,
 				B89A0CE11C79D8300072A6A8 /* RefreshBubble.xcassets in Resources */,
 				8C1863C81CDF9C4C00632CDC /* messageSendFail@2x.png in Resources */,
+				8C63E5D91CE09FA900B4EC1D /* KBSkinFilter_delete_press@3x.png in Resources */,
 				8C1864151CDF9C4C00632CDC /* group_detail@2x.png in Resources */,
 				8C1863841CDF9C4C00632CDC /* VoiceSearchFeedback001@2x.png in Resources */,
 				8C18641E1CDF9C4C00632CDC /* groupPrivateHeader@2x.png in Resources */,
 				8C1863B51CDF9C4C00632CDC /* chatBar_more_card.png in Resources */,
 				8C1863EB1CDF9C4C00632CDC /* chatBar_more_cameraSelected.png in Resources */,
+				8C63E5CE1CE09FA900B4EC1D /* emoji_tab4@2x.png in Resources */,
 				8C1863991CDF9C4C00632CDC /* VoiceSearchFeedback012.png in Resources */,
 				8C1863D71CDF9C4C00632CDC /* chatBar_recordBg.png in Resources */,
 				8C1863AE1CDF9C4C00632CDC /* call_out_h@2x.png in Resources */,
@@ -3326,17 +3463,21 @@
 				8C18640C1CDF9C4C00632CDC /* chat_sender_bg.png in Resources */,
 				8C1863FE1CDF9C4C00632CDC /* chat_receiver_audio_playing_full.png in Resources */,
 				8C1863E61CDF9C4C00632CDC /* chatBar_colorMore_videoCall@2x.png in Resources */,
+				8C63E5CA1CE09FA900B4EC1D /* emoji_tab3@2x.png in Resources */,
 				8C1864201CDF9C4C00632CDC /* nav_createGroup@2x.png in Resources */,
 				8C18638D1CDF9C4C00632CDC /* VoiceSearchFeedback006.png in Resources */,
 				8C1863DA1CDF9C4C00632CDC /* chatBar_recordSelected@2x.png in Resources */,
 				8C18621B1CDF422D00632CDC /* MessageViewCell.xib in Resources */,
+				8C63E5D11CE09FA900B4EC1D /* emoji_tab4Press@3x.png in Resources */,
 				8C1863CB1CDF9C4C00632CDC /* chatBar_faceSelected.png in Resources */,
 				8C1863821CDF9C4C00632CDC /* chatListCellHead@2x.png in Resources */,
 				8C1862581CDF91C300632CDC /* Localizable.strings in Resources */,
+				8C63E5DD1CE0A03000B4EC1D /* bt_search_btn@2x.png in Resources */,
 				8C1863E91CDF9C4C00632CDC /* chatBar_more_camera.png in Resources */,
 				8C1863901CDF9C4C00632CDC /* VoiceSearchFeedback007@2x.png in Resources */,
 				8C1864161CDF9C4C00632CDC /* titleBar.png in Resources */,
 				8C1863DE1CDF9C4C00632CDC /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
+				8C63E5CF1CE09FA900B4EC1D /* emoji_tab4@3x.png in Resources */,
 				8C1864041CDF9C4C00632CDC /* chat_sender_audio_playing_001.png in Resources */,
 				8C1863D31CDF9C4C00632CDC /* chatBar_moreSelected.png in Resources */,
 				8C1863E11CDF9C4C00632CDC /* chatBar_colorMore_location@2x.png in Resources */,
@@ -3344,20 +3485,24 @@
 				8C1863F51CDF9C4C00632CDC /* messageToolbarBg@2x.png in Resources */,
 				8C1863C01CDF9C4C00632CDC /* chat_location_annotation_someone@2x.png in Resources */,
 				8C1863C71CDF9C4C00632CDC /* imageDownloadFail@2x.png in Resources */,
+				8C63E5BE1CE09FA900B4EC1D /* emoji_tab0@2x.png in Resources */,
 				8C1863B71CDF9C4C00632CDC /* chatBar_more_cardSelected.png in Resources */,
 				8C1863BA1CDF9C4C00632CDC /* chatBar_more_face@2x.png in Resources */,
 				8C18641D1CDF9C4C00632CDC /* group_participant_addHL@2x.png in Resources */,
 				8C1863DD1CDF9C4C00632CDC /* chatBar_colorMore_audioCall@2x.png in Resources */,
 				8C1863A51CDF9C4C00632CDC /* VoiceSearchFeedback018.png in Resources */,
 				8C1863D11CDF9C4C00632CDC /* chatBar_more.png in Resources */,
+				8C63E59D1CE09A8B00B4EC1D /* chat_more_btn@2x.png in Resources */,
 				8C18640A1CDF9C4C00632CDC /* chat_sender_audio_playing_full.png in Resources */,
 				8C1863911CDF9C4C00632CDC /* VoiceSearchFeedback008.png in Resources */,
 				8C1863F61CDF9C4C00632CDC /* chat_receiver_audio_playing000.png in Resources */,
 				8C1863A41CDF9C4C00632CDC /* VoiceSearchFeedback017@2x.png in Resources */,
 				8C1863E81CDF9C4C00632CDC /* chatBar_colorMore_videoSelected@2x.png in Resources */,
+				8C63E59F1CE09E8600B4EC1D /* EmojisList.plist in Resources */,
 				8C1863FC1CDF9C4C00632CDC /* chat_receiver_audio_playing003.png in Resources */,
 				8C1863F11CDF9C4C00632CDC /* chatBar_more_photo.png in Resources */,
 				B89A0C701C79904C0072A6A8 /* Assets.xcassets in Resources */,
+				8C63E5E01CE0A07000B4EC1D /* chat_jianpan_btn.png in Resources */,
 				8C1863EE1CDF9C4C00632CDC /* chatBar_more_location@2x.png in Resources */,
 				8C1863CE1CDF9C4C00632CDC /* chatBar_keyboard@2x.png in Resources */,
 				8C1863C41CDF9C4C00632CDC /* chat_location_detail_disclosureHL@2x.png in Resources */,
@@ -3366,10 +3511,14 @@
 				8C1864111CDF9C4C00632CDC /* password@2x.png in Resources */,
 				8C1863B81CDF9C4C00632CDC /* chatBar_more_cardSelected@2x.png in Resources */,
 				8C1864021CDF9C4C00632CDC /* chat_sender_audio_playing_000.png in Resources */,
+				8C63E5C11CE09FA900B4EC1D /* emoji_tab0Press@3x.png in Resources */,
+				8C63E5C01CE09FA900B4EC1D /* emoji_tab0Press@2x.png in Resources */,
 				8C1863A71CDF9C4C00632CDC /* VoiceSearchFeedback019.png in Resources */,
 				8C18642E1CDF9C4C00632CDC /* tabbarBackground.png in Resources */,
 				8C18641C1CDF9C4C00632CDC /* group_participant_add@2x.png in Resources */,
+				8C63E5D31CE09FA900B4EC1D /* emoji_tab5@3x.png in Resources */,
 				8C1863C21CDF9C4C00632CDC /* chat_location_detail_disclosure@2x.png in Resources */,
+				8C63E5E11CE0A07000B4EC1D /* chat_jianpan_btn@2x.png in Resources */,
 				8C1864051CDF9C4C00632CDC /* chat_sender_audio_playing_001@2x.png in Resources */,
 				B89A0C6E1C79904C0072A6A8 /* Main.storyboard in Resources */,
 <<<<<<< HEAD
@@ -3386,9 +3535,11 @@
 				8C1863801CDF9C4C00632CDC /* 80.png in Resources */,
 				8C1863EF1CDF9C4C00632CDC /* chatBar_more_locationSelected.png in Resources */,
 				8C1864081CDF9C4C00632CDC /* chat_sender_audio_playing_003.png in Resources */,
+				8C63E5C91CE09FA900B4EC1D /* emoji_tab2Press@3x.png in Resources */,
 				8C1863AA1CDF9C4C00632CDC /* VoiceSearchFeedback020@2x.png in Resources */,
 				8C1863E41CDF9C4C00632CDC /* chatBar_colorMore_photoSelected@2x.png in Resources */,
 				8C18637C1CDF9C4C00632CDC /* 120.png in Resources */,
+				8C63E59C1CE09A8B00B4EC1D /* chat_more_btn.png in Resources */,
 				8C1864231CDF9C4C00632CDC /* tabbar_chats@2x.png in Resources */,
 				8C1863B21CDF9C4C00632CDC /* call_silence_h@2x.png in Resources */,
 				8C18638E1CDF9C4C00632CDC /* VoiceSearchFeedback006@2x.png in Resources */,
@@ -3398,17 +3549,21 @@
 				8C1864031CDF9C4C00632CDC /* chat_sender_audio_playing_000@2x.png in Resources */,
 				8C1863FD1CDF9C4C00632CDC /* chat_receiver_audio_playing003@2x.png in Resources */,
 				8C1863DC1CDF9C4C00632CDC /* chatBar_recordSelectedBg@2x.png in Resources */,
+				8C63E59B1CE09A8B00B4EC1D /* chat_emoji_btn@2x.png in Resources */,
+				8C63E5CD1CE09FA900B4EC1D /* emoji_tab3Press@3x.png in Resources */,
 				8C18637B1CDF9C4C00632CDC /* 114.png in Resources */,
 				8C1863F41CDF9C4C00632CDC /* chatBar_more_photoSelected@2x.png in Resources */,
 				8C1864301CDF9C4C00632CDC /* tabbarSelectBg.png in Resources */,
 				8C1864291CDF9C4C00632CDC /* tabbar_contactsHL@2x.png in Resources */,
 				8C1863C51CDF9C4C00632CDC /* faceDelete.png in Resources */,
+				8C63E5D41CE09FA900B4EC1D /* emoji_tab5Press@2x.png in Resources */,
 				8C1863931CDF9C4C00632CDC /* VoiceSearchFeedback009.png in Resources */,
 				8C1864261CDF9C4C00632CDC /* tabbar_contacts.png in Resources */,
 				8C1863AB1CDF9C4C00632CDC /* call_out.png in Resources */,
 				8C1863E21CDF9C4C00632CDC /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				8C1863FA1CDF9C4C00632CDC /* chat_receiver_audio_playing002.png in Resources */,
 				8C1863B11CDF9C4C00632CDC /* call_silence_h.png in Resources */,
+				8C63E5CB1CE09FA900B4EC1D /* emoji_tab3@3x.png in Resources */,
 				8C18639A1CDF9C4C00632CDC /* VoiceSearchFeedback012@2x.png in Resources */,
 				8C18639F1CDF9C4C00632CDC /* VoiceSearchFeedback015.png in Resources */,
 				8C18637E1CDF9C4C00632CDC /* 57.png in Resources */,
@@ -3418,6 +3573,7 @@
 				B8B612971C7D95170036A019 /* ImagesPicker.xcassets in Resources */,
 				8C1863BE1CDF9C4C00632CDC /* chatBar_textBg@2x.png in Resources */,
 				8C1863B41CDF9C4C00632CDC /* chat_video_play.png in Resources */,
+				8C63E5D81CE09FA900B4EC1D /* KBSkinFilter_delete_press@2x.png in Resources */,
 				8C1863BC1CDF9C4C00632CDC /* chatBar_more_faceSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

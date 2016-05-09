@@ -78,6 +78,7 @@
     
     navi.view.backgroundColor = BB_WhiteColor;
     navi.navigationBar.barTintColor = BB_NaviColor;
+    navi.navigationBar.tintColor = BB_WhiteColor;
     navi.navigationBar.barStyle = UIBarStyleBlack;
     self.window.rootViewController = navi;
     [self.window makeKeyAndVisible];
