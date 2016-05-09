@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D5544661CE0DC440029C481 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5544631CE0DC440029C481 /* ContactTableViewCell.m */; };
+		2D5544671CE0DC440029C481 /* ContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5544651CE0DC440029C481 /* ContactView.m */; };
+		2D5544691CE0DCE50029C481 /* 好看2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D5544681CE0DCE50029C481 /* 好看2.jpg */; };
 		2DD0FBC71C9EE47B0046F4C4 /* libHyphenateSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBC51C9EE47B0046F4C4 /* libHyphenateSDK.a */; };
 		2DD0FBC91C9EE6A30046F4C4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBC81C9EE6A20046F4C4 /* CoreMedia.framework */; };
 		2DD0FBCB1C9EE6AA0046F4C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBCA1C9EE6AA0046F4C4 /* AudioToolbox.framework */; };
@@ -501,6 +504,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D5544621CE0DC440029C481 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		2D5544631CE0DC440029C481 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
+		2D5544641CE0DC440029C481 /* ContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactView.h; sourceTree = "<group>"; };
+		2D5544651CE0DC440029C481 /* ContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactView.m; sourceTree = "<group>"; };
+		2D5544681CE0DCE50029C481 /* 好看2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "好看2.jpg"; sourceTree = "<group>"; };
 		2DD0FB9D1C9EE47B0046F4C4 /* EMCallLocalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallLocalView.h; sourceTree = "<group>"; };
 		2DD0FB9E1C9EE47B0046F4C4 /* EMCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallManagerDelegate.h; sourceTree = "<group>"; };
 		2DD0FB9F1C9EE47B0046F4C4 /* EMCallRemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallRemoteView.h; sourceTree = "<group>"; };
@@ -1365,6 +1373,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D5544611CE0DC440029C481 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				2D5544621CE0DC440029C481 /* ContactTableViewCell.h */,
+				2D5544631CE0DC440029C481 /* ContactTableViewCell.m */,
+				2D5544641CE0DC440029C481 /* ContactView.h */,
+				2D5544651CE0DC440029C481 /* ContactView.m */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
 		2DD0FB5B1C9EA4F90046F4C4 /* 聊天模块 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1446,6 +1465,7 @@
 		8C1861851CDF349400632CDC /* ChatMain */ = {
 			isa = PBXGroup;
 			children = (
+				2D5544611CE0DC440029C481 /* Contact */,
 				8C63E51F1CE0567900B4EC1D /* CustomUI */,
 				8C18624E1CDF79C900632CDC /* Images */,
 				8C18618B1CDF356600632CDC /* Model */,
@@ -1454,7 +1474,6 @@
 				8C1861891CDF350700632CDC /* HeightTech */,
 				8C1861861CDF34CC00632CDC /* ChatMainViewController.h */,
 				8C1861871CDF34CC00632CDC /* ChatMainViewController.m */,
-				8C1862131CDF409400632CDC /* Contact */,
 				8C1862121CDF406300632CDC /* Message */,
 			);
 			path = ChatMain;
@@ -1595,13 +1614,6 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
-		8C1862131CDF409400632CDC /* Contact */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Contact;
-			sourceTree = "<group>";
-		};
 		8C1862231CDF591900632CDC /* HyphenateSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -1673,6 +1685,7 @@
 		8C18624E1CDF79C900632CDC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2D5544681CE0DCE50029C481 /* 好看2.jpg */,
 				8C63E5DE1CE0A07000B4EC1D /* chat_jianpan_btn.png */,
 				8C63E5DF1CE0A07000B4EC1D /* chat_jianpan_btn@2x.png */,
 				8C63E5961CE09A8B00B4EC1D /* chat_emoji_btn.png */,
@@ -3292,6 +3305,7 @@
 				8C1863FB1CDF9C4C00632CDC /* chat_receiver_audio_playing002@2x.png in Resources */,
 				8C18638A1CDF9C4C00632CDC /* VoiceSearchFeedback004@2x.png in Resources */,
 				8C1864221CDF9C4C00632CDC /* tabbar_chats.png in Resources */,
+				2D5544691CE0DCE50029C481 /* 好看2.jpg in Resources */,
 				8C1863B61CDF9C4C00632CDC /* chatBar_more_card@2x.png in Resources */,
 				8C18642F1CDF9C4C00632CDC /* tabbarBackground@2x.png in Resources */,
 				8C1864241CDF9C4C00632CDC /* tabbar_chatsHL.png in Resources */,
@@ -3571,6 +3585,7 @@
 				B81E56A71C7EEB9000E34A91 /* QNAsyncRun.m in Sources */,
 				B89A0CC01C79B8C30072A6A8 /* UIProgressView+AFNetworking.m in Sources */,
 				8C63E58C1CE0662D00B4EC1D /* CustomIndicatorView.m in Sources */,
+				2D5544671CE0DC440029C481 /* ContactView.m in Sources */,
 				B81E56DA1C7EED9B00E34A91 /* QNDnsManager.m in Sources */,
 				8C1861EC1CDF378900632CDC /* MKAnnotationView+WebCache.m in Sources */,
 				B89A0C901C79A83F0072A6A8 /* XYTools.m in Sources */,
@@ -3723,6 +3738,7 @@
 				8C63E52D1CE056A800B4EC1D /* AGEmojiPageView.m in Sources */,
 				B89A0CE91C79E0D40072A6A8 /* BaseProduct.m in Sources */,
 				B8DFAE7B1C7AB15C0019A2D5 /* BBUserDefaults.m in Sources */,
+				2D5544661CE0DC440029C481 /* ContactTableViewCell.m in Sources */,
 				B81E56DD1C7EED9B00E34A91 /* QNRecord.m in Sources */,
 				B884438C1C81D3E9002766FE /* LoginViewController.m in Sources */,
 				B81E56B71C7EEB9000E34A91 /* QNResumeUpload.m in Sources */,

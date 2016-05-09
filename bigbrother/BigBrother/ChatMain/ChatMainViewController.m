@@ -8,12 +8,13 @@
 
 #import "ChatMainViewController.h"
 #import "MessageView.h"
-
+#import "ContactView.h"
 
 @interface ChatMainViewController ()
 
-@property (strong, nonatomic) UISegmentedControl *segmentedControl;
-@property (strong, nonatomic) MessageView *messageView;//消息界面
+@property (strong, nonatomic) UISegmentedControl    *segmentedControl;
+@property (strong, nonatomic) MessageView           *messageView;//消息界面
+@property (strong, nonatomic) ContactView           *contactView;       //聊天界面
 
 @end
 
@@ -88,15 +89,25 @@
     return _messageView;
 }
 
+- (ContactView *)contactView
+{
+    if (!_contactView) {
+        _contactView = [[ContactView alloc] init];
+    }
+    return _contactView;
+}
+
 #pragma mark - 按钮方法
 -(void)indexDidChangeForSegmentedControl:(UISegmentedControl *)SegC{
     if (SegC.selectedSegmentIndex == 0){
         NSLog(@"message");
-        //移除contactView
-        [self.messageView addWithSuperView:self.view];
+        [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self.view addSubview:self.messageView];
     }else{
-        [self.messageView removeFromSuperview];
+        [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self.view addSubview:self.contactView];
         NSLog(@"address");
+        
     }
 }
 
