@@ -18,12 +18,38 @@
 #define SYSTEMVERSION [UIDevice currentDevice].systemVersion.floatValue
 
 //通用类
+#import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h>//
 #import "FlexibleFrame.h"//比例适配
+#import "EMSDK.h"//环信
+#import "EMErrorDefs.h"
+#import "ConvertToCommonEmoticonsHelper.h"//表情映射
+#import "PreviewImageViewController.h"//图片预览
+#import "MJRefresh.h"//刷新
+#import "ChatSendHelper.h"//环信发送消息类
+
+#import "UIImage+UIImageExt.h"//图片压缩
+
+#import "UIImageView+WebCache.h"//图片缓存
+#import "UIButton+WebCache.h"
+#import "CustomIndicatorView.h"
+
 
 //延展
+#import "AppDelegate+Category.h"
+#import "UIButton+Category.h"
+#import "UIViewController+Category.h"
+#import "NSDate+Category.h"
 #import "NSString+Category.h"
 #import "UIView+Category.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
+#import "UILabel+Category.h"
+#import "UIImage+ResizeImage.h"
+#import "UIImage+Category.h"
 
+//单例
+#define WINDOW ((AppDelegate *)[UIApplication sharedApplication].delegate).window//window
+#define MANAGER_CHAT [EMClient sharedClient].chatManager
 
 //屏幕适配
 #define SXNOTFOUND 2000
@@ -45,7 +71,55 @@
 #define FLEXIBLE_SUBVIEW(superView) [FlexibleFrame flexibleWithSuperView:(superView)]
 
 
+//主题色
+#define ARGB_COLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/1.0]  //颜色
+#define ITEM_SELECT_COLOR ARGB_COLOR(227,217,178, 1)
+#define ITEM_NORMAL_COLOR ARGB_COLOR(135, 135, 135, 1)
+#define BG_COLOR ARGB_COLOR(229, 229, 229, 1)
+#define NAVTITLE_TINTCOLOR ARGB_COLOR(82, 82, 82, 1)
+//主题
+#define SDProgressViewBackgroundColor ARGB_COLOR(240, 240, 240, 0.9)
+#define _E3D9B2 ARGB_COLOR(227, 217, 178, 1)
+#define _EEEEEE ARGB_COLOR(238, 238, 238, 1)
+#define _525252 ARGB_COLOR(82, 82, 82, 1)
+#define _D4D4D4 ARGB_COLOR(212, 212, 212, 1)
+#define _999999 ARGB_COLOR(153, 153, 153, 1)
+#define _808080 ARGB_COLOR(128, 128, 128, 1)
+#define _D3D3D3 ARGB_COLOR(211, 211, 211, 1)
+#define _B6B6B6 ARGB_COLOR(182, 182, 182, 1)
+#define _333333 ARGB_COLOR(51, 51, 51, 1)
+#define _76A4B3 ARGB_COLOR(118, 164, 179, 1)
+#define _EB7527 ARGB_COLOR(235, 117, 39, 1)
+#define _393A3E ARGB_COLOR(57, 58, 62, 0.9)
+#define _FF7373 ARGB_COLOR(255, 115, 115, 1)
+#define _D8D8D8 ARGB_COLOR(216, 216, 216, 1)
+#define _DDDDDD ARGB_COLOR(221, 221, 221, 1)
+#define _33B982 ARGB_COLOR(51, 185, 130, 1)
+#define _F7F7F7 ARGB_COLOR(247, 247, 247, 1)
+
+//默认图片
+#define PLACEHOLDERIMAGE_USER [UIImage imageNamed:@"choujiang"]
+#define PLACEHOLDERIMAGE_GROUP [UIImage imageNamed:@"choujiang"]
+
 //TGA
 #define LINEVIEW_TAG 500
+#define TEXTFIELD_TAG 300
+#define MJHEADER_TAG 700
+#define MJFOOTER_TAG 800
+
+#define INDICATORVIEW_TAG 2000
+#define HINTLABEL_TAG 5000
+#define PREVIEW_TAG 6000
+
+//状态类型
+#define TITLE_ALERT @"书乡提示"
+#define ACTIONSTYLE_CANCEL @"-CANCLE"
+#define ACTIONSTYLE_NORMAL @"-NORMAL"
+#define ACTIONSTYLE_DESTRUCTIVE @"-DESTRUCTIVE"
+#define ACTIONSTYLE_DISABLED @"+DISABELD"
+
+//消息
+#define MESSAGE_NOTOPENCAERA @"相机访问受限，请设置相机访问权限~\n设置- >隐私- >相机"
+#define MESSAGE_NOTLOCATION @"定位需要打开定位服务~\n设置- >隐私- >定位服务"
 
 #endif /* ChatHeader_pch_h */

@@ -10,4 +10,11 @@
 
 @interface MessageView : UIView
 
+- (void)addWithSuperView:(UIView *)superView;
+
+#pragma mark - registerNotifications
+-(void)registerNotifications;
+
+-(void)unregisterNotifications;
+
 @end

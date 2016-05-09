@@ -10,6 +10,10 @@
 
 @interface MessageViewCell : UITableViewCell
 
+@property (strong, nonatomic) NSDictionary *chatterDic;
 
+@property (strong, nonatomic) EMConversation *conversation;
+
+- (void)loadDataWithConversation:(EMConversation *)conversation;
 
 @end
