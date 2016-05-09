@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D55445D1CE0CE210029C481 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D55445A1CE0CE210029C481 /* ContactTableViewCell.m */; };
-		2D55445E1CE0CE210029C481 /* ContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D55445C1CE0CE210029C481 /* ContactView.m */; };
-		2D5544601CE0CECD0029C481 /* 好看2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D55445F1CE0CECD0029C481 /* 好看2.jpg */; };
 		2DD0FBC71C9EE47B0046F4C4 /* libHyphenateSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBC51C9EE47B0046F4C4 /* libHyphenateSDK.a */; };
 		2DD0FBC91C9EE6A30046F4C4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBC81C9EE6A20046F4C4 /* CoreMedia.framework */; };
 		2DD0FBCB1C9EE6AA0046F4C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBCA1C9EE6AA0046F4C4 /* AudioToolbox.framework */; };
@@ -504,11 +501,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D5544591CE0CE210029C481 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
-		2D55445A1CE0CE210029C481 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
-		2D55445B1CE0CE210029C481 /* ContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactView.h; sourceTree = "<group>"; };
-		2D55445C1CE0CE210029C481 /* ContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactView.m; sourceTree = "<group>"; };
-		2D55445F1CE0CECD0029C481 /* 好看2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "好看2.jpg"; sourceTree = "<group>"; };
 		2DD0FB9D1C9EE47B0046F4C4 /* EMCallLocalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallLocalView.h; sourceTree = "<group>"; };
 		2DD0FB9E1C9EE47B0046F4C4 /* EMCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallManagerDelegate.h; sourceTree = "<group>"; };
 		2DD0FB9F1C9EE47B0046F4C4 /* EMCallRemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallRemoteView.h; sourceTree = "<group>"; };
@@ -1373,17 +1365,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D5544581CE0CE210029C481 /* Contact */ = {
-			isa = PBXGroup;
-			children = (
-				2D5544591CE0CE210029C481 /* ContactTableViewCell.h */,
-				2D55445A1CE0CE210029C481 /* ContactTableViewCell.m */,
-				2D55445B1CE0CE210029C481 /* ContactView.h */,
-				2D55445C1CE0CE210029C481 /* ContactView.m */,
-			);
-			path = Contact;
-			sourceTree = "<group>";
-		};
 		2DD0FB5B1C9EA4F90046F4C4 /* 聊天模块 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1465,18 +1446,15 @@
 		8C1861851CDF349400632CDC /* ChatMain */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				2D5544581CE0CE210029C481 /* Contact */,
-=======
 				8C63E51F1CE0567900B4EC1D /* CustomUI */,
 				8C18624E1CDF79C900632CDC /* Images */,
->>>>>>> origin/master
 				8C18618B1CDF356600632CDC /* Model */,
 				8C18618C1CDF359100632CDC /* Pch */,
 				8C18618A1CDF352000632CDC /* Category */,
 				8C1861891CDF350700632CDC /* HeightTech */,
 				8C1861861CDF34CC00632CDC /* ChatMainViewController.h */,
 				8C1861871CDF34CC00632CDC /* ChatMainViewController.m */,
+				8C1862131CDF409400632CDC /* Contact */,
 				8C1862121CDF406300632CDC /* Message */,
 			);
 			path = ChatMain;
@@ -1604,22 +1582,6 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		8C1862091CDF3CA700632CDC /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				2D55445F1CE0CECD0029C481 /* 好看2.jpg */,
-				8C18620A1CDF3D2C00632CDC /* cm_title_btn_nor.png */,
-				8C18620B1CDF3D2C00632CDC /* cm_title_btn_nor@2x.png */,
-				8C18620C1CDF3D2C00632CDC /* cm_title_btn_sel.png */,
-				8C18620D1CDF3D2C00632CDC /* cm_title_btn_sel@2x.png */,
-			);
-			name = Images;
-			path = ChatMain/Images;
-			sourceTree = "<group>";
-		};
-=======
->>>>>>> origin/master
 		8C1862121CDF406300632CDC /* Message */ = {
 			isa = PBXGroup;
 			children = (
@@ -1633,19 +1595,11 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		8C1862221CDF554D00632CDC /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Chat;
-=======
 		8C1862131CDF409400632CDC /* Contact */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Contact;
->>>>>>> origin/master
 			sourceTree = "<group>";
 		};
 		8C1862231CDF591900632CDC /* HyphenateSDK */ = {
@@ -3521,9 +3475,6 @@
 				8C63E5E11CE0A07000B4EC1D /* chat_jianpan_btn@2x.png in Resources */,
 				8C1864051CDF9C4C00632CDC /* chat_sender_audio_playing_001@2x.png in Resources */,
 				B89A0C6E1C79904C0072A6A8 /* Main.storyboard in Resources */,
-<<<<<<< HEAD
-				2D5544601CE0CECD0029C481 /* 好看2.jpg in Resources */,
-=======
 				8C18642A1CDF9C4C00632CDC /* tabbar_setting.png in Resources */,
 				8C1864141CDF9C4C00632CDC /* delete@2x.png in Resources */,
 				8C1863EA1CDF9C4C00632CDC /* chatBar_more_camera@2x.png in Resources */,
@@ -3569,7 +3520,6 @@
 				8C18637E1CDF9C4C00632CDC /* 57.png in Resources */,
 				8C1863961CDF9C4C00632CDC /* VoiceSearchFeedback010@2x.png in Resources */,
 				8C1863B91CDF9C4C00632CDC /* chatBar_more_face.png in Resources */,
->>>>>>> origin/master
 				B8B612971C7D95170036A019 /* ImagesPicker.xcassets in Resources */,
 				8C1863BE1CDF9C4C00632CDC /* chatBar_textBg@2x.png in Resources */,
 				8C1863B41CDF9C4C00632CDC /* chat_video_play.png in Resources */,
@@ -3588,7 +3538,6 @@
 				B89A0D031C79FB650072A6A8 /* FactoryPostNewViewController.m in Sources */,
 				8C63E5701CE05B6B00B4EC1D /* MJRefreshStateHeader.m in Sources */,
 				B89A0CCC1C79C8090072A6A8 /* FactoryProduct.m in Sources */,
-				2D55445D1CE0CE210029C481 /* ContactTableViewCell.m in Sources */,
 				B89A0CE21C79D8300072A6A8 /* UIScrollView+XYRefresh.m in Sources */,
 				8C63E57C1CE05C7400B4EC1D /* UIViewController+Category.m in Sources */,
 				B80131451C7FF17D0070612B /* SingleRoomRentPostToViewController.m in Sources */,
@@ -3624,7 +3573,6 @@
 				8C63E58C1CE0662D00B4EC1D /* CustomIndicatorView.m in Sources */,
 				B81E56DA1C7EED9B00E34A91 /* QNDnsManager.m in Sources */,
 				8C1861EC1CDF378900632CDC /* MKAnnotationView+WebCache.m in Sources */,
-				2D55445E1CE0CE210029C481 /* ContactView.m in Sources */,
 				B89A0C901C79A83F0072A6A8 /* XYTools.m in Sources */,
 				8C63E5671CE05B6B00B4EC1D /* MJRefreshHeader.m in Sources */,
 				8C1864341CDF9C4C00632CDC /* EMVoiceConverter.mm in Sources */,
