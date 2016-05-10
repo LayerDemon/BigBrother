@@ -1,23 +1,25 @@
 /************************************************************
- *  * EaseMob CONFIDENTIAL
+ *  * Hyphenate CONFIDENTIAL
  * __________________
- * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved.
+ * Copyright (C) 2016 Hyphenate Inc. All rights reserved.
  *
  * NOTICE: All information contained herein is, and remains
- * the property of EaseMob Technologies.
+ * the property of Hyphenate Inc.
  * Dissemination of this information or reproduction of this material
  * is strictly forbidden unless prior written permission is obtained
- * from EaseMob Technologies.
+ * from Hyphenate Inc.
  */
 
-#import "ConvertToCommonEmoticonsHelper.h"
-#import "Emoji.h"
+#import "EaseConvertToCommonEmoticonsHelper.h"
+#import "EaseEmoji.h"
 
-@implementation ConvertToCommonEmoticonsHelper
+@implementation EaseConvertToCommonEmoticonsHelper
 
 #pragma mark - emotics
-+ (NSString *)convertToCommonEmoticons:(NSString *)text {
-    int allEmoticsCount = (int)[Emoji allEmoji].count;
+
++ (NSString *)convertToCommonEmoticons:(NSString *)text
+{
+    int allEmoticsCount = (int)[EaseEmoji allEmoji].count;
     NSMutableString *retText = [[NSMutableString alloc] initWithString:text];
     for(int i=0; i<allEmoticsCount; ++i) {
         NSRange range;
@@ -282,7 +284,7 @@
     if ([text length] == 0) {
         return @"";
     }
-    int allEmoticsCount = (int)[[Emoji allEmoji] count];
+    int allEmoticsCount = (int)[[EaseEmoji allEmoji] count];
     NSMutableString *retText = [[NSMutableString alloc] initWithString:text];
     for(int i=0; i<allEmoticsCount; ++i) {
         NSRange range;
@@ -538,4 +540,5 @@
     
     return retText;
 }
+
 @end

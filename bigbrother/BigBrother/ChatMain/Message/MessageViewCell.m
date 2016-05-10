@@ -186,7 +186,7 @@
             } break;
             case EMMessageBodyTypeText:{
                 // 表情映射。
-                NSString *didReceiveText = [ConvertToCommonEmoticonsHelper
+                NSString *didReceiveText = [EaseConvertToCommonEmoticonsHelper
                                             convertToSystemEmoticons:((EMTextMessageBody *)messageBody).text];
                 ret = didReceiveText;
                 if (conversation.type == EMConversationTypeGroupChat) {

@@ -21,6 +21,12 @@
 		2DD0FBD71C9EE6E60046F4C4 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBD61C9EE6E60046F4C4 /* libstdc++.6.0.9.tbd */; };
 		2DD0FBD91C9EE6EF0046F4C4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBD81C9EE6EF0046F4C4 /* libsqlite3.tbd */; };
 		2DD0FBDC1C9EEE680046F4C4 /* LTMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD0FBDB1C9EEE680046F4C4 /* LTMessageTableViewCell.m */; };
+		8C0A07691CE2196E00889CF6 /* EaseSDKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A07681CE2196E00889CF6 /* EaseSDKHelper.m */; };
+		8C0A076C1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A076B1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m */; };
+		8C0A07761CE21B0E00889CF6 /* EaseEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A076F1CE21B0E00889CF6 /* EaseEmoji.m */; };
+		8C0A07771CE21B0E00889CF6 /* EaseEmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A07711CE21B0E00889CF6 /* EaseEmojiEmoticons.m */; };
+		8C0A07781CE21B0E00889CF6 /* EaseEmotionEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A07731CE21B0E00889CF6 /* EaseEmotionEscape.m */; };
+		8C0A07791CE21B0E00889CF6 /* EaseEmotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A07751CE21B0E00889CF6 /* EaseEmotionManager.m */; };
 		8C1861881CDF34CC00632CDC /* ChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1861871CDF34CC00632CDC /* ChatMainViewController.m */; };
 		8C1861901CDF35E300632CDC /* FlexibleFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18618F1CDF35E300632CDC /* FlexibleFrame.m */; };
 		8C1861EA1CDF378900632CDC /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1861A91CDF378900632CDC /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -51,15 +57,12 @@
 		8C1862551CDF79C900632CDC /* cm_title_btn_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1862511CDF79C900632CDC /* cm_title_btn_sel.png */; };
 		8C1862561CDF79C900632CDC /* cm_title_btn_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1862521CDF79C900632CDC /* cm_title_btn_sel@2x.png */; };
 		8C1862581CDF91C300632CDC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C1862571CDF91C300632CDC /* Localizable.strings */; };
-		8C18625B1CDF9A8600632CDC /* ConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18625A1CDF9A8600632CDC /* ConvertToCommonEmoticonsHelper.m */; };
 		8C1862701CDF9BF600632CDC /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1862651CDF9BF600632CDC /* NSDate+Category.m */; };
 		8C1862711CDF9BF600632CDC /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1862671CDF9BF600632CDC /* NSDateFormatter+Category.m */; };
 		8C1862721CDF9BF600632CDC /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1862691CDF9BF600632CDC /* NSString+Valid.m */; };
 		8C1862731CDF9BF600632CDC /* UIResponder+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18626B1CDF9BF600632CDC /* UIResponder+Router.m */; };
 		8C1862741CDF9BF600632CDC /* UIViewController+DismissKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18626D1CDF9BF600632CDC /* UIViewController+DismissKeyboard.m */; };
 		8C1862751CDF9BF600632CDC /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18626F1CDF9BF600632CDC /* UIViewController+HUD.m */; };
-		8C1863771CDF9C4C00632CDC /* Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18628E1CDF9C4C00632CDC /* Emoji.m */; };
-		8C1863781CDF9C4C00632CDC /* EmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1862901CDF9C4C00632CDC /* EmojiEmoticons.m */; };
 		8C1863791CDF9C4C00632CDC /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1862931CDF9C4C00632CDC /* MBProgressHUD+Add.m */; };
 		8C18637A1CDF9C4C00632CDC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1862951CDF9C4C00632CDC /* MBProgressHUD.m */; };
 		8C18637B1CDF9C4C00632CDC /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1862991CDF9C4C00632CDC /* 114.png */; };
@@ -295,7 +298,6 @@
 		8C63E57C1CE05C7400B4EC1D /* UIViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E57B1CE05C7400B4EC1D /* UIViewController+Category.m */; };
 		8C63E57F1CE05CB300B4EC1D /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E57E1CE05CB300B4EC1D /* UIButton+Category.m */; };
 		8C63E5821CE05DD100B4EC1D /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5811CE05DD100B4EC1D /* AppDelegate+Category.m */; };
-		8C63E5881CE0615F00B4EC1D /* ChatSendHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5871CE0615F00B4EC1D /* ChatSendHelper.m */; };
 		8C63E58C1CE0662D00B4EC1D /* CustomIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E58B1CE0662D00B4EC1D /* CustomIndicatorView.m */; };
 		8C63E58F1CE066FF00B4EC1D /* UILabel+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E58E1CE066FF00B4EC1D /* UILabel+Category.m */; };
 		8C63E5921CE0677700B4EC1D /* UIImage+ResizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5911CE0677700B4EC1D /* UIImage+ResizeImage.m */; };
@@ -559,6 +561,18 @@
 		2DD0FBD81C9EE6EF0046F4C4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2DD0FBDA1C9EEE680046F4C4 /* LTMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMessageTableViewCell.h; sourceTree = "<group>"; };
 		2DD0FBDB1C9EEE680046F4C4 /* LTMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTMessageTableViewCell.m; sourceTree = "<group>"; };
+		8C0A07671CE2196E00889CF6 /* EaseSDKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseSDKHelper.h; sourceTree = "<group>"; };
+		8C0A07681CE2196E00889CF6 /* EaseSDKHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseSDKHelper.m; sourceTree = "<group>"; };
+		8C0A076A1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConvertToCommonEmoticonsHelper.h; sourceTree = "<group>"; };
+		8C0A076B1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConvertToCommonEmoticonsHelper.m; sourceTree = "<group>"; };
+		8C0A076E1CE21B0E00889CF6 /* EaseEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmoji.h; sourceTree = "<group>"; };
+		8C0A076F1CE21B0E00889CF6 /* EaseEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmoji.m; sourceTree = "<group>"; };
+		8C0A07701CE21B0E00889CF6 /* EaseEmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmojiEmoticons.h; sourceTree = "<group>"; };
+		8C0A07711CE21B0E00889CF6 /* EaseEmojiEmoticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmojiEmoticons.m; sourceTree = "<group>"; };
+		8C0A07721CE21B0E00889CF6 /* EaseEmotionEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionEscape.h; sourceTree = "<group>"; };
+		8C0A07731CE21B0E00889CF6 /* EaseEmotionEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionEscape.m; sourceTree = "<group>"; };
+		8C0A07741CE21B0E00889CF6 /* EaseEmotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionManager.h; sourceTree = "<group>"; };
+		8C0A07751CE21B0E00889CF6 /* EaseEmotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionManager.m; sourceTree = "<group>"; };
 		8C1861861CDF34CC00632CDC /* ChatMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMainViewController.h; sourceTree = "<group>"; };
 		8C1861871CDF34CC00632CDC /* ChatMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMainViewController.m; sourceTree = "<group>"; };
 		8C18618E1CDF35E300632CDC /* FlexibleFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexibleFrame.h; sourceTree = "<group>"; };
@@ -652,8 +666,6 @@
 		8C1862511CDF79C900632CDC /* cm_title_btn_sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cm_title_btn_sel.png; sourceTree = "<group>"; };
 		8C1862521CDF79C900632CDC /* cm_title_btn_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_title_btn_sel@2x.png"; sourceTree = "<group>"; };
 		8C1862571CDF91C300632CDC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		8C1862591CDF9A8600632CDC /* ConvertToCommonEmoticonsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertToCommonEmoticonsHelper.h; sourceTree = "<group>"; };
-		8C18625A1CDF9A8600632CDC /* ConvertToCommonEmoticonsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertToCommonEmoticonsHelper.m; sourceTree = "<group>"; };
 		8C1862641CDF9BF600632CDC /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		8C1862651CDF9BF600632CDC /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		8C1862661CDF9BF600632CDC /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
@@ -666,10 +678,6 @@
 		8C18626D1CDF9BF600632CDC /* UIViewController+DismissKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DismissKeyboard.m"; sourceTree = "<group>"; };
 		8C18626E1CDF9BF600632CDC /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
 		8C18626F1CDF9BF600632CDC /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
-		8C18628D1CDF9C4C00632CDC /* Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emoji.h; sourceTree = "<group>"; };
-		8C18628E1CDF9C4C00632CDC /* Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Emoji.m; sourceTree = "<group>"; };
-		8C18628F1CDF9C4C00632CDC /* EmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiEmoticons.h; sourceTree = "<group>"; };
-		8C1862901CDF9C4C00632CDC /* EmojiEmoticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiEmoticons.m; sourceTree = "<group>"; };
 		8C1862921CDF9C4C00632CDC /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		8C1862931CDF9C4C00632CDC /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		8C1862941CDF9C4C00632CDC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -963,8 +971,6 @@
 		8C63E57E1CE05CB300B4EC1D /* UIButton+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Category.m"; sourceTree = "<group>"; };
 		8C63E5801CE05DD100B4EC1D /* AppDelegate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
 		8C63E5811CE05DD100B4EC1D /* AppDelegate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Category.m"; sourceTree = "<group>"; };
-		8C63E5861CE0615F00B4EC1D /* ChatSendHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSendHelper.h; sourceTree = "<group>"; };
-		8C63E5871CE0615F00B4EC1D /* ChatSendHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSendHelper.m; sourceTree = "<group>"; };
 		8C63E58A1CE0662D00B4EC1D /* CustomIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIndicatorView.h; sourceTree = "<group>"; };
 		8C63E58B1CE0662D00B4EC1D /* CustomIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIndicatorView.m; sourceTree = "<group>"; };
 		8C63E58D1CE066FF00B4EC1D /* UILabel+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Category.h"; sourceTree = "<group>"; };
@@ -1462,6 +1468,21 @@
 			name = "聊天Cells";
 			sourceTree = "<group>";
 		};
+		8C0A076D1CE21B0E00889CF6 /* Emoji */ = {
+			isa = PBXGroup;
+			children = (
+				8C0A076E1CE21B0E00889CF6 /* EaseEmoji.h */,
+				8C0A076F1CE21B0E00889CF6 /* EaseEmoji.m */,
+				8C0A07701CE21B0E00889CF6 /* EaseEmojiEmoticons.h */,
+				8C0A07711CE21B0E00889CF6 /* EaseEmojiEmoticons.m */,
+				8C0A07721CE21B0E00889CF6 /* EaseEmotionEscape.h */,
+				8C0A07731CE21B0E00889CF6 /* EaseEmotionEscape.m */,
+				8C0A07741CE21B0E00889CF6 /* EaseEmotionManager.h */,
+				8C0A07751CE21B0E00889CF6 /* EaseEmotionManager.m */,
+			);
+			path = Emoji;
+			sourceTree = "<group>";
+		};
 		8C1861851CDF349400632CDC /* ChatMain */ = {
 			isa = PBXGroup;
 			children = (
@@ -1619,10 +1640,10 @@
 			children = (
 				8C1862761CDF9C4C00632CDC /* 3rdparty */,
 				8C1862631CDF9BF600632CDC /* Category */,
-				8C1862591CDF9A8600632CDC /* ConvertToCommonEmoticonsHelper.h */,
-				8C18625A1CDF9A8600632CDC /* ConvertToCommonEmoticonsHelper.m */,
-				8C63E5861CE0615F00B4EC1D /* ChatSendHelper.h */,
-				8C63E5871CE0615F00B4EC1D /* ChatSendHelper.m */,
+				8C0A076A1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.h */,
+				8C0A076B1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m */,
+				8C0A07671CE2196E00889CF6 /* EaseSDKHelper.h */,
+				8C0A07681CE2196E00889CF6 /* EaseSDKHelper.m */,
 				8C1862241CDF591900632CDC /* include */,
 				8C18624B1CDF591900632CDC /* lib */,
 			);
@@ -1722,8 +1743,8 @@
 		8C1862761CDF9C4C00632CDC /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				8C0A076D1CE21B0E00889CF6 /* Emoji */,
 				8C1864371CDF9CC700632CDC /* DeviceUtil */,
-				8C18628C1CDF9C4C00632CDC /* Emoji */,
 				8C1862911CDF9C4C00632CDC /* MBProgressHUD */,
 				8C1862961CDF9C4C00632CDC /* Parse */,
 				8C1862971CDF9C4C00632CDC /* Resources */,
@@ -1731,17 +1752,6 @@
 				8C1863601CDF9C4C00632CDC /* VoiceConvert */,
 			);
 			path = 3rdparty;
-			sourceTree = "<group>";
-		};
-		8C18628C1CDF9C4C00632CDC /* Emoji */ = {
-			isa = PBXGroup;
-			children = (
-				8C18628D1CDF9C4C00632CDC /* Emoji.h */,
-				8C18628E1CDF9C4C00632CDC /* Emoji.m */,
-				8C18628F1CDF9C4C00632CDC /* EmojiEmoticons.h */,
-				8C1862901CDF9C4C00632CDC /* EmojiEmoticons.m */,
-			);
-			path = Emoji;
 			sourceTree = "<group>";
 		};
 		8C1862911CDF9C4C00632CDC /* MBProgressHUD */ = {
@@ -3560,13 +3570,14 @@
 				8C18621E1CDF46DD00632CDC /* NSString+Category.m in Sources */,
 				8C63E51E1CE0563800B4EC1D /* NSString+Extension.m in Sources */,
 				B8B6128B1C7D595F0036A019 /* FactroyPostToViewController.m in Sources */,
+				8C0A07791CE21B0E00889CF6 /* EaseEmotionManager.m in Sources */,
 				B81E56BA1C7EEB9000E34A91 /* QNUpToken.m in Sources */,
 				B89D15A51C8875EB00F1310F /* MyAssetsRecordViewController.m in Sources */,
 				8C1861F31CDF378900632CDC /* SDWebImageManager.m in Sources */,
-				8C1863771CDF9C4C00632CDC /* Emoji.m in Sources */,
 				B81E56B21C7EEB9000E34A91 /* QNUserAgent.m in Sources */,
 				B8958AED1C7C0B7C00ACE5E6 /* FactoryHouseProduct.m in Sources */,
 				B89A0C8D1C799AAA0072A6A8 /* UserMainViewController.m in Sources */,
+				8C0A07691CE2196E00889CF6 /* EaseSDKHelper.m in Sources */,
 				B89A0CA01C79B8B50072A6A8 /* AFNetworkReachabilityManager.m in Sources */,
 				B89A0CBE1C79B8C30072A6A8 /* UIButton+AFNetworking.m in Sources */,
 				8C1861F41CDF378900632CDC /* SDWebImagePrefetcher.m in Sources */,
@@ -3578,13 +3589,13 @@
 				B81E56DF1C7EED9B00E34A91 /* QNDnspodFree.m in Sources */,
 				8C1861EE1CDF378900632CDC /* SDImageCache.m in Sources */,
 				B8C460141C8523350060528D /* TOCropViewControllerTransitioning.m in Sources */,
-				8C18625B1CDF9A8600632CDC /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				B81E56B01C7EEB9000E34A91 /* QNSessionManager.m in Sources */,
 				8C63E56F1CE05B6B00B4EC1D /* MJRefreshNormalHeader.m in Sources */,
 				8C1861ED1CDF378900632CDC /* NSData+ImageContentType.m in Sources */,
 				B81E56A71C7EEB9000E34A91 /* QNAsyncRun.m in Sources */,
 				B89A0CC01C79B8C30072A6A8 /* UIProgressView+AFNetworking.m in Sources */,
 				8C63E58C1CE0662D00B4EC1D /* CustomIndicatorView.m in Sources */,
+				8C0A07771CE21B0E00889CF6 /* EaseEmojiEmoticons.m in Sources */,
 				2D5544671CE0DC440029C481 /* ContactView.m in Sources */,
 				B81E56DA1C7EED9B00E34A91 /* QNDnsManager.m in Sources */,
 				8C1861EC1CDF378900632CDC /* MKAnnotationView+WebCache.m in Sources */,
@@ -3663,7 +3674,6 @@
 				B8958AEA1C7C096200ACE5E6 /* WholeHouseRentProduct.m in Sources */,
 				8C63E5311CE0589400B4EC1D /* PreviewImageViewController.m in Sources */,
 				B8958AF31C7C3A9C00ACE5E6 /* PopUpSelectedView.m in Sources */,
-				8C1863781CDF9C4C00632CDC /* EmojiEmoticons.m in Sources */,
 				B81E56AC1C7EEB9000E34A91 /* QNSystem.m in Sources */,
 				B85A93D61C940BB800CC7893 /* PostMatchedViewController.m in Sources */,
 				8C1862741CDF9BF600632CDC /* UIViewController+DismissKeyboard.m in Sources */,
@@ -3678,6 +3688,7 @@
 				B89A0C871C799A910072A6A8 /* SourceMainViewController.m in Sources */,
 				8C63E5921CE0677700B4EC1D /* UIImage+ResizeImage.m in Sources */,
 				8C1861881CDF34CC00632CDC /* ChatMainViewController.m in Sources */,
+				8C0A07781CE21B0E00889CF6 /* EaseEmotionEscape.m in Sources */,
 				B80131571C8002C60070612B /* HouseFactoryProvideRentPostToViewController.m in Sources */,
 				8C63E5181CE055F800B4EC1D /* ChatToolBarView.m in Sources */,
 				B89A0CA11C79B8B50072A6A8 /* AFSecurityPolicy.m in Sources */,
@@ -3693,8 +3704,8 @@
 				B8B612961C7D95170036A019 /* CTAssetsPickerController.m in Sources */,
 				8C63E5151CE055F800B4EC1D /* ChatMessageModel.m in Sources */,
 				8C63E56B1CE05B6B00B4EC1D /* MJRefreshBackGifFooter.m in Sources */,
+				8C0A076C1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				B89A0D001C79FB580072A6A8 /* HousePostNewViewController.m in Sources */,
-				8C63E5881CE0615F00B4EC1D /* ChatSendHelper.m in Sources */,
 				B81E56B51C7EEB9000E34A91 /* QNConfiguration.m in Sources */,
 				B89A0C651C79904C0072A6A8 /* main.m in Sources */,
 				8C63E51B1CE055F800B4EC1D /* ChatViewController.m in Sources */,
@@ -3767,6 +3778,7 @@
 				8C18637A1CDF9C4C00632CDC /* MBProgressHUD.m in Sources */,
 				B8C460301C8581CE0060528D /* SettingViewController.m in Sources */,
 				B844600C1C8EAA00003E66C8 /* HousePostDetailViewController.m in Sources */,
+				8C0A07761CE21B0E00889CF6 /* EaseEmoji.m in Sources */,
 				B8958AE71C7C018B00ACE5E6 /* SingleRoomRentProduct.m in Sources */,
 				B8B612991C7D95170036A019 /* UIButton+Block.m in Sources */,
 				B8A46EAA1C871622001117B4 /* UserChargeViewController.m in Sources */,

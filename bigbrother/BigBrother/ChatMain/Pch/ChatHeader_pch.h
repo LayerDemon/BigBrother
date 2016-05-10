@@ -24,10 +24,10 @@
 #import "JSONKit.h"//json解析
 #import "EMSDK.h"//环信
 #import "EMErrorDefs.h"
-#import "ConvertToCommonEmoticonsHelper.h"//表情映射
+#import "EaseConvertToCommonEmoticonsHelper.h"//表情映射
 #import "PreviewImageViewController.h"//图片预览
 #import "MJRefresh.h"//刷新
-#import "ChatSendHelper.h"//环信发送消息类
+#import "EaseSDKHelper.h"//环信发送消息类
 
 #import "UIImage+UIImageExt.h"//图片压缩
 

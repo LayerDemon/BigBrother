@@ -912,11 +912,15 @@
 
     EMChatType messageType = (self.conversation.type == EMConversationTypeGroupChat ? EMChatTypeGroupChat : EMChatTypeChat);
     
-    EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage
-                                                            toUsername:self.conversation.conversationId
-                                                           messageType:messageType
-                                                     requireEncryption:NO
-                                                                   ext:[self messageExtWithConversation:self.conversation]];
+    EMMessage *tempMessage = [EaseSDKHelper sendTextMessage:textMessage
+                                                         to:self.conversation.conversationId
+                                                messageType:messageType
+                                                 messageExt:[self messageExtWithConversation:self.conversation]];
+//    EMMessage *tempMessage = [EaseSDKHelper sendTextMessageWithString:textMessage
+//                                                            toUsername:self.conversation.conversationId
+//                                                           messageType:messageType
+//                                                     requireEncryption:NO
+//                                                                   ext:[self messageExtWithConversation:self.conversation]];
     [self addMessage:tempMessage];
 }
 
@@ -924,13 +928,11 @@
 {
     EMChatType messageType = (self.conversation.type == EMConversationTypeGroupChat ? EMChatTypeGroupChat : EMChatTypeChat);
     
-    EMMessage *tempMessage = [ChatSendHelper sendImageMessageWithImage:imageMessage
-                                                            toUsername:self.conversation.conversationId
-                                                           messageType:messageType
-                                                     requireEncryption:NO
-                                                                   ext:[self messageExtWithConversation:self.conversation]];
+    EMMessage *tempMessage = [EaseSDKHelper sendImageMessageWithImage:imageMessage
+                                                                   to:self.conversation.conversationId
+                                                          messageType:messageType
+                                                           messageExt:[self messageExtWithConversation:self.conversation]];
     
-
     [self addMessage:tempMessage];
 }
 
@@ -944,13 +946,13 @@
 //    self.conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:self.chatDic[@"imusername"] conversationType:self.conversation.conversationType];
     
     EMChatType messageType = (self.conversation.type == EMConversationTypeGroupChat ? EMChatTypeGroupChat : EMChatTypeChat);
-    EMMessage *tempMessage = [ChatSendHelper sendLocationLatitude:latitude
-                                                        longitude:longitude
-                                                          address:address
-                                                       toUsername:self.conversation.conversationId
-                                                      messageType:messageType
-                                                requireEncryption:NO
-                                                              ext:[self messageExtWithConversation:self.conversation]];
+    
+    EMMessage *tempMessage = [EaseSDKHelper sendLocationMessageWithLatitude:latitude
+                                                                  longitude:longitude
+                                                                    address:address
+                                                                         to:self.conversation.conversationId
+                                                                messageType:messageType
+                                                                 messageExt:[self messageExtWithConversation:self.conversation]];
     
     [self addMessage:tempMessage];
 }

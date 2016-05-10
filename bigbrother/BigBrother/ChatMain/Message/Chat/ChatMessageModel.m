@@ -70,7 +70,7 @@
     }else{
         messageModel.userDic = userToPojo;
         messageModel.otherDic = userFromPojo;
-        messageModel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:textMessage];
+        messageModel.text = [EaseConvertToCommonEmoticonsHelper convertToSystemEmoticons:textMessage];
         messageModel.isFromOther = YES;
     }
     
@@ -114,7 +114,7 @@
         messageModel.text = textMessage;
     }else{
         messageModel.isFromOther = YES;
-        messageModel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:textMessage];
+        messageModel.text = [EaseConvertToCommonEmoticonsHelper convertToSystemEmoticons:textMessage];
     }
     
     messageModel.time = [NSDate formattedTimeFromTimeInterval:(NSTimeInterval)message.timestamp];

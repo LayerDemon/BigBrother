@@ -1,53 +1,57 @@
-//
-//  EmojiEmoticons.m
-//  Emoji
-//
-//  Created by Aliksandr Andrashuk on 26.10.12.
-//  Copyright (c) 2012 Aliksandr Andrashuk. All rights reserved.
-//
+/************************************************************
+ *  * Hyphenate CONFIDENTIAL
+ * __________________
+ * Copyright (C) 2016 Hyphenate Inc. All rights reserved.
+ *
+ * NOTICE: All information contained herein is, and remains
+ * the property of Hyphenate Inc.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Hyphenate Inc.
+ */
 
-#import "EmojiEmoticons.h"
+#import "EaseEmojiEmoticons.h"
 
-@implementation EmojiEmoticons
+@implementation EaseEmojiEmoticons
 
 + (NSArray *)allEmoticons {
     NSMutableArray *array = [NSMutableArray new];
     NSMutableArray * localAry = [[NSMutableArray alloc] initWithObjects:
-                                 [Emoji emojiWithCode:0x1F60a],
-                                 [Emoji emojiWithCode:0x1F603],
-                                 [Emoji emojiWithCode:0x1F609],
-                                 [Emoji emojiWithCode:0x1F62e],
-                                 [Emoji emojiWithCode:0x1F60b],
-                                 [Emoji emojiWithCode:0x1F60e],
-                                 [Emoji emojiWithCode:0x1F621],
-                                 [Emoji emojiWithCode:0x1F616],
-                                 [Emoji emojiWithCode:0x1F633],
-                                 [Emoji emojiWithCode:0x1F61e],
-                                 [Emoji emojiWithCode:0x1F62d],
-                                 [Emoji emojiWithCode:0x1F610],
-                                 [Emoji emojiWithCode:0x1F607],
-                                 [Emoji emojiWithCode:0x1F62c],
-                                 [Emoji emojiWithCode:0x1F606],
-                                 [Emoji emojiWithCode:0x1F631],
-                                 [Emoji emojiWithCode:0x1F385],
-                                 [Emoji emojiWithCode:0x1F634],
-                                 [Emoji emojiWithCode:0x1F615],
-                                 [Emoji emojiWithCode:0x1F637],
-                                 [Emoji emojiWithCode:0x1F62f],
-                                 [Emoji emojiWithCode:0x1F60f],
-                                 [Emoji emojiWithCode:0x1F611],
-                                 [Emoji emojiWithCode:0x1F496],
-                                 [Emoji emojiWithCode:0x1F494],
-                                 [Emoji emojiWithCode:0x1F319],
-                                 [Emoji emojiWithCode:0x1f31f],
-                                 [Emoji emojiWithCode:0x1f31e],
-                                 [Emoji emojiWithCode:0x1F308],
-                                 [Emoji emojiWithCode:0x1F60d],
-                                 [Emoji emojiWithCode:0x1F61a],
-                                 [Emoji emojiWithCode:0x1F48b],
-                                 [Emoji emojiWithCode:0x1F339],
-                                 [Emoji emojiWithCode:0x1F342],
-                                 [Emoji emojiWithCode:0x1F44d],
+                                 [EaseEmoji emojiWithCode:0x1F60a],
+                                 [EaseEmoji emojiWithCode:0x1F603],
+                                 [EaseEmoji emojiWithCode:0x1F609],
+                                 [EaseEmoji emojiWithCode:0x1F62e],
+                                 [EaseEmoji emojiWithCode:0x1F60b],
+                                 [EaseEmoji emojiWithCode:0x1F60e],
+                                 [EaseEmoji emojiWithCode:0x1F621],
+                                 [EaseEmoji emojiWithCode:0x1F616],
+                                 [EaseEmoji emojiWithCode:0x1F633],
+                                 [EaseEmoji emojiWithCode:0x1F61e],
+                                 [EaseEmoji emojiWithCode:0x1F62d],
+                                 [EaseEmoji emojiWithCode:0x1F610],
+                                 [EaseEmoji emojiWithCode:0x1F607],
+                                 [EaseEmoji emojiWithCode:0x1F62c],
+                                 [EaseEmoji emojiWithCode:0x1F606],
+                                 [EaseEmoji emojiWithCode:0x1F631],
+                                 [EaseEmoji emojiWithCode:0x1F385],
+                                 [EaseEmoji emojiWithCode:0x1F634],
+                                 [EaseEmoji emojiWithCode:0x1F615],
+                                 [EaseEmoji emojiWithCode:0x1F637],
+                                 [EaseEmoji emojiWithCode:0x1F62f],
+                                 [EaseEmoji emojiWithCode:0x1F60f],
+                                 [EaseEmoji emojiWithCode:0x1F611],
+                                 [EaseEmoji emojiWithCode:0x1F496],
+                                 [EaseEmoji emojiWithCode:0x1F494],
+                                 [EaseEmoji emojiWithCode:0x1F319],
+                                 [EaseEmoji emojiWithCode:0x1f31f],
+                                 [EaseEmoji emojiWithCode:0x1f31e],
+                                 [EaseEmoji emojiWithCode:0x1F308],
+                                 [EaseEmoji emojiWithCode:0x1F60d],
+                                 [EaseEmoji emojiWithCode:0x1F61a],
+                                 [EaseEmoji emojiWithCode:0x1F48b],
+                                 [EaseEmoji emojiWithCode:0x1F339],
+                                 [EaseEmoji emojiWithCode:0x1F342],
+                                 [EaseEmoji emojiWithCode:0x1F44d],
                                  
                                  /*[Emoji emojiWithCode:0x1F602],
                                   [Emoji emojiWithCode:0x1F603],
