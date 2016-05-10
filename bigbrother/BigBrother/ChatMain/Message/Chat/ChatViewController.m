@@ -794,6 +794,8 @@
 //    
 //}
 
+
+
 /*!
  @method
  @brief 发送消息后的回调
@@ -802,10 +804,12 @@
  @param error        错误信息
  @result
  */
--(void)didSendMessage:(EMMessage *)message error:(EMError *)error
+- (void)didMessageStatusChanged:(EMMessage *)aMessage
+                          error:(EMError *)aError
 {
-    if (error) {
-        NSLog(@"%@",error);
+    if (aError) {
+        [AppDelegate showHintLabelWithMessage:@"消息发送错误~"];
+        NSLog(@"%@",aError);
     }
     __weak ChatViewController *weakSelf = self;
     [self.dataSource enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
@@ -813,16 +817,22 @@
          if ([obj isKindOfClass:[ChatFrameModel class]])
          {
              ChatFrameModel *frameModel = (ChatFrameModel *)obj;
-             if ([frameModel.messageModel.message.messageId isEqualToString:message.messageId])
+             if ([frameModel.messageModel.message.messageId isEqualToString:aMessage.messageId])
              {
-                 frameModel.messageModel.message.status = message.status;//设置该条消息状态
-//                 [frameModel.messageModel.message updateMessageDeliveryStateToDB];
+                 frameModel.messageModel.message.status = aMessage.status;//设置该条消息状态
+                 //                 [frameModel.messageModel.message updateMessageDeliveryStateToDB];
                  [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                  *stop = YES;
              }
          }
      }];
 }
+//-(void)didSendMessage:(EMMessage *)message error:(EMError *)error
+//{
+//    
+//}
+
+
 
 /*!
  @method
@@ -833,66 +843,83 @@
  附件下载过程中的进度回调请参考didFetchingMessageAttachments:progress:,
  下载完所有附件后, 回调didMessageAttachmentsStatusChanged:error:会被触发
  */
--(void)didReceiveMessage:(EMMessage *)message
+- (void)didReceiveMessages:(NSArray *)aMessages
 {
-    
-    if ([self.conversation.conversationId isEqualToString:message.conversationId]) {
-        [self addMessage:message];
-        [self.conversation markMessageAsReadWithId:message.messageId];
+    for (EMMessage *message in aMessages) {
+        if ([self.conversation.conversationId isEqualToString:message.conversationId]) {
+            [self addMessage:message];
+            [self.conversation markMessageAsReadWithId:message.messageId];
+        }
     }
 }
 
--(void)didReceiveCmdMessage:(EMMessage *)message
+- (void)didReceiveCmdMessages:(NSArray *)aCmdMessages
 {
-    if ([_conversation.conversationId isEqualToString:message.conversationId]) {
-        [AppDelegate showHintLabelWithMessage:NSLocalizedString(@"receiveCmd", @"receive cmd message")];
+    for (EMMessage *message in aCmdMessages) {
+        if ([self.conversation.conversationId isEqualToString:message.conversationId]) {
+            [AppDelegate showHintLabelWithMessage:NSLocalizedString(@"receiveCmd", @"receive cmd message")];
+        }
     }
 }
+//-(void)didReceiveCmdMessage:(EMMessage *)message
+//{
+//    
+//}
 
 //附件下载完成后~
-- (void)didMessageAttachmentsStatusChanged:(EMMessage *)message error:(EMError *)error
+- (void)didMessageAttachmentsStatusChanged:(EMMessage *)aMessage
+                                     error:(EMError *)aError
 {
-    if (!error) {
-        [self reloadTableViewDataWithMessage:message];
+    if (!aError) {
+        [self reloadTableViewDataWithMessage:aMessage];
     }else{
         [AppDelegate showHintLabelWithMessage:@"附件加载失败~"];
     }
 }
 
-/*!
- @method
- @brief 收到发送消错误的回调
- @param messageId           消息Id
- @param conversationChatter 会话的username/groupId
- @param error               错误信息
- */
-- (void)didReceiveMessageId:(NSString *)messageId
-                    chatter:(NSString *)conversationChatter
-                      error:(EMError *)error
-{
-    if (error && [_conversation.conversationId isEqualToString:conversationChatter]) {
-        //        [self showAlertControlWithMessage:@"消息发送错误"];
-        [AppDelegate showHintLabelWithMessage:@"消息发送错误~"];
-    }
-}
+//- (void)didMessageAttachmentsStatusChanged:(EMMessage *)message error:(EMError *)error
+//{
+//    if (!error) {
+//        [self reloadTableViewDataWithMessage:message];
+//    }else{
+//        [AppDelegate showHintLabelWithMessage:@"附件加载失败~"];
+//    }
+//}
 
-/*!
- @method
- @brief 接收到离线非透传消息的回调
- @discussion
- @param offlineMessages 接收到的离线列表
- @result
- */
-- (void)didReceiveOfflineMessages:(NSArray *)offlineMessages
-{
-    if (![offlineMessages count])
-    {
-        return;
-    }
-    [_conversation markAllMessagesAsRead];
-//    long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000 + 1;
-    [self loadMoreMessagesFrom:nil count:[self.messages count] + [offlineMessages count] append:NO];
-}
+///*!
+// @method
+// @brief 收到发送消错误的回调
+// @param messageId           消息Id
+// @param conversationChatter 会话的username/groupId
+// @param error               错误信息
+// */
+//- (void)didReceiveMessageId:(NSString *)messageId
+//                    chatter:(NSString *)conversationChatter
+//                      error:(EMError *)error
+//{
+//    if (error && [_conversation.conversationId isEqualToString:conversationChatter]) {
+//        //        [self showAlertControlWithMessage:@"消息发送错误"];
+//        [AppDelegate showHintLabelWithMessage:@"消息发送错误~"];
+//    }
+//}
+
+///*!
+// @method
+// @brief 接收到离线非透传消息的回调
+// @discussion
+// @param offlineMessages 接收到的离线列表
+// @result
+// */
+//- (void)didReceiveOfflineMessages:(NSArray *)offlineMessages
+//{
+//    if (![offlineMessages count])
+//    {
+//        return;
+//    }
+//    [_conversation markAllMessagesAsRead];
+////    long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000 + 1;
+//    [self loadMoreMessagesFrom:nil count:[self.messages count] + [offlineMessages count] append:NO];
+//}
 
 #pragma mark - IChatManagerDelegate 登录状态变化
 
@@ -906,6 +933,15 @@
 
 
 #pragma mark - 发送消息~
+- (void)sendMessage:(EMMessage *)message
+{
+    [self addMessage:message];
+    
+    __weak typeof(self) weakself = self;
+    [[EMClient sharedClient].chatManager asyncSendMessage:message progress:nil completion:^(EMMessage *aMessage, EMError *aError) {
+        [weakself.tableView reloadData];
+    }];
+}
 
 -(void)sendTextMessage:(NSString *)textMessage
 {
@@ -916,12 +952,9 @@
                                                          to:self.conversation.conversationId
                                                 messageType:messageType
                                                  messageExt:[self messageExtWithConversation:self.conversation]];
-//    EMMessage *tempMessage = [EaseSDKHelper sendTextMessageWithString:textMessage
-//                                                            toUsername:self.conversation.conversationId
-//                                                           messageType:messageType
-//                                                     requireEncryption:NO
-//                                                                   ext:[self messageExtWithConversation:self.conversation]];
-    [self addMessage:tempMessage];
+
+    [self sendMessage:tempMessage];
+    
 }
 
 - (void)sendImageMessage:(UIImage *)imageMessage
@@ -933,7 +966,7 @@
                                                           messageType:messageType
                                                            messageExt:[self messageExtWithConversation:self.conversation]];
     
-    [self addMessage:tempMessage];
+    [self sendMessage:tempMessage];
 }
 
 - (void)sendLocationMessage:(NSNotification *)notif
@@ -954,7 +987,7 @@
                                                                 messageType:messageType
                                                                  messageExt:[self messageExtWithConversation:self.conversation]];
     
-    [self addMessage:tempMessage];
+    [self sendMessage:tempMessage];
 }
 
 - (NSDictionary *)messageExtWithConversation:(EMConversation *)conversation
@@ -969,10 +1002,10 @@
 //        if (self.groupRemarks.length) {
 //            [userDic setObject:self.groupRemarks forKey:@"nickname"];
 //        }
-        NSDictionary *ext = @{@"groupPojo":self.chatDic,@"userPojo":@{}};
+        NSDictionary *ext = @{@"groupPojo":TESTGROUP_DIC,@"userPojo":[BBUserDefaults getUserDic]};
         return ext;
     }
-    NSDictionary *ext = @{@"userFromPojo":@{},@"userToPojo":self.chatDic};
+    NSDictionary *ext = @{@"userFromPojo":[BBUserDefaults getUserDic],@"userToPojo":self.chatDic};
     return ext;
 }
 

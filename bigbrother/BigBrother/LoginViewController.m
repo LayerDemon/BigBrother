@@ -207,10 +207,9 @@
         if (idString) {
             //登录环信
             [BYToastView showToastWithMessage:@"正在连接聊天服务器~"];
-            EMError *error = [[EMClient sharedClient] loginWithUsername:dataDic[@"imusername"] password:@"111111"];
+            EMError *error = [[EMClient sharedClient] loginWithUsername:dataDic[@"imNumber"] password:@"123456"];
             if (error) {
                 [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
-//                return;
             }
             
             if ([idString isKindOfClass:[NSNumber class]]) {

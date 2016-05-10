@@ -125,8 +125,8 @@
 #pragma mark - <UITableViewDataSource,UITableViewDelegate>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return self.dataSource.count;
-    return 10;
+    return self.dataSource.count;
+//    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,10 +138,17 @@
     }
     
     //获取对话：
-//    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+    [cell loadDataWithConversation:conversation];
+//    if (indexPath.row%2==0) {
+//        EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:@"1121" type:EMConversationTypeChat createIfNotExist:YES];
+//        [cell loadDataWithConversation:conversation];
+//    }else{
+//        EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:TESTGROUP_DIC[@"chatgroupid"] type:EMConversationTypeGroupChat createIfNotExist:YES];
+//        [cell loadDataWithConversation:conversation];
+//    }
     
-//    [cell loadDataWithConversation:conversation];
-    [cell testLoadDataWithConversation:nil];
+//    [cell testLoadDataWithConversation:nil];
     
     return cell;
 }
@@ -151,7 +158,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MessageViewCell *cell = (MessageViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     ChatViewController *chatVC = [[ChatViewController alloc]init];
-    chatVC.chatDic = cell.chatterDic;
+    chatVC.chatDic = TESTUSER_DIC;
+    if (cell.conversation.type == EMConversationTypeGroupChat) {
+        chatVC.chatDic = TESTGROUP_DIC;
+    }
     chatVC.conversation = cell.conversation;
     [self.viewController.navigationController pushViewController:chatVC animated:YES];
 }

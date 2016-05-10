@@ -185,6 +185,7 @@
     self.iconBtn.contentMode = UIViewContentModeScaleAspectFit;
     self.iconBtn.layer.cornerRadius = self.iconBtn.frame.size.width/2;
     self.iconBtn.clipsToBounds = YES;
+
 //    
     //昵称~
     self.nameLabel.frame = cellFrameModel.nameFrame;

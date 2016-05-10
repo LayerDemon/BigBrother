@@ -55,6 +55,14 @@
     self.delegate = self;
     self.tabBar.selectedImageTintColor = BB_Tabbar_SelectedColor;
     
+    //登录环信
+    NSDictionary *userDic = [BBUserDefaults getUserDic];
+    EMError *error = [[EMClient sharedClient] loginWithUsername:userDic[@"imNumber"] password:@"123456"];
+    if (error) {
+        [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
+    }else{
+        [BYToastView showToastWithMessage:@"聊天服务器连接成功~"];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -62,6 +70,8 @@
     if (self.viewControllers.count != 0) {
         [self.selectedViewController viewWillAppear:animated];
     }
+    
+    
     //    [self judgeToShowWeclome];
 }
 

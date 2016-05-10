@@ -30,8 +30,12 @@
     if (self) {
         self = [[[NSBundle mainBundle] loadNibNamed:@"MessageViewCell" owner:self
                                             options:nil] lastObject];
+        self.contentView.frame = FLEFRAME(self.contentView.frame);
+        self.contentView.autoresizesSubviews = NO;
         self.numLabel.layer.cornerRadius = FLEXIBLE_NUM(7);
         self.numLabel.layer.masksToBounds = YES;
+        self.headImgView.layer.cornerRadius = self.headImgView.frame.size.height/2;
+        self.headImgView.layer.masksToBounds = YES;
     }
     return self;
 }

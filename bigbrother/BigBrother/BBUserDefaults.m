@@ -46,6 +46,10 @@ static NSString *FirshLuanchSaveKey = @"FirshLuanchSaveKey";
     [self setUserPhone:nil];
     [self setUserPassword:nil];
     [self setIsLogin:NO];
+    EMError *error = [[EMClient sharedClient] logout:YES];
+    if (!error) {
+        NSLog(@"退出成功");
+    }
 }
 
 static NSString *UserDicSaveKey = @"UserDicSaveKey";
