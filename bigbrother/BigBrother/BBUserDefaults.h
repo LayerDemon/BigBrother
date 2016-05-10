@@ -19,6 +19,9 @@
 //注销登录
 +(void)resetLoginStatus;
 
++(void)setUserDictionary:(NSDictionary *)userDic;
++(NSDictionary *)getUserDic;
+
 +(void)setUserID:(NSString *)uid;
 +(NSString *)getUserID;
 

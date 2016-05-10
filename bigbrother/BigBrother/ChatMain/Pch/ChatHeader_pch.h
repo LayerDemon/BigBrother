@@ -21,6 +21,7 @@
 #import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>//
 #import "FlexibleFrame.h"//比例适配
+#import "JSONKit.h"//json解析
 #import "EMSDK.h"//环信
 #import "EMErrorDefs.h"
 #import "ConvertToCommonEmoticonsHelper.h"//表情映射
@@ -46,6 +47,7 @@
 #import "UILabel+Category.h"
 #import "UIImage+ResizeImage.h"
 #import "UIImage+Category.h"
+#import "NSString+Category.h"
 
 //单例
 #define WINDOW ((AppDelegate *)[UIApplication sharedApplication].delegate).window//window

@@ -40,11 +40,36 @@ static NSString *FirshLuanchSaveKey = @"FirshLuanchSaveKey";
 
 //注销登录
 +(void)resetLoginStatus{
+    [self setUserDictionary:nil];
     [self setUserID:@""];
     [self setUserHeadImage:nil];
     [self setUserPhone:nil];
     [self setUserPassword:nil];
     [self setIsLogin:NO];
+}
+
+static NSString *UserDicSaveKey = @"UserDicSaveKey";
++(void)setUserDictionary:(NSDictionary *)userDic
+{
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    if (!userDic) {
+        [userdefaults removeObjectForKey:UserDicSaveKey];
+    }else{
+        NSString *jsonStr = [NSString jsonStringWithDictionary:userDic];
+        [userdefaults setObject:jsonStr forKey:UserDicSaveKey];
+    }
+    [userdefaults synchronize];
+}
+
++(NSDictionary *)getUserDic
+{
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    NSString *jsonStr = [userdefaults objectForKey:UserDicSaveKey];
+    NSDictionary *userDic = [jsonStr objectFromJSONString];
+    if (!userDic) {
+        return nil;
+    }
+    return userDic;
 }
 
 static NSString *UIDSaveKey = @"UIDSaveKey";

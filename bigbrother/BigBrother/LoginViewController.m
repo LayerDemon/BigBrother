@@ -205,6 +205,14 @@
         }
         NSString *idString = dataDic[@"id"];
         if (idString) {
+            //登录环信
+            [BYToastView showToastWithMessage:@"正在连接聊天服务器~"];
+            EMError *error = [[EMClient sharedClient] loginWithUsername:dataDic[@"imusername"] password:@"111111"];
+            if (error) {
+                [BYToastView showToastWithMessage:@"登录失败~"];
+                return;
+            }
+            
             if ([idString isKindOfClass:[NSNumber class]]) {
                 idString = [NSString stringWithFormat:@"%ld",(long)[idString longLongValue]];
             }
@@ -212,6 +220,7 @@
             
             [BBUserDefaults resetLoginStatus];
             
+            [BBUserDefaults setUserDictionary:dataDic];//存储用户信息
             [BBUserDefaults setUserID:idString];
             [BBUserDefaults setIsLogin:YES];
             [BBUserDefaults setUserPassword:passwordString];
@@ -314,5 +323,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//- (void)loginEMClient
+//{
+//    
+//}
 
 @end
