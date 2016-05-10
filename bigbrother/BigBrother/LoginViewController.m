@@ -209,14 +209,14 @@
             [BYToastView showToastWithMessage:@"正在连接聊天服务器~"];
             EMError *error = [[EMClient sharedClient] loginWithUsername:dataDic[@"imusername"] password:@"111111"];
             if (error) {
-                [BYToastView showToastWithMessage:@"登录失败~"];
-                return;
+                [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
+//                return;
             }
             
             if ([idString isKindOfClass:[NSNumber class]]) {
                 idString = [NSString stringWithFormat:@"%ld",(long)[idString longLongValue]];
             }
-            [BYToastView showToastWithMessage:@"登录成功"];
+//            [BYToastView showToastWithMessage:@"登录成功"];
             
             [BBUserDefaults resetLoginStatus];
             
