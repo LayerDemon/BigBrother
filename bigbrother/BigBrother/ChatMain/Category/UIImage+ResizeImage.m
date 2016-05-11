@@ -13,7 +13,7 @@
 {
     UIImage *image = [UIImage imageNamed:imageName];
     CGFloat imageW = image.size.width * 0.5;
-    CGFloat imageH = image.size.height * 0.5;
+    CGFloat imageH = image.size.height * 0.9;
     return [image resizableImageWithCapInsets:UIEdgeInsetsMake(imageH,imageW, imageH, imageW) resizingMode:UIImageResizingModeTile];
 }
 

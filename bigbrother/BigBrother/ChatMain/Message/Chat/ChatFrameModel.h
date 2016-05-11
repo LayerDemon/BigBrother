@@ -20,6 +20,7 @@
 @property (nonatomic, assign, readonly) CGRect iconFrame;
 @property (nonatomic, assign, readonly) CGRect nameFrame;
 @property (nonatomic, assign, readonly) CGRect textFrame;
+@property (nonatomic, assign, readonly) UIEdgeInsets textEdgeInset;
 @property (nonatomic, assign, readonly) CGRect indicatorFrame;
 @property (nonatomic, assign, readonly) CGFloat cellHeight;
 
