@@ -235,7 +235,7 @@
         [BYToastView showToastWithMessage:@"验证码不能包含特殊字符"];
         return;
     }
-    if ([codeString isEqualToString:globalCode]) {
+    if (![codeString isEqualToString:globalCode]) {
         [BYToastView showToastWithMessage:@"验证码不正确"];
         return;
     }

@@ -566,7 +566,7 @@ static float refreshViewHeightAlign = 8;
 
 -(void)dealloc{
     @try {
-        [self removeObserver:self forKeyPath:@"contentOffset"];
+//        [self removeObserver:self forKeyPath:@"contentOffset"];
     }
     @catch (NSException *exception) {
     }
