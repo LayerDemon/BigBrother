@@ -273,6 +273,10 @@
 		8C1864501CDF9CC700632CDC /* EMCDDeviceManager+ProximitySensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1864461CDF9CC700632CDC /* EMCDDeviceManager+ProximitySensor.m */; };
 		8C1864511CDF9CC700632CDC /* EMCDDeviceManager+Remind.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1864481CDF9CC700632CDC /* EMCDDeviceManager+Remind.m */; };
 		8C1864521CDF9CC700632CDC /* EMCDDeviceManagerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18644B1CDF9CC700632CDC /* EMCDDeviceManagerBase.m */; };
+		8C377E5F1CE38A5E00A737DD /* chat_receiver_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E5D1CE38A5E00A737DD /* chat_receiver_bg.png */; };
+		8C377E601CE38A5E00A737DD /* chat_receiver_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */; };
+		8C377E631CE38A6700A737DD /* chat_sender_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E611CE38A6700A737DD /* chat_sender_bg.png */; };
+		8C377E641CE38A6700A737DD /* chat_sender_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E621CE38A6700A737DD /* chat_sender_bg@2x.png */; };
 		8C63E5141CE055F700B4EC1D /* ChatFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5071CE055F700B4EC1D /* ChatFrameModel.m */; };
 		8C63E5151CE055F800B4EC1D /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5091CE055F700B4EC1D /* ChatMessageModel.m */; };
 		8C63E5161CE055F800B4EC1D /* ChatMoreInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E50B1CE055F700B4EC1D /* ChatMoreInputView.m */; };
@@ -931,6 +935,10 @@
 		8C18644B1CDF9CC700632CDC /* EMCDDeviceManagerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCDDeviceManagerBase.m; sourceTree = "<group>"; };
 		8C1864541CDF9D3D00632CDC /* EMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMError.h; sourceTree = "<group>"; };
 		8C1864551CDF9D3D00632CDC /* EMErrorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMErrorDefs.h; sourceTree = "<group>"; };
+		8C377E5D1CE38A5E00A737DD /* chat_receiver_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_receiver_bg.png; sourceTree = "<group>"; };
+		8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_receiver_bg@2x.png"; sourceTree = "<group>"; };
+		8C377E611CE38A6700A737DD /* chat_sender_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_sender_bg.png; sourceTree = "<group>"; };
+		8C377E621CE38A6700A737DD /* chat_sender_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_bg@2x.png"; sourceTree = "<group>"; };
 		8C63E5061CE055F700B4EC1D /* ChatFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatFrameModel.h; sourceTree = "<group>"; };
 		8C63E5071CE055F700B4EC1D /* ChatFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatFrameModel.m; sourceTree = "<group>"; };
 		8C63E5081CE055F700B4EC1D /* ChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageModel.h; sourceTree = "<group>"; };
@@ -1809,6 +1817,10 @@
 				2DA836B61CE3825F00C1E8A3 /* mr_headimg@3x.png */,
 				2D8AFF511CE23F6C009B7F24 /* 门派@3x.png */,
 				2D8AFF521CE23F6C009B7F24 /* 新朋友@3x.png */,
+				8C377E611CE38A6700A737DD /* chat_sender_bg.png */,
+				8C377E621CE38A6700A737DD /* chat_sender_bg@2x.png */,
+				8C377E5D1CE38A5E00A737DD /* chat_receiver_bg.png */,
+				8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */,
 				2D5544681CE0DCE50029C481 /* 好看2.jpg */,
 				8C63E5DE1CE0A07000B4EC1D /* chat_jianpan_btn.png */,
 				8C63E5DF1CE0A07000B4EC1D /* chat_jianpan_btn@2x.png */,
@@ -3494,6 +3506,7 @@
 				8C1863A31CDF9C4C00632CDC /* VoiceSearchFeedback017.png in Resources */,
 				8C18639E1CDF9C4C00632CDC /* VoiceSearchFeedback014@2x.png in Resources */,
 				8C1863FF1CDF9C4C00632CDC /* chat_receiver_audio_playing_full@2x.png in Resources */,
+				8C377E5F1CE38A5E00A737DD /* chat_receiver_bg.png in Resources */,
 				8C1863EC1CDF9C4C00632CDC /* chatBar_more_cameraSelected@2x.png in Resources */,
 				8C1863AD1CDF9C4C00632CDC /* call_out_h.png in Resources */,
 				8C1863971CDF9C4C00632CDC /* VoiceSearchFeedback011.png in Resources */,
@@ -3601,6 +3614,7 @@
 				8C1863A71CDF9C4C00632CDC /* VoiceSearchFeedback019.png in Resources */,
 				8C18642E1CDF9C4C00632CDC /* tabbarBackground.png in Resources */,
 				8C18641C1CDF9C4C00632CDC /* group_participant_add@2x.png in Resources */,
+				8C377E601CE38A5E00A737DD /* chat_receiver_bg@2x.png in Resources */,
 				8C63E5D31CE09FA900B4EC1D /* emoji_tab5@3x.png in Resources */,
 				8C1863C21CDF9C4C00632CDC /* chat_location_detail_disclosure@2x.png in Resources */,
 				8C63E5E11CE0A07000B4EC1D /* chat_jianpan_btn@2x.png in Resources */,
@@ -3610,6 +3624,7 @@
 				8C1864141CDF9C4C00632CDC /* delete@2x.png in Resources */,
 				8C1863EA1CDF9C4C00632CDC /* chatBar_more_camera@2x.png in Resources */,
 				8C1864121CDF9C4C00632CDC /* add@2x.png in Resources */,
+				8C377E641CE38A6700A737DD /* chat_sender_bg@2x.png in Resources */,
 				8C1863D61CDF9C4C00632CDC /* chatBar_record@2x.png in Resources */,
 				8C1863CC1CDF9C4C00632CDC /* chatBar_faceSelected@2x.png in Resources */,
 				8C1864281CDF9C4C00632CDC /* tabbar_contactsHL.png in Resources */,
@@ -3622,6 +3637,7 @@
 				8C1863E41CDF9C4C00632CDC /* chatBar_colorMore_photoSelected@2x.png in Resources */,
 				8C18637C1CDF9C4C00632CDC /* 120.png in Resources */,
 				8C63E59C1CE09A8B00B4EC1D /* chat_more_btn.png in Resources */,
+				8C377E631CE38A6700A737DD /* chat_sender_bg.png in Resources */,
 				8C1864231CDF9C4C00632CDC /* tabbar_chats@2x.png in Resources */,
 				8C1863B21CDF9C4C00632CDC /* call_silence_h@2x.png in Resources */,
 				8C18638E1CDF9C4C00632CDC /* VoiceSearchFeedback006@2x.png in Resources */,

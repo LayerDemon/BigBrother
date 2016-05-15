@@ -78,7 +78,7 @@
         _textBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _textBtn.titleLabel.numberOfLines = 0;
         _textBtn.titleLabel.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(14)];
-        _textBtn.contentEdgeInsets = UIEdgeInsetsMake(textPadding,0,textPadding,0);
+        _textBtn.contentEdgeInsets = UIEdgeInsetsMake(textPadding,textPadding,textPadding,textPadding);
         _textBtn.contentMode = UIViewContentModeScaleAspectFit;
         [_textBtn addTarget:self action:@selector(contentBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -198,7 +198,8 @@
     
     //消息~
     self.textBtn.frame = cellFrameModel.textFrame;
-    NSString *textBg = messageModel.isFromOther ? @"chat_recive_nor" : @"chat_send_nor";
+    self.textBtn.contentEdgeInsets = cellFrameModel.textEdgeInset;
+    NSString *textBg = messageModel.isFromOther ? @"chat_receiver_bg" : @"chat_sender_bg";
     UIColor *textColor = _525252;
     [self.textBtn setTitleColor:textColor forState:UIControlStateNormal];
     [self.textBtn setBackgroundImage:[UIImage resizeImage:textBg] forState:UIControlStateNormal];

@@ -783,21 +783,6 @@ static QNUploadManager *imageUploadManager;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 +(NSURLSessionDataTask *)loadGetAfNetWorkingWithUrl:(NSString *)urlString andParameters:(NSMutableDictionary *)params complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
     ShowNetworkActivityIndicator();
     

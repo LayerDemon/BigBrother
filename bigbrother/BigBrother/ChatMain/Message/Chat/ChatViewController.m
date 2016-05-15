@@ -181,6 +181,7 @@
 #pragma mark - 视图初始化
 - (void)initializeUserInterface
 {
+    self.view.backgroundColor = _F7F7F7;
     UIImageView *bgView = [[UIImageView alloc]initWithFrame:self.view.frame];
     bgView.image = [UIImage imageNamed:@"bmbg"];
     [self.view addSubview:bgView];

@@ -127,6 +127,9 @@
     CGFloat textFrameY = messageModel.isFromOther ? CGRectGetMaxY(_iconFrame)-padding-FLEXIBLE_NUM(5) : iconFrameY;
     
     [self contentFrameWithMessageModel:messageModel frameY:textFrameY];
+    
+    //4.内容的insert
+    _textEdgeInset = messageModel.isFromOther ? UIEdgeInsetsMake(textPadding,textPadding*3/2,textPadding, textPadding) : UIEdgeInsetsMake(textPadding, textPadding, textPadding, textPadding*3/2);
 //    CGFloat textFrameX = messageModel.isFromOther ? (2 * padding + iconFrameW) : (MAINSCRREN_W - (padding * 2 + iconFrameW + textRealSize.width));
 //    _textFrame = (CGRect){textFrameX,textFrameY,textRealSize};
     
@@ -144,7 +147,7 @@
     //默认文字~
     CGSize textMaxSize = CGSizeMake(MAINSCRREN_W-(2 * padding + iconW)*2+FLEXIBLE_NUM(5), MAXFLOAT);
     CGSize textSize = [messageModel.text sizeWithFont:[UIFont systemFontOfSize:FLEXIBLE_NUM(14.0)] maxSize:textMaxSize];
-    CGSize textRealSize = CGSizeMake(textSize.width,textSize.height + textPadding*2+2);
+    CGSize textRealSize = CGSizeMake(textSize.width+textPadding*5/2+2,textSize.height + textPadding*2+2);
     CGFloat textFrameY = frameY;
     CGFloat textFrameX = messageModel.isFromOther ? (2 * padding + iconW) : (MAINSCRREN_W - (padding * 2 + iconW + textRealSize.width));
     
