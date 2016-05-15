@@ -30,13 +30,38 @@
             label;
         });
         
-        _statusLabel = ({
-            UILabel * label = [self createLabelWithText:@"[离线]" font:FLEXIBLE_NUM(12) subView:self.contentView];
+        _remarkLabel = ({
+            UILabel * label = [self createLabelWithText:@"我是康康，请加我" font:FLEXIBLE_NUM(12) subView:self.contentView];
             label.frame = FLEXIBLE_FRAME(50, 25, 150, 17);
             label.textColor = [UIColor grayColor];
             label;
         });
-
+        
+        _agreeButton = ({
+            UIButton * button = [self createButtonWithTitle:@"同意" font:FLEXIBLE_NUM(12) subView:self.contentView];
+            [button setTitleColor:BB_NaviColor forState:UIControlStateNormal];
+            button.frame = FLEXIBLE_FRAME(180, 12, 60, 26);
+            button.layer.cornerRadius = FLEXIBLE_NUM(5);
+            button.layer.borderColor = BB_NaviColor.CGColor;
+            button.layer.borderWidth = FLEXIBLE_NUM(1);
+            button;
+        });
+        _refuseButton = ({
+            UIButton * button = [self createButtonWithTitle:@"拒绝" font:FLEXIBLE_NUM(12) subView:self.contentView];
+            [button setTitleColor:BB_NaviColor forState:UIControlStateNormal];
+            button.frame = FLEXIBLE_FRAME(245, 12, 60, 26);
+            button.layer.cornerRadius = FLEXIBLE_NUM(5);
+            button.layer.borderColor = BB_NaviColor.CGColor;
+            button.layer.borderWidth = FLEXIBLE_NUM(0.8);
+            button;
+        });
+        _stateLabel = ({
+            UILabel * label = [self createLabelWithText:@"已拒绝" font:FLEXIBLE_NUM(12) subView:self.contentView];
+            label.hidden = YES;
+            label.frame = FLEXIBLE_FRAME(260, 0, 50, 50);
+            label;
+        });
+        
     }
     return self;
 }

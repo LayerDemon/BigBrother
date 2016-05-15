@@ -9,11 +9,13 @@
 #import "NewFriendsViewController.h"
 
 #import "NewFriendsTableViewCell.h"
+#import "ContactModel.h"
 
 @interface NewFriendsViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView   * tableView;
 @property (strong, nonatomic) NSArray       * dataArray;
+@property (strong, nonatomic) ContactModel  * contactModel;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -40,13 +42,27 @@ static NSString * identify = @"Cell";
 
 - (void)dealloc
 {
+    [_contactModel removeObserver:self forKeyPath:@"friendsRequestData"];
+}
 
+#pragma mrak -- observe
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"friendsRequestData"]) {
+        _dataArray = _contactModel.friendsRequestData[@"data"];
+    }
 }
 
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
-
+     NSDictionary * dataDic = [BBUserDefaults getUserDic];
+    _contactModel = ({
+        ContactModel * model = [[ContactModel alloc] init];
+        [model addObserver:self forKeyPath:@"friendsRequestData" options:NSKeyValueObservingOptionNew context:nil];
+        [model checkAllFriendsRequestListWithUserId:dataDic[@"id"] limit:@"50"];
+        model;
+    });
 }
 
 - (void)initializeUserInterface
@@ -59,7 +75,7 @@ static NSString * identify = @"Cell";
         tableView.dataSource = self;
         tableView.tableFooterView = [[UIView alloc] init];
         tableView.backgroundColor = [UIColor clearColor];
-        tableView.rowHeight = FLEXIBLE_NUM(47);
+        tableView.rowHeight = FLEXIBLE_NUM(50);
         [self.view addSubview:tableView];
         tableView;
     });
@@ -77,7 +93,7 @@ static NSString * identify = @"Cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewFriendsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor whiteColor];
     
     
     return cell;

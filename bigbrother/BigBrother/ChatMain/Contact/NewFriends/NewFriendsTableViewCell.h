@@ -12,7 +12,11 @@
 
 @property (strong, nonatomic) UIImageView       * headImageView;
 @property (strong, nonatomic) UILabel           * userNameLabel;
-@property (strong, nonatomic) UILabel           * statusLabel;
+@property (strong, nonatomic) UILabel           * remarkLabel;
 
+@property (strong, nonatomic) UIButton          * agreeButton;
+@property (strong, nonatomic) UIButton          * refuseButton;
+
+@property (strong, nonatomic) UILabel           * stateLabel;
 
 @end

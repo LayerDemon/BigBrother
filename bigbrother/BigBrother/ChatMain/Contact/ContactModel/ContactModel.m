@@ -11,6 +11,10 @@
 @interface ContactModel ()
 
 @property (strong, nonatomic) id        allFriendsData;
+@property (strong, nonatomic) id        allGroupData;
+@property (strong, nonatomic) id        createGroupData;
+
+@property (strong, nonatomic) id        friendsRequestData;
 
 @end
 
@@ -20,10 +24,22 @@
 - (void)getAllFriendWithUserId:(NSString *)userId
 {
     [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends" params:@{@"userId":userId} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"old data -- %@",responseObj);
         NSDictionary * dataDic = responseObj;
         NSLog(@"dataDic -- %@",dataDic);
         self.allFriendsData = responseObj;
+        
+    } failAction:^(NSError *error, id responseObj) {
+        NSLog(@"error -- %@",error.localizedDescription);
+    }];
+}
+
+//获取我的所有门派
+- (void)getAllGroupsWithUserId:(NSString *)userId
+{
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/all" params:@{@"userId":userId} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSDictionary * dataDic = responseObj;
+        NSLog(@"dataDic -- %@",dataDic);
+        self.allGroupData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
         NSLog(@"error -- %@",error.localizedDescription);
@@ -59,10 +75,8 @@
     [dataDic setObject:limit forKey:@"limit"];
     
     [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/requests/all" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"old data -- %@",responseObj);
-        NSDictionary * dataDic = responseObj;
-        NSLog(@"dataDic -- %@",dataDic);
-        
+        NSLog(@"getAllRequest -- %@",responseObj);
+        self.friendsRequestData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
         NSLog(@"error -- %@",error.localizedDescription);
@@ -117,11 +131,9 @@
     [dataDic setObject:name forKey:@"name"];
     [dataDic setObject:introduction forKey:@"introduction"];
     
-    [NetworkingManager postWithURL:@"http://localhost:8080/rent-car/api/im/groups/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"old data -- %@",responseObj);
-        NSDictionary * dataDic = responseObj;
-        NSLog(@"dataDic -- %@",dataDic);
-        
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"dataDic -- %@",responseObj);
+        self.createGroupData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
         NSLog(@"error -- %@",error.localizedDescription);

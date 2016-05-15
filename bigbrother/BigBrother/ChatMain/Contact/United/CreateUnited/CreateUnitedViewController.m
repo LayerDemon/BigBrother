@@ -32,7 +32,7 @@
 
 - (void)dealloc
 {
-
+    [_contactModel removeObserver:self forKeyPath:@"createGroupData"];
 }
 
 - (instancetype)init
@@ -44,12 +44,32 @@
     return self;
 }
 
+
+#pragma mark -- observe
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+     UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertController addAction:sureAction];
+   
+    if ([keyPath isEqualToString:@"createGroupData"]) {
+        if ([_contactModel.createGroupData[@"code"] integerValue] == 0) {
+            alertController.message = @"门派创建成功～";
+        }else{
+            alertController.message = @"门派创建失败～";
+        }
+    }
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
     _contactModel = ({
         ContactModel * model = [[ContactModel alloc] init];
-//        [model addObserver:self forKeyPath:@"" options:NSKeyValueObservingOptionNew context:nil];
+        [model addObserver:self forKeyPath:@"createGroupData" options:NSKeyValueObservingOptionNew context:nil];
         model;
     });
 }
@@ -105,7 +125,7 @@
     NSDictionary * dataDic = [BBUserDefaults getUserDic];
     NSLog(@"dataDic -- %@",dataDic);
     
-//    [_contactModel createUnitedWithUserId:dataDic[@"id"] avatar:_imageUrlString name:_unitedTextField.text introduction:_textView.text];
+    [_contactModel createUnitedWithUserId:dataDic[@"id"] avatar:_imageUrlString name:_unitedTextField.text introduction:_textView.text];
     
     NSMutableDictionary * resultDic = [[NSMutableDictionary alloc] init];
     [resultDic setObject:dataDic[@"id"] forKey:@"userId"];
@@ -113,9 +133,9 @@
     [resultDic setObject:_unitedTextField.text forKey:@"name"];
     [resultDic setObject:_imageUrlString forKey:@"introduction"];
     
-    [BBUrlConnection loadPostAfNetWorkingWithUrl:@"http://localhost:8080/rent-car/api/im/groups/add" andParameters:resultDic complete:^(NSDictionary *resultDic, NSString *errorString) {
-        NSLog(@"result -- %@ -- error -- %@",resultDic,errorString);
-    }];
+//    [BBUrlConnection loadPostAfNetWorkingWithUrl:@"http://localhost:8080/rent-car/api/im/groups/add" andParameters:resultDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+//        NSLog(@"result -- %@ -- error -- %@",resultDic,errorString);
+//    }];
     
 }
 

@@ -10,6 +10,7 @@
 		2D359D981CE7840C00F85F24 /* icon_jt01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D359D961CE7840C00F85F24 /* icon_jt01@3x.png */; };
 		2D359D991CE7840C00F85F24 /* icon_jt02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D359D971CE7840C00F85F24 /* icon_jt02@3x.png */; };
 		2D359D9C1CE7874700F85F24 /* AddFriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D359D9B1CE7874700F85F24 /* AddFriendsModel.m */; };
+		2D359D9F1CE8280400F85F24 /* UnitedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D359D9E1CE8280400F85F24 /* UnitedTableViewCell.m */; };
 		2D5544691CE0DCE50029C481 /* 好看2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D5544681CE0DCE50029C481 /* 好看2.jpg */; };
 		2D8AFF471CE23E91009B7F24 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8AFF3A1CE23E91009B7F24 /* ContactModel.m */; };
 		2D8AFF481CE23E91009B7F24 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8AFF3C1CE23E91009B7F24 /* ContactTableViewCell.m */; };
@@ -527,6 +528,8 @@
 		2D359D971CE7840C00F85F24 /* icon_jt02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_jt02@3x.png"; sourceTree = "<group>"; };
 		2D359D9A1CE7874700F85F24 /* AddFriendsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsModel.h; sourceTree = "<group>"; };
 		2D359D9B1CE7874700F85F24 /* AddFriendsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsModel.m; sourceTree = "<group>"; };
+		2D359D9D1CE8280400F85F24 /* UnitedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedTableViewCell.h; sourceTree = "<group>"; };
+		2D359D9E1CE8280400F85F24 /* UnitedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedTableViewCell.m; sourceTree = "<group>"; };
 		2D5544681CE0DCE50029C481 /* 好看2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "好看2.jpg"; sourceTree = "<group>"; };
 		2D8AFF391CE23E91009B7F24 /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
 		2D8AFF3A1CE23E91009B7F24 /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
@@ -1462,6 +1465,8 @@
 				2DA836B21CE37D2B00C1E8A3 /* CreateUnited */,
 				2D8AFF451CE23E91009B7F24 /* UnitedViewController.h */,
 				2D8AFF461CE23E91009B7F24 /* UnitedViewController.m */,
+				2D359D9D1CE8280400F85F24 /* UnitedTableViewCell.h */,
+				2D359D9E1CE8280400F85F24 /* UnitedTableViewCell.m */,
 			);
 			path = United;
 			sourceTree = "<group>";
@@ -3839,6 +3844,7 @@
 				B89A0C651C79904C0072A6A8 /* main.m in Sources */,
 				8C63E51B1CE055F800B4EC1D /* ChatViewController.m in Sources */,
 				8C63E5791CE05BE800B4EC1D /* UIImage+UIImageExt.m in Sources */,
+				2D359D9F1CE8280400F85F24 /* UnitedTableViewCell.m in Sources */,
 				B89A0CF71C79EFE90072A6A8 /* HouseEnterViewController.m in Sources */,
 				8C63E5751CE05B6B00B4EC1D /* UIView+MJExtension.m in Sources */,
 				8C63E5821CE05DD100B4EC1D /* AppDelegate+Category.m in Sources */,
