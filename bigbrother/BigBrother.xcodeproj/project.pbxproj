@@ -47,6 +47,10 @@
 		8C12C9D21CEA13B10067AA9B /* FDHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C12C9D11CEA13B10067AA9B /* FDHeaderView.m */; };
 		8C12C9D51CEA13C60067AA9B /* FriendDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C12C9D41CEA13C60067AA9B /* FriendDetailViewCell.m */; };
 		8C12C9D81CEA13DC0067AA9B /* FDFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C12C9D71CEA13DC0067AA9B /* FDFooterView.m */; };
+		8C12C9DA1CEA1D340067AA9B /* FDHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C12C9D91CEA1D340067AA9B /* FDHeaderView.xib */; };
+		8C12C9DC1CEA1FBE0067AA9B /* FriendDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C12C9DB1CEA1FBE0067AA9B /* FriendDetailViewCell.xib */; };
+		8C12C9DE1CEA24930067AA9B /* FDFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C12C9DD1CEA24930067AA9B /* FDFooterView.xib */; };
+		8C12C9E21CEA2B310067AA9B /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C12C9E11CEA2B310067AA9B /* FriendModel.m */; };
 		8C1861881CDF34CC00632CDC /* ChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1861871CDF34CC00632CDC /* ChatMainViewController.m */; };
 		8C1861901CDF35E300632CDC /* FlexibleFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18618F1CDF35E300632CDC /* FlexibleFrame.m */; };
 		8C1861EA1CDF378900632CDC /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1861A91CDF378900632CDC /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -604,6 +608,11 @@
 		8C12C9D41CEA13C60067AA9B /* FriendDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailViewCell.m; sourceTree = "<group>"; };
 		8C12C9D61CEA13DC0067AA9B /* FDFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFooterView.h; sourceTree = "<group>"; };
 		8C12C9D71CEA13DC0067AA9B /* FDFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFooterView.m; sourceTree = "<group>"; };
+		8C12C9D91CEA1D340067AA9B /* FDHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FDHeaderView.xib; sourceTree = "<group>"; };
+		8C12C9DB1CEA1FBE0067AA9B /* FriendDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendDetailViewCell.xib; sourceTree = "<group>"; };
+		8C12C9DD1CEA24930067AA9B /* FDFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FDFooterView.xib; sourceTree = "<group>"; };
+		8C12C9E01CEA2B310067AA9B /* FriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendModel.h; sourceTree = "<group>"; };
+		8C12C9E11CEA2B310067AA9B /* FriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendModel.m; sourceTree = "<group>"; };
 		8C1861861CDF34CC00632CDC /* ChatMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMainViewController.h; sourceTree = "<group>"; };
 		8C1861871CDF34CC00632CDC /* ChatMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMainViewController.m; sourceTree = "<group>"; };
 		8C18618E1CDF35E300632CDC /* FlexibleFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexibleFrame.h; sourceTree = "<group>"; };
@@ -1464,6 +1473,8 @@
 			children = (
 				2D8AFF391CE23E91009B7F24 /* ContactModel.h */,
 				2D8AFF3A1CE23E91009B7F24 /* ContactModel.m */,
+				8C12C9E01CEA2B310067AA9B /* FriendModel.h */,
+				8C12C9E11CEA2B310067AA9B /* FriendModel.m */,
 			);
 			path = ContactModel;
 			sourceTree = "<group>";
@@ -1562,10 +1573,13 @@
 				8C12C9CE1CEA0FDA0067AA9B /* FriendDetailViewController.m */,
 				8C12C9D31CEA13C60067AA9B /* FriendDetailViewCell.h */,
 				8C12C9D41CEA13C60067AA9B /* FriendDetailViewCell.m */,
+				8C12C9DB1CEA1FBE0067AA9B /* FriendDetailViewCell.xib */,
 				8C12C9D01CEA13B10067AA9B /* FDHeaderView.h */,
 				8C12C9D11CEA13B10067AA9B /* FDHeaderView.m */,
+				8C12C9D91CEA1D340067AA9B /* FDHeaderView.xib */,
 				8C12C9D61CEA13DC0067AA9B /* FDFooterView.h */,
 				8C12C9D71CEA13DC0067AA9B /* FDFooterView.m */,
+				8C12C9DD1CEA24930067AA9B /* FDFooterView.xib */,
 			);
 			path = FriendDetail;
 			sourceTree = "<group>";
@@ -3457,6 +3471,7 @@
 				B8A6AF571C8C181400DC84BC /* UIAlertView-Blocks.podspec in Resources */,
 				8C1863A21CDF9C4C00632CDC /* VoiceSearchFeedback016@2x.png in Resources */,
 				8C1863B01CDF9C4C00632CDC /* call_silence@2x.png in Resources */,
+				8C12C9DE1CEA24930067AA9B /* FDFooterView.xib in Resources */,
 				8C18642D1CDF9C4C00632CDC /* tabbar_settingHL@2x.png in Resources */,
 				8C1864271CDF9C4C00632CDC /* tabbar_contacts@2x.png in Resources */,
 				8C1864071CDF9C4C00632CDC /* chat_sender_audio_playing_002@2x.png in Resources */,
@@ -3601,6 +3616,7 @@
 				8C63E5BE1CE09FA900B4EC1D /* emoji_tab0@2x.png in Resources */,
 				8C1863B71CDF9C4C00632CDC /* chatBar_more_cardSelected.png in Resources */,
 				8C1863BA1CDF9C4C00632CDC /* chatBar_more_face@2x.png in Resources */,
+				8C12C9DC1CEA1FBE0067AA9B /* FriendDetailViewCell.xib in Resources */,
 				8C18641D1CDF9C4C00632CDC /* group_participant_addHL@2x.png in Resources */,
 				8C1863DD1CDF9C4C00632CDC /* chatBar_colorMore_audioCall@2x.png in Resources */,
 				8C1863A51CDF9C4C00632CDC /* VoiceSearchFeedback018.png in Resources */,
@@ -3657,6 +3673,7 @@
 				8C1863B21CDF9C4C00632CDC /* call_silence_h@2x.png in Resources */,
 				8C18638E1CDF9C4C00632CDC /* VoiceSearchFeedback006@2x.png in Resources */,
 				8C1863881CDF9C4C00632CDC /* VoiceSearchFeedback003@2x.png in Resources */,
+				8C12C9DA1CEA1D340067AA9B /* FDHeaderView.xib in Resources */,
 				8C1864181CDF9C4C00632CDC /* group_creategroup@2x.png in Resources */,
 				8C1863A91CDF9C4C00632CDC /* VoiceSearchFeedback020.png in Resources */,
 				8C1864031CDF9C4C00632CDC /* chat_sender_audio_playing_000@2x.png in Resources */,
@@ -3832,6 +3849,7 @@
 				8C12C9D81CEA13DC0067AA9B /* FDFooterView.m in Sources */,
 				B81E56E41C7EED9B00E34A91 /* QNDes.m in Sources */,
 				B80131541C8002940070612B /* HouseFactoryWantRentPostToViewController.m in Sources */,
+				8C12C9E21CEA2B310067AA9B /* FriendModel.m in Sources */,
 				8CAED5F91CE6E376009CDC8B /* EaseMessageReadManager.m in Sources */,
 				8C1864501CDF9CC700632CDC /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				B85A93D91C9411FE00CC7893 /* PostMacthTableViewCell.m in Sources */,

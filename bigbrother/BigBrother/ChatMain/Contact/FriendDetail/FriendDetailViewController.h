@@ -10,4 +10,6 @@
 
 @interface FriendDetailViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *currentUserDic;
+
 @end

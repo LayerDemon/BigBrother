@@ -10,4 +10,6 @@
 
 @interface FriendDetailViewCell : UITableViewCell
 
+- (void)loadWithTitle:(NSString *)title DataDic:(NSDictionary *)dataDic;
+
 @end

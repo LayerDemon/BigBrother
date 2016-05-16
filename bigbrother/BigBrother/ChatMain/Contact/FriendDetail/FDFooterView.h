@@ -10,4 +10,6 @@
 
 @interface FDFooterView : UIView
 
+- (void)loadWithDataDic:(NSDictionary *)dataDic;
+
 @end

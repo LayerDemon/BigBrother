@@ -10,4 +10,6 @@
 
 @interface FDHeaderView : UIView
 
+- (void)loadWithDataDic:(NSDictionary *)dataDic;
+
 @end

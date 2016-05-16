@@ -14,4 +14,6 @@
 @property (strong, nonatomic) UILabel           * userNameLabel;
 @property (strong, nonatomic) UILabel           * statusLabel;
 
+@property (strong, nonatomic) NSDictionary *dataDic;
+
 @end

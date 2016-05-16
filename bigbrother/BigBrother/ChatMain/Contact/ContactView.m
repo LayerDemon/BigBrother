@@ -11,6 +11,7 @@
 #import "ContactModel.h"
 #import "NewFriendsViewController.h"
 #import "UnitedViewController.h"
+#import "FriendDetailViewController.h"
 
 #define SECTION_TAG 2300
 @interface ContactView () <UITableViewDelegate,UITableViewDataSource>
@@ -157,6 +158,8 @@ static NSString * identify = @"Cell";
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     NSDictionary  * dataDic = _dataArray[indexPath.section][@"friends"][indexPath.row][@"friend"];
     
+    cell.dataDic = dataDic;
+    
     [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dataDic[@"avatar"]]] placeholderImage:PLACEHOLER_IMA];
     cell.userNameLabel.text = dataDic[@"nickname"];
     
@@ -197,6 +200,10 @@ static NSString * identify = @"Cell";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //跳转到用户详情
+    ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    FriendDetailViewController *friendDetailVC = [[FriendDetailViewController alloc]init];
+    friendDetailVC.currentUserDic = cell.dataDic;
+    [self.viewController.navigationController pushViewController:friendDetailVC animated:YES];
 }
 
 #pragma mark - 按钮方法
