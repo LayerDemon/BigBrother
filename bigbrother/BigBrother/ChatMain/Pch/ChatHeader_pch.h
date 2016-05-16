@@ -41,6 +41,9 @@
 #import "UIButton+WebCache.h"
 #import "CustomIndicatorView.h"
 
+#import "NetworkingManager.h"
+#import "JSONKit.h"
+#import "UIKit+AFNetworking.h"
 
 //延展
 #import "AppDelegate+Category.h"
@@ -54,6 +57,7 @@
 #import "UIImage+ResizeImage.h"
 #import "UIImage+Category.h"
 #import "NSString+Category.h"
+
 
 //单例
 #define WINDOW ((AppDelegate *)[UIApplication sharedApplication].delegate).window//window
@@ -85,6 +89,9 @@
 #define ITEM_NORMAL_COLOR ARGB_COLOR(135, 135, 135, 1)
 #define BG_COLOR ARGB_COLOR(229, 229, 229, 1)
 #define NAVTITLE_TINTCOLOR ARGB_COLOR(82, 82, 82, 1)
+#define THEMECOLOR_LINE   ARGB_COLOR(239,240,240,1)
+#define THEMECOLOR_BACK   ARGB_COLOR(240, 240, 240, 1)
+
 //主题
 #define SDProgressViewBackgroundColor ARGB_COLOR(240, 240, 240, 0.9)
 #define _E3D9B2 ARGB_COLOR(227, 217, 178, 1)
@@ -108,7 +115,7 @@
 //默认图片
 #define PLACEHOLDERIMAGE_USER [UIImage imageNamed:@"choujiang"]
 #define PLACEHOLDERIMAGE_GROUP [UIImage imageNamed:@"choujiang"]
-
+#define PLACEHOLER_IMA        [UIImage imageNamed:@"好看2.jpg"]
 //TGA
 #define LINEVIEW_TAG 500
 #define TEXTFIELD_TAG 300

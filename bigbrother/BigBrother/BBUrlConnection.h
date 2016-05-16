@@ -17,7 +17,8 @@
 
 //上传图片
 +(void)uploadWithImage:(UIImage *)image productType:(BaseProductType)type complete:(void(^)(NSString *imageUrl))complete;
-
+//POST
++(NSURLSessionDataTask *)loadPostAfNetWorkingWithUrl:(NSString *)urlString andParameters:(NSMutableDictionary *)params complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete;
 
 #pragma mark -
 #pragma mark 用户相关

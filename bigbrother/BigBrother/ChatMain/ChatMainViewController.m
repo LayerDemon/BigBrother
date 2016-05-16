@@ -9,6 +9,7 @@
 #import "ChatMainViewController.h"
 #import "MessageView.h"
 #import "ContactView.h"
+#import "AddFriendsViewController.h"
 
 @interface ChatMainViewController ()
 
@@ -38,9 +39,14 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    //添加
+    UIBarButtonItem * rightBut = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleDone target:self action:@selector(addNewFriendsButtonPressed:)];
+    self.tabBarController.navigationItem.rightBarButtonItem = rightBut;
+    
     self.tabBarController.navigationItem.titleView = self.segmentedControl;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+//    self.tabBarController.navigationItem.rightBarButtonItem = nil;
     self.tabBarController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     //设置环信代理
     [self.messageView registerNotifications];
@@ -55,13 +61,17 @@
 #pragma mark - 数据初始化
 - (void)initializeDataSource
 {
-    
+
+
 }
 
 #pragma mark - 视图初始化
 - (void)initializeUserInterface
 {
+    
     [self indexDidChangeForSegmentedControl:self.segmentedControl];
+    
+    
 }
 #pragma mark - 各种Getter
 - (UISegmentedControl *)segmentedControl
@@ -111,6 +121,11 @@
     }
 }
 
+- (void)addNewFriendsButtonPressed:(UIButton *)sender
+{
+    AddFriendsViewController * addFriendsVC = [[AddFriendsViewController alloc] init];
+    [self.navigationController pushViewController:addFriendsVC animated:YES];
+}
 
 #pragma mark - 自定义方法
 

@@ -835,6 +835,7 @@ static QNUploadManager *imageUploadManager;
                     complete((NSDictionary *)responseObject,nil);
                 }else{
                     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error];
+                    NSLog(@"error -- %@",error.localizedDescription);
                     if (!dic) {
                         NSLog(@"返回的结果不是json :%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
                         complete(nil,@"服务器错误");
@@ -848,6 +849,7 @@ static QNUploadManager *imageUploadManager;
             }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"error2 -- %@",error.localizedDescription);
         complete(nil,@"服务器无响应");
     }];
     return task;
