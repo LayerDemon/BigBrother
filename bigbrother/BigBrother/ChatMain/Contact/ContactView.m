@@ -193,6 +193,12 @@ static NSString * identify = @"Cell";
     return headerButton;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //跳转到用户详情
+}
+
 #pragma mark - 按钮方法
 - (void)newFriendsButtonPressed:(UIButton *)sender
 {

@@ -210,6 +210,8 @@
             EMError *error = [[EMClient sharedClient] loginWithUsername:dataDic[@"imNumber"] password:passwordString];
             if (error) {
                 [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
+            }else{
+                [BYToastView showToastWithMessage:@"聊天服务器连接成功~"];
             }
             
             if ([idString isKindOfClass:[NSNumber class]]) {
