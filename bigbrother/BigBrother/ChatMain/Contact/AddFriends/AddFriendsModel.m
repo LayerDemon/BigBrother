@@ -23,7 +23,7 @@
 {
     [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends/search" params:@{@"terms":terms} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSDictionary * dataDic = responseObj;
-        NSLog(@"friendsData -- %@",dataDic);
+        NSLog(@"searchFriend -- %@",dataDic);
         self.searchFriendsData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
@@ -36,7 +36,7 @@
 {
     [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/search" params:@{@"terms":terms} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSDictionary * dataDic = responseObj;
-        NSLog(@"groupData -- %@",dataDic);
+        NSLog(@"searchGroup -- %@",dataDic);
         self.searchGroupsData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {

@@ -10,6 +10,7 @@
 #import "CreateUnitedViewController.h"
 #import "ContactModel.h"
 #import "UnitedTableViewCell.h"
+#import "UnitedDetailViewController.h"
 
 @interface UnitedViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -189,6 +190,12 @@ static NSString * identify = @"Cell";
     return headView;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UnitedDetailViewController * unitedDeailVC = [[UnitedDetailViewController alloc] init];
+    unitedDeailVC.unitedDic = _groupArray[indexPath.section][indexPath.row];
+    [self.navigationController pushViewController:unitedDeailVC animated:YES];
+}
 
 #pragma mark -- create label
 - (UILabel *)createLabelWithText:(NSString *)text font:(CGFloat)font subView:(UIView *)subView

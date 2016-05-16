@@ -8,6 +8,8 @@
 
 #import "AddFriendsViewController.h"
 #import "AddFriendsModel.h"
+#import "AddFriendTableViewCell.h"
+#import "UnitedTableViewCell.h"
 #define TOPBUT_TAG 5100
 
 @interface AddFriendsViewController () <UITableViewDelegate,UITableViewDataSource>
@@ -19,6 +21,8 @@
 @property (strong, nonatomic) NSArray               * dataArray;
 
 @property (strong, nonatomic) AddFriendsModel       * addFriendsModel;
+@property (assign, nonatomic) NSInteger             searchMark;         //用来标记是搜索好友，还是门派
+
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -52,10 +56,12 @@
 {
     if ([keyPath isEqualToString:@"searchFriendsData"]) {
         _dataArray = _addFriendsModel.searchFriendsData[@"data"];
+        [_tableView reloadData];
     }
     
     if ([keyPath isEqualToString:@"searchGroupsData"]) {
         _dataArray = _addFriendsModel.searchGroupsData[@"data"];
+        [_tableView reloadData];
     }
 }
 
@@ -133,6 +139,7 @@
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, FLEXIBLE_NUM(128), MAINSCRREN_W, MAINSCRREN_H - FLEXIBLE_NUM(128)-64) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.rowHeight = FLEXIBLE_NUM(47);
         tableView.tableFooterView = [[UIView alloc] init];
         tableView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:tableView];
@@ -144,6 +151,7 @@
 - (void)topButtonPressed:(UIButton *)sender
 {
     NSInteger index = sender.tag - TOPBUT_TAG;
+    _searchMark = index;
     for (int i = 0; i < 2; i ++) {
         UIButton * topButton = (UIButton *)[self.view viewWithTag:TOPBUT_TAG + i];
         [topButton setTitleColor:[[UIColor blackColor] colorWithAlphaComponent:0.7]forState:UIControlStateNormal];
@@ -158,21 +166,62 @@
 
 - (void)searchButtonPressed:(UIButton *)sender
 {
-//    [_addFriendsModel searchFriendsWithTerms:_searchTextField.text];
-    [_addFriendsModel searchGroupsWithTerms:_searchTextField.text];
+    if (_searchTextField.text.length > 0) {
+        if (_searchMark == 0) {
+            [_addFriendsModel searchFriendsWithTerms:_searchTextField.text];
+        }else{
+            [_addFriendsModel searchGroupsWithTerms:_searchTextField.text];
+        }
+    }
+  
 }
 
 #pragma mark -- <UITableViewDelegate,UITableViewDataSource>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    if (_searchMark == 0) {
+        static NSString *identify = @"Cell";
+        AddFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+        if (!cell) {
+            cell = [[AddFriendTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+        }
+        
+        NSDictionary  * dataDic = _dataArray[indexPath.row];
+        
+        [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dataDic[@"avatar"]]] placeholderImage:PLACEHOLER_IMA];
+        cell.userNameLabel.text = [NSString stringWithFormat:@"%@(%@)",dataDic[@"nickname"],dataDic[@"phoneNumber"]];
+        return cell;
+    }else{
+        static NSString * unitIdentfiy = @"unitIdentify";
+        UnitedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:unitIdentfiy];
+        if (!cell) {
+            cell = [[UnitedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:unitIdentfiy];
+        }
+        NSDictionary * dataDic = _dataArray[indexPath.row];
+        
+        [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.groupNameLabel.text = dataDic[@"name"];
+        return cell;
+    }
 }
 
+                                   
+                                   
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_searchMark == 0) {     //好友
+        
+    }else{                      //门派
+    
+    }
+    
+}
 
 
 #pragma mark -- create label
