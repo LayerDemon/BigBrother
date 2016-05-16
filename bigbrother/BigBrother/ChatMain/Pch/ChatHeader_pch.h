@@ -17,6 +17,9 @@
 //系统版本
 #define SYSTEMVERSION [UIDevice currentDevice].systemVersion.floatValue
 
+#import "EaseLocalDefine.h"
+
+#import <UIKit/UIKit.h>
 //通用类
 #import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>//
@@ -28,6 +31,9 @@
 #import "PreviewImageViewController.h"//图片预览
 #import "MJRefresh.h"//刷新
 #import "EaseSDKHelper.h"//环信发送消息类
+#import "ChatMessageModel.h"
+//#import "MWPhoto.h"
+//#import "MWPhotoBrowser.h"
 
 #import "UIImage+UIImageExt.h"//图片压缩
 
