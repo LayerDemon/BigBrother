@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="3qc-Wx-eyb" customClass="ChatToolBarView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="HU6-Yo-kLH">
+                    <rect key="frame" x="8" y="10" width="236" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_record_nor.png" id="8i8-m9-1mO">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nJX-72-2aP">
+                    <rect key="frame" x="287" y="10" width="27" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" backgroundImage="chat_more_btn.png"/>
+                    <connections>
+                        <action selector="moreBtnPressed:" destination="3qc-Wx-eyb" eventType="touchUpInside" id="Ard-pf-eoN"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wIa-wp-yQy">
+                    <rect key="frame" x="252" y="10" width="27" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" backgroundImage="chat_emoji_btn.png"/>
+                    <state key="selected" backgroundImage="chat_jianpan_btn.png"/>
+                    <connections>
+                        <action selector="emojiBtnPressed:" destination="3qc-Wx-eyb" eventType="touchUpInside" id="JY8-C5-hHB"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ftJ-ck-ddj">
+                    <rect key="frame" x="8" y="12" width="27" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" backgroundImage="chat_voice_btn.png"/>
+                    <state key="selected" backgroundImage="chat_jianpan_btn.png"/>
+                    <connections>
+                        <action selector="voiceBtnPressed:" destination="3qc-Wx-eyb" eventType="touchUpInside" id="46C-f1-t1T"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZOt-1W-dsb">
+                    <rect key="frame" x="43" y="10" width="201" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="按下 录音" backgroundImage="chatbar_record_nor.png">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" title="松开 发送" backgroundImage="chatbar_record_sel.png"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="emojiBtn" destination="wIa-wp-yQy" id="Aiq-cS-6sS"/>
+                <outlet property="moreTempField" destination="HU6-Yo-kLH" id="qQO-Ho-vuu"/>
+                <outlet property="recordBtn" destination="ZOt-1W-dsb" id="69C-pT-KBq"/>
+                <outlet property="voiceBtn" destination="ftJ-ck-ddj" id="0Mo-lW-f5l"/>
+            </connections>
+            <point key="canvasLocation" x="614" y="200"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chat_emoji_btn.png" width="32" height="32"/>
+        <image name="chat_jianpan_btn.png" width="32" height="32"/>
+        <image name="chat_more_btn.png" width="32" height="32"/>
+        <image name="chat_record_nor.png" width="320" height="43"/>
+        <image name="chat_voice_btn.png" width="32" height="32"/>
+        <image name="chatbar_record_nor.png" width="159" height="50"/>
+        <image name="chatbar_record_sel.png" width="159" height="50"/>
+    </resources>
+</document>
