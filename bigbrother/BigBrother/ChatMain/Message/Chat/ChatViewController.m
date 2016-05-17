@@ -60,8 +60,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    //移除chatDelegate
-    [MANAGER_CHAT removeDelegate:self];
     //判断当前会话是否为空，若符合则删除该会话
     EMMessage *message = [self.conversation latestMessage];
     if (message == nil) {
@@ -69,6 +67,8 @@
     }else{
         [self.conversation markAllMessagesAsRead];
     }
+    //移除chatDelegate
+    [MANAGER_CHAT removeDelegate:self];
 }
 
 - (instancetype)init

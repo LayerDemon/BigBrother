@@ -33,6 +33,7 @@
 {
     [_model removeObserver:self forKeyPath:@"friendInfoData"];
     [_model removeObserver:self forKeyPath:@"addData"];
+    [_model removeObserver:self forKeyPath:@"deleteData"];
     [_model removeObserver:self forKeyPath:@"sectionListData"];
 }
 
@@ -110,6 +111,7 @@
         _model = [[FriendModel alloc]init];
         [_model addObserver:self forKeyPath:@"friendInfoData" options:NSKeyValueObservingOptionNew context:nil];
         [_model addObserver:self forKeyPath:@"addData" options:NSKeyValueObservingOptionNew context:nil];
+        [_model addObserver:self forKeyPath:@"deleteData" options:NSKeyValueObservingOptionNew context:nil];
         [_model addObserver:self forKeyPath:@"sectionListData" options:NSKeyValueObservingOptionNew context:nil];
     }
     return _model;
@@ -125,6 +127,9 @@
     }
     if ([keyPath isEqualToString:@"sectionListData"]) {
 //        [self sectionListDataParse];
+    }
+    if ([keyPath isEqualToString:@"deleteData"]) {
+        [self deleteDataParse];
     }
 }
 
@@ -194,6 +199,8 @@
 - (void)clickedDeleteFriendBtn:(UIButton *)sender
 {
     //删除
+    [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.model postDeleteDataWithUserId:self.userDic[@"id"] friendId:self.currentUserDic[@"id"]];
 }
 
 - (void)clickedSendMessageBtn:(UIButton *)sender
@@ -234,5 +241,15 @@
     [BYToastView showToastWithMessage:@"已发送好友申请~"];
 }
 
+//删除好友结果
+- (void)deleteDataParse
+{
+    [self.footerView.firstBtn stopAnimationWithTitle:@"添加好友"];
+    [FRIENDCACHE_MANAGER deleteFriendDic:self.currentUserDic completed:^(id responseObject, NSError *error) {
+        
+    }];
+    [BYToastView showToastWithMessage:@"已删除该好友~"];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

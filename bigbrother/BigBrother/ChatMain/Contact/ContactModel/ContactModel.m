@@ -28,6 +28,30 @@
         NSLog(@"dataDic -- %@",dataDic);
         self.allFriendsData = responseObj;
         
+        NSArray *dataArray = dataDic[@"data"];
+        NSMutableArray *friendList = [NSMutableArray array];
+        for (NSDictionary *sectionDic in dataArray) {
+            NSString *friendsGroupName = sectionDic[@"name"];//分组名称
+            NSString *friendsGroupId = [NSString stringWithFormat:@"%@",sectionDic[@"id"]];
+            NSArray *friendArray = sectionDic[@"friends"];
+            for (NSDictionary *rowDic in friendArray) {
+                if (rowDic) {
+                    NSMutableDictionary *friendDic = [NSMutableDictionary dictionaryWithDictionary:rowDic[@"friend"]];
+                    [friendDic setObject:friendsGroupName forKey:@"friendsGroupName"];
+                    [friendDic setObject:friendsGroupId forKey:@"friendsGroupId"];
+                    [friendList addObject:friendDic];
+                }
+            }
+            
+        }
+        [FRIENDCACHE_MANAGER createFriendListCacheWithFriendList:friendList];
+//        BOOL createResult = [FRIENDCACHE_MANAGER createFriendListCacheWithFriendList:friendList];
+//        if (createResult) {
+//            completed(friendList,nil);
+//        }else{
+//            completed(friendList,[NSError errorWithDomain:@"" code:FriendCacheErrorCode_CreateFailed userInfo:@{@"data":@"从服务器获取失败"}]);
+//        }
+        
     } failAction:^(NSError *error, id responseObj) {
         NSLog(@"error -- %@",error.localizedDescription);
     }];

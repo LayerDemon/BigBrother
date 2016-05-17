@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSDictionary *friendInfoData;
 @property (strong, nonatomic) NSDictionary *addData;
+@property (strong, nonatomic) NSDictionary *deleteData;
 @property (strong, nonatomic) NSDictionary *sectionListData;
 
 @end
@@ -59,6 +60,20 @@
     }];
 }
 
+//删除好友
+- (void)postDeleteDataWithUserId:(id)userId friendId:(id)friendId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/friends/delete",BASE_URL];
+    NSDictionary *tempDic = @{@"userId":userId,@"friendId":friendId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.deleteData = resultDic[@"data"];
+        }
+    }];
+}
+
 //获取全部分组
 - (void)postSectionListDataWithUserId:(id)userId
 {
@@ -72,6 +87,8 @@
         }
     }];
 }
+
+
 
 
 

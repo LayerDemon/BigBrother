@@ -23,6 +23,9 @@
 //添加好友
 - (void)postAddDataWithUserId:(id)userId friendId:(id)friendId message:(NSString *)message friendsGroupId:(id)friendsGroupId;
 
+//删除好友
+- (void)postDeleteDataWithUserId:(id)userId friendId:(id)friendId;
+
 //获取全部分组
 - (void)postSectionListDataWithUserId:(id)userId;
 @end

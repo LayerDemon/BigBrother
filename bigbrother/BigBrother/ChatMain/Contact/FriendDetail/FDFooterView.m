@@ -44,7 +44,7 @@
         }else{
             //如果不是好友
             [self.firstBtn stopAnimationWithTitle:@"添加好友"];
-            self.secondBtn.hidden = YES;
+            self.secondBtn.hidden = NO;
         }
     }];
 }
