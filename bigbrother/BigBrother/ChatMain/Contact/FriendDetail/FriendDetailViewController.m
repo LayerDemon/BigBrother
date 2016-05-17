@@ -10,13 +10,18 @@
 #import "FDHeaderView.h"
 #import "FriendDetailViewCell.h"
 #import "FDFooterView.h"
+#import "ChatViewController.h"
 
-@interface FriendDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "FriendModel.h"
+
+
+@interface FriendDetailViewController ()<UITableViewDelegate,UITableViewDataSource,FDFooterViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) FDHeaderView *headerView;
 @property (strong, nonatomic) FDFooterView *footerView;
 
+@property (strong, nonatomic) FriendModel *model;
 @property (strong, nonatomic) NSArray *titleArray;
 @property (strong, nonatomic) NSDictionary *userDic;
 
@@ -24,11 +29,19 @@
 
 @implementation FriendDetailViewController
 
+- (void)dealloc
+{
+    [_model removeObserver:self forKeyPath:@"friendInfoData"];
+    [_model removeObserver:self forKeyPath:@"addData"];
+    [_model removeObserver:self forKeyPath:@"sectionListData"];
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.userDic = [BBUserDefaults getUserDic];
+        self.isChatPush = NO;
     }
     return self;
 }
@@ -46,6 +59,10 @@
 {
     [self setIndicatorTitle:@"个人资料"];
     self.titleArray = @[@"他的供求信息",@"地区",@"性别",@"个性签名"];
+    [self.model postFriendInfoDataWithUid:self.currentUserDic[@"id"]];
+    [self startTitleIndicator];
+    
+    [self.model postSectionListDataWithUserId:self.userDic[@"id"]];//获取所有分组
 }
 
 #pragma mark - 视图初始化
@@ -82,8 +99,33 @@
 {
     if (!_footerView) {
         _footerView = [[FDFooterView alloc]init];
+        _footerView.delegate = self;
     }
     return _footerView;
+}
+
+- (FriendModel *)model
+{
+    if (!_model) {
+        _model = [[FriendModel alloc]init];
+        [_model addObserver:self forKeyPath:@"friendInfoData" options:NSKeyValueObservingOptionNew context:nil];
+        [_model addObserver:self forKeyPath:@"addData" options:NSKeyValueObservingOptionNew context:nil];
+        [_model addObserver:self forKeyPath:@"sectionListData" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    return _model;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"friendInfoData"]) {
+        [self friendInfoDataParse];
+    }
+    if ([keyPath isEqualToString:@"addData"]) {
+        [self addDataParse];
+    }
+    if ([keyPath isEqualToString:@"sectionListData"]) {
+//        [self sectionListDataParse];
+    }
 }
 
 #pragma mark - <UITableViewDataSource,UITableViewDelegate>
@@ -128,10 +170,69 @@
     return FLEXIBLE_NUM(6);
 }
 
-#pragma mark - 按钮方法
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - FDFooterViewDelegate
+- (void)clickedAddFriendBtn:(UIButton *)sender
+{
+    //添加
+    NSArray *dataArray = self.model.sectionListData[@"data"];
+    if (!dataArray) {
+        [BYToastView showToastWithMessage:@"正在获取分组信息，请稍后~"];
+        return;
+    }
+    
+#warning --- 测试
+    NSDictionary *testDic = [dataArray firstObject];
+    [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.model postAddDataWithUserId:self.userDic[@"id"] friendId:self.currentUserDic[@"id"] message:@"加一下好友呗~" friendsGroupId:testDic[@"id"]];
+}
+
+- (void)clickedDeleteFriendBtn:(UIButton *)sender
+{
+    //删除
+}
+
+- (void)clickedSendMessageBtn:(UIButton *)sender
+{
+    //发送消息
+    if (!self.isChatPush) {
+        //    发送消息
+        ChatViewController *chatVC = [[ChatViewController alloc]init];
+        EMConversation *conversation = [MANAGER_CHAT getConversation:self.currentUserDic[@"imNumber"] type:EMConversationTypeChat createIfNotExist:YES];
+        chatVC.conversation = conversation;
+        chatVC.chatDic = self.currentUserDic;
+        [self.navigationController pushViewController:chatVC animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - 按钮方法jjghgh
 
 #pragma mark - 自定义方法
 
+#pragma mark - 数据处理
+//获取到好友信息~
+- (void)friendInfoDataParse
+{
+    [self stopTitleIndicator];
+    self.currentUserDic = self.model.friendInfoData[@"data"];
+    [self.headerView loadWithDataDic:self.currentUserDic];
+    [self.footerView loadWithDataDic:self.currentUserDic];
+    [self.tableView reloadData];
+}
+
+//已发送添加请求
+- (void)addDataParse
+{
+    [self.footerView.firstBtn stopAnimationWithTitle:@"已发送申请"];
+    self.footerView.firstBtn.selected = YES;
+    [BYToastView showToastWithMessage:@"已发送好友申请~"];
+}
 
 
 @end

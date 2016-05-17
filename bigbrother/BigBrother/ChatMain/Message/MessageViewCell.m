@@ -32,7 +32,8 @@
                                             options:nil] lastObject];
         self.contentView.frame = FLEFRAME(self.contentView.frame);
         self.contentView.autoresizesSubviews = NO;
-        self.numLabel.layer.cornerRadius = FLEXIBLE_NUM(7);
+        FLEXIBLE_FONT(self.contentView);
+        self.numLabel.layer.cornerRadius = FLEXIBLE_NUM(14)/2;
         self.numLabel.layer.masksToBounds = YES;
         self.headImgView.layer.cornerRadius = self.headImgView.frame.size.height/2;
         self.headImgView.layer.masksToBounds = YES;
@@ -134,25 +135,28 @@
 - (void)setCount:(NSInteger)count
 {
     _count = count;
-    if (!count) {
-        self.numLabel.hidden = YES;
-    }
-    
+//    if (!count) {
+//        self.numLabel.hidden = YES;
+//    }
+    self.numLabel.hidden = !count;
     
     NSString *title = [NSString stringWithFormat:@"%ld",(long)count];
     if (count > 99) {
         title = [NSString stringWithFormat:@"99+"];
     }
+    CGSize size = [NSString sizeWithString:title Font:[UIFont systemFontOfSize:FLEXIBLE_NUM(10)] maxWidth:MAINSCRREN_W NumberOfLines:0];
+    CGSize zeroSize = [NSString sizeWithString:@"8" Font:[UIFont systemFontOfSize:FLEXIBLE_NUM(10)] maxWidth:MAINSCRREN_W NumberOfLines:0];
+    CGFloat offset = FLEXIBLE_NUM(8);
     
-    CGSize size = [NSString sizeWithString:title Font:[UIFont systemFontOfSize:FLEXIBLE_NUM(12)] maxWidth:MAINSCRREN_W NumberOfLines:0];
-    CGSize zeroSize = [NSString sizeWithString:@"1" Font:[UIFont systemFontOfSize:FLEXIBLE_NUM(12)] maxWidth:MAINSCRREN_W NumberOfLines:0];
-    CGFloat offset = size.width - zeroSize.width;
+    [self.numLabel setHeight:FLEXIBLE_NUM(14)];
+    if (size.width > zeroSize.width) {
+        [self.numLabel setWidth:size.width+FLEXIBLE_NUM(14)-zeroSize.width];
+        
+    }else{
+        [self.numLabel setWidth:FLEXIBLE_NUM(14)];
+    }
     self.numLabel.text = title;
-    
-    self.numLabel.frame = CGRectMake(self.numLabel.frame.origin.x-offset,
-                                     self.numLabel.frame.origin.y,
-                                     self.numLabel.frame.size.width+offset,
-                                     self.numLabel.frame.size.height);
+    [self.numLabel setOriginX:MAINSCRREN_W-offset-self.numLabel.frame.size.width];
 }
 
 

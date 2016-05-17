@@ -829,6 +829,7 @@ static QNUploadManager *imageUploadManager;
         NSError *error;
         if (error) {
             complete(nil,@"服务器错误");
+            [UIButton stopAllButtonAnimationWithErrorMessage:@"服务器错误"];
         }else{
             if (responseObject) {
                 if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -839,6 +840,7 @@ static QNUploadManager *imageUploadManager;
                     if (!dic) {
                         NSLog(@"返回的结果不是json :%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
                         complete(nil,@"服务器错误");
+                        [UIButton stopAllButtonAnimationWithErrorMessage:@"服务器返回数据错误"];
                     }else{
                         complete(dic,nil);
                     }
@@ -846,11 +848,25 @@ static QNUploadManager *imageUploadManager;
             }else{
                 NSLog(@"服务器无返回值");
                 complete(nil,@"服务器错误");
+                [UIButton stopAllButtonAnimationWithErrorMessage:@"服务器无返回"];
             }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"error2 -- %@",error.localizedDescription);
+        NSLog(@"错误描述%@",[error localizedDescription]);
+        
+        
+        NSData *data = [[error userInfo] objectForKey:@"com.alamofire.serialization.response.error.data"];
+        NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        id object = [string objectFromJSONString];
+        NSLog(@"错误信息%@",object);
+        NSLog(@"-douban-%@",object[@"data"]);
         complete(nil,@"服务器无响应");
+        NSString *errorMessage = object[@"data"][@"message"];
+        if (!errorMessage) {
+            errorMessage = @"服务器无响应";
+        }
+        [UIButton stopAllButtonAnimationWithErrorMessage:errorMessage];
     }];
     return task;
 }

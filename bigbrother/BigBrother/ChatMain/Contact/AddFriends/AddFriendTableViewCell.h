@@ -10,9 +10,11 @@
 
 @interface AddFriendTableViewCell : UITableViewCell
 
+
 @property (strong, nonatomic) UIImageView       * headImageView;
 @property (strong, nonatomic) UILabel           * userNameLabel;
 @property (strong, nonatomic) UILabel           * statusLabel;
 
+@property (strong, nonatomic) NSDictionary *dataDic;
 
 @end

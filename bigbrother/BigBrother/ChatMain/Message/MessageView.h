@@ -12,6 +12,10 @@
 
 - (void)addWithSuperView:(UIView *)superView;
 
+
+//刷新数据源
+-(void)refreshDataSource;
+
 #pragma mark - registerNotifications
 -(void)registerNotifications;
 

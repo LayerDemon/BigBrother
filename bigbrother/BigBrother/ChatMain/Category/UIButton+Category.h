@@ -17,4 +17,7 @@
 - (void)stopAnimationWithTitle:(NSString *)title;
 
 - (BOOL)isStartIndicator;
+
+//停止所有的带菊花button
++ (void)stopAllButtonAnimationWithErrorMessage:(NSString *)errorMessage;
 @end

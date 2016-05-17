@@ -19,14 +19,15 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:MAINSCRREN_B];
     titleLabel.text = title;
-    titleLabel.font = [UIFont systemFontOfSize:button.titleLabel.font.pointSize];
+    titleLabel.font = [UIFont boldSystemFontOfSize:button.titleLabel.font.pointSize];
     [titleLabel sizeToFit];
-    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:button.titleLabel.font.pointSize];
     button.frame = titleLabel.frame;
     [button setHeight:titleLabel.frame.size.height+FLEXIBLE_NUM(4)];
     [button setWidth:titleLabel.frame.size.width+FLEXIBLE_NUM(4)];
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:_333333 forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     self.navigationItem.titleView = button;
 }
@@ -44,7 +45,7 @@
     [button setHeight:titleLabel.frame.size.height+FLEXIBLE_NUM(4)];
     [button setWidth:titleLabel.frame.size.width+FLEXIBLE_NUM(25)];
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:_333333 forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [button addTarget:self action:@selector(titleItemPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *iconBtn = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -24,8 +24,8 @@
 + (NSString *)formatEnglishCommaWithText:(NSString *)text;
 
 //+ (NSString *)deviceIdString;
-////数据库名
-//+ (NSString *)dbnameString;
+//数据库名
++ (NSString *)dbnameString;
 //+ (NSString *)tokenString;
 //+ (NSString *)contactKeyString;
 //+ (NSString *)imusernameString;

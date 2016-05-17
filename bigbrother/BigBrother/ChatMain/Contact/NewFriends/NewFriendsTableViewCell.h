@@ -10,6 +10,8 @@
 
 @interface NewFriendsTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) NSDictionary *dataDic;
+
 @property (strong, nonatomic) UIImageView       * headImageView;
 @property (strong, nonatomic) UILabel           * userNameLabel;
 @property (strong, nonatomic) UILabel           * remarkLabel;
@@ -18,5 +20,9 @@
 @property (strong, nonatomic) UIButton          * refuseButton;
 
 @property (strong, nonatomic) UILabel           * stateLabel;
+
+
+
+- (void)loadWithDataDic:(NSDictionary *)dataDic;
 
 @end

@@ -34,7 +34,9 @@
 #pragma mark - 加载数据
 - (void)loadWithDataDic:(NSDictionary *)dataDic
 {
-    [self.headBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dataDic[@"avatar"]]] forState:UIControlStateNormal];
+    [self.headBtn sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dataDic[@"avatar"]]] forState:UIControlStateNormal placeholderImage:PLACEHOLDERIMAGE_USER completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
     self.nameLabel.text = dataDic[@"nickname"];
     self.numberLabel.text = dataDic[@"phoneNumber"];
 }

@@ -147,29 +147,29 @@
     }
     return @"";
 }
-////数据库名
-//+ (NSString *)dbnameString
-//{
-//    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-//    NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
-//    NSArray *versionArray = [currentVersion componentsSeparatedByString:@"."];
-//    NSInteger versionNumber = 0;
-//    for (NSInteger i = 0; i < versionArray.count; i ++) {
-//        versionNumber += [versionArray[i] integerValue] * pow(10, versionArray.count - i -1);
-//    }
-//    
-//    NSString  *dbname = [NSString stringWithFormat:@"%@_SHUXIANG.sqlite",@(versionNumber)];
-//    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"lastDBname"]) {
-//        [[NSUserDefaults standardUserDefaults] setObject:dbname forKey:@"lastDBname"];
-//    }
-//    NSString *lastDBname = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastDBname"];
-//    if ([lastDBname integerValue] < [dbname integerValue]) {
-//        [CACHE_MANAGER deleteDatabseWithDbname:lastDBname];
-//        [[NSUserDefaults standardUserDefaults] setObject:dbname forKey:@"lastDBname"];
-//    }
-//    
-//    return dbname;
-//}
+//数据库名
++ (NSString *)dbnameString
+{
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    NSArray *versionArray = [currentVersion componentsSeparatedByString:@"."];
+    NSInteger versionNumber = 0;
+    for (NSInteger i = 0; i < versionArray.count; i ++) {
+        versionNumber += [versionArray[i] integerValue] * pow(10, versionArray.count - i -1);
+    }
+    
+    NSString  *dbname = [NSString stringWithFormat:@"%@_SHUXIANG.sqlite",@(versionNumber)];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"lastDBname"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:dbname forKey:@"lastDBname"];
+    }
+    NSString *lastDBname = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastDBname"];
+    if ([lastDBname integerValue] < [dbname integerValue]) {
+        [CACHE_MANAGER deleteDatabseWithDbname:lastDBname];
+        [[NSUserDefaults standardUserDefaults] setObject:dbname forKey:@"lastDBname"];
+    }
+    
+    return dbname;
+}
 
 ////获取tokenStr
 //+ (NSString *)tokenString

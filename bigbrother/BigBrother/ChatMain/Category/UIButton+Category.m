@@ -68,4 +68,23 @@
     }
     return NO;
 }
+
+//停止所有的带菊花button
++ (void)stopAllButtonAnimationWithErrorMessage:(NSString *)errorMessage
+{
+    //停止菊花
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CustomIndicatorView *indicatorView = (CustomIndicatorView *)[WINDOW viewWithTag:INDICATORVIEW_TAG];
+        if (indicatorView) {
+            UIButton *button = (UIButton *)indicatorView.superview;
+            if (!button) {
+                [indicatorView stopAnimating];
+            }
+            [button stopAnimationWithTitle:nil];
+            button.superview.userInteractionEnabled = YES;
+            [BYToastView showToastWithMessage:errorMessage];
+        }
+    });
+}
+
 @end

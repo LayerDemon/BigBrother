@@ -50,6 +50,11 @@
     self.tabBarController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     //设置环信代理
     [self.messageView registerNotifications];
+    
+    //刷新消息列表
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
+        [self.messageView refreshDataSource];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -112,7 +117,7 @@
     if (SegC.selectedSegmentIndex == 0){
         NSLog(@"message");
         [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [self.view addSubview:self.messageView];
+        [self.messageView addWithSuperView:self.view];
     }else{
         [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [self.view addSubview:self.contactView];

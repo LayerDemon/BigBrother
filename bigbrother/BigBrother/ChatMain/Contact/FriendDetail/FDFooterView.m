@@ -10,9 +10,11 @@
 
 @interface FDFooterView ()
 
-@property (strong, nonatomic) IBOutlet UIButton *firstBtn;
 
-@property (strong, nonatomic) IBOutlet UIButton *secondBtn;
+
+- (IBAction)firstBtnPressed:(UIButton *)sender;
+
+- (IBAction)sendBtnPressed:(UIButton *)sender;
 
 @end
 
@@ -34,14 +36,33 @@
 #pragma mark - 加载数据
 - (void)loadWithDataDic:(NSDictionary *)dataDic
 {
-    //如果是好友
-    [self.firstBtn stopAnimationWithTitle:@"删除好友"];
-//    [self.firstBtn setTitle:@"删除好友" forState:UIControlStateNormal];
-    self.secondBtn.hidden = NO;
-    //如果不是好友
-    [self.firstBtn stopAnimationWithTitle:@"添加好友"];
-//    [self.firstBtn setTitle:@"添加好友" forState:UIControlStateNormal];
-    self.secondBtn.hidden = YES;
+    [FRIENDCACHE_MANAGER getFriendDicWithUid:dataDic[@"id"] completed:^(id responseObject, NSError *error) {
+        if (!error) {
+            //如果是好友
+            [self.firstBtn stopAnimationWithTitle:@"删除好友"];
+            self.secondBtn.hidden = NO;
+        }else{
+            //如果不是好友
+            [self.firstBtn stopAnimationWithTitle:@"添加好友"];
+            self.secondBtn.hidden = YES;
+        }
+    }];
 }
 
+#pragma mark - 按钮方法
+- (IBAction)firstBtnPressed:(UIButton *)sender {
+    if (sender.selected) {
+        return;
+    }
+    if ([sender.titleLabel.text isEqualToString:@"添加好友"]) {
+        [self.delegate clickedAddFriendBtn:sender];
+    }
+    else if ([sender.titleLabel.text isEqualToString:@"删除好友"]){
+        [self.delegate clickedDeleteFriendBtn:sender];
+    }
+}
+
+- (IBAction)sendBtnPressed:(UIButton *)sender {
+    [self.delegate clickedSendMessageBtn:sender];
+}
 @end

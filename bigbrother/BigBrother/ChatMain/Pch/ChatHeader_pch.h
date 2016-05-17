@@ -32,11 +32,12 @@
 #import "MJRefresh.h"//刷新
 #import "EaseSDKHelper.h"//环信发送消息类
 #import "ChatMessageModel.h"
+
+
 //#import "MWPhoto.h"
 //#import "MWPhotoBrowser.h"
 
 #import "UIImage+UIImageExt.h"//图片压缩
-
 #import "UIImageView+WebCache.h"//图片缓存
 #import "UIButton+WebCache.h"
 #import "CustomIndicatorView.h"
@@ -113,7 +114,7 @@
 #define _F7F7F7 ARGB_COLOR(247, 247, 247, 1)
 
 //默认图片
-#define PLACEHOLDERIMAGE_USER [UIImage imageNamed:@"choujiang"]
+#define PLACEHOLDERIMAGE_USER [UIImage imageNamed:@"好看2.jpg"]
 #define PLACEHOLDERIMAGE_GROUP [UIImage imageNamed:@"choujiang"]
 #define PLACEHOLER_IMA        [UIImage imageNamed:@"好看2.jpg"]
 //TGA
@@ -139,6 +140,19 @@
 
 //网络请求
 #define BASE_URL @"http://121.42.161.141:8080/rent-car/api"
+
+
+
+//缓存
+#import "FriendCacheManager.h"
+#import "LBCacheManager.h"
+#import "FMDatabase.h"//缓存sql
+#define CACHE_MANAGER [LBCacheManager sharedManager]//缓存管理
+#define FRIENDCACHE_MANAGER [FriendCacheManager sharedManager]//好友缓存管理
+#define DBNAME [NSString dbnameString]//数据库名
+#define TABLENAME_FRIENDLIST @"friendList"//表名
+#define TABLENAME_GROUPLIST @"groupList"
+#define TABLENAME_BLACKLIST @"blackList"
 
 //假数据
 #define TESTUSER_DIC @{@"authStatus":@"NOT_SUBMIT",@"authType":@"authType",@"avatar":@"http://y2.ifengimg.com/cmpp/2016/03/30/20/fdcb9b54-c0bd-46ec-974c-a2cad87c4a51_size16_w540_h303.jpg",@"balance":@(0),@"birthday":@"",@"createdTime":@"2016-05-10 09:33:40",@"districtFullName":@"",@"districtId":@"",@"gender":@"UNKNOWN",@"id":@(57),@"imNumber":@"1121",@"imPass":@"123456",@"isAdmin":@(0),@"isLocked":@(0),@"lastLoginTime":@"2016-05-10 20:26:58",@"nickname":@"1121",@"phoneNumber":@"17780526454",@"recommender":@"",@"username":@""};

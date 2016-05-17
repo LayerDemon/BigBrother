@@ -133,6 +133,7 @@
     //移除chatDelegate
 //    [self unregisterDelegates];
     [MANAGER_CHAT removeDelegate:self];
+    [self.conversation markAllMessagesAsRead];
     
 }
 
@@ -969,8 +970,14 @@
 //    NSLog(@"------");
 //    
 //}
-
-
+//消息已送达
+- (void)didReceiveHasDeliveredAcks:(NSArray *)aMessages
+{
+    for (EMMessage *message in aMessages) {
+        [self didMessageStatusChanged:message error:nil];
+    }
+    
+}
 
 /*!
  @method

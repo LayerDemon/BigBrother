@@ -96,4 +96,32 @@
     return view;
 }
 
+#pragma mark - 加载数据
+- (void)loadWithDataDic:(NSDictionary *)dataDic
+{
+    self.dataDic = dataDic;
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLDERIMAGE_USER completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
+    
+    self.userNameLabel.text = [NSString stringWithFormat:@"%@",dataDic[@"nickname"]];
+    self.remarkLabel.text = dataDic[@"message"];
+    
+    NSString *status = dataDic[@"status"];
+    self.agreeButton.hidden = ![status isEqualToString:@"NOT_HANDLED"];
+    self.refuseButton.hidden = ![status isEqualToString:@"NOT_HANDLED"];
+    self.stateLabel.hidden = [status isEqualToString:@"NOT_HANDLED"];
+    if ([status isEqualToString:@"ACCEPTED"]) {
+        self.stateLabel.text = @"已同意~";
+    }
+    else if ([status isEqualToString:@"REJECTED"]){
+        self.stateLabel.text = @"已拒绝~";
+    }
+    else if ([status isEqualToString:@"NOT_HANDLED"]){
+        self.stateLabel.text = @"";
+    }else{
+        self.stateLabel.text = @"未知~";
+    }
+}
+
 @end

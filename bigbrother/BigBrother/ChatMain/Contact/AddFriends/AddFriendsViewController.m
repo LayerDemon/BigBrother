@@ -10,6 +10,8 @@
 #import "AddFriendsModel.h"
 #import "AddFriendTableViewCell.h"
 #import "UnitedTableViewCell.h"
+#import "FriendDetailViewController.h"
+
 #define TOPBUT_TAG 5100
 
 @interface AddFriendsViewController () <UITableViewDelegate,UITableViewDataSource>
@@ -192,7 +194,7 @@
         }
         
         NSDictionary  * dataDic = _dataArray[indexPath.row];
-        
+        cell.dataDic = dataDic;
         [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dataDic[@"avatar"]]] placeholderImage:PLACEHOLER_IMA];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@(%@)",dataDic[@"nickname"],dataDic[@"phoneNumber"]];
         return cell;
@@ -215,8 +217,13 @@
                                    
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_searchMark == 0) {     //好友
-        
+        //跳转到用户详情
+        AddFriendTableViewCell *cell = (AddFriendTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        FriendDetailViewController *friendDetailVC = [[FriendDetailViewController alloc]init];
+        friendDetailVC.currentUserDic = cell.dataDic;
+        [self.navigationController pushViewController:friendDetailVC animated:YES];
     }else{                      //门派
     
     }

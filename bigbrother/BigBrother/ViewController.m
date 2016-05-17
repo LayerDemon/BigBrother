@@ -75,14 +75,15 @@ static NSString *kGroupName = @"GroupName";
 }
 
 
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (self.viewControllers.count != 0) {
         [self.selectedViewController viewWillAppear:animated];
     }
-    
-    //统计未读消息数？
+    //注册环信
+    [self registerNotifications];
+    //统计未读消息数
+    [self setupUnreadMessageCount];
     
     //    [self judgeToShowWeclome];
 }

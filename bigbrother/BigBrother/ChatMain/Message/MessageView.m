@@ -45,6 +45,7 @@
 {
     [superView addSubview:self];
     [self registerNotifications];
+    [self refreshDataSource];
 }
 
 
@@ -70,7 +71,7 @@
 #pragma mark - 数据初始化
 - (void)initializeDataSource
 {
-    [self.viewController.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
+//    [self.viewController.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
     self.dataSource = [NSMutableArray array];
 //    NSArray *conversations = [[EMClient sharedClient].chatManager loadAllConversationsFromDB];
     
@@ -158,7 +159,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MessageViewCell *cell = (MessageViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     ChatViewController *chatVC = [[ChatViewController alloc]init];
-    chatVC.chatDic = TESTUSER_DIC;
+    chatVC.chatDic = cell.chatterDic;
     if (cell.conversation.type == EMConversationTypeGroupChat) {
         chatVC.chatDic = TESTGROUP_DIC;
     }

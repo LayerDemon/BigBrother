@@ -11,6 +11,8 @@
 #import "NewFriendsTableViewCell.h"
 #import "ContactModel.h"
 
+#import "FriendDetailViewController.h"
+
 @interface NewFriendsViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView   * tableView;
@@ -50,6 +52,7 @@ static NSString * identify = @"Cell";
 {
     if ([keyPath isEqualToString:@"friendsRequestData"]) {
         _dataArray = _contactModel.friendsRequestData[@"data"];
+        [_tableView reloadData];
     }
 }
 
@@ -87,7 +90,7 @@ static NSString * identify = @"Cell";
 #pragma mark -- <UITableViewDelegate,UITableViewDataSource>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,9 +98,20 @@ static NSString * identify = @"Cell";
     NewFriendsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
     cell.backgroundColor = [UIColor whiteColor];
     
-    
+    [cell loadWithDataDic:_dataArray[indexPath.row]];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //跳转到用户详情
+    NewFriendsTableViewCell *cell = (NewFriendsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    FriendDetailViewController *friendDetailVC = [[FriendDetailViewController alloc]init];
+    friendDetailVC.currentUserDic = cell.dataDic;
+    [self.navigationController pushViewController:friendDetailVC animated:YES];
+}
+
 
 
 

@@ -8,7 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FDFooterViewDelegate <NSObject>
+
+- (void)clickedAddFriendBtn:(UIButton *)sender;
+- (void)clickedDeleteFriendBtn:(UIButton *)sender;
+- (void)clickedSendMessageBtn:(UIButton *)sender;
+
+@end
+
 @interface FDFooterView : UIView
+
+@property (assign, nonatomic) id<FDFooterViewDelegate>delegate;
+
+@property (strong, nonatomic) IBOutlet UIButton *firstBtn;
+
+@property (strong, nonatomic) IBOutlet UIButton *secondBtn;
+//@property (strong, nonatomic) NSDictionary *dataDic;
 
 - (void)loadWithDataDic:(NSDictionary *)dataDic;
 

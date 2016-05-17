@@ -43,15 +43,15 @@
         self.detailLabel.text = @"";
     }
     else if ([title isEqualToString:@"地区"]){
-        self.detailLabel.text = dataDic[@"addr"] ? dataDic[@"addr"] : @"";
+        self.detailLabel.text = [NSString isBlankStringWithString:dataDic[@"districtFullName"]] ? @"" : [NSString stringWithFormat:@"%@",dataDic[@"districtFullName"]];
         self.detailLabel.textColor = _B6B6B6;
     }
     else if ([title isEqualToString:@"性别"]){
         NSString *genderStr = dataDic[@"gender"];
-        self.detailLabel.text = [genderStr isEqualToString:@"FAMLE"] ? @"男" : ([genderStr isEqualToString:@"MFAMLE"] ? @"女" : @"未知");
+        self.detailLabel.text = [genderStr isEqualToString:@"FMALE"] ? @"男" : ([genderStr isEqualToString:@"MALE"] ? @"女" : @"未知");
     }
     else if ([title isEqualToString:@"个性签名"]){
-        NSString *signStr = dataDic[@"sign"] ? dataDic[@"sign"] : @"";
+        NSString *signStr = [NSString isBlankStringWithString:dataDic[@"sign"]] ? @"" : [NSString stringWithFormat:@"%@",dataDic[@"sign"]];
         CGSize signSize = [NSString sizeWithString:signStr Font:[UIFont systemFontOfSize:FLEXIBLE_NUM(13)] maxWidth:FLEXIBLE_NUM(223) NumberOfLines:0];
         if (signSize.height > self.detailLabel.frame.size.height) {
             self.detailLabel.textAlignment = NSTextAlignmentLeft;
