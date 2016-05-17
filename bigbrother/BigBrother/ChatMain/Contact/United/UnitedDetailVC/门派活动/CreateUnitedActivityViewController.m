@@ -1,28 +1,33 @@
 //
-//  CreateUnitedViewController.m
+//  CreateUnitedActivityViewController.m
 //  BigBrother
 //
-//  Created by zhangyi on 16/5/11.
+//  Created by zhangyi on 16/5/17.
 //  Copyright © 2016年 bigbrother. All rights reserved.
 //
 
-#import "CreateUnitedViewController.h"
-#import "ContactModel.h"
+#import "CreateUnitedActivityViewController.h"
+#import "UnitedInfoModel.h"
 
-@interface CreateUnitedViewController () <UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface CreateUnitedActivityViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (strong, nonatomic) UIButton      * imageButton;
-@property (strong, nonatomic) UITextField   * unitedTextField;
-@property (strong, nonatomic) UITextView    * textView;
+@property (strong, nonatomic) UITextField       * unitedNameTextField;
+@property (strong, nonatomic) UITextField       * startTimeTextField;
+@property (strong, nonatomic) UITextField       * endTimeTextField;
+@property (strong, nonatomic) UITextField       * unitedAddressTextField;
+@property (strong, nonatomic) UITextField       * unitedMoneyTextField;
 
-@property (strong, nonatomic) ContactModel  * contactModel;
-@property (strong, nonatomic) NSString      * imageUrlString;
+@property (strong, nonatomic) UIButton          * unitedImageButton;
+@property (strong, nonatomic) UITextView        * unitedContentTextView;
+
+@property (strong, nonatomic) UnitedInfoModel   * unitedInfoModel;
+@property (strong, nonatomic) NSString          * imageString;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
 @end
 
-@implementation CreateUnitedViewController
+@implementation CreateUnitedActivityViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,119 +35,109 @@
     [self initializeUserInterface];
 }
 
-- (void)dealloc
-{
-    [_contactModel removeObserver:self forKeyPath:@"createGroupData"];
-}
-
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.navigationItem.title = @"创建门派";
+        self.navigationItem.title = @"创建活动";
     }
     return self;
 }
 
-
-#pragma mark -- observe
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+- (void)dealloc
 {
-     UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [alertController addAction:sureAction];
-   
-    if ([keyPath isEqualToString:@"createGroupData"]) {
-        if ([_contactModel.createGroupData[@"code"] integerValue] == 0) {
-            alertController.message = @"门派创建成功～";
-        }else{
-            alertController.message = @"门派创建失败～";
-        }
-    }
-    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
+
 
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
-    _contactModel = ({
-        ContactModel * model = [[ContactModel alloc] init];
-        [model addObserver:self forKeyPath:@"createGroupData" options:NSKeyValueObservingOptionNew context:nil];
+    _unitedInfoModel = ({
+        UnitedInfoModel * model = [[UnitedInfoModel alloc] init];
         model;
     });
 }
 
 - (void)initializeUserInterface
 {
+    self.view.backgroundColor = THEMECOLOR_BACK;
     [self setEdgesForExtendedLayout:UIRectEdgeBottom];
-    self.view.backgroundColor = BG_COLOR;
-    //创建门派
-    UIBarButtonItem * rightBut = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(submitButtonPressed:)];
-    self.navigationItem.rightBarButtonItem = rightBut;
     
-    //上传头像
-    _imageButton = ({
+    UIBarButtonItem * rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(rightButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
+    //活动名称
+    _unitedNameTextField = [self createTextFieldWithTitle:@"活动名称：" height:5];
+    
+    //活动海报
+    UILabel * unitedImageLabel = [self createLabelWithText:@"活动海报：" font:FLEXIBLE_NUM(13) subView:self.view];
+    unitedImageLabel.frame = FLEXIBLE_FRAME(15, 50, 75, 40);
+    
+    _unitedImageButton = ({
         UIButton * button = [self createButtonWithTitle:nil font:0 subView:self.view];
-        button.frame = FLEXIBLE_FRAME(127, 20, 66, 66);
+        [button setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(chooseHeadImageView) forControlEvents:UIControlEventTouchUpInside];
-        [button setImage:[UIImage imageNamed:@"mr_headimg@3x"] forState:UIControlStateNormal];
+        button.frame = FLEXIBLE_FRAME(90, 55, 80, 80);
         button;
     });
-    UILabel * imageLabel = [self createLabelWithText:@"上传头像" font:FLEXIBLE_NUM(13) subView:self.view];
-    imageLabel.frame = FLEXIBLE_FRAME(125, 90, 70, 25);
-    imageLabel.textAlignment = NSTextAlignmentCenter;
-
-    //unitedNameLabel
-    _unitedTextField = ({
-        UITextField * textField = [[UITextField alloc] initWithFrame:FLEXIBLE_FRAME(25, 140, 270, 35)];
-        textField.placeholder = @"  给门派起个名字";
-        textField.textColor = [UIColor grayColor];
-        textField.font = [UIFont boldSystemFontOfSize:FLEXIBLE_NUM(13)];
-        textField.layer.cornerRadius = FLEXIBLE_NUM(5);
-        textField.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:textField];
-        
-        textField;
-    });
     
-    _textView = ({
-        UITextView * textView = [[UITextView alloc] initWithFrame:FLEXIBLE_FRAME(25, 185, 270, 100)];
-        textView.layer.cornerRadius = FLEXIBLE_NUM(5);
-        textView.delegate = self;
+    //开始时间
+    _startTimeTextField = [self createTextFieldWithTitle:@"开始时间：" height:150];
+    
+    //结束时间
+    _endTimeTextField = [self createTextFieldWithTitle:@"结束时间：" height:190];
+    
+    //活动地点
+    _unitedAddressTextField = [self createTextFieldWithTitle:@"活动地点：" height:235];
+    
+    //活动费用
+    _unitedMoneyTextField = [self createTextFieldWithTitle:@"活动费用：" height:275];
+    
+    //活动内容
+    UIView * unitedContentBGView = [self createViewWithBackColor:[UIColor whiteColor] subView:self.view];
+    unitedContentBGView.frame = FLEXIBLE_FRAME(0, 320, 320, 130);
+    
+    UILabel * contentTitleLabel = [self createLabelWithText:@"活动内容：" font:FLEXIBLE_NUM(13) subView:unitedContentBGView];
+    contentTitleLabel.frame = FLEXIBLE_FRAME(15, 0, 75, 40);
+    
+    _unitedContentTextView = ({
+        UITextView * textView = [[UITextView alloc] initWithFrame:FLEXIBLE_FRAME(15, 35, 290, 75)];
         textView.textColor = [UIColor grayColor];
-        textView.font = [UIFont boldSystemFontOfSize:FLEXIBLE_NUM(13)];
-        [self.view addSubview:textView];
+        textView.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(12)];
+//        textView.backgroundColor = [UIColor yellowColor];
+        [unitedContentBGView addSubview:textView];
         textView;
     });
-    
 }
 
 #pragma mark -- button pressed
-- (void)submitButtonPressed:(UIButton *)sender
+- (void)rightButtonPressed:(UIBarButtonItem *)sender
 {
     NSDictionary * dataDic = [BBUserDefaults getUserDic];
-    NSLog(@"dataDic -- %@",dataDic);
     
-    [_contactModel createUnitedWithUserId:dataDic[@"id"] avatar:_imageUrlString name:_unitedTextField.text introduction:_textView.text];
-    
-    NSMutableDictionary * resultDic = [[NSMutableDictionary alloc] init];
-    [resultDic setObject:dataDic[@"id"] forKey:@"userId"];
-    [resultDic setObject:_imageUrlString forKey:@"avatar"];
-    [resultDic setObject:_unitedTextField.text forKey:@"name"];
-    [resultDic setObject:_imageUrlString forKey:@"introduction"];
-    
-//    [BBUrlConnection loadPostAfNetWorkingWithUrl:@"http://localhost:8080/rent-car/api/im/groups/add" andParameters:resultDic complete:^(NSDictionary *resultDic, NSString *errorString) {
-//        NSLog(@"result -- %@ -- error -- %@",resultDic,errorString);
-//    }];
-    
+    [_unitedInfoModel createUnitedActivityWithGroupId:_unitedDic[@"id"] creator:dataDic[@"id"] name:_unitedNameTextField.text startTime:_startTimeTextField.text endTime:_endTimeTextField.text location:_unitedAddressTextField.text cost:_unitedMoneyTextField.text content:_unitedContentTextView.text images:_imageString];
 }
 
-#pragma mark -- <UITextViewDelegate>
-- (void)textViewDidBeginEditing:(UITextView *)textView
+
+#pragma mrak -- my methods
+- (UITextField *)createTextFieldWithTitle:(NSString *)title height:(NSInteger)height
 {
+    UIView * bgView = [self createViewWithBackColor:[UIColor whiteColor] subView:self.view];
+    bgView.frame = FLEXIBLE_FRAME(0, height, 320, 40);
     
+    UILabel * titleLabel = [self createLabelWithText:title font:FLEXIBLE_NUM(13) subView:bgView];
+    titleLabel.frame = FLEXIBLE_FRAME(15, 0, 75, 40);
+    
+    UITextField * textField = [[UITextField alloc] initWithFrame:FLEXIBLE_FRAME(90, 0, 220, 40)];
+    textField.textColor = [UIColor grayColor];
+    textField.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(12)];
+    [bgView addSubview:textField];
+//    textField.backgroundColor = [UIColor yellowColor];
+    UIView * lineView = [self createViewWithBackColor:THEMECOLOR_LINE subView:bgView];
+    lineView.frame = FLEXIBLE_FRAME(0, 39, 320, 1);
+    
+    return  textField;
 }
 
 
@@ -211,16 +206,16 @@
         [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         //加在视图中
         UIImage * newImage = [self imageCompressForWidth:image targetWidth:300];
-        [_imageButton setImage:image forState:UIControlStateNormal];
+        [_unitedImageButton setImage:image forState:UIControlStateNormal];
         
         [BBUrlConnection uploadWithImage:newImage productType:BaseProductTypeCar complete:^(NSString *imageUrl) {
             NSLog(@"wocao -- %@",imageUrl);
-            _imageUrlString = imageUrl;
+            _imageString = imageUrl;
         }];
-//        _headImageView.image = image;
-//        _headImage = image;
-//        [_indicatorView startAnimating];
-//        [_userInfoModel changeImageWithUrl:BASE_URL fileImages:@[image] name:nil params:@{@"method":@"mk.user_center.editMemberAvatar.post",@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]}];
+        //        _headImageView.image = image;
+        //        _headImage = image;
+        //        [_indicatorView startAnimating];
+        //        [_userInfoModel changeImageWithUrl:BASE_URL fileImages:@[image] name:nil params:@{@"method":@"mk.user_center.editMemberAvatar.post",@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]}];
     }
 }
 
@@ -264,7 +259,7 @@
 {
     UILabel * label = [[UILabel alloc] init];
     label.text = text;
-    label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+    label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
     label.font = [UIFont systemFontOfSize:font];
     [subView addSubview:label];
     return label;

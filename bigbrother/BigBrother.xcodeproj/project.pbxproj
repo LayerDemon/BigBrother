@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D08122D1CEB560D004AEB77 /* ManagerUnitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08122C1CEB560D004AEB77 /* ManagerUnitedViewController.m */; };
+		2D0812301CEB5620004AEB77 /* UnitedMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08122F1CEB5620004AEB77 /* UnitedMemberViewController.m */; };
+		2D0812331CEB5632004AEB77 /* UnitedActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0812321CEB5632004AEB77 /* UnitedActivityViewController.m */; };
+		2D0812361CEB5E3A004AEB77 /* UnitedActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0812351CEB5E3A004AEB77 /* UnitedActivityTableViewCell.m */; };
+		2D08123C1CEB66CB004AEB77 /* CreateUnitedActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08123B1CEB66CB004AEB77 /* CreateUnitedActivityViewController.m */; };
+		2D08123E1CEB6B2B004AEB77 /* add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D08123D1CEB6B2B004AEB77 /* add@3x.png */; };
 		2D0F21E21CEA14C10014B0A1 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0F21E11CEA14C10014B0A1 /* AddFriendTableViewCell.m */; };
+		2D0F21E41CEA26C00014B0A1 /* add_person@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D0F21E31CEA26C00014B0A1 /* add_person@3x.png */; };
 		2D359D981CE7840C00F85F24 /* icon_jt01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D359D961CE7840C00F85F24 /* icon_jt01@3x.png */; };
 		2D359D991CE7840C00F85F24 /* icon_jt02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D359D971CE7840C00F85F24 /* icon_jt02@3x.png */; };
 		2D359D9C1CE7874700F85F24 /* AddFriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D359D9B1CE7874700F85F24 /* AddFriendsModel.m */; };
@@ -551,8 +558,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D08122B1CEB560D004AEB77 /* ManagerUnitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerUnitedViewController.h; sourceTree = "<group>"; };
+		2D08122C1CEB560D004AEB77 /* ManagerUnitedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerUnitedViewController.m; sourceTree = "<group>"; };
+		2D08122E1CEB5620004AEB77 /* UnitedMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedMemberViewController.h; sourceTree = "<group>"; };
+		2D08122F1CEB5620004AEB77 /* UnitedMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedMemberViewController.m; sourceTree = "<group>"; };
+		2D0812311CEB5632004AEB77 /* UnitedActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedActivityViewController.h; sourceTree = "<group>"; };
+		2D0812321CEB5632004AEB77 /* UnitedActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedActivityViewController.m; sourceTree = "<group>"; };
+		2D0812341CEB5E3A004AEB77 /* UnitedActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedActivityTableViewCell.h; sourceTree = "<group>"; };
+		2D0812351CEB5E3A004AEB77 /* UnitedActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedActivityTableViewCell.m; sourceTree = "<group>"; };
+		2D08123A1CEB66CB004AEB77 /* CreateUnitedActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUnitedActivityViewController.h; sourceTree = "<group>"; };
+		2D08123B1CEB66CB004AEB77 /* CreateUnitedActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUnitedActivityViewController.m; sourceTree = "<group>"; };
+		2D08123D1CEB6B2B004AEB77 /* add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@3x.png"; sourceTree = "<group>"; };
 		2D0F21E01CEA14C10014B0A1 /* AddFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendTableViewCell.h; sourceTree = "<group>"; };
 		2D0F21E11CEA14C10014B0A1 /* AddFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableViewCell.m; sourceTree = "<group>"; };
+		2D0F21E31CEA26C00014B0A1 /* add_person@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_person@3x.png"; sourceTree = "<group>"; };
 		2D359D961CE7840C00F85F24 /* icon_jt01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_jt01@3x.png"; sourceTree = "<group>"; };
 		2D359D971CE7840C00F85F24 /* icon_jt02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_jt02@3x.png"; sourceTree = "<group>"; };
 		2D359D9A1CE7874700F85F24 /* AddFriendsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsModel.h; sourceTree = "<group>"; };
@@ -1458,6 +1477,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D0812281CEB55FB004AEB77 /* 管理门派 */ = {
+			isa = PBXGroup;
+			children = (
+				2D08122B1CEB560D004AEB77 /* ManagerUnitedViewController.h */,
+				2D08122C1CEB560D004AEB77 /* ManagerUnitedViewController.m */,
+			);
+			path = "管理门派";
+			sourceTree = "<group>";
+		};
+		2D0812291CEB55FB004AEB77 /* 门派成员 */ = {
+			isa = PBXGroup;
+			children = (
+				2D08122E1CEB5620004AEB77 /* UnitedMemberViewController.h */,
+				2D08122F1CEB5620004AEB77 /* UnitedMemberViewController.m */,
+			);
+			path = "门派成员";
+			sourceTree = "<group>";
+		};
+		2D08122A1CEB55FB004AEB77 /* 门派活动 */ = {
+			isa = PBXGroup;
+			children = (
+				2D0812311CEB5632004AEB77 /* UnitedActivityViewController.h */,
+				2D0812321CEB5632004AEB77 /* UnitedActivityViewController.m */,
+				2D0812341CEB5E3A004AEB77 /* UnitedActivityTableViewCell.h */,
+				2D0812351CEB5E3A004AEB77 /* UnitedActivityTableViewCell.m */,
+				2D08123A1CEB66CB004AEB77 /* CreateUnitedActivityViewController.h */,
+				2D08123B1CEB66CB004AEB77 /* CreateUnitedActivityViewController.m */,
+			);
+			path = "门派活动";
+			sourceTree = "<group>";
+		};
 		2D359DA01CE8BCE100F85F24 /* UnitedInfoModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1470,6 +1520,9 @@
 		2D359DA41CE8BD3000F85F24 /* UnitedDetailVC */ = {
 			isa = PBXGroup;
 			children = (
+				2D0812281CEB55FB004AEB77 /* 管理门派 */,
+				2D0812291CEB55FB004AEB77 /* 门派成员 */,
+				2D08122A1CEB55FB004AEB77 /* 门派活动 */,
 				2D359DA51CE8BD9000F85F24 /* UnitedDetailViewController.h */,
 				2D359DA61CE8BD9000F85F24 /* UnitedDetailViewController.m */,
 			);
@@ -1836,6 +1889,8 @@
 		8C18624E1CDF79C900632CDC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2D08123D1CEB6B2B004AEB77 /* add@3x.png */,
+				2D0F21E31CEA26C00014B0A1 /* add_person@3x.png */,
 				8C6B05D81CE485EE003188E1 /* chatbar_record_nor.png */,
 				8C6B05D91CE485EE003188E1 /* chatbar_record_nor@2x.png */,
 				8C6B05DA1CE485EE003188E1 /* chatbar_record_sel.png */,
@@ -3561,6 +3616,7 @@
 				8C6B05DD1CE485EE003188E1 /* chatbar_record_nor@2x.png in Resources */,
 				8C18639B1CDF9C4C00632CDC /* VoiceSearchFeedback013.png in Resources */,
 				8C1863831CDF9C4C00632CDC /* VoiceSearchFeedback001.png in Resources */,
+				2D0F21E41CEA26C00014B0A1 /* add_person@3x.png in Resources */,
 				8C63E5D51CE09FA900B4EC1D /* emoji_tab5Press@3x.png in Resources */,
 				8C18640D1CDF9C4C00632CDC /* chat_sender_bg@2x.png in Resources */,
 				8C63E59A1CE09A8B00B4EC1D /* chat_emoji_btn.png in Resources */,
@@ -3695,6 +3751,7 @@
 				8C1863A51CDF9C4C00632CDC /* VoiceSearchFeedback018.png in Resources */,
 				8C1863D11CDF9C4C00632CDC /* chatBar_more.png in Resources */,
 				8C63E59D1CE09A8B00B4EC1D /* chat_more_btn@2x.png in Resources */,
+				2D08123E1CEB6B2B004AEB77 /* add@3x.png in Resources */,
 				8C18640A1CDF9C4C00632CDC /* chat_sender_audio_playing_full.png in Resources */,
 				8C1863911CDF9C4C00632CDC /* VoiceSearchFeedback008.png in Resources */,
 				8C1863F61CDF9C4C00632CDC /* chat_receiver_audio_playing000.png in Resources */,
@@ -3817,6 +3874,7 @@
 				B81E56DB1C7EED9B00E34A91 /* QNDomain.m in Sources */,
 				8C63E56C1CE05B6B00B4EC1D /* MJRefreshBackNormalFooter.m in Sources */,
 				B89A0CBB1C79B8C30072A6A8 /* AFImageDownloader.m in Sources */,
+				2D08122D1CEB560D004AEB77 /* ManagerUnitedViewController.m in Sources */,
 				8C1861FA1CDF378900632CDC /* UIImageView+WebCache.m in Sources */,
 				B81E56DF1C7EED9B00E34A91 /* QNDnspodFree.m in Sources */,
 				8C9773651CEAB9020013EC9B /* FMResultSet.m in Sources */,
@@ -3836,6 +3894,7 @@
 				8C63E5671CE05B6B00B4EC1D /* MJRefreshHeader.m in Sources */,
 				8C1864341CDF9C4C00632CDC /* EMVoiceConverter.mm in Sources */,
 				8C63E5691CE05B6B00B4EC1D /* MJRefreshAutoNormalFooter.m in Sources */,
+				2D0812331CEB5632004AEB77 /* UnitedActivityViewController.m in Sources */,
 				8C63E52C1CE056A800B4EC1D /* AGEmojiKeyBoardView.m in Sources */,
 				B81E56A91C7EEB9000E34A91 /* QNEtag.m in Sources */,
 				8C9773531CEAB7800013EC9B /* LBCacheManager.m in Sources */,
@@ -3945,6 +4004,7 @@
 				B8A6AF541C8C181400DC84BC /* RIButtonItem.m in Sources */,
 				B81E56AF1C7EEB9000E34A91 /* QNResponseInfo.m in Sources */,
 				B89A0CC51C79B8E30072A6A8 /* BBUrlConnection.m in Sources */,
+				2D0812361CEB5E3A004AEB77 /* UnitedActivityTableViewCell.m in Sources */,
 				B8C460121C8523350060528D /* TOActivityCroppedImageProvider.m in Sources */,
 				B8AA53061C893A1600205353 /* SuggestionPostViewController.m in Sources */,
 				8C9773631CEAB9020013EC9B /* FMDatabasePool.m in Sources */,
@@ -3991,6 +4051,7 @@
 				B81E56E11C7EED9B00E34A91 /* QNHosts.m in Sources */,
 				B8C460161C8523350060528D /* TOCropViewController.m in Sources */,
 				8C1862751CDF9BF600632CDC /* UIViewController+HUD.m in Sources */,
+				2D08123C1CEB66CB004AEB77 /* CreateUnitedActivityViewController.m in Sources */,
 				B8A6AF531C8C181400DC84BC /* README.md in Sources */,
 				8C63E5261CE0568300B4EC1D /* LBTextView.m in Sources */,
 				8C1861F01CDF378900632CDC /* SDWebImageDecoder.m in Sources */,
@@ -4045,6 +4106,7 @@
 				8C63E56E1CE05B6B00B4EC1D /* MJRefreshGifHeader.m in Sources */,
 				B89A0CA41C79B8B50072A6A8 /* AFURLSessionManager.m in Sources */,
 				8C18644E1CDF9CC700632CDC /* EMCDDeviceManager+Media.m in Sources */,
+				2D0812301CEB5620004AEB77 /* UnitedMemberViewController.m in Sources */,
 				B89A0C9F1C79B8B50072A6A8 /* AFHTTPSessionManager.m in Sources */,
 				8C1862711CDF9BF600632CDC /* NSDateFormatter+Category.m in Sources */,
 				B81A11E31C8FF8B500AA6690 /* WMCustomDatePicker.m in Sources */,

@@ -7,13 +7,17 @@
 //
 
 #import "UnitedDetailViewController.h"
-
+#import "UnitedActivityViewController.h"
+#import "ManagerUnitedViewController.h"
+#import "UnitedMemberViewController.h"
 #import "UnitedInfoModel.h"
 
 @interface UnitedDetailViewController ()
 
 @property (strong, nonatomic) UnitedInfoModel       * unitedInfoModel;
 @property (strong, nonatomic) NSDictionary          * unitedDetailDic;
+
+@property (strong, nonatomic) NSDateFormatter       * dateFormater;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -24,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeDataSource];
-    [self initializeUserInterface];
+//    [self initializeUserInterface];
 }
 
 - (void)dealloc
@@ -37,12 +41,25 @@
 {
     if ([keyPath isEqualToString:@"unitedDetailData"]) {
         _unitedDetailDic = _unitedInfoModel.unitedDetailData[@"data"];
+        [self initializeUserInterface];
     }
 }
 
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
+    self.view.backgroundColor = THEMECOLOR_BACK;
+    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
+    
+    //返回title
+    UIBarButtonItem * barbutton = [[UIBarButtonItem alloc] init];
+    barbutton.title = @"";
+    self.navigationItem.backBarButtonItem = barbutton;
+
+    
+    _dateFormater = [[NSDateFormatter alloc] init];
+    [_dateFormater setDateFormat:@"yyyy年MM月dd日"];
+
     self.navigationItem.title = _unitedDic[@"name"];
     _unitedInfoModel = ({
         UnitedInfoModel * model = [[UnitedInfoModel alloc] init];
@@ -54,23 +71,106 @@
 
 - (void)initializeUserInterface
 {
-    self.view.backgroundColor = BG_COLOR;
-    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
-    
-    UIImageView * topBGImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"好看2.jpg"]];
-    topBGImageView.frame = FLEXIBLE_FRAME(0, 0, 320, 100);
+    UIImageView * topBGImageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(0, 0, 320, 100)];
+    topBGImageView.clipsToBounds = YES;
     [self.view addSubview:topBGImageView];
+    [topBGImageView sd_setImageWithURL:[NSURL URLWithString:_unitedDetailDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
     
-    UIImageView * unitedImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"好看2.jpg"]];
-    unitedImageView.frame = FLEXIBLE_FRAME(130, 10, 60, 60);
+    UIImageView * unitedImageView = [[UIImageView alloc] initWithFrame: FLEXIBLE_FRAME(130, 10, 60, 60)];
+    unitedImageView.clipsToBounds = YES;
     [self.view addSubview:unitedImageView];
+    [unitedImageView sd_setImageWithURL:[NSURL URLWithString:_unitedDetailDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
     
     //门派活动
     UIButton * unitedActivityBut = [self createButtonWithTitle:@"门派活动"];
     unitedActivityBut.frame = FLEXIBLE_FRAME(0, 100, 320, 40);
+    [unitedActivityBut addTarget:self action:@selector(unitedActivityButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //门派成员
+    UIButton * unitedMemberBut = [self createButtonWithTitle:@"门派成员"];
+    unitedMemberBut.frame = FLEXIBLE_FRAME(0, 150, 320, 40);
+    [unitedMemberBut addTarget:self action:@selector(unitedMemberButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView * unitedMemberBGView = [self createViewWithBackColor:[UIColor whiteColor] subView:self.view];
+    unitedMemberBGView.frame = FLEXIBLE_FRAME(0, 190, 320, 55);
+    
+    NSArray * memberArray = _unitedDetailDic[@"members"];
+    for (int i = 0; i < memberArray.count; i ++) {
+        UIImageView * memberImageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(15 + 50 * i, 5, 40, 40)];
+        memberImageView.layer.cornerRadius = FLEXIBLE_NUM(20);
+        memberImageView.clipsToBounds = YES;
+        [unitedMemberBGView addSubview:memberImageView];
+        [memberImageView sd_setImageWithURL:[NSURL URLWithString:memberArray[i][@"avatar"]] placeholderImage:PLACEHOLER_IMA];
+    }
+    
+    //邀请成员
+    UIButton * addMemberButton = [self createButtonWithTitle:nil font:0 subView:unitedMemberBGView];
+    [addMemberButton addTarget:self action:@selector(addMemberButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    addMemberButton.frame = FLEXIBLE_FRAME(15 + 50 * memberArray.count, 5, 40, 40);
+    [addMemberButton setImage:[UIImage imageNamed:@"add_person@3x"] forState:UIControlStateNormal];
+    
+    //管理门派
+    UIButton * managerUnitedButton = [self createButtonWithTitle:@"管理门派"];
+    managerUnitedButton.frame = FLEXIBLE_FRAME(0, 255, 320, 40);
+    [managerUnitedButton addTarget:self action:@selector(managerUnitedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //门派介绍
+    UIButton * unitedIntrButton = [self createButtonWithTitle:@"门派介绍"];
+    unitedIntrButton.frame = FLEXIBLE_FRAME(0, 305, 320, 40);
+    
+    UIView * unitedIntrView = [self createViewWithBackColor:[UIColor whiteColor] subView:self.view];
+    unitedIntrView.frame = FLEXIBLE_FRAME(0, 345, 320, 30);
+    
+    NSDate * createUnitedDate = [NSDate dateWithTimeIntervalSince1970:[_unitedDetailDic[@"createdTime"] doubleValue]/1000];
+    
+    UILabel * unitedIntrLabel = [self createLabelWithText:[NSString stringWithFormat:@"本群创建于%@",[_dateFormater stringFromDate:createUnitedDate]] font:FLEXIBLE_NUM(12) subView:unitedIntrView];
+    unitedIntrLabel.textColor = [UIColor grayColor];
+    unitedIntrLabel.frame = FLEXIBLE_FRAME(15, 0, 290, 25);
+    unitedIntrLabel.numberOfLines = 0;
+    [unitedIntrLabel sizeToFit];
+    unitedIntrView.frame = CGRectMake(0, FLEXIBLE_NUM(345), MAINSCRREN_W, CGRectGetMaxY(unitedIntrLabel.frame) + 10);
+    
+    //退出门派
+    UIButton * exitUnitedButton = [self createButtonWithTitle:@"退出门派"];
+    exitUnitedButton.frame = CGRectMake(0, CGRectGetMaxY(unitedIntrView.frame) + 10, MAINSCRREN_W, FLEXIBLE_NUM(40));
+    [exitUnitedButton addTarget:self action:@selector(exitUnitedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+#pragma mark -- button pressed
+//邀请入群
+- (void)addMemberButtonPressed:(UIButton *)sender
+{
     
 }
 
+//门派活动
+- (void)unitedActivityButtonPressed:(UIButton *)sender
+{
+    UnitedActivityViewController * unitedActivityVC = [[UnitedActivityViewController alloc] init];
+    unitedActivityVC.unitedDic = _unitedDic;
+    [self.navigationController pushViewController:unitedActivityVC animated:YES];
+}
+//管理门派
+- (void)managerUnitedButtonPressed:(UIButton *)sender
+{
+    ManagerUnitedViewController * managerUnitedVC = [[ManagerUnitedViewController alloc] init];
+    [self.navigationController pushViewController:managerUnitedVC animated:YES];
+}
+
+//门派成员
+- (void)unitedMemberButtonPressed:(UIButton *)sender
+{
+    UnitedMemberViewController * unitedMemberVC = [[UnitedMemberViewController alloc] init];
+    [self.navigationController pushViewController:unitedMemberVC animated:YES];
+}
+
+//退出门派
+- (void)exitUnitedButtonPressed:(UIButton *)sender
+{
+
+}
+
+#pragma mrak -- my methods
 - (UIButton *)createButtonWithTitle:(NSString *)title
 {
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -78,8 +178,17 @@
     
     UILabel * titleLabel = [self createLabelWithText:title font:FLEXIBLE_NUM(13) subView:button];
     titleLabel.frame = FLEXIBLE_FRAME(15, 0, 100, 40);
-    
+
     [self.view addSubview:button];
+    
+    UIImageView * rightImageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(295, 15, 10, 10)];
+    rightImageView.contentMode = UIViewContentModeScaleAspectFit;
+    rightImageView.image = [UIImage imageNamed:@"icon_more"];
+    if ([title isEqualToString:@"门派介绍"]) {
+        return button;
+    }
+    [button addSubview:rightImageView];
+    
     return button;
 }
 
