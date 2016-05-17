@@ -45,6 +45,7 @@
             
         }
         [FRIENDCACHE_MANAGER createFriendListCacheWithFriendList:friendList];
+        
 //        BOOL createResult = [FRIENDCACHE_MANAGER createFriendListCacheWithFriendList:friendList];
 //        if (createResult) {
 //            completed(friendList,nil);
