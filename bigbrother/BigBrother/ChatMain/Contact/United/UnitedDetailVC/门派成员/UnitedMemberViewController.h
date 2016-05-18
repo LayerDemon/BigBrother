@@ -10,4 +10,6 @@
 
 @interface UnitedMemberViewController : UIViewController
 
+@property (strong, nonatomic) NSArray       * memberArray;
+
 @end

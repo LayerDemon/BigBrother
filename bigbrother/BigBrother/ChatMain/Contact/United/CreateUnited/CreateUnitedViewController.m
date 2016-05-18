@@ -126,17 +126,6 @@
     NSLog(@"dataDic -- %@",dataDic);
     
     [_contactModel createUnitedWithUserId:dataDic[@"id"] avatar:_imageUrlString name:_unitedTextField.text introduction:_textView.text];
-    
-    NSMutableDictionary * resultDic = [[NSMutableDictionary alloc] init];
-    [resultDic setObject:dataDic[@"id"] forKey:@"userId"];
-    [resultDic setObject:_imageUrlString forKey:@"avatar"];
-    [resultDic setObject:_unitedTextField.text forKey:@"name"];
-    [resultDic setObject:_imageUrlString forKey:@"introduction"];
-    
-//    [BBUrlConnection loadPostAfNetWorkingWithUrl:@"http://localhost:8080/rent-car/api/im/groups/add" andParameters:resultDic complete:^(NSDictionary *resultDic, NSString *errorString) {
-//        NSLog(@"result -- %@ -- error -- %@",resultDic,errorString);
-//    }];
-    
 }
 
 #pragma mark -- <UITextViewDelegate>

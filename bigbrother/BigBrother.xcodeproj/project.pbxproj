@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0785321CECAF65001B57A8 /* UnitedMember2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0785311CECAF65001B57A8 /* UnitedMember2TableViewCell.m */; };
+		2D0785361CECC601001B57A8 /* ExitUnitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0785351CECC601001B57A8 /* ExitUnitedViewController.m */; };
 		2D08122D1CEB560D004AEB77 /* ManagerUnitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08122C1CEB560D004AEB77 /* ManagerUnitedViewController.m */; };
 		2D0812301CEB5620004AEB77 /* UnitedMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08122F1CEB5620004AEB77 /* UnitedMemberViewController.m */; };
 		2D0812331CEB5632004AEB77 /* UnitedActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0812321CEB5632004AEB77 /* UnitedActivityViewController.m */; };
@@ -581,6 +583,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D0785301CECAF65001B57A8 /* UnitedMember2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedMember2TableViewCell.h; sourceTree = "<group>"; };
+		2D0785311CECAF65001B57A8 /* UnitedMember2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedMember2TableViewCell.m; sourceTree = "<group>"; };
+		2D0785341CECC601001B57A8 /* ExitUnitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExitUnitedViewController.h; sourceTree = "<group>"; };
+		2D0785351CECC601001B57A8 /* ExitUnitedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExitUnitedViewController.m; sourceTree = "<group>"; };
 		2D08122B1CEB560D004AEB77 /* ManagerUnitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerUnitedViewController.h; sourceTree = "<group>"; };
 		2D08122C1CEB560D004AEB77 /* ManagerUnitedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerUnitedViewController.m; sourceTree = "<group>"; };
 		2D08122E1CEB5620004AEB77 /* UnitedMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedMemberViewController.h; sourceTree = "<group>"; };
@@ -1525,6 +1531,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D0785331CECC5D8001B57A8 /* 退出门派 */ = {
+			isa = PBXGroup;
+			children = (
+				2D0785341CECC601001B57A8 /* ExitUnitedViewController.h */,
+				2D0785351CECC601001B57A8 /* ExitUnitedViewController.m */,
+			);
+			path = "退出门派";
+			sourceTree = "<group>";
+		};
 		2D0812281CEB55FB004AEB77 /* 管理门派 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1539,6 +1554,8 @@
 			children = (
 				2D08122E1CEB5620004AEB77 /* UnitedMemberViewController.h */,
 				2D08122F1CEB5620004AEB77 /* UnitedMemberViewController.m */,
+				2D0785301CECAF65001B57A8 /* UnitedMember2TableViewCell.h */,
+				2D0785311CECAF65001B57A8 /* UnitedMember2TableViewCell.m */,
 			);
 			path = "门派成员";
 			sourceTree = "<group>";
@@ -1568,6 +1585,7 @@
 		2D359DA41CE8BD3000F85F24 /* UnitedDetailVC */ = {
 			isa = PBXGroup;
 			children = (
+				2D0785331CECC5D8001B57A8 /* 退出门派 */,
 				2D0812281CEB55FB004AEB77 /* 管理门派 */,
 				2D0812291CEB55FB004AEB77 /* 门派成员 */,
 				2D08122A1CEB55FB004AEB77 /* 门派活动 */,
@@ -4077,6 +4095,7 @@
 				B8AB500C1C8AB62E005DD27D /* MyPostListViewController.m in Sources */,
 				B89A0CC11C79B8C30072A6A8 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B8C460131C8523350060528D /* TOCroppedImageAttributes.m in Sources */,
+				2D0785361CECC601001B57A8 /* ExitUnitedViewController.m in Sources */,
 				B81E56A61C7EEB9000E34A91 /* QNALAssetFile.m in Sources */,
 				8C1861F21CDF378900632CDC /* SDWebImageDownloaderOperation.m in Sources */,
 				8C1862191CDF41CC00632CDC /* MessageViewCell.m in Sources */,
@@ -4146,6 +4165,7 @@
 				B89A0D001C79FB580072A6A8 /* HousePostNewViewController.m in Sources */,
 				B81E56B51C7EEB9000E34A91 /* QNConfiguration.m in Sources */,
 				B89A0C651C79904C0072A6A8 /* main.m in Sources */,
+				2D0785321CECAF65001B57A8 /* UnitedMember2TableViewCell.m in Sources */,
 				8C63E51B1CE055F800B4EC1D /* ChatViewController.m in Sources */,
 				8C63E5791CE05BE800B4EC1D /* UIImage+UIImageExt.m in Sources */,
 				2D359D9F1CE8280400F85F24 /* UnitedTableViewCell.m in Sources */,

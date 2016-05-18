@@ -11,6 +11,7 @@
 #import "ManagerUnitedViewController.h"
 #import "UnitedMemberViewController.h"
 #import "UnitedInfoModel.h"
+#import "ExitUnitedViewController.h"
 
 @interface UnitedDetailViewController ()
 
@@ -34,6 +35,7 @@
 - (void)dealloc
 {
     [_unitedInfoModel removeObserver:self forKeyPath:@"unitedDetailData"];
+    [_unitedInfoModel removeObserver:self forKeyPath:@"exitUnitedData"];
 }
 
 #pragma mark -- observe
@@ -42,6 +44,10 @@
     if ([keyPath isEqualToString:@"unitedDetailData"]) {
         _unitedDetailDic = _unitedInfoModel.unitedDetailData[@"data"];
         [self initializeUserInterface];
+    }
+    
+    if ([keyPath isEqualToString:@"exitUnitedData"]) {
+        
     }
 }
 
@@ -64,7 +70,8 @@
     _unitedInfoModel = ({
         UnitedInfoModel * model = [[UnitedInfoModel alloc] init];
         [model addObserver:self forKeyPath:@"unitedDetailData" options:NSKeyValueObservingOptionNew context:nil];
-        [model getUnitedInfoWithId:_unitedDic[@"id"] limit:@"20"];
+        [model addObserver:self forKeyPath:@"exitUnitedData" options:NSKeyValueObservingOptionNew context:nil];
+        [model getUnitedInfoWithId:_unitedDic[@"id"] limit:@"10000"];
         model;
     });
 }
@@ -161,13 +168,37 @@
 - (void)unitedMemberButtonPressed:(UIButton *)sender
 {
     UnitedMemberViewController * unitedMemberVC = [[UnitedMemberViewController alloc] init];
+    unitedMemberVC.memberArray = _unitedDetailDic[@"members"];
     [self.navigationController pushViewController:unitedMemberVC animated:YES];
 }
 
 //退出门派
 - (void)exitUnitedButtonPressed:(UIButton *)sender
 {
-
+    NSDictionary * dataDic = [BBUserDefaults getUserDic];
+    NSLog(@"dataDic -- %@",dataDic);
+    
+    NSArray * membersArray = _unitedDetailDic[@"members"];
+    for (int i = 0; i < membersArray.count; i ++) {
+        if ([_unitedDetailDic[@"id"] integerValue] == [membersArray[i][@"id"] integerValue]) {
+            if ([membersArray[i][@"role"] isEqualToString:@"OWNER"]) {  //群主
+                ExitUnitedViewController * exitUnitedVC = [[ExitUnitedViewController alloc] init];
+                exitUnitedVC.unitedDetailDic = _unitedDetailDic;
+                [self.navigationController pushViewController:exitUnitedVC animated:YES];
+            }else{                                                      //普通成员
+                NSString * messageString = [NSString stringWithFormat:@"你将退出门派 %@(%@)吗？",_unitedDetailDic[@"name"],_unitedDetailDic[@"groupNumber"]];
+                 UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:messageString preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                    _unitedInfoModel exitUnitedWithGroupId:_unitedDetailDic[@"id"] userId:
+                }];
+                UIAlertAction *  cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                
+                [alertController addAction:sureAction];
+                [alertController addAction:cancelAction];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+        }
+    }
 }
 
 #pragma mrak -- my methods
