@@ -133,12 +133,7 @@ typedef NS_ENUM(NSInteger, ChatToolInputStyle) {
 }
 
 - (UIImage *)emojiKeyboardView:(AGEmojiKeyboardView *)emojiKeyboardView imageForSelectedCategory:(AGEmojiKeyboardViewCategoryImage)category {
-//    if (category == AGEmojiKeyboardViewCategoryImageCar) {
-//        UIImage *img = [self randomImage];
-//        img = [UIImage imageNamed:@"emoji_tab0"];
-//        return img;
-//    }
-//    UIImage *img = [self randomImage];
+    
     UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"emoji_tab%ldPress",(long)category]];
     [img imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     if (!img) {
@@ -148,10 +143,7 @@ typedef NS_ENUM(NSInteger, ChatToolInputStyle) {
 }
 
 - (UIImage *)emojiKeyboardView:(AGEmojiKeyboardView *)emojiKeyboardView imageForNonSelectedCategory:(AGEmojiKeyboardViewCategoryImage)category {
-//    if (category == AGEmojiKeyboardViewCategoryImageFace) {
-//        return [UIImage imageNamed:@"emoji_tab0"];
-//    }
-//    UIImage *img = [self randomImage];
+
     UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"emoji_tab%ld",(long)category]];
     [img imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     if (!img) {
@@ -162,26 +154,21 @@ typedef NS_ENUM(NSInteger, ChatToolInputStyle) {
 
 - (UIImage *)backSpaceButtonImageForEmojiKeyboardView:(AGEmojiKeyboardView *)emojiKeyboardView {
     
-//    UIImage *img = [self randomImage];
     UIImage *img = [UIImage imageNamed:@"KBSkinFilter_delete"];
     [img imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     return img;
 }
 
 - (void)emojiKeyBoardView:(AGEmojiKeyboardView *)emojiKeyBoardView didUseEmoji:(NSString *)emoji {
-//    self.textField.text = [self.textField.text stringByAppendingString:emoji];
     self.textView.text = [self.textView.text stringByAppendingString:emoji];
 }
 
 - (void)emojiKeyBoardViewDidPressBackSpace:(AGEmojiKeyboardView *)emojiKeyBoardView {
-//    [self.textField deleteBackward];
     [self.textView deleteBackward];
 }
 
 - (void)emojiKeyBoardViewDidPressSendBtn:(AGEmojiKeyboardView *)emojiKeyBoardView
 {
-//    [self textFieldShouldReturn:self.textField];
-//    [self textFieldShouldReturn:self.textView];
     [self.delegate toolBarShouldReturn:self];
 }
 
@@ -250,19 +237,24 @@ typedef NS_ENUM(NSInteger, ChatToolInputStyle) {
 //}
 
 #pragma mark - ChatMoreInputViewDelegate
-- (void)clickedPicBtn:(UIButton *)sender
+- (void)clickedGroupActivityBtn:(UIButton *)sender
 {
-    [self.delegate clickedPicBtn:sender];
+    [self.delegate clickedGroupActivityBtn:sender];
 }
 
-- (void)clickedAddrBtn:(UIButton *)sender
+- (void)clickedGroupBuyLinkBtn:(UIButton *)sender
 {
-    [self.delegate clickedAddrBtn:sender];
+    [self.delegate clickedGroupBuyLinkBtn:sender];
 }
 
-- (void)clickedBookBtn:(UIButton *)sender
+- (void)clickedSupplyLinkBtn:(UIButton *)sender
 {
-//    [self.delegate clickedBookBtn:sender];
+    [self.delegate clickedSupplyLinkBtn:sender];
+}
+
+- (void)clickedMoneyTreeBtn:(UIButton *)sender
+{
+    [self.delegate clickedMoneyTreeBtn:sender];
 }
 
 #pragma mark - record 录音按钮事件~

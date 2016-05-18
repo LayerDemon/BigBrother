@@ -118,8 +118,12 @@
 #define PLACEHOLDERIMAGE_GROUP [UIImage imageNamed:@"choujiang"]
 #define PLACEHOLER_IMA        [UIImage imageNamed:@"好看2.jpg"]
 //TGA
-#define LINEVIEW_TAG 500
+#define BUTTON_TAG 100
+#define IMGVIEW_TAG 200
 #define TEXTFIELD_TAG 300
+#define LABEL_TAG 400
+#define LINEVIEW_TAG 500
+#define SECTIONVIEW_TAG 600
 #define MJHEADER_TAG 700
 #define MJFOOTER_TAG 800
 

@@ -7,22 +7,15 @@
 //
 
 #import "ChatViewController.h"
-//#import "GMessageModel.h"
-//#import "GCellFrameModel.h"
 #import "ChatMessageModel.h"
 #import "ChatFrameModel.h"
-
-//#import "GroupChatViewCell.h"
 #import "ChatViewCell.h"
-//#import "GroupDetailViewController.h"
-//#import "FriendDetailViewController.h"
-//#import "PersonalViewController.h"
 #import "ChatToolBarView.h"
-
 #import "EaseRecordView.h"
 #import "EMCDDeviceManager.h"
 #import "EaseMessageReadManager.h"
-//#import "EditMapViewController.h"
+#import "MoneyTreeViewController.h"
+
 
 #define kToolBarH 48
 #define kTextFieldH 30
@@ -60,13 +53,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    //判断当前会话是否为空，若符合则删除该会话
-    EMMessage *message = [self.conversation latestMessage];
-    if (message == nil) {
-        [MANAGER_CHAT deleteConversation:self.conversation.conversationId deleteMessages:YES];
-    }else{
-        [self.conversation markAllMessagesAsRead];
-    }
     //移除chatDelegate
     [MANAGER_CHAT removeDelegate:self];
 }
@@ -130,8 +116,14 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    //移除chatDelegate
-//    [self unregisterDelegates];
+//    //判断当前会话是否为空，若符合则删除该会话
+//    EMConversation *conversation = [MANAGER_CHAT getConversation:self.conversation.conversationId type:self.conversation.type createIfNotExist:YES];
+//    EMMessage *message = [conversation latestMessage];
+//    if (message == nil) {
+//        [MANAGER_CHAT deleteConversation:self.conversation.conversationId deleteMessages:YES];
+//    }
+    
+    //移除代理
     [MANAGER_CHAT removeDelegate:self];
     [self.conversation markAllMessagesAsRead];
     
@@ -382,26 +374,35 @@
 
 
 #pragma mark - ChatToolBarViewDelegate  聊天输入栏~~~~~~、
+//摇钱树
+- (void)clickedMoneyTreeBtn:(UIButton *)sender
+{
+    MoneyTreeViewController *moneyTreeVC = [[MoneyTreeViewController alloc]init];
+    [self.navigationController pushViewController:moneyTreeVC animated:YES];
+}
+
+//供应链接
+- (void)clickedSupplyLinkBtn:(UIButton *)sender
+{
+
+}
+
+//团购链接
+- (void)clickedGroupBuyLinkBtn:(UIButton *)sender
+{
+
+}
+
+//门派活动
+- (void)clickedGroupActivityBtn:(UIButton *)sender
+{
+    
+}
+
 //点击return键
 - (void)toolBarShouldReturn:(ChatToolBarView *)toolBar
 {
     [self sendBtnPressed:nil];
-}
-
-//点击图片
-- (void)clickedPicBtn:(UIButton *)sender
-{
-    NSString *buttonTitle1 = [NSString stringWithFormat:@"相机%@",ACTIONSTYLE_NORMAL];
-    NSString *buttonTitle2 = [NSString stringWithFormat:@"相册%@",ACTIONSTYLE_NORMAL];
-    NSString *buttonTitle3 = [NSString stringWithFormat:@"取消%@",ACTIONSTYLE_CANCEL];
-    [self showActionSheetViewWithTitle:TITLE_ALERT message:nil buttonTitles:@[buttonTitle1,buttonTitle2,buttonTitle3]];
-}
-
-- (void)clickedAddrBtn:(UIButton *)sender
-{
-//    EditMapViewController *editVC = [[EditMapViewController alloc]init];
-//    editVC.isSendMessage = YES;
-//    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 /**
@@ -1122,7 +1123,7 @@
     
     __weak typeof(self) weakself = self;
     [[EMClient sharedClient].chatManager asyncSendMessage:message progress:nil completion:^(EMMessage *aMessage, EMError *aError) {
-        [weakself.tableView reloadData];
+        [weakself didMessageStatusChanged:aMessage error:aError];
     }];
 }
 

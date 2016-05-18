@@ -14,9 +14,11 @@
 
 @protocol ChatToolBarViewDelegate <NSObject>
 
-- (void)clickedPicBtn:(UIButton *)sender;
-- (void)clickedAddrBtn:(UIButton *)sender;
-//- (void)clickedBookBtn:(UIButton *)sender;
+- (void)clickedMoneyTreeBtn:(UIButton *)sender;
+- (void)clickedSupplyLinkBtn:(UIButton *)sender;
+- (void)clickedGroupBuyLinkBtn:(UIButton *)sender;
+- (void)clickedGroupActivityBtn:(UIButton *)sender;
+
 - (void)toolBarShouldReturn:(ChatToolBarView *)toolBar;
 
 

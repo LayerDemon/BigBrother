@@ -108,7 +108,10 @@ static NSString * identify = @"Cell";
     //跳转到用户详情
     NewFriendsTableViewCell *cell = (NewFriendsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     FriendDetailViewController *friendDetailVC = [[FriendDetailViewController alloc]init];
-    friendDetailVC.currentUserDic = cell.dataDic;
+//    NSDictionary *applyUserDic = @{@"id":cell.dataDic[@"userId"],@"avatar":cell.dataDic[@"avatar"],@"nickname":cell.dataDic[@"nickname"]};
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:cell.dataDic];
+    [tempDic setObject:cell.dataDic[@"userId"] forKey:@"id"];
+    friendDetailVC.currentUserDic = tempDic;
     [self.navigationController pushViewController:friendDetailVC animated:YES];
 }
 

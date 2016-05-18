@@ -188,7 +188,7 @@
         }else{
             NSString *imageUrl = [[images firstObject] objectForKey:@"url"];
             if (imageUrl) {
-                [self.imageView setImageWithURL:[NSURL URLWithString:imageUrl]];
+                [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
                 hasImage = YES;
             }else{
                 hasImage = NO;

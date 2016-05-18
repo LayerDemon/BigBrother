@@ -10,20 +10,27 @@
 #import "MessageView.h"
 #import "ContactView.h"
 #import "AddFriendsViewController.h"
+#import "NotLoginView.h"
 
 @interface ChatMainViewController ()
 
 @property (strong, nonatomic) UISegmentedControl    *segmentedControl;
 @property (strong, nonatomic) MessageView           *messageView;//消息界面
 @property (strong, nonatomic) ContactView           *contactView;       //聊天界面
+@property (strong, nonatomic) NotLoginView                *loginView;//登录界面
 
 @end
 
 @implementation ChatMainViewController
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadChatMainDataSource) name:@"reloadChatMainDataSource" object:nil];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     [self initializeDataSource];
@@ -50,17 +57,12 @@
     self.tabBarController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     //设置环信代理
     [self.messageView registerNotifications];
-    
-    //刷新消息列表
-    if (self.segmentedControl.selectedSegmentIndex == 0) {
-        [self.messageView refreshDataSource];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self.messageView refreshDataSource];
 }
 
 #pragma mark - 数据初始化
@@ -73,10 +75,7 @@
 #pragma mark - 视图初始化
 - (void)initializeUserInterface
 {
-    
     [self indexDidChangeForSegmentedControl:self.segmentedControl];
-    
-    
 }
 #pragma mark - 各种Getter
 - (UISegmentedControl *)segmentedControl
@@ -112,8 +111,21 @@
     return _contactView;
 }
 
+- (NotLoginView *)loginView
+{
+    if (!_loginView) {
+        _loginView = [[NotLoginView alloc]init];
+    }
+    return _loginView;
+}
+
 #pragma mark - 按钮方法
 -(void)indexDidChangeForSegmentedControl:(UISegmentedControl *)SegC{
+    NSDictionary *userDic = [BBUserDefaults getUserDic];
+    if (!userDic) {
+        [self.view addSubview:self.loginView];
+        return;
+    }
     if (SegC.selectedSegmentIndex == 0){
         NSLog(@"message");
         [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -133,7 +145,14 @@
 }
 
 #pragma mark - 自定义方法
-
+- (void)reloadChatMainDataSource
+{
+    [self indexDidChangeForSegmentedControl:self.segmentedControl];
+    if ([BBUserDefaults getUserDic]) {
+        [self.contactView reloadContactDataSource];
+    }
+    
+}
 
 
 //{

@@ -34,6 +34,7 @@ static NSString * identify = @"Cell";
     if (self) {
         self.frame = CGRectMake(0, 64, MAINSCRREN_W, MAINSCRREN_H-64-48);
         self.backgroundColor = [UIColor whiteColor];
+        
         [self initializeDataSource];
         [self initializeUserInterface];
     }
@@ -238,7 +239,10 @@ static NSString * identify = @"Cell";
 }
 
 #pragma mark - 自定义方法
-
+- (void)reloadContactDataSource
+{
+    [_contactMoel getAllFriendWithUserId:[BBUserDefaults getUserID]];
+}
 
 #pragma mark -- create label
 - (UILabel *)createLabelWithText:(NSString *)text font:(CGFloat)font subView:(UIView *)subView

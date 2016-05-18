@@ -206,13 +206,16 @@
         NSString *idString = dataDic[@"id"];
         if (idString) {
             //登录环信
-            [BYToastView showToastWithMessage:@"正在连接聊天服务器~"];
-            EMError *error = [[EMClient sharedClient] loginWithUsername:dataDic[@"imNumber"] password:passwordString];
-            if (error) {
-                [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
-            }else{
-                [BYToastView showToastWithMessage:@"聊天服务器连接成功~"];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [BYToastView showToastWithMessage:@"正在连接聊天服务器~"];
+                EMError *error = [[EMClient sharedClient] loginWithUsername:dataDic[@"imNumber"] password:passwordString];
+                if (error) {
+                    [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
+                }else{
+                    [BYToastView showToastWithMessage:@"聊天服务器连接成功~"];
+                }
+            });
+            
             
             if ([idString isKindOfClass:[NSNumber class]]) {
                 idString = [NSString stringWithFormat:@"%ld",(long)[idString longLongValue]];
@@ -239,6 +242,8 @@
             if (username && [username isKindOfClass:[NSString class]]) {
                 [BBUserDefaults setUserUserName:username];
             }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadChatMainDataSource" object:nil];
             
             [self leftItemClick];
             return;

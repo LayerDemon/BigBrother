@@ -17,7 +17,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="send"/>
                 </textField>
-                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_record_nor.png" id="8i8-m9-1mO">
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8i8-m9-1mO">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,7 +81,6 @@
         <image name="chat_emoji_btn.png" width="32" height="32"/>
         <image name="chat_jianpan_btn.png" width="32" height="32"/>
         <image name="chat_more_btn.png" width="32" height="32"/>
-        <image name="chat_record_nor.png" width="320" height="43"/>
         <image name="chat_voice_btn.png" width="32" height="32"/>
         <image name="chatbar_record_nor.png" width="159" height="50"/>
         <image name="chatbar_record_sel.png" width="159" height="50"/>

@@ -42,17 +42,17 @@
 }
 
 #pragma mark - 加载数据
-#warning --- tempConversation
-- (void)testLoadDataWithConversation:(EMConversation *)conversation
-{
-    
-    self.conversation = [MANAGER_CHAT getConversation:@"1000" type:EMConversationTypeChat createIfNotExist:YES];
-    [self loadDataWithConversation:conversation];
-    self.count = 100;
-    self.nameLabel.text = @"测试昵称";
-    self.messageLabel.text = @"测试信息~";
-    self.timeLabel.text = @"00:00";
-}
+//#warning --- tempConversation
+//- (void)testLoadDataWithConversation:(EMConversation *)conversation
+//{
+//    
+//    self.conversation = [MANAGER_CHAT getConversation:@"1000" type:EMConversationTypeChat createIfNotExist:YES];
+//    [self loadDataWithConversation:conversation];
+//    self.count = 100;
+//    self.nameLabel.text = @"测试昵称";
+//    self.messageLabel.text = @"测试信息~";
+//    self.timeLabel.text = @"00:00";
+//}
 
 - (void)loadDataWithConversation:(EMConversation *)conversation
 {
@@ -104,7 +104,9 @@
 {
     self.chatterDic = chatterDic;
     
-    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:chatterDic[@"avatar"]] placeholderImage:PLACEHOLDERIMAGE_USER];
+    NSString *urlStr = [NSString isBlankStringWithString:chatterDic[@"avatar"]] ? @"" : chatterDic[@"avatar"];
+    
+    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:PLACEHOLDERIMAGE_USER];
     if (chatterDic[@"nickname"]) {
         self.nameLabel.text = chatterDic[@"nickname"];
     }else{

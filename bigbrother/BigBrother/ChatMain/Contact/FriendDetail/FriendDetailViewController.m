@@ -249,6 +249,8 @@
         
     }];
     [BYToastView showToastWithMessage:@"已删除该好友~"];
+    //刷新好友列表
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadChatMainDataSource" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

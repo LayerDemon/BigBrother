@@ -10,4 +10,6 @@
 
 @interface ContactView : UIView
 
+- (void)reloadContactDataSource;
+
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,68 +8,86 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="fNV-gN-eg3" customClass="ChatMoreInputView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="摇钱树" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wNq-pQ-BSf">
+                    <rect key="frame" x="0.0" y="61" width="80" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yN2-Qd-rCO">
-                    <rect key="frame" x="85" y="16" width="45" height="45"/>
+                    <rect key="frame" x="18" y="8" width="45" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="mgc_pic_btn.png"/>
+                    <state key="normal" backgroundImage="qun_icon01"/>
                     <connections>
-                        <action selector="picBtnPressed:" destination="fNV-gN-eg3" eventType="touchUpInside" id="gkO-Nn-tTM"/>
+                        <action selector="moneyTreeBtnPressed:" destination="fNV-gN-eg3" eventType="touchUpInside" id="vAE-Yf-Rf8"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wNq-pQ-BSf">
-                    <rect key="frame" x="54" y="69" width="106" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="供应链接" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jdK-2s-Dyb">
+                    <rect key="frame" x="80" y="61" width="80" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3cq-Au-7s7">
-                    <rect key="frame" x="192" y="16" width="45" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ihY-3g-FuZ">
+                    <rect key="frame" x="104" y="19" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="mgc_addr_btn.png"/>
+                    <state key="normal" backgroundImage="qun_icon05"/>
                     <connections>
-                        <action selector="addrBtnPressed:" destination="fNV-gN-eg3" eventType="touchUpInside" id="zdU-i7-VRO"/>
+                        <action selector="supplyLinkBtnPressed:" destination="fNV-gN-eg3" eventType="touchUpInside" id="2oG-CY-YKR"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="位置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eHv-w3-Awx">
-                    <rect key="frame" x="161" y="69" width="106" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="团购链接" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FjX-Xk-b0o">
+                    <rect key="frame" x="160" y="61" width="80" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TYi-qz-kpW">
-                    <rect key="frame" x="245" y="16" width="45" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o1B-jb-Fwx">
+                    <rect key="frame" x="184" y="19" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="mgc_book_btn.png"/>
+                    <state key="normal" backgroundImage="qun_icon06"/>
                     <connections>
-                        <action selector="bookBtnPressed:" destination="fNV-gN-eg3" eventType="touchUpInside" id="Tau-Dp-eoO"/>
+                        <action selector="groupBuyLinkBtnPressed:" destination="fNV-gN-eg3" eventType="touchUpInside" id="JuD-WP-qE0"/>
                     </connections>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图书" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Fo-Cl-BGP">
-                    <rect key="frame" x="214" y="69" width="106" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门派活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fys-Wp-Kdd">
+                    <rect key="frame" x="240" y="61" width="80" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c69-kt-MLd">
+                    <rect key="frame" x="264" y="19" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="qun_icon07"/>
+                    <connections>
+                        <action selector="groupActivityBtnPressed:" destination="fNV-gN-eg3" eventType="touchUpInside" id="6DR-Vb-w27"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="0.91764705882352937" green="0.92941176470588238" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="addrBtn" destination="3cq-Au-7s7" id="Tzm-PY-ZR8"/>
-                <outlet property="bookBtn" destination="TYi-qz-kpW" id="Vsk-40-5Kc"/>
-                <outlet property="picBtn" destination="yN2-Qd-rCO" id="yrT-KJ-Uke"/>
+                <outlet property="groupActivityBtn" destination="c69-kt-MLd" id="dOy-QM-Fb8"/>
+                <outlet property="groupBuyLinkBtn" destination="o1B-jb-Fwx" id="Avk-0l-hzk"/>
+                <outlet property="moneyTreeBtn" destination="yN2-Qd-rCO" id="rqF-Mr-au8"/>
+                <outlet property="supplyLinkBtn" destination="ihY-3g-FuZ" id="jeM-4f-KIn"/>
             </connections>
-            <point key="canvasLocation" x="506" y="436"/>
+            <point key="canvasLocation" x="506" y="431"/>
         </view>
     </objects>
     <resources>
-        <image name="mgc_addr_btn.png" width="50" height="50"/>
-        <image name="mgc_book_btn.png" width="45" height="45"/>
-        <image name="mgc_pic_btn.png" width="50" height="50"/>
+        <image name="qun_icon01" width="39" height="33"/>
+        <image name="qun_icon05" width="27" height="27"/>
+        <image name="qun_icon06" width="27" height="27"/>
+        <image name="qun_icon07" width="27" height="32"/>
     </resources>
 </document>

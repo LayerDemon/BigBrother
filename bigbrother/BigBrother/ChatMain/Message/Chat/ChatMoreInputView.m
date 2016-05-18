@@ -13,12 +13,17 @@
 
 @property (strong, nonatomic) UIImagePickerController *picker;//相机、相册
 
-@property (strong, nonatomic) IBOutlet UIButton *picBtn;
-@property (strong, nonatomic) IBOutlet UIButton *addrBtn;
-@property (strong, nonatomic) IBOutlet UIButton *bookBtn;
-- (IBAction)picBtnPressed:(UIButton *)sender;
-- (IBAction)addrBtnPressed:(UIButton *)sender;
-- (IBAction)bookBtnPressed:(UIButton *)sender;
+@property (strong, nonatomic) IBOutlet UIButton *moneyTreeBtn;
+@property (strong, nonatomic) IBOutlet UIButton *supplyLinkBtn;
+@property (strong, nonatomic) IBOutlet UIButton *groupBuyLinkBtn;
+@property (strong, nonatomic) IBOutlet UIButton *groupActivityBtn;
+
+
+
+- (IBAction)moneyTreeBtnPressed:(UIButton *)sender;
+- (IBAction)supplyLinkBtnPressed:(UIButton *)sender;
+- (IBAction)groupBuyLinkBtnPressed:(UIButton *)sender;
+- (IBAction)groupActivityBtnPressed:(UIButton *)sender;
 
 @end
 
@@ -37,15 +42,21 @@
 
 
 #pragma mark - 按钮方法
-- (IBAction)picBtnPressed:(UIButton *)sender {
-    [self.delegate clickedPicBtn:sender];
+
+- (IBAction)moneyTreeBtnPressed:(UIButton *)sender {
+    [self.delegate clickedMoneyTreeBtn:sender];
 }
 
-- (IBAction)addrBtnPressed:(UIButton *)sender {
-    [self.delegate clickedAddrBtn:sender];
+- (IBAction)supplyLinkBtnPressed:(UIButton *)sender {
+    [self.delegate clickedSupplyLinkBtn:sender];
 }
 
-- (IBAction)bookBtnPressed:(UIButton *)sender {
-    [self.delegate clickedBookBtn:sender];
+- (IBAction)groupBuyLinkBtnPressed:(UIButton *)sender {
+    [self.delegate clickedGroupBuyLinkBtn:sender];
 }
+
+- (IBAction)groupActivityBtnPressed:(UIButton *)sender {
+    [self.delegate clickedGroupActivityBtn:sender];
+}
+
 @end

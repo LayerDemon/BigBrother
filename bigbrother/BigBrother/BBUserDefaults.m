@@ -50,6 +50,7 @@ static NSString *FirshLuanchSaveKey = @"FirshLuanchSaveKey";
     if (!error) {
         NSLog(@"退出成功");
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadChatMainDataSource" object:nil];
 }
 
 static NSString *UserDicSaveKey = @"UserDicSaveKey";

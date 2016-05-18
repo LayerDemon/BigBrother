@@ -108,7 +108,7 @@
         _sendStateBtn.frame = FLEXIBLE_FRAME(0,0,20, 20);
         [_sendStateBtn addTarget:self action:@selector(sendStateBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [_sendStateBtn setBackgroundImage:[UIImage imageNamed:@"mc_sendfail_btn"] forState:UIControlStateSelected];
-        [_sendStateBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_sendStateBtn setBackgroundImage:[UIImage imageNamed:@"clear"] forState:UIControlStateNormal];
     }
     return _sendStateBtn;
 }
@@ -274,7 +274,8 @@
 {
     self.addrLabel.hidden = YES;
     self.voiceImageView.hidden = YES;
-    [self.textBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    NSString *textBg = messageModel.isFromOther ? @"chat_receiver_bg" : @"chat_sender_bg";
+    [self.textBtn setBackgroundImage:[UIImage resizeImage:textBg] forState:UIControlStateNormal];
     [self.textBtn setTitle:@"" forState:UIControlStateNormal];
     
     switch (messageModel.messageBodyType) {
