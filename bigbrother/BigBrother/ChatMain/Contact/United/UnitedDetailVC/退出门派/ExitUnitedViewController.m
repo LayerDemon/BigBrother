@@ -8,6 +8,7 @@
 
 #import "ExitUnitedViewController.h"
 #import "UnitedInfoModel.h"
+#import "UnitedViewController.h"
 
 @interface ExitUnitedViewController ()
 
@@ -44,13 +45,40 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"dismissUnitedData"]) {
-        
+        UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:nil message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        NSDictionary    * dataDic = _unitedInfoModel.dismissUnitedData;
+        if ([dataDic[@"data"][@"success"] integerValue] == 1) {
+            alertController.message = @"门派解散成功～";
+            [self presentViewController:alertController animated:YES completion:nil];
+            [self performSelector:@selector(alertControllerDismissWithAlertController:) withObject:alertController afterDelay:1];
+        }else{
+            alertController.message = @"门派解散失败，请稍后重试～";
+            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alertController addAction:sureAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
     }
     
     if ([keyPath isEqualToString:@"transterUnitedData"]) {
         
     }
 }
+
+#pragma mark -- alterController dismiss
+- (void)alertControllerDismissWithAlertController:(UIAlertController *)alertController
+{
+    [alertController dismissViewControllerAnimated:YES completion:nil];
+    for (int i = 0; i < self.navigationController.viewControllers.count; i ++) {
+        if ([self.navigationController.viewControllers[i] isKindOfClass:[UnitedViewController class]]) {
+            [self.navigationController popToViewController:self.navigationController.viewControllers[i] animated:YES];
+        }
+    }
+    
+}
+
+
 
 #pragma mark -- initialize
 - (void)initializeDataSource
@@ -99,6 +127,7 @@
     buttonOne.frame = FLEXIBLE_FRAME(20, 140, 280, 35);
     buttonOne.titleLabel.font = [UIFont boldSystemFontOfSize:FLEXIBLE_NUM(13)];
     [buttonOne setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [buttonOne addTarget:self action:@selector(buttonOneButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     //解散
     UIButton * buttonTwo = [self createButtonWithTitle:@"解散" font:FLEXIBLE_NUM(13) subView:self.view];
@@ -106,6 +135,7 @@
     buttonTwo.frame = FLEXIBLE_FRAME(20, 190, 280, 35);
     buttonTwo.titleLabel.font = [UIFont boldSystemFontOfSize:FLEXIBLE_NUM(13)];
     [buttonTwo setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [buttonTwo addTarget:self action:@selector(buttonTwoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -118,9 +148,11 @@
 //转让
 - (void)buttonOneButtonPressed:(UIButton *)sender
 {
+    NSDictionary * dataDic = [BBUserDefaults getUserDic];
     UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"是否确定立即解散该群？" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //        _unitedInfoModel dismissUnitedWithGroupId:_unitedDetailDic[@"id"] userId:<#(NSString *)#>
+//            _unitedInfoModel dismissUnitedWithGroupId:_unitedDetailDic[@"id"] userId:<#(NSString *)#>
+//        _unitedInfoModel transterUnitedWithGroupId:_unitedDetailDic[@"id"] userId:dataDic[@"id"] transferTo:<#(NSString *)#>
     }];
     UIAlertAction *  cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     
@@ -132,9 +164,10 @@
 //解散
 - (void)buttonTwoButtonPressed:(UIButton *)sender
 {
+     NSDictionary * dataDic = [BBUserDefaults getUserDic];
      UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"是否确定立即解散该群？" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        _unitedInfoModel dismissUnitedWithGroupId:_unitedDetailDic[@"id"] userId:<#(NSString *)#>
+        [_unitedInfoModel dismissUnitedWithGroupId:_unitedDetailDic[@"id"] userId:dataDic[@"id"]];
     }];
     UIAlertAction *  cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     

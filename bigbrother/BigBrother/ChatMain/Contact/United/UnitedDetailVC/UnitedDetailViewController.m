@@ -83,10 +83,25 @@
     [self.view addSubview:topBGImageView];
     [topBGImageView sd_setImageWithURL:[NSURL URLWithString:_unitedDetailDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
     
+    //  创建需要的毛玻璃特效类型
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    //  毛玻璃view 视图
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    effectView.userInteractionEnabled = NO;
+    //添加到要有毛玻璃特效的控件中
+    effectView.frame = topBGImageView.bounds;
+    effectView.alpha = 0.9;
+    [topBGImageView addSubview:effectView];
+    
     UIImageView * unitedImageView = [[UIImageView alloc] initWithFrame: FLEXIBLE_FRAME(130, 10, 60, 60)];
     unitedImageView.clipsToBounds = YES;
     [self.view addSubview:unitedImageView];
     [unitedImageView sd_setImageWithURL:[NSURL URLWithString:_unitedDetailDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
+    
+    UILabel * unitedNumLabel = [self createLabelWithText:_unitedDetailDic[@"groupNumber"] font:FLEXIBLE_NUM(12) subView:topBGImageView];
+    unitedNumLabel.frame = FLEXIBLE_FRAME(50, 70, 220, 30);
+    unitedNumLabel.textColor = [UIColor whiteColor];
+    unitedNumLabel.textAlignment = NSTextAlignmentCenter;
     
     //门派活动
     UIButton * unitedActivityBut = [self createButtonWithTitle:@"门派活动"];
@@ -97,6 +112,11 @@
     UIButton * unitedMemberBut = [self createButtonWithTitle:@"门派成员"];
     unitedMemberBut.frame = FLEXIBLE_FRAME(0, 150, 320, 40);
     [unitedMemberBut addTarget:self action:@selector(unitedMemberButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //成员数量
+    UILabel * memberNumLabel = [self createLabelWithText:[NSString stringWithFormat:@"%ld人",[_unitedDetailDic[@"members"] count]] font:FLEXIBLE_NUM(13) subView:unitedMemberBut];
+    memberNumLabel.frame = FLEXIBLE_FRAME(260, 0, 30, 40);
+    memberNumLabel.textAlignment = NSTextAlignmentRight;
     
     UIView * unitedMemberBGView = [self createViewWithBackColor:[UIColor whiteColor] subView:self.view];
     unitedMemberBGView.frame = FLEXIBLE_FRAME(0, 190, 320, 55);
@@ -116,17 +136,22 @@
     addMemberButton.frame = FLEXIBLE_FRAME(15 + 50 * memberArray.count, 5, 40, 40);
     [addMemberButton setImage:[UIImage imageNamed:@"add_person@3x"] forState:UIControlStateNormal];
     
-    //管理门派
-    UIButton * managerUnitedButton = [self createButtonWithTitle:@"管理门派"];
-    managerUnitedButton.frame = FLEXIBLE_FRAME(0, 255, 320, 40);
-    [managerUnitedButton addTarget:self action:@selector(managerUnitedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    NSInteger max_Y = 255;
+    
+    if (_pushMark == 0) {
+        //管理门派
+        UIButton * managerUnitedButton = [self createButtonWithTitle:@"管理门派"];
+        managerUnitedButton.frame = FLEXIBLE_FRAME(0, max_Y, 320, 40);
+        [managerUnitedButton addTarget:self action:@selector(managerUnitedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        max_Y += 50;
+    }
     
     //门派介绍
     UIButton * unitedIntrButton = [self createButtonWithTitle:@"门派介绍"];
-    unitedIntrButton.frame = FLEXIBLE_FRAME(0, 305, 320, 40);
+    unitedIntrButton.frame = FLEXIBLE_FRAME(0, max_Y, 320, 40);
     
     UIView * unitedIntrView = [self createViewWithBackColor:[UIColor whiteColor] subView:self.view];
-    unitedIntrView.frame = FLEXIBLE_FRAME(0, 345, 320, 30);
+    unitedIntrView.frame = FLEXIBLE_FRAME(0, max_Y + 40, 320, 30);
     
     NSDate * createUnitedDate = [NSDate dateWithTimeIntervalSince1970:[_unitedDetailDic[@"createdTime"] doubleValue]/1000];
     
@@ -161,6 +186,7 @@
 - (void)managerUnitedButtonPressed:(UIButton *)sender
 {
     ManagerUnitedViewController * managerUnitedVC = [[ManagerUnitedViewController alloc] init];
+    managerUnitedVC.unitedDetailDic = _unitedDetailDic;
     [self.navigationController pushViewController:managerUnitedVC animated:YES];
 }
 
@@ -180,7 +206,7 @@
     
     NSArray * membersArray = _unitedDetailDic[@"members"];
     for (int i = 0; i < membersArray.count; i ++) {
-        if ([_unitedDetailDic[@"id"] integerValue] == [membersArray[i][@"id"] integerValue]) {
+        if ([dataDic[@"id"] integerValue] == [membersArray[i][@"id"] integerValue]) {
             if ([membersArray[i][@"role"] isEqualToString:@"OWNER"]) {  //群主
                 ExitUnitedViewController * exitUnitedVC = [[ExitUnitedViewController alloc] init];
                 exitUnitedVC.unitedDetailDic = _unitedDetailDic;
@@ -189,7 +215,7 @@
                 NSString * messageString = [NSString stringWithFormat:@"你将退出门派 %@(%@)吗？",_unitedDetailDic[@"name"],_unitedDetailDic[@"groupNumber"]];
                  UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:messageString preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                    _unitedInfoModel exitUnitedWithGroupId:_unitedDetailDic[@"id"] userId:
+                    [_unitedInfoModel exitUnitedWithGroupId:_unitedDetailDic[@"id"] userId:dataDic[@"id"]];
                 }];
                 UIAlertAction *  cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
                 
@@ -228,7 +254,7 @@
 {
     UILabel * label = [[UILabel alloc] init];
     label.text = text;
-    label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+    label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
     label.font = [UIFont systemFontOfSize:font];
     [subView addSubview:label];
     return label;

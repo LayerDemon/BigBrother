@@ -75,7 +75,7 @@ static NSString * identify = @"Cell";
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H - 64) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.rowHeight = FLEXIBLE_NUM(110);
+        tableView.rowHeight = FLEXIBLE_NUM(115);
         tableView.tableFooterView = [[UIView alloc] init];
         tableView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:tableView];

@@ -35,6 +35,8 @@
 		2D8AFF541CE23F6C009B7F24 /* 新朋友@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8AFF521CE23F6C009B7F24 /* 新朋友@3x.png */; };
 		2DA836B51CE37D4900C1E8A3 /* CreateUnitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA836B41CE37D4900C1E8A3 /* CreateUnitedViewController.m */; };
 		2DA836B71CE3825F00C1E8A3 /* mr_headimg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DA836B61CE3825F00C1E8A3 /* mr_headimg@3x.png */; };
+		2DCA9EB01CEE18A000FA7458 /* SetManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCA9EAF1CEE18A000FA7458 /* SetManagerViewController.m */; };
+		2DCA9EB31CEE224600FA7458 /* SetSpeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCA9EB21CEE224600FA7458 /* SetSpeakViewController.m */; };
 		2DD0FBC91C9EE6A30046F4C4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBC81C9EE6A20046F4C4 /* CoreMedia.framework */; };
 		2DD0FBCB1C9EE6AA0046F4C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBCA1C9EE6AA0046F4C4 /* AudioToolbox.framework */; };
 		2DD0FBCD1C9EE6B30046F4C4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBCC1C9EE6B30046F4C4 /* AVFoundation.framework */; };
@@ -631,6 +633,10 @@
 		2DA836B31CE37D4900C1E8A3 /* CreateUnitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUnitedViewController.h; sourceTree = "<group>"; };
 		2DA836B41CE37D4900C1E8A3 /* CreateUnitedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUnitedViewController.m; sourceTree = "<group>"; };
 		2DA836B61CE3825F00C1E8A3 /* mr_headimg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mr_headimg@3x.png"; sourceTree = "<group>"; };
+		2DCA9EAE1CEE18A000FA7458 /* SetManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetManagerViewController.h; sourceTree = "<group>"; };
+		2DCA9EAF1CEE18A000FA7458 /* SetManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetManagerViewController.m; sourceTree = "<group>"; };
+		2DCA9EB11CEE224600FA7458 /* SetSpeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSpeakViewController.h; sourceTree = "<group>"; };
+		2DCA9EB21CEE224600FA7458 /* SetSpeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSpeakViewController.m; sourceTree = "<group>"; };
 		2DD0FBC81C9EE6A20046F4C4 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		2DD0FBCA1C9EE6AA0046F4C4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2DD0FBCC1C9EE6B30046F4C4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -1543,6 +1549,9 @@
 		2D0812281CEB55FB004AEB77 /* 管理门派 */ = {
 			isa = PBXGroup;
 			children = (
+				2DCA9EAB1CEE185600FA7458 /* 设置成员头衔 */,
+				2DCA9EAC1CEE185600FA7458 /* 设置管理员 */,
+				2DCA9EAD1CEE185600FA7458 /* 设置禁言 */,
 				2D08122B1CEB560D004AEB77 /* ManagerUnitedViewController.h */,
 				2D08122C1CEB560D004AEB77 /* ManagerUnitedViewController.m */,
 			);
@@ -1661,6 +1670,31 @@
 				2DA836B41CE37D4900C1E8A3 /* CreateUnitedViewController.m */,
 			);
 			path = CreateUnited;
+			sourceTree = "<group>";
+		};
+		2DCA9EAB1CEE185600FA7458 /* 设置成员头衔 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "设置成员头衔";
+			sourceTree = "<group>";
+		};
+		2DCA9EAC1CEE185600FA7458 /* 设置管理员 */ = {
+			isa = PBXGroup;
+			children = (
+				2DCA9EAE1CEE18A000FA7458 /* SetManagerViewController.h */,
+				2DCA9EAF1CEE18A000FA7458 /* SetManagerViewController.m */,
+			);
+			path = "设置管理员";
+			sourceTree = "<group>";
+		};
+		2DCA9EAD1CEE185600FA7458 /* 设置禁言 */ = {
+			isa = PBXGroup;
+			children = (
+				2DCA9EB11CEE224600FA7458 /* SetSpeakViewController.h */,
+				2DCA9EB21CEE224600FA7458 /* SetSpeakViewController.m */,
+			);
+			path = "设置禁言";
 			sourceTree = "<group>";
 		};
 		2DD0FB5B1C9EA4F90046F4C4 /* 聊天模块 */ = {
@@ -4136,6 +4170,7 @@
 				B80131541C8002940070612B /* HouseFactoryWantRentPostToViewController.m in Sources */,
 				8CAED5F91CE6E376009CDC8B /* EaseMessageReadManager.m in Sources */,
 				8C1864501CDF9CC700632CDC /* EMCDDeviceManager+ProximitySensor.m in Sources */,
+				2DCA9EB31CEE224600FA7458 /* SetSpeakViewController.m in Sources */,
 				B85A93D91C9411FE00CC7893 /* PostMacthTableViewCell.m in Sources */,
 				B89A0CBF1C79B8C30072A6A8 /* UIImageView+AFNetworking.m in Sources */,
 				B89A0C871C799A910072A6A8 /* SourceMainViewController.m in Sources */,
@@ -4260,6 +4295,7 @@
 				B81A11E31C8FF8B500AA6690 /* WMCustomDatePicker.m in Sources */,
 				B80131481C8001E50070612B /* WholeHouseRentPostToViewController.m in Sources */,
 				B8C45FF51C8444660060528D /* AuthcationViewController.m in Sources */,
+				2DCA9EB01CEE18A000FA7458 /* SetManagerViewController.m in Sources */,
 				B81E56DC1C7EED9B00E34A91 /* QNNetworkInfo.m in Sources */,
 				B8958AF91C7C469200ACE5E6 /* HouseProductTableViewCell.m in Sources */,
 				8C18644C1CDF9CC700632CDC /* EMAudioPlayerUtil.m in Sources */,

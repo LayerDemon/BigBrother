@@ -249,7 +249,7 @@ static NSString * identify = @"Cell";
 {
     UILabel * label = [[UILabel alloc] init];
     label.text = text;
-    label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+    label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
     label.font = [UIFont systemFontOfSize:font];
     [subView addSubview:label];
     return label;

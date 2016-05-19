@@ -92,13 +92,13 @@ static NSString *kGroupName = @"GroupName";
 - (void)loginEaseMob
 {
     //登录环信
-    NSDictionary *userDic = [BBUserDefaults getUserDic];
-    EMError *error = [[EMClient sharedClient] loginWithUsername:userDic[@"imNumber"] password:[BBUserDefaults getUserPassword]];
-    if (error) {
-        [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
-    }else{
-        [BYToastView showToastWithMessage:@"聊天服务器连接成功~"];
-    }
+//    NSDictionary *userDic = [BBUserDefaults getUserDic];
+//    EMError *error = [[EMClient sharedClient] loginWithUsername:userDic[@"imNumber"] password:[BBUserDefaults getUserPassword]];
+//    if (error) {
+//        [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
+//    }else{
+//        [BYToastView showToastWithMessage:@"聊天服务器连接成功~"];
+//    }
 }
 
 -(void)setupUnreadMessageCount

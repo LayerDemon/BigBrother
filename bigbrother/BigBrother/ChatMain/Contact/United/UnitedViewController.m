@@ -49,6 +49,12 @@ static NSString * identify = @"Cell";
     [_contactModel removeObserver:self forKeyPath:@"allGroupData"];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+        NSDictionary * dataDic = [BBUserDefaults getUserDic];
+        [_contactModel getAllGroupsWithUserId:dataDic[@"id"]];
+}
+
 #pragma mark -- observe
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
@@ -57,7 +63,7 @@ static NSString * identify = @"Cell";
         if (!_groupArray) {
             _groupArray = [[NSMutableArray alloc] init];
         }
-        
+        [_groupArray removeAllObjects];
         NSMutableArray * managerArray = [[NSMutableArray alloc] init];
         NSMutableArray * joinArray = [[NSMutableArray alloc] init];
         for (int i = 0; i < dataArray.count; i ++) {
@@ -76,11 +82,9 @@ static NSString * identify = @"Cell";
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
-     NSDictionary * dataDic = [BBUserDefaults getUserDic];
     _contactModel = ({
         ContactModel * model = [[ContactModel alloc] init];
         [model addObserver:self forKeyPath:@"allGroupData" options:NSKeyValueObservingOptionNew context:nil];
-        [model getAllGroupsWithUserId:dataDic[@"id"]];
         model;
     });
 }
@@ -194,6 +198,7 @@ static NSString * identify = @"Cell";
 {
     UnitedDetailViewController * unitedDeailVC = [[UnitedDetailViewController alloc] init];
     unitedDeailVC.unitedDic = _groupArray[indexPath.section][indexPath.row];
+    unitedDeailVC.pushMark = indexPath.section;
     [self.navigationController pushViewController:unitedDeailVC animated:YES];
 }
 

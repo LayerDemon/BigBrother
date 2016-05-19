@@ -10,4 +10,6 @@
 
 @interface ManagerUnitedViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary      * unitedDetailDic;
+
 @end
