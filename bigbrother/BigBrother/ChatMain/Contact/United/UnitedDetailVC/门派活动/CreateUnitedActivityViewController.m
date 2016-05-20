@@ -69,6 +69,7 @@
     
     //活动名称
     _unitedNameTextField = [self createTextFieldWithTitle:@"活动名称：" height:5];
+    _unitedNameTextField.text = @"aiyowei";
     
     //活动海报
     UILabel * unitedImageLabel = [self createLabelWithText:@"活动海报：" font:FLEXIBLE_NUM(13) subView:self.view];
@@ -84,15 +85,18 @@
     
     //开始时间
     _startTimeTextField = [self createTextFieldWithTitle:@"开始时间：" height:150];
+    _startTimeTextField.text = @"2015年8月14日";
     
     //结束时间
     _endTimeTextField = [self createTextFieldWithTitle:@"结束时间：" height:190];
-    
+    _endTimeTextField.text = @"jkglajgkl";
     //活动地点
     _unitedAddressTextField = [self createTextFieldWithTitle:@"活动地点：" height:235];
+    _unitedAddressTextField.text = @"gkajgkalj";
     
     //活动费用
     _unitedMoneyTextField = [self createTextFieldWithTitle:@"活动费用：" height:275];
+    _unitedMoneyTextField.text = @"200";
     
     //活动内容
     UIView * unitedContentBGView = [self createViewWithBackColor:[UIColor whiteColor] subView:self.view];
@@ -106,6 +110,7 @@
         textView.textColor = [UIColor grayColor];
         textView.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(12)];
 //        textView.backgroundColor = [UIColor yellowColor];
+        textView.text = @"到底怎么了";
         [unitedContentBGView addSubview:textView];
         textView;
     });
@@ -116,7 +121,7 @@
 {
     NSDictionary * dataDic = [BBUserDefaults getUserDic];
     
-//    [_unitedInfoModel createUnitedActivityWithGroupId:_unitedDic[@"id"] creator:dataDic[@"id"] name:_unitedNameTextField.text startTime:_startTimeTextField.text endTime:_endTimeTextField.text location:_unitedAddressTextField.text cost:_unitedMoneyTextField.text content:_unitedContentTextView.text images:@[@{@"url":_imageString,@"orderBy":@"1"}]];
+    [_unitedInfoModel createUnitedActivityWithGroupId:_unitedDic[@"id"] creator:dataDic[@"id"] name:_unitedNameTextField.text startTime:_startTimeTextField.text endTime:_endTimeTextField.text location:_unitedAddressTextField.text cost:_unitedMoneyTextField.text content:_unitedContentTextView.text images:@[@{@"url":_imageString,@"orderBy":@"1"}]];
 }
 
 

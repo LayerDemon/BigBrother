@@ -16,6 +16,13 @@
 @property (strong, nonatomic, readonly) id        dismissUnitedData;
 @property (strong, nonatomic, readonly) id        transterUnitedData;
 
+@property (strong, nonatomic, readonly) id        addAdminData;
+@property (strong, nonatomic, readonly) id        removeAdminData;
+@property (strong, nonatomic, readonly) id        setSpeakData;
+
+@property (strong, nonatomic, readonly) id        getUnitedRankData;
+@property (strong, nonatomic, readonly) id        changeRankNameData;
+
 //获取门派资料
 - (void)getUnitedInfoWithId:(NSString *)idString limit:(NSString *)limit;
 
@@ -31,5 +38,17 @@
 - (void)dismissUnitedWithGroupId:(NSString *)groupId userId:(NSString *)userId;
 //转让群
 - (void)transterUnitedWithGroupId:(NSString *)groupId userId:(NSString *)userId transferTo:(NSString *)transferTo;
+
+#pragma mark -- 门派处理
+//设置管理员
+- (void)addUnitedAdminsWithOwnerId:(NSString *)ownerId userIds:(NSString *)userIds groupId:(NSString *)groupId;
+//移除管理员
+- (void)removeUnitedAdminsWithOwnerId:(NSString *)ownerId adminId:(NSString *)adminId groupId:(NSString *)groupId;
+//设置门派禁言
+- (void)setUnitedSpearkWithGroupId:(NSString *)groupId userId:(NSString *)userId isBan:(NSString *)isBan;
+//获取门派等级
+- (void)getUnitedRankWithGroupId:(NSString *)groupId;
+//修改等级名称
+- (void)changeUnitedRankNameWithUserId:(NSString *)userId groupGradeId:(NSString *)groupGradeId name:(NSString *)name;
 
 @end
