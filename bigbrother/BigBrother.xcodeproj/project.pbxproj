@@ -54,6 +54,11 @@
 		8C0A07771CE21B0E00889CF6 /* EaseEmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A07711CE21B0E00889CF6 /* EaseEmojiEmoticons.m */; };
 		8C0A07781CE21B0E00889CF6 /* EaseEmotionEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A07731CE21B0E00889CF6 /* EaseEmotionEscape.m */; };
 		8C0A07791CE21B0E00889CF6 /* EaseEmotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A07751CE21B0E00889CF6 /* EaseEmotionManager.m */; };
+		8C0B2A8B1CED58BD00EF4C2E /* SupplyLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B2A8A1CED58BD00EF4C2E /* SupplyLinkViewController.m */; };
+		8C0B2A8E1CED617200EF4C2E /* SupplyLinkViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B2A8D1CED617200EF4C2E /* SupplyLinkViewCell.m */; };
+		8C0B2A901CED61A500EF4C2E /* SupplyLinkViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B2A8F1CED61A500EF4C2E /* SupplyLinkViewCell.xib */; };
+		8C0B2A931CEDC58600EF4C2E /* mc_sendfail_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B2A911CEDC58600EF4C2E /* mc_sendfail_btn.png */; };
+		8C0B2A941CEDC58600EF4C2E /* mc_sendfail_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B2A921CEDC58600EF4C2E /* mc_sendfail_btn@2x.png */; };
 		8C0D24621CEC104A00C7BE5E /* NotLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D24611CEC104A00C7BE5E /* NotLoginView.m */; };
 		8C0D24641CEC105900C7BE5E /* NotLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D24631CEC105900C7BE5E /* NotLoginView.xib */; };
 		8C0D24691CEC608300C7BE5E /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D24681CEC608300C7BE5E /* clear.png */; };
@@ -662,6 +667,13 @@
 		8C0A07731CE21B0E00889CF6 /* EaseEmotionEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionEscape.m; sourceTree = "<group>"; };
 		8C0A07741CE21B0E00889CF6 /* EaseEmotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionManager.h; sourceTree = "<group>"; };
 		8C0A07751CE21B0E00889CF6 /* EaseEmotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionManager.m; sourceTree = "<group>"; };
+		8C0B2A891CED58BD00EF4C2E /* SupplyLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupplyLinkViewController.h; sourceTree = "<group>"; };
+		8C0B2A8A1CED58BD00EF4C2E /* SupplyLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupplyLinkViewController.m; sourceTree = "<group>"; };
+		8C0B2A8C1CED617200EF4C2E /* SupplyLinkViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupplyLinkViewCell.h; sourceTree = "<group>"; };
+		8C0B2A8D1CED617200EF4C2E /* SupplyLinkViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupplyLinkViewCell.m; sourceTree = "<group>"; };
+		8C0B2A8F1CED61A500EF4C2E /* SupplyLinkViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupplyLinkViewCell.xib; sourceTree = "<group>"; };
+		8C0B2A911CEDC58600EF4C2E /* mc_sendfail_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mc_sendfail_btn.png; sourceTree = "<group>"; };
+		8C0B2A921CEDC58600EF4C2E /* mc_sendfail_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mc_sendfail_btn@2x.png"; sourceTree = "<group>"; };
 		8C0D24601CEC104A00C7BE5E /* NotLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotLoginView.h; sourceTree = "<group>"; };
 		8C0D24611CEC104A00C7BE5E /* NotLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotLoginView.m; sourceTree = "<group>"; };
 		8C0D24631CEC105900C7BE5E /* NotLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotLoginView.xib; sourceTree = "<group>"; };
@@ -1768,6 +1780,11 @@
 		8C0D247D1CEC6B2D00C7BE5E /* SupplyLink */ = {
 			isa = PBXGroup;
 			children = (
+				8C0B2A891CED58BD00EF4C2E /* SupplyLinkViewController.h */,
+				8C0B2A8A1CED58BD00EF4C2E /* SupplyLinkViewController.m */,
+				8C0B2A8C1CED617200EF4C2E /* SupplyLinkViewCell.h */,
+				8C0B2A8D1CED617200EF4C2E /* SupplyLinkViewCell.m */,
+				8C0B2A8F1CED61A500EF4C2E /* SupplyLinkViewCell.xib */,
 			);
 			path = SupplyLink;
 			sourceTree = "<group>";
@@ -2041,6 +2058,8 @@
 				8C0D246B1CEC62DE00C7BE5E /* qun_icon05@2x.png */,
 				8C0D246C1CEC62DE00C7BE5E /* qun_icon06@2x.png */,
 				8C0D246D1CEC62DE00C7BE5E /* qun_icon07@2x.png */,
+				8C0B2A911CEDC58600EF4C2E /* mc_sendfail_btn.png */,
+				8C0B2A921CEDC58600EF4C2E /* mc_sendfail_btn@2x.png */,
 				8C0D24681CEC608300C7BE5E /* clear.png */,
 				2D08123D1CEB6B2B004AEB77 /* add@3x.png */,
 				2D0F21E31CEA26C00014B0A1 /* add_person@3x.png */,
@@ -3780,6 +3799,7 @@
 				8C63E59A1CE09A8B00B4EC1D /* chat_emoji_btn.png in Resources */,
 				8C1863F01CDF9C4C00632CDC /* chatBar_more_locationSelected@2x.png in Resources */,
 				8C18641F1CDF9C4C00632CDC /* groupPublicHeader@2x.png in Resources */,
+				8C0B2A901CED61A500EF4C2E /* SupplyLinkViewCell.xib in Resources */,
 				8C1863891CDF9C4C00632CDC /* VoiceSearchFeedback004.png in Resources */,
 				8C18637D1CDF9C4C00632CDC /* 29.png in Resources */,
 				8C0D248E1CEC6E2000C7BE5E /* moneytree_bg@2x.png in Resources */,
@@ -3815,6 +3835,7 @@
 				8C1863861CDF9C4C00632CDC /* VoiceSearchFeedback002@2x.png in Resources */,
 				8C6B05D21CE47FC6003188E1 /* chat_voice_btn.png in Resources */,
 				8C1863A01CDF9C4C00632CDC /* VoiceSearchFeedback015@2x.png in Resources */,
+				8C0B2A941CEDC58600EF4C2E /* mc_sendfail_btn@2x.png in Resources */,
 				2D8AFF541CE23F6C009B7F24 /* 新朋友@3x.png in Resources */,
 				8C63E5C21CE09FA900B4EC1D /* emoji_tab1@2x.png in Resources */,
 				8C1863981CDF9C4C00632CDC /* VoiceSearchFeedback011@2x.png in Resources */,
@@ -3967,6 +3988,7 @@
 				8C0D248C1CEC6E2000C7BE5E /* moneytree_back_btn@2x.png in Resources */,
 				8C1863801CDF9C4C00632CDC /* 80.png in Resources */,
 				8C1863EF1CDF9C4C00632CDC /* chatBar_more_locationSelected.png in Resources */,
+				8C0B2A931CEDC58600EF4C2E /* mc_sendfail_btn.png in Resources */,
 				8C1864081CDF9C4C00632CDC /* chat_sender_audio_playing_003.png in Resources */,
 				8C63E5C91CE09FA900B4EC1D /* emoji_tab2Press@3x.png in Resources */,
 				8C1863AA1CDF9C4C00632CDC /* VoiceSearchFeedback020@2x.png in Resources */,
@@ -4195,6 +4217,7 @@
 				B89A0CED1C79E2970072A6A8 /* BaseProductTableViewCell.m in Sources */,
 				B8B612961C7D95170036A019 /* CTAssetsPickerController.m in Sources */,
 				8C63E5151CE055F800B4EC1D /* ChatMessageModel.m in Sources */,
+				8C0B2A8E1CED617200EF4C2E /* SupplyLinkViewCell.m in Sources */,
 				8C63E56B1CE05B6B00B4EC1D /* MJRefreshBackGifFooter.m in Sources */,
 				8C0A076C1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				B89A0D001C79FB580072A6A8 /* HousePostNewViewController.m in Sources */,
@@ -4202,6 +4225,7 @@
 				B89A0C651C79904C0072A6A8 /* main.m in Sources */,
 				2D0785321CECAF65001B57A8 /* UnitedMember2TableViewCell.m in Sources */,
 				8C63E51B1CE055F800B4EC1D /* ChatViewController.m in Sources */,
+				8C0B2A8B1CED58BD00EF4C2E /* SupplyLinkViewController.m in Sources */,
 				8C63E5791CE05BE800B4EC1D /* UIImage+UIImageExt.m in Sources */,
 				2D359D9F1CE8280400F85F24 /* UnitedTableViewCell.m in Sources */,
 				B89A0CF71C79EFE90072A6A8 /* HouseEnterViewController.m in Sources */,

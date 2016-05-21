@@ -21,19 +21,23 @@
 
 + (id)messageModelWithMessage:(EMMessage *)message
 {
-    
-    if (message.chatType == EMChatTypeGroupChat) {
-        return [self groupMessageModelWithMessage:message];
-    }
-    
-    return [self friendMessageModelWithMessage:message];
-}
-
-+ (id)friendMessageModelWithMessage:(EMMessage *)message
-{
     ChatMessageModel *messageModel = [[self alloc] init];
     messageModel.message = message;
     messageModel.isMediaPlaying = NO;
+    if (message.chatType == EMChatTypeGroupChat) {
+        [messageModel groupMessageModelWithMessage:message];
+    }else{
+        [messageModel friendMessageModelWithMessage:message];
+    }
+    
+    return messageModel;
+}
+
+- (void)friendMessageModelWithMessage:(EMMessage *)message
+{
+//    ChatMessageModel *messageModel = [[self alloc] init];
+//    self.message = message;
+//    self.isMediaPlaying = NO;
     
     NSMutableDictionary *userFromPojo = [NSMutableDictionary dictionaryWithDictionary:message.ext[@"userFromPojo"]];
     if (!userFromPojo[@"uid"]) {
@@ -54,7 +58,7 @@
         [userToPojo setObject:@([userToPojo[@"uid"] integerValue]) forKey:@"id"];
         [userToPojo setObject:@([userToPojo[@"uid"] integerValue]) forKey:@"uid"];
     }
-//    NSDictionary *userDic = [NSDictionary userDic];
+
     NSString *uid = [BBUserDefaults getUserID];
     
     EMMessageBody *firstMessageBody = message.body;
@@ -65,32 +69,29 @@
     }
     
     if ([uid integerValue] == [userFromPojo[@"uid"] integerValue]) {
-        messageModel.userDic = userFromPojo;
-        messageModel.otherDic = userToPojo;
-        messageModel.text = textMessage;
-        messageModel.isFromOther = NO;
+        self.userDic = userFromPojo;
+        self.otherDic = userToPojo;
+//        messageModel.text = textMessage;
+        self.isFromOther = NO;
     }else{
-        messageModel.userDic = userToPojo;
-        messageModel.otherDic = userFromPojo;
-        messageModel.text = [EaseConvertToCommonEmoticonsHelper convertToSystemEmoticons:textMessage];
-        messageModel.isFromOther = YES;
+        self.userDic = userToPojo;
+        self.otherDic = userFromPojo;
+//        messageModel.text = textMessage;
+        //[EaseConvertToCommonEmoticonsHelper convertToSystemEmoticons:textMessage];
+        self.isFromOther = YES;
     }
     
-    messageModel.time = [NSDate formattedTimeFromTimeInterval:(NSTimeInterval)message.timestamp];
+    self.time = [NSDate formattedTimeFromTimeInterval:(NSTimeInterval)message.timestamp];
     
+    [self contentWithMessage:message];
     
-    [messageModel accessoryWithMessage:message];
+//    [messageModel accessoryWithMessage:message];
     
-    return messageModel;
+//    return messageModel;
 }
 
-+ (id)groupMessageModelWithMessage:(EMMessage *)message
+- (void)groupMessageModelWithMessage:(EMMessage *)message
 {
-    ChatMessageModel *messageModel = [[self alloc] init];
-    messageModel.message = message;
-    
-    messageModel.userDic = [BBUserDefaults getUserDic];
-    
     NSMutableDictionary *userPojo = [NSMutableDictionary dictionaryWithDictionary:message.ext[@"userPojo"]];
     if (!userPojo[@"uid"]) {
         [userPojo setObject:@([userPojo[@"id"] integerValue]) forKey:@"uid"];
@@ -101,85 +102,94 @@
         [userPojo setObject:@([userPojo[@"uid"] integerValue]) forKey:@"uid"];
     }
 
-    messageModel.otherDic = userPojo;
-    
-    
-    EMMessageBody *firstMessageBody = message.body;
-    EMTextMessageBody *messageBody = (EMTextMessageBody *)firstMessageBody;
-    NSString *textMessage = @"";
-    if (firstMessageBody.type == EMMessageBodyTypeText) {
-        textMessage = messageBody.text;
-    }
+    self.userDic = [BBUserDefaults getUserDic];
+    self.otherDic = userPojo;
 
-    if ([message.from isEqualToString:messageModel.userDic[@"imNumber"]]) {
-        messageModel.isFromOther = NO;
-        messageModel.text = textMessage;
+    if ([message.from isEqualToString:self.userDic[@"imNumber"]]) {
+        self.isFromOther = NO;
     }else{
-        messageModel.isFromOther = YES;
-        messageModel.text = [EaseConvertToCommonEmoticonsHelper convertToSystemEmoticons:textMessage];
+        self.isFromOther = YES;
     }
     
-    messageModel.time = [NSDate formattedTimeFromTimeInterval:(NSTimeInterval)message.timestamp];
+    self.time = [NSDate formattedTimeFromTimeInterval:(NSTimeInterval)message.timestamp];
     
-    
-    [messageModel accessoryWithMessage:message];
-    
-    return messageModel;
+    [self contentWithMessage:message];
 }
 
 
-
-//根据消息获取附件
-- (void)accessoryWithMessage:(EMMessage *)message
+- (void)contentWithMessage:(EMMessage *)message
 {
-    //根据消息体类型，赋值~
     EMMessageBody *tempMessageBody = message.body;
-    if (tempMessageBody.type == EMMessageBodyTypeText) {
-        tempMessageBody = message.body;
-    }
-
-    //示例代码
+    self.messageBody = tempMessageBody;
     self.messageBodyType = tempMessageBody.type;
     
     
+    if (self.messageBodyType == EMMessageBodyTypeText) {
+        self.text = ((EMTextMessageBody *)tempMessageBody).text;
+    }
     
-    switch (self.messageBodyType) {
-        case EMMessageBodyTypeText:
-            break;
-        case EMMessageBodyTypeVoice:
-        {// 图片：获取缩略图~
-            EMVoiceMessageBody *voiceBody = (EMVoiceMessageBody *)tempMessageBody;
-            self.voiceMessageBody = voiceBody;
-            self.mediaDuration = voiceBody.duration;
-            self.isMediaPlayed = NO;
-            if (message.ext) {
-                self.isMediaPlayed = [[message.ext objectForKey:@"isPlayed"] boolValue];
-            }
-            
-            // 音频路径
-            self.fileLocalPath = voiceBody.localPath;
-            self.fileURLPath = voiceBody.remotePath;
+    NSDictionary *ext = message.ext;
+    NSInteger resultValue = [ext[@"resultValue"] integerValue];
+    if (resultValue > 0) {
+        if (resultValue <= 1) {
+            self.messageBodyType = EMMessageBodyTypeCustom;
+            self.messageExt = message.ext;
         }
-            break;
-        case EMMessageBodyTypeImage:
-        {// 图片：获取缩略图~
-            self.imageMessageBody = (EMImageMessageBody *)tempMessageBody;
-        }
-            break;
-        case EMMessageBodyTypeLocation:
-        {// 获取地图~
-            self.locationMessageBody = (EMLocationMessageBody *)tempMessageBody;
-        }
-            break;
-            
-        default:
-        {//如果以上都不是~
+        else{
             self.messageBodyType = EMMessageBodyTypeText;
             self.text = @"[不支持的消息类型]";
         }
-            break;
+    }
+    
+    
+    if (self.messageBodyType != EMMessageBodyTypeText &&
+        self.messageBodyType != EMMessageBodyTypeVoice &&
+        self.messageBodyType != EMMessageBodyTypeCustom) {
+        self.messageBodyType = EMMessageBodyTypeText;
+        self.text = @"[不支持的消息类型]";
     }
 }
+
+
+////根据消息获取附件
+//- (void)accessoryWithMessage:(EMMessage *)message
+//{
+//    //根据消息体类型，赋值~
+//    EMMessageBody *tempMessageBody = message.body;
+//    if (tempMessageBody.type == EMMessageBodyTypeText) {
+//        tempMessageBody = message.body;
+//    }
+//
+//    //示例代码
+//    self.messageBodyType = tempMessageBody.type;
+//    
+//    
+//    
+//    switch (self.messageBodyType) {
+//        case EMMessageBodyTypeText:
+//            break;
+//        case EMMessageBodyTypeVoice:
+//        {// 图片：获取缩略图~
+//            EMVoiceMessageBody *voiceBody = (EMVoiceMessageBody *)tempMessageBody;
+//            self.voiceMessageBody = voiceBody;
+//            self.mediaDuration = voiceBody.duration;
+//            self.isMediaPlayed = NO;
+//            if (message.ext) {
+//                self.isMediaPlayed = [[message.ext objectForKey:@"isPlayed"] boolValue];
+//            }
+//            // 音频路径
+//            self.fileLocalPath = voiceBody.localPath;
+//            self.fileURLPath = voiceBody.remotePath;
+//        }
+//            break;
+//        default:
+//        {//如果以上都不是~
+//            self.messageBodyType = EMMessageBodyTypeText;
+//            self.text = @"[不支持的消息类型]";
+//        }
+//            break;
+//    }
+//}
 
 
 

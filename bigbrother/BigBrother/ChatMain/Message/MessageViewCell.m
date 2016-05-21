@@ -112,14 +112,6 @@
     }else{
         self.nameLabel.text = chatterDic[@"usernameId"];
     }
-//    [FRIENDCACHE_MANAGER getFriendDicWithUid:chatterDic[@"uid"] completed:^(id responseObject, NSError *error) {
-//        if (!error) {
-//            self.chatterDic = [NSDictionary dictionaryWithDictionary:responseObject];
-//            if (self.chatterDic[@"remarks"]) {
-//                self.nameLabel.text = [NSString stringWithFormat:@"%@",self.chatterDic[@"remarks"]];
-//            }
-//        }
-//    }];
 }
 
 //刷新群组消息列
@@ -195,6 +187,7 @@
                 ret = NSLocalizedString(@"message.image1", @"[image]");
             } break;
             case EMMessageBodyTypeText:{
+    
                 // 表情映射。
                 NSString *didReceiveText = [EaseConvertToCommonEmoticonsHelper
                                             convertToSystemEmoticons:((EMTextMessageBody *)messageBody).text];
@@ -222,8 +215,22 @@
             } break;
         }
     }
-    
     return ret;
+}
+
+- (NSString *)subTitleWithMessageExt:(NSDictionary *)messageExt
+{
+    NSString *ret = @"";
+    switch ([messageExt[@"result"] integerValue]) {
+        
+        default:
+        {
+            ret = @"暂不支持";
+        }
+            break;
+    }
+    return ret;
+    
 }
 
 @end

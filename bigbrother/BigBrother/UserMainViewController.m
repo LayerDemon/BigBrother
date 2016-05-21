@@ -133,7 +133,7 @@
         if (imageUrlString && [imageUrlString isKindOfClass:[NSString class]]) {
             [BBUserDefaults setUserHeadImageUrl:imageUrlString];
             headImageView.hidden = NO;
-            [headImageView setImageWithURL:[NSURL URLWithString:imageUrlString] placeholderImage:headImageView.image];
+            [headImageView sd_setImageWithURL:[NSURL URLWithString:imageUrlString] placeholderImage:headImageView.image];
         }
         
         NSString *sexString = userInfo[@"gender"];

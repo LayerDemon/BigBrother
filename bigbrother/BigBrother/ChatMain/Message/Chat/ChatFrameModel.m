@@ -55,6 +55,8 @@
         _timeFrame = CGRectMake(timeFrameX, timeFrameY, timeFrameW, timeFrameH);
     }
     
+    
+    
     //2.头像的Frame
     CGFloat iconFrameX = messageModel.isFromOther ? padding : (frame.size.width - padding - iconW);
     CGFloat iconFrameY = CGRectGetMaxY(_timeFrame);
@@ -93,6 +95,7 @@
     
     //1.时间的Frame
     //    _timeFrame = CGRectMake(0, 0,MAINSCRREN_W,0);
+    _timeFrame = CGRectZero;
     if (messageModel.showTime) {
         CGFloat timeFrameX = 0;
         CGFloat timeFrameY = 0;
@@ -148,33 +151,17 @@
     
     EMMessageBodyType messageBodyType = messageModel.messageBodyType;
     switch (messageBodyType) {
-        case EMMessageBodyTypeImage:
-        {
-            CGSize imageSize = messageModel.imageMessageBody.size;
-            textMaxSize = CGSizeMake(MAINSCRREN_W-(2 * padding + iconW)*2+FLEXIBLE_NUM(5),imgMaxH);
-            
-            textRealSize = imageSize;
-            if (textRealSize.height > textMaxSize.height) {
-                textRealSize = CGSizeMake((textMaxSize.height-padding*2)/imageSize.height*imageSize.width,textMaxSize.height);
-            }
-            if (textRealSize.width > textMaxSize.width) {
-                textRealSize = CGSizeMake(textMaxSize.width,textRealSize.height);
-            }
-            
-        }
-            break;
-        case EMMessageBodyTypeLocation:
-        {
-            textRealSize = CGSizeMake(locationW,locationH);
-        }
-            break;
         case EMMessageBodyTypeVoice:
         {
             CGSize voiceSize = [@"后台傻逼~后台傻逼~" sizeWithFont:[UIFont systemFontOfSize:FLEXIBLE_NUM(14.0)] maxSize:textMaxSize];
             textRealSize = CGSizeMake(voiceSize.width,voiceSize.height+textPadding*2+2);
         }
             break;
-            
+        case EMMessageBodyTypeCustom:
+        {
+            textRealSize = [self textRealSizeWithMessageExt:messageModel.messageExt];
+        }
+            break;
         default:
             break;
     }
@@ -183,6 +170,23 @@
     _textFrame = (CGRect){textFrameX,textFrameY,textRealSize};
 }
 
+- (CGSize)textRealSizeWithMessageExt:(NSDictionary *)messageExt
+{
+    NSInteger resultValue = [messageExt[@"resultValue"] integerValue];
+    CGSize textRealSize = CGSizeZero;
+    switch (resultValue) {
+        case 1://摇钱树
+        {
+            textRealSize = CGSizeMake(100, 100);
+        }
+            break;
+            
+        default:
+            textRealSize = CGSizeZero;
+            break;
+    }
+    return textRealSize;
+}
 
 
 @end

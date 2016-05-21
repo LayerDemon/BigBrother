@@ -28,8 +28,8 @@ typedef void (^PlayBlock)(BOOL playing, ChatMessageModel *messageModel);
 
 + (id)defaultManager;
 
-//default
-- (void)showBrowserWithImages:(NSArray *)imageArray;
+////default
+//- (void)showBrowserWithImages:(NSArray *)imageArray;
 
 /**
  *  准备播放语音文件

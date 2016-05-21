@@ -474,66 +474,65 @@
 - (void)cell:(ChatViewCell *)cell clickedIconBtn:(UIButton *)sender
 {
     //    NSString *chatterName = cell.cellFrame.messageModel.message.from;
-    ChatMessageModel *messageModel = cell.cellFrameModel.messageModel;
-    NSDictionary *chatterDic = messageModel.isFromOther ? messageModel.otherDic : messageModel.userDic;
+//    ChatMessageModel *messageModel = cell.cellFrameModel.messageModel;
+//    NSDictionary *chatterDic = messageModel.isFromOther ? messageModel.otherDic : messageModel.userDic;
     
-    if (![chatterDic[@"id"] isEqualToNumber:self.userDic[@"id"]]) {
-        NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithDictionary:chatterDic];
-        if (!mDic[@"uid"]) {
-            [mDic setObject:mDic[@"id"] forKey:@"uid"];
-        }
-//        PersonalViewController *friendDetailVC = [[PersonalViewController alloc]initWithCurrentUserDic:mDic];
-//        friendDetailVC.canPush = (self.conversation.conversationType != eConversationTypeChat);
-//        [self.navigationController pushViewController:friendDetailVC animated:YES];
-    }
+//    if (![chatterDic[@"id"] isEqualToNumber:self.userDic[@"id"]]) {
+//        NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithDictionary:chatterDic];
+//        if (!mDic[@"uid"]) {
+//            [mDic setObject:mDic[@"id"] forKey:@"uid"];
+//        }
+////        PersonalViewController *friendDetailVC = [[PersonalViewController alloc]initWithCurrentUserDic:mDic];
+////        friendDetailVC.canPush = (self.conversation.conversationType != eConversationTypeChat);
+////        [self.navigationController pushViewController:friendDetailVC animated:YES];
+//    }
 }
 
 //#warning -------- 长按弹出举报选项弹框~
-//举报相关
-- (void)chatViewCell:(ChatViewCell *)cell longPressGestureRecognizer:(UILongPressGestureRecognizer *)sender
-{
-    ChatMessageModel *messageModel = cell.cellFrameModel.messageModel;
-    NSDictionary *chatterDic = messageModel.isFromOther ? messageModel.otherDic : messageModel.userDic;
-    NSString *buttonTitle1 = [NSString stringWithFormat:@"取消%@",ACTIONSTYLE_CANCEL];
-    NSString *buttonTitle2 = [NSString stringWithFormat:@"举报%@",ACTIONSTYLE_DESTRUCTIVE];
-    NSString *buttonTitle3 = [NSString stringWithFormat:@"添加备忘%@",ACTIONSTYLE_NORMAL];
-    NSMutableArray *buttonTitleArray = [NSMutableArray arrayWithArray:@[buttonTitle3,buttonTitle2,buttonTitle1]];
-    self.longGestureCell = cell;
-    if (![chatterDic[@"id"] isEqualToNumber:self.userDic[@"id"]]) {
-        self.coseImage = nil;
-        switch (messageModel.messageBodyType) {
-            case EMMessageBodyTypeText:
-                self.coseContent = messageModel.text;
-                break;
-            case EMMessageBodyTypeImage:
-            {
-                self.coseContent = @"";
-                self.coseImage = [UIImage imageWithContentsOfFile:messageModel.imageMessageBody.thumbnailLocalPath];
-            }
-                break;
-            case EMMessageBodyTypeLocation:
-                self.coseContent = [NSString stringWithFormat:@"latitude:%lf,longtitude:%lf",messageModel.locationMessageBody.latitude,messageModel.locationMessageBody.longitude];
-                break;
-            default:
-                self.coseContent = @"未知消息";
-                break;
-        }
-        self.reportTypeId = chatterDic[@"id"];
-//        self.topicReportTypeEnum = messageModel.message.chatType == EMChatTypeGroupChat ? topicReportTypeEnum_GROUP : topicReportTypeEnum_PERSONAGE;
-        //弹出举报框
-//        if (messageModel.message.messageType == eMessageTypeGroupChat) {
-//            [buttonTitleArray removeObject:buttonTitle3];
+////举报相关
+//- (void)chatViewCell:(ChatViewCell *)cell longPressGestureRecognizer:(UILongPressGestureRecognizer *)sender
+//{
+//    ChatMessageModel *messageModel = cell.cellFrameModel.messageModel;
+//    NSDictionary *chatterDic = messageModel.isFromOther ? messageModel.otherDic : messageModel.userDic;
+//    NSString *buttonTitle1 = [NSString stringWithFormat:@"取消%@",ACTIONSTYLE_CANCEL];
+//    NSString *buttonTitle2 = [NSString stringWithFormat:@"举报%@",ACTIONSTYLE_DESTRUCTIVE];
+//    NSString *buttonTitle3 = [NSString stringWithFormat:@"添加备忘%@",ACTIONSTYLE_NORMAL];
+//    NSMutableArray *buttonTitleArray = [NSMutableArray arrayWithArray:@[buttonTitle3,buttonTitle2,buttonTitle1]];
+//    self.longGestureCell = cell;
+//    if (![chatterDic[@"id"] isEqualToNumber:self.userDic[@"id"]]) {
+//        self.coseImage = nil;
+//        switch (messageModel.messageBodyType) {
+//            case EMMessageBodyTypeText:
+//                self.coseContent = messageModel.text;
+//                break;
+//            case EMMessageBodyTypeImage:
+//            {
+//                self.coseContent = @"";
+//                self.coseImage = [UIImage imageWithContentsOfFile:messageModel.imageMessageBody.thumbnailLocalPath];
+//            }
+//                break;
+//            case EMMessageBodyTypeLocation:
+//                self.coseContent = [NSString stringWithFormat:@"latitude:%lf,longtitude:%lf",messageModel.locationMessageBody.latitude,messageModel.locationMessageBody.longitude];
+//                break;
+//            default:
+//                self.coseContent = @"未知消息";
+//                break;
 //        }
-        
-    }else{
-        if (messageModel.message.chatType == EMChatTypeGroupChat) {
-            return;
-        }
-        [buttonTitleArray removeObject:buttonTitle2];
-    }
-    [self showActionSheetViewWithTitle:TITLE_ALERT message:nil buttonTitles:buttonTitleArray];
-    
-}
+//        self.reportTypeId = chatterDic[@"id"];
+////        self.topicReportTypeEnum = messageModel.message.chatType == EMChatTypeGroupChat ? topicReportTypeEnum_GROUP : topicReportTypeEnum_PERSONAGE;
+//        //弹出举报框
+////        if (messageModel.message.messageType == eMessageTypeGroupChat) {
+////            [buttonTitleArray removeObject:buttonTitle3];
+////        }
+//        
+//    }else{
+//        if (messageModel.message.chatType == EMChatTypeGroupChat) {
+//            return;
+//        }
+//        [buttonTitleArray removeObject:buttonTitle2];
+//    }
+//    [self showActionSheetViewWithTitle:TITLE_ALERT message:nil buttonTitles:buttonTitleArray];
+//}
 
 //重发消息
 - (void)chatViewCell:(ChatViewCell *)cell clickedSendStateBtn:(UIButton *)sender
@@ -548,7 +547,7 @@
 {
     [cell.voiceImageView startAnimating];
     ChatMessageModel *model = cell.cellFrameModel.messageModel;
-    EMVoiceMessageBody *body = (EMVoiceMessageBody*)model.message.body;
+    EMVoiceMessageBody *body = (EMVoiceMessageBody*)model.messageBody;
     EMDownloadStatus downloadStatus = [body downloadStatus];
     if (downloadStatus == EMDownloadStatusDownloading) {
         [BYToastView showToastWithMessage:NSEaseLocalizedString(@"message.downloadingAudio", @"downloading voice, click later")];
@@ -562,34 +561,32 @@
     }
     
     // 播放音频
-    if (model.messageBodyType == EMMessageBodyTypeVoice) {
-        //发送已读回执
-        [self sendHasReadResponseForMessages:@[model.message] isRead:YES];
+    //发送已读回执
+    [self sendHasReadResponseForMessages:@[model.message] isRead:YES];
+    __weak ChatViewController *weakSelf = self;
+    
+    
+    BOOL isPrepare = [[EaseMessageReadManager defaultManager] prepareMessageAudioModel:model updateViewCompletion:^(ChatMessageModel *prevAudioModel, ChatMessageModel *currentAudioModel) {
+        if (prevAudioModel || currentAudioModel) {
+            [weakSelf.tableView reloadData];
+        }
+    }];
+    
+    if (isPrepare) {
+        _isPlayingAudio = YES;
         __weak ChatViewController *weakSelf = self;
-        
-        
-        BOOL isPrepare = [[EaseMessageReadManager defaultManager] prepareMessageAudioModel:model updateViewCompletion:^(ChatMessageModel *prevAudioModel, ChatMessageModel *currentAudioModel) {
-            if (prevAudioModel || currentAudioModel) {
+        [[EMCDDeviceManager sharedInstance] enableProximitySensor];
+        [[EMCDDeviceManager sharedInstance] asyncPlayingWithPath:model.fileLocalPath completion:^(NSError *error) {
+            [[EaseMessageReadManager defaultManager] stopMessageAudioModel];
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
-            }
+                weakSelf.isPlayingAudio = NO;
+                [[EMCDDeviceManager sharedInstance] disableProximitySensor];
+            });
         }];
-        
-        if (isPrepare) {
-            _isPlayingAudio = YES;
-            __weak ChatViewController *weakSelf = self;
-            [[EMCDDeviceManager sharedInstance] enableProximitySensor];
-            [[EMCDDeviceManager sharedInstance] asyncPlayingWithPath:model.fileLocalPath completion:^(NSError *error) {
-                [[EaseMessageReadManager defaultManager] stopMessageAudioModel];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.tableView reloadData];
-                    weakSelf.isPlayingAudio = NO;
-                    [[EMCDDeviceManager sharedInstance] disableProximitySensor];
-                });
-            }];
-        }
-        else{
-            _isPlayingAudio = NO;
-        }
+    }
+    else{
+        _isPlayingAudio = NO;
     }
 }
 
@@ -971,7 +968,7 @@
 //    NSLog(@"------");
 //    
 //}
-//消息已送达
+//消息已送达回执
 - (void)didReceiveHasDeliveredAcks:(NSArray *)aMessages
 {
     for (EMMessage *message in aMessages) {
@@ -1045,10 +1042,7 @@
         }
     }
 }
-//-(void)didReceiveCmdMessage:(EMMessage *)message
-//{
-//    
-//}
+
 
 //附件下载完成后~
 - (void)didMessageAttachmentsStatusChanged:(EMMessage *)aMessage
@@ -1110,10 +1104,8 @@
 - (void)didLoginFromOtherDevice
 {
     [self showAlertControlWithMessage:@"另一设备登录"];
+    [BBUserDefaults resetLoginStatus];
 }
-
-
-
 
 
 #pragma mark - 发送消息~
@@ -1220,92 +1212,13 @@
 #pragma mark - 系统弹框处理
 - (void)clickedAlertButtonWithMessage:(NSString *)message buttonTitle:(NSString *)buttonTitle
 {
-    if (!message) {
-        if ([buttonTitle isEqualToString:@"相机"]) {
-            [self takePhone];
-        }
-        if ([buttonTitle isEqualToString:@"相册"]) {
-            [self localPhone];
-        }
-        if ([buttonTitle isEqualToString:@"举报"]) {
-//            [CONTENTREPORT_MANAGER showReportAlertWithTypeId:self.reportTypeId topicReportTypeEnum:self.topicReportTypeEnum otherContent:self.coseContent coseImage:self.coseImage];
-        }
-//        if ([buttonTitle isEqualToString:@"添加备忘"]) {
-//            //设置备忘
-//            NSString *url = [NSString stringWithFormat:@"/v2/memorandum"];
-////            NSDictionary * self.longGestureCell.cellFrameModel.messageModel.otherDic
-//            ChatMessageModel *messageModel = self.longGestureCell.cellFrameModel.messageModel;
-//            NSDictionary *otherDic = messageModel.otherDic;
-//            
-//            NSString *content = [NSString stringWithFormat:@"\n\n%@ %@\n%@",otherDic[@"nickname"],messageModel.time,messageModel.text];
-//            if (!messageModel.isFromOther) {
-//                content = [NSString stringWithFormat:@"\n\n我 %@\n%@",messageModel.time,messageModel.text];
-//            }
-//            
-//            NSDictionary *params = @{@"uid":self.userDic[@"uid"],
-//                                     @"memorandumUid":otherDic[@"uid"],
-//                                     @"content":content,
-//                                     @"requestMethodEnum":@"POST",
-//                                     @"token":[NSString  tokenString]};
-//            
-//            [NetworkingManager postWithURL:url params:params successAction:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                
-//                [AppDelegate showHintLabelWithMessage:@"添加备忘成功~"];
-//                
-//            } failAction:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                
-//            }];
-//        }
-    }
     if ([message isEqualToString:MESSAGE_REPEAT]) {
         if ([buttonTitle isEqualToString:@"重发"]) {
             [self repeatMessage:self.repeatMessage];
-            
         }
     }
-    
 }
-//打开相机
--(void)takePhone
-{
-    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    if (status == AVAuthorizationStatusRestricted || status ==AVAuthorizationStatusDenied)
-    {
-        [self showAlertControlWithMessage:MESSAGE_NOTOPENCAERA];
-        return;
-    }
-    
-//    if([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0) {
-//        
-//        self.modalPresentationStyle=UIModalPresentationOverFullScreen;
-//        
-//    }
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
-    {
-        _picker = [[UIImagePickerController alloc] init];
-        _picker.delegate = self;
-        
-        _picker.allowsEditing = NO;
-        _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:_picker animated:YES completion:^{
-            
-        }];
-    }
-    else{
-        [AppDelegate showHintLabelWithMessage:@"据说相机无法正常使用~"];
-    }
-}
-//打开相册
--(void)localPhone
-{
-    _picker = [[UIImagePickerController alloc] init];
-    _picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    _picker.delegate = self;
-    _picker.allowsEditing = NO;
-    [self presentViewController:_picker animated:YES completion:^{
-        
-    }];
-}
+
 
 //重发消息
 - (void)repeatMessage:(EMMessage *)message

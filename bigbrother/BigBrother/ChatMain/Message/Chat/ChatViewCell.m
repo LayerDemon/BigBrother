@@ -17,8 +17,6 @@
 @property (strong, nonatomic) UIButton *iconBtn;
 @property (strong, nonatomic) UIButton *textBtn;
 @property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) UILabel *addrLabel;
-
 
 @end
 
@@ -32,8 +30,8 @@
         self.contentView.backgroundColor = [UIColor clearColor];
         
         
-        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressGestureRecognizer:)];
-        [self addGestureRecognizer:longPressGesture];
+//        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressGestureRecognizer:)];
+//        [self addGestureRecognizer:longPressGesture];
         
         [self.textBtn.titleLabel OpenEdit];
         
@@ -87,20 +85,6 @@
     return _textBtn;
 }
 
-- (UILabel *)addrLabel
-{
-    if (!_addrLabel) {
-        _addrLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,locationW-textPadding/2,FLEXIBLE_NUM(35)-textPadding)];
-        _addrLabel.textAlignment = NSTextAlignmentCenter;
-        _addrLabel.textColor = [UIColor whiteColor];
-        _addrLabel.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(10)];
-        _addrLabel.numberOfLines = 2;
-        _addrLabel.backgroundColor = [UIColor clearColor];
-        _addrLabel.hidden = YES;
-    }
-    return _addrLabel;
-}
-
 - (UIButton *)sendStateBtn
 {
     if (!_sendStateBtn) {
@@ -126,43 +110,27 @@
     return _voiceImageView;
 }
 
-//- (UIActivityIndicatorView *)indicatorView
+#pragma mark - 按钮方法
+//- (void)longPressGestureRecognizer:(UILongPressGestureRecognizer *)sender
 //{
-//    if (!_indicatorView) {
-//        _indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//        //        _indicatorView.frame = FLEXIBLE_FRAME(0,0,20, 20);
-//        _indicatorView.hidesWhenStopped = YES;
+//    if (sender.state == UIGestureRecognizerStateBegan) {
+////        [self.delegate chatViewCell:self longPressGestureRecognizer:sender];
 //    }
-//    return _indicatorView;
 //}
 
-#pragma mark - 按钮方法
-- (void)longPressGestureRecognizer:(UILongPressGestureRecognizer *)sender
-{
-    if (sender.state == UIGestureRecognizerStateBegan) {
-//        [self.delegate chatViewCell:self longPressGestureRecognizer:sender];
-    }
-}
-
+//点击头像
 - (void)iconBtnPressed:(UIButton *)sender
 {
     [self.delegate cell:self clickedIconBtn:sender];
 }
 
+//点击内容
 - (void)contentBtnPressed:(UIButton *)sender
 {
     EMMessageBodyType messageBodyType = self.cellFrameModel.messageModel.messageBodyType;
     switch (messageBodyType) {
-        case EMMessageBodyTypeImage:
-            //显示大图
-            [self showLocalImage];
-            break;
-        case EMMessageBodyTypeLocation:
-            //跳转到地图
-            [self pushLocationVC];
-            break;
         case EMMessageBodyTypeVoice:
-            //跳转到地图
+            //播放音频
             [self.delegate chatViewCell:self clickedVoiceBtn:sender];
             break;
             
@@ -184,12 +152,7 @@
 {
     self.cellFrameModel = cellFrameModel;
     
-    
     ChatMessageModel *messageModel = cellFrameModel.messageModel;
-    
-    //    if (!messageModel.showTime) {
-    //        _timeLabel.hidden = YES;
-    //    }
     
     //时间~
     self.timeLabel.frame = cellFrameModel.timeFrame;
@@ -216,20 +179,19 @@
     }
     self.nameLabel.textAlignment = messageModel.isFromOther ? NSTextAlignmentLeft : NSTextAlignmentRight;
     
-    
     //语音样式
     self.voiceImageView.image = messageModel.isFromOther ? [UIImage imageNamed:@"chat_receiver_audio_playing_full"] : [UIImage imageNamed:@"chat_sender_audio_playing_full"];
     self.voiceImageView.frame = cellFrameModel.voiceFrame;
     NSArray *senderImages = @[[UIImage imageNamed:@"chat_sender_audio_playing_full"], [UIImage imageNamed:@"chat_sender_audio_playing_000"], [UIImage imageNamed:@"chat_sender_audio_playing_001"], [UIImage imageNamed:@"chat_sender_audio_playing_002"],[UIImage imageNamed:@"chat_sender_audio_playing_003"]];
     NSArray *receiverImages = @[[UIImage imageNamed:@"chat_receiver_audio_playing_full"],[UIImage imageNamed:@"chat_receiver_audio_playing000"], [UIImage imageNamed:@"chat_receiver_audio_playing001"], [UIImage imageNamed:@"chat_receiver_audio_playing002"], [UIImage imageNamed:@"chat_receiver_audio_playing003"]];
     self.voiceImageView.animationImages = messageModel.isFromOther ? receiverImages : senderImages;
+    
     //消息~
     self.textBtn.frame = cellFrameModel.textFrame;
     self.textBtn.contentEdgeInsets = cellFrameModel.textEdgeInset;
-    NSString *textBg = messageModel.isFromOther ? @"chat_receiver_bg" : @"chat_sender_bg";
     UIColor *textColor = _525252;
     [self.textBtn setTitleColor:textColor forState:UIControlStateNormal];
-    [self.textBtn setBackgroundImage:[UIImage resizeImage:textBg] forState:UIControlStateNormal];
+    
     [self contentWithMessageModel:messageModel];
     
     
@@ -272,7 +234,7 @@
 //获取对应类型的内容
 - (void)contentWithMessageModel:(ChatMessageModel *)messageModel
 {
-    self.addrLabel.hidden = YES;
+//    self.addrLabel.hidden = YES;
     self.voiceImageView.hidden = YES;
     NSString *textBg = messageModel.isFromOther ? @"chat_receiver_bg" : @"chat_sender_bg";
     [self.textBtn setBackgroundImage:[UIImage resizeImage:textBg] forState:UIControlStateNormal];
@@ -282,20 +244,6 @@
         case EMMessageBodyTypeText:
         {
             [self.textBtn setTitle:messageModel.text forState:UIControlStateNormal];
-        }
-            break;
-        case EMMessageBodyTypeImage:
-        {
-            [self setContentImageWithMessageModel:messageModel];
-        }
-            break;
-        case EMMessageBodyTypeLocation:
-        {
-            [self.textBtn setImage:[UIImage imageNamed:@"chat_location_preview"] forState:UIControlStateNormal];
-            self.addrLabel.hidden = NO;
-            self.addrLabel.text = messageModel.locationMessageBody.address;
-            [self.addrLabel setOriginY:self.textBtn.imageView.frame.size.height-self.addrLabel.frame.size.height];
-            [self.textBtn.imageView addSubview:self.addrLabel];
         }
             break;
         case EMMessageBodyTypeVoice:
@@ -317,86 +265,16 @@
             }
         }
             break;
+        case EMMessageBodyTypeCustom:
+        {
             
+        }
+            break;
         default:
             break;
     }
 }
 
-//设置图片~根据下载情况~
-- (void)setContentImageWithMessageModel:(ChatMessageModel *)messageModel
-{
-    [self.textBtn setTitle:@"" forState:UIControlStateNormal];
-    EMImageMessageBody *imageMessageBody = messageModel.imageMessageBody;
-    [self.textBtn setImage:[UIImage imageNamed:@"h_bg_placeholder"] forState:UIControlStateNormal];
-    [self.textBtn startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    if (imageMessageBody.thumbnailDownloadStatus == EMDownloadStatusSuccessed) {
-        [self.textBtn setImage:[UIImage imageWithContentsOfFile:imageMessageBody.localPath] forState:UIControlStateNormal];
-        [self.textBtn stopAnimationWithTitle:@""];        
-        return;
-    }
-    
-    if (imageMessageBody.thumbnailDownloadStatus == EMDownloadStatusSuccessed) {
-        [self.textBtn setImage:[UIImage imageWithContentsOfFile:imageMessageBody.thumbnailLocalPath] forState:UIControlStateNormal];
-        [self.textBtn stopAnimationWithTitle:@""];
-        return;
-    }
-    
-    if (imageMessageBody.thumbnailDownloadStatus != EMDownloadStatusSuccessed) {
-        [MANAGER_CHAT asyncDownloadMessageThumbnail:messageModel.message progress:nil completion:^(EMMessage *message, EMError *error) {
-            if (!error) {
-                EMImageMessageBody *aImageMessageBody = (EMImageMessageBody *)message.body;
-                [self.textBtn setImage:[UIImage imageWithContentsOfFile:aImageMessageBody.thumbnailLocalPath] forState:UIControlStateNormal];
-            }
-            [self.textBtn stopAnimationWithTitle:@""];
-        }];
-//        [MANAGER_CHAT asyncDownloadMessageAttachments:messageModel.message progress:nil completion:^(EMMessage *aMessage, EMError *error) {
-//            
-//        } onQueue:nil];
-    }
-    
 
-    
-}
-
-
-
-
-#pragma mark - 点击消息后的各种操作
-//显示大图
-- (void)showLocalImage
-{
-    ChatMessageModel *messageModel = self.cellFrameModel.messageModel;
-    EMImageMessageBody *imageMessageBody = messageModel.imageMessageBody;
-    if (imageMessageBody.downloadStatus == EMDownloadStatusSuccessed) {
-        //显示大图
-        [PreviewImageViewController showImage:self.textBtn.imageView];
-    }else{
-        //下载
-        [self.textBtn startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [self.textBtn setImage:[UIImage getGrayImage:self.textBtn.imageView.image] forState:UIControlStateNormal];
-        [MANAGER_CHAT asyncDownloadMessageAttachments:messageModel.message progress:nil completion:^(EMMessage *message, EMError *error) {
-            if (!error) {
-                EMImageMessageBody *aImageMessageBody = (EMImageMessageBody *)message.body;
-                [self.textBtn setImage:[UIImage imageWithContentsOfFile:aImageMessageBody.localPath] forState:UIControlStateNormal];
-                [PreviewImageViewController showImage:self.textBtn.imageView];
-            }else{
-                [AppDelegate showHintLabelWithMessage:@"大图下载失败~"];
-            }
-            [self.textBtn stopAnimationWithTitle:@""];
-        }];
-    }
-}
-
-- (void)pushLocationVC
-{
-//    ChatMessageModel *messageModel = self.cellFrameModel.messageModel;
-//    EMLocationMessageBody *locationMessageBody = messageModel.locationMessageBody;
-//    ShowMapViewController *showMapVC = [[ShowMapViewController alloc]init];
-//    showMapVC.coordinate = CLLocationCoordinate2DMake(locationMessageBody.latitude, locationMessageBody.longitude);
-//    showMapVC.address = locationMessageBody.address;
-//    [self.viewController.navigationController pushViewController:showMapVC animated:YES];
-}
 
 @end

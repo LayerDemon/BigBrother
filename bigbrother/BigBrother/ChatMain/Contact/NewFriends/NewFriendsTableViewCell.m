@@ -104,7 +104,12 @@
         
     }];
     
-    self.userNameLabel.text = [NSString stringWithFormat:@"%@",dataDic[@"nickname"]];
+    NSDictionary *requstTypeDic = @{@"GROUP_APPLY":@"[请求加入群]",
+                                    @"GROUP_INVITE":@"[邀请加入群]",
+                                    @"FRIEND_APPLY":@"[申请添加好友]"};
+    NSString *requestType = dataDic[@"requestType"];
+
+    self.userNameLabel.text = [NSString stringWithFormat:@"%@%@",dataDic[@"nickname"],requstTypeDic[requestType]];
     self.remarkLabel.text = dataDic[@"message"];
     
     NSString *status = dataDic[@"status"];
@@ -119,6 +124,13 @@
     }
     else if ([status isEqualToString:@"NOT_HANDLED"]){
         self.stateLabel.text = @"";
+        if ([dataDic[@"type"] isEqualToString:@"SENT"] ||
+            [dataDic[@"userId"] integerValue] == [[BBUserDefaults getUserID] integerValue]) {
+            self.agreeButton.hidden = YES;
+            self.refuseButton.hidden = YES;
+            self.stateLabel.hidden = NO;
+            self.stateLabel.text = @"待处理~";
+        }
     }else{
         self.stateLabel.text = @"未知~";
     }

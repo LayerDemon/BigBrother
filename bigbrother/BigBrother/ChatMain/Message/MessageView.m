@@ -71,12 +71,7 @@
 #pragma mark - 数据初始化
 - (void)initializeDataSource
 {
-//    [self.viewController.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
     self.dataSource = [NSMutableArray array];
-//    NSArray *conversations = [[EMClient sharedClient].chatManager loadAllConversationsFromDB];
-    
-    //删除一些会话。。（空会话和聊天室会话）
-//    [self removeEmptyConversationsFromDB];
     
     //刷新数据源
     [self refreshDataSource];
@@ -119,6 +114,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc]init];
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
     }
     return _tableView;
 }
@@ -141,15 +137,6 @@
     //获取对话：
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     [cell loadDataWithConversation:conversation];
-//    if (indexPath.row%2==0) {
-//        EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:@"1121" type:EMConversationTypeChat createIfNotExist:YES];
-//        [cell loadDataWithConversation:conversation];
-//    }else{
-//        EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:TESTGROUP_DIC[@"chatgroupid"] type:EMConversationTypeGroupChat createIfNotExist:YES];
-//        [cell loadDataWithConversation:conversation];
-//    }
-    
-//    [cell testLoadDataWithConversation:nil];
     
     return cell;
 }
@@ -208,7 +195,6 @@
 
 - (void)downRefreshData
 {
-//    [self removeEmptyConversationsFromDB];
     [self refreshDataSource];
 //    [self.tableView.mj_header endRefreshing];
 }
@@ -240,6 +226,7 @@
     self.dataSource = [self loadDataSource];
     
     [self.tableView reloadData];
+    [self.tableView.mj_header endRefreshing];
 }
 
 //获取dataSource
