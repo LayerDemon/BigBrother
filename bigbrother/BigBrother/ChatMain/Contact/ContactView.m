@@ -16,12 +16,16 @@
 #define SECTION_TAG 2300
 @interface ContactView () <UITableViewDelegate,UITableViewDataSource>
 
-@property (strong, nonatomic) UITableView       * tableView;
-@property (strong, nonatomic) ContactModel      * contactMoel;
-@property (strong, nonatomic) NSArray           * allFriendsArray;
-@property (strong, nonatomic) NSMutableArray    * dataArray;
-@property (strong, nonatomic) NSMutableArray    * selectedArray;
+@property (strong, nonatomic) UITableView               * tableView;
+@property (strong, nonatomic) ContactModel              * contactMoel;
+@property (strong, nonatomic) NSArray                   * allFriendsArray;
+@property (strong, nonatomic) NSMutableArray            * dataArray;
+@property (strong, nonatomic) NSMutableArray            * selectedArray;
 
+@property (strong, nonatomic) UITextField               * groupNameTextField;
+@property (strong, nonatomic) UITextField               * editGroupNameTextField;
+
+@property (strong, nonatomic) UISearchDisplayController * searchDisplayController;
 
 @end
 
@@ -44,6 +48,8 @@ static NSString * identify = @"Cell";
 - (void)dealloc
 {
     [_contactMoel removeObserver:self forKeyPath:@"allFriendsData"];
+    [_contactMoel removeObserver:self forKeyPath:@"addNewGroupsData"];
+    [_contactMoel removeObserver:self forKeyPath:@"deleteGroupsData"];
 }
 
 #pragma mark -- observe
@@ -74,6 +80,75 @@ static NSString * identify = @"Cell";
         
         [_tableView reloadData];
     }
+    
+    if ([keyPath isEqualToString:@"addNewGroupsData"]) {
+        UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:nil message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        NSDictionary    * dataDic = _contactMoel.addNewGroupsData;
+        if ([dataDic[@"code"] integerValue] == 0) {
+             NSDictionary * dataDic = [BBUserDefaults getUserDic];
+            [_contactMoel getAllFriendWithUserId:dataDic[@"id"]];
+            
+            alertController.message = @"添加分组成功～";
+            [self.viewController presentViewController:alertController animated:YES completion:nil];
+            [self performSelector:@selector(alertControllerDismissWithAlertController:) withObject:alertController afterDelay:1];
+        }else{
+            alertController.message = @"添加分组失败，请稍后重试～";
+            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alertController addAction:sureAction];
+            [self.viewController presentViewController:alertController animated:YES completion:nil];
+        }
+    }
+    
+    //删除分组
+    if ([keyPath isEqualToString:@"deleteGroupsData"]) {
+        UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:nil message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        NSDictionary    * dataDic = _contactMoel.deleteGroupsData;
+        if ([dataDic[@"code"] integerValue] == 0) {
+            NSDictionary * dataDic = [BBUserDefaults getUserDic];
+            [_contactMoel getAllFriendWithUserId:dataDic[@"id"]];
+            
+            alertController.message = @"删除分组成功～";
+            [self.viewController presentViewController:alertController animated:YES completion:nil];
+            [self performSelector:@selector(alertControllerDismissWithAlertController:) withObject:alertController afterDelay:1];
+        }else{
+            alertController.message = @"删除分组失败，请稍后重试～";
+            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alertController addAction:sureAction];
+            [self.viewController presentViewController:alertController animated:YES completion:nil];
+        }
+    }
+    
+    //修改分组
+    if ([keyPath isEqualToString:@"editGroupData"]) {
+        UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:nil message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        NSDictionary    * dataDic = _contactMoel.editGroupData;
+        if ([dataDic[@"code"] integerValue] == 0) {
+            NSDictionary * dataDic = [BBUserDefaults getUserDic];
+            [_contactMoel getAllFriendWithUserId:dataDic[@"id"]];
+            
+            alertController.message = @"修改分组成功～";
+            [self.viewController presentViewController:alertController animated:YES completion:nil];
+            [self performSelector:@selector(alertControllerDismissWithAlertController:) withObject:alertController afterDelay:1];
+        }else{
+            alertController.message = @"修改分组失败，请稍后重试～";
+            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alertController addAction:sureAction];
+            [self.viewController presentViewController:alertController animated:YES completion:nil];
+        }
+    }
+    
+}
+
+#pragma mark -- alterController dismiss
+- (void)alertControllerDismissWithAlertController:(UIAlertController *)alertController
+{
+    [alertController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - 数据初始化
@@ -84,6 +159,9 @@ static NSString * identify = @"Cell";
     _contactMoel = ({
         ContactModel * model = [[ContactModel alloc] init];
         [model addObserver:self forKeyPath:@"allFriendsData" options:NSKeyValueObservingOptionNew context:nil];
+        [model addObserver:self forKeyPath:@"addNewGroupsData" options:NSKeyValueObservingOptionNew context:nil];
+        [model addObserver:self forKeyPath:@"deleteGroupsData" options:NSKeyValueObservingOptionNew context:nil];
+        [model addObserver:self forKeyPath:@"editGroupData" options:NSKeyValueObservingOptionNew context:nil];
         [model getAllFriendWithUserId:dataDic[@"id"]];
         model;
     });
@@ -97,6 +175,36 @@ static NSString * identify = @"Cell";
     UIView * topView = [self createViewWithBackColor:[UIColor whiteColor] subView:self];
     topView.frame = FLEXIBLE_FRAME(0, 0, 320, 105);
     
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, FLEXIBLE_NUM(110), MAINSCRREN_W, MAINSCRREN_H-64-48 - FLEXIBLE_NUM(110)) style:UITableViewStylePlain];
+        _tableView.rowHeight = FLEXIBLE_NUM(47);
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [[UIView alloc] init];
+        _tableView.backgroundColor = [UIColor clearColor];
+        
+        UIView * footerView = [[UIView alloc] initWithFrame:FLEXIBLE_FRAME(0, 0, 320, 50)];
+        footerView.backgroundColor = [UIColor clearColor];
+        
+        //添加分组
+        UIButton * addGroupButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        addGroupButton.backgroundColor = [UIColor whiteColor];
+        addGroupButton.frame = FLEXIBLE_FRAME(0, 10, 320, 40);
+        [addGroupButton addTarget:self action:@selector(addGroupButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [footerView addSubview:addGroupButton];
+        
+        UILabel * titleLabel = [self createLabelWithText:@"添加分组" font:FLEXIBLE_NUM(13) subView:addGroupButton];
+        titleLabel.frame = FLEXIBLE_FRAME(40, 0, 100, 40);
+        
+        UILabel * addLabel = [self createLabelWithText:@"＋" font:FLEXIBLE_NUM(20) subView:addGroupButton];
+        addLabel.frame = FLEXIBLE_FRAME(0, 0, 40, 40);
+        addLabel.textAlignment = NSTextAlignmentCenter;
+        addLabel.textColor = [UIColor lightGrayColor];
+        
+        _tableView.tableFooterView = footerView;
+    }
+    [_tableView registerClass:[ContactTableViewCell class] forCellReuseIdentifier:identify];
+    
     //搜索按钮
     UIButton * searchBut = [self createButtonWithTitle:@"  搜索" font:FLEXIBLE_NUM(13) subView:topView];
     searchBut.frame = FLEXIBLE_FRAME(30, 10, 260, 30);
@@ -106,6 +214,38 @@ static NSString * identify = @"Cell";
     [searchBut setImage:[UIImage imageNamed:@"icon_sous"] forState:UIControlStateNormal];
     [searchBut setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
+//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:FLEXIBLE_FRAME(0, 8, 320, 34)];
+//    searchBar.placeholder = @"搜索";
+//    searchBar.backgroundColor = [UIColor whiteColor];
+//    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+//    [topView addSubview:searchBar];
+//    
+//    for (UIView *subview in searchBar.subviews) {
+//        for(UIView* grandSonView in subview.subviews){
+//            if ([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+//                grandSonView.alpha = 0.0f;
+//            }else if([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarTextField")] ){
+//                NSLog(@"Keep textfiedld bkg color");
+//            }else{
+//                grandSonView.alpha = 0.0f;
+//            }
+//        }//for cacheViews
+//    }//subviews
+//    
+//    // 添加 searchbar 到 headerview
+//    self.tableView.tableHeaderView = topView;
+//    
+//    // 用 searchbar 初始化 SearchDisplayController
+//    // 并把 searchDisplayController 和当前 controller 关联起来
+//    _searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self.viewController];
+//    
+//    // searchResultsDataSource 就是 UITableViewDataSource
+//    _searchDisplayController.searchResultsDataSource = self;
+//    // searchResultsDelegate 就是 UITableViewDelegate
+//    _searchDisplayController.searchResultsDelegate = self;
+//    _searchDisplayController.searchResultsTableView.rowHeight = FLEXIBLE_NUM(50);
+//    [_searchDisplayController.searchResultsTableView registerClass:[ContactTableViewCell class] forCellReuseIdentifier:identify];
+//    
     NSArray * titleArray = [NSArray arrayWithObjects:@"新朋友",@"门派", nil];
     for (int i = 0; i < 2; i ++) {
         UIButton * topButton = [self createButtonWithTitle:nil font:0 subView:topView];
@@ -129,18 +269,55 @@ static NSString * identify = @"Cell";
     
     [self addSubview:self.tableView];
 }
-#pragma mark - 各种Getter
-- (UITableView *)tableView
+
+#pragma mark -- 长按手势
+- (void)longPressGesture:(UILongPressGestureRecognizer *)gesture
 {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, FLEXIBLE_NUM(110), MAINSCRREN_W, MAINSCRREN_H-FLEXIBLE_NUM(110)-64-48) style:UITableViewStylePlain];
-        _tableView.rowHeight = FLEXIBLE_NUM(47);
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableFooterView = [[UIView alloc] init];
-    }
-    [_tableView registerClass:[ContactTableViewCell class] forCellReuseIdentifier:identify];
-    return _tableView;
+    NSDictionary * dataDic = [BBUserDefaults getUserDic];
+
+    NSInteger index = gesture.view.tag - SECTION_TAG;
+    
+    NSLog(@"wocaonimaIndex  -- %ld",index);
+    
+    
+    NSString * messageString = [NSString stringWithFormat:@"请选择你对分类“%@”的操作",_dataArray[index][@"name"]];
+     UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"分类管理" message:messageString preferredStyle:UIAlertControllerStyleActionSheet];
+     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"修改该分类" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         NSString * titleString= [NSString stringWithFormat:@"修改分类“%@”",_dataArray[index][@"name"]];
+         UIAlertController  * editAlterController = [UIAlertController alertControllerWithTitle:titleString message:@"请输入新的分类名" preferredStyle:UIAlertControllerStyleAlert];
+         [editAlterController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+             _editGroupNameTextField = textField;
+         }];
+        UIAlertAction * sureAction2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [_contactMoel editGroupWithFriendsGroupId:_dataArray[index][@"id"] userId:dataDic[@"id"] name:_editGroupNameTextField.text orderBy:[_dataArray[index][@"orderBy"] integerValue]];
+        }];
+        UIAlertAction *  cancelAction2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [editAlterController addAction:sureAction2];
+        [editAlterController addAction:cancelAction2];
+        [self.viewController presentViewController:editAlterController animated:YES completion:nil];
+    }];
+    [alertController addAction:sureAction];
+    UIAlertAction * delAction = [UIAlertAction actionWithTitle:@"删除该分类" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController  * editAlterController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该分类下还有好友，移除好友后才能删除分类～" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * sureAction2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          
+        }];
+        UIAlertAction *  cancelAction2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [editAlterController addAction:sureAction2];
+        [editAlterController addAction:cancelAction2];
+        if ([_dataArray[index][@"friends"] count] > 0) {
+            [self.viewController presentViewController:editAlterController animated:YES completion:nil];
+            return ;
+        }
+        
+        [_contactMoel deleteGroupWithFriendsGroupId:_dataArray[index][@"id"] userId:dataDic[@"id"]];
+    }];
+    [alertController addAction:delAction];
+    UIAlertAction *  cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    [self.viewController presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 #pragma mark - <UITableViewDataSource,UITableViewDelegate>
@@ -180,6 +357,10 @@ static NSString * identify = @"Cell";
     headerButton.backgroundColor = [UIColor whiteColor];
     [headerButton addTarget:self action:@selector(sectionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
+    UILongPressGestureRecognizer * longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
+    [headerButton addGestureRecognizer:longPressGesture];
+
+    
     UILabel * headerTitleLabel = [self createLabelWithText:_allFriendsArray[section][@"name"] font:FLEXIBLE_NUM(13) subView:headerButton];
     headerTitleLabel.frame = FLEXIBLE_FRAME(40, 0, 150, 40);
     
@@ -196,6 +377,35 @@ static NSString * identify = @"Cell";
     
     return headerButton;
 }
+
+////tableView footer
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return FLEXIBLE_NUM(50);
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    UIView * footerView = [[UIView alloc] initWithFrame:FLEXIBLE_FRAME(0, 0, 320, 50)];
+//    footerView.backgroundColor = [UIColor clearColor];
+//    
+//    //添加分组
+//    UIButton * addGroupButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    addGroupButton.backgroundColor = [UIColor whiteColor];
+//    addGroupButton.frame = FLEXIBLE_FRAME(0, 10, 320, 40);
+//    [addGroupButton addTarget:self action:@selector(addGroupButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    [footerView addSubview:addGroupButton];
+//    
+//    UILabel * titleLabel = [self createLabelWithText:@"添加分组" font:FLEXIBLE_NUM(13) subView:addGroupButton];
+//    titleLabel.frame = FLEXIBLE_FRAME(40, 0, 100, 40);
+//    
+//    UILabel * addLabel = [self createLabelWithText:@"＋" font:FLEXIBLE_NUM(20) subView:addGroupButton];
+//    addLabel.frame = FLEXIBLE_FRAME(0, 0, 40, 40);
+//    addLabel.textAlignment = NSTextAlignmentCenter;
+//    addLabel.textColor = [UIColor lightGrayColor];
+//    
+//    return footerView;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -220,6 +430,46 @@ static NSString * identify = @"Cell";
     [self.viewController.navigationController pushViewController:unitedVC animated:YES];
 }
 
+
+- (void)addGroupButtonPressed:(UIButton *)sender
+{
+    UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"添加分组" message:@"请输入新的分组名称" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        _groupNameTextField = textField;
+    }];
+    
+    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"sure   --   %@",_groupNameTextField.text);
+         UIAlertController  * alertController2 = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * sureAction2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertController2 addAction:sureAction2];
+     
+        if (_groupNameTextField.text.length == 0) {
+            alertController2.message = @"分组名称不能为空～";
+            [self.viewController presentViewController:alertController2 animated:YES completion:nil];
+            return;
+        }
+        
+        for (int i = 0; i < _dataArray.count; i ++) {
+            if ([_dataArray[i][@"name"] isEqualToString:_groupNameTextField.text]) {
+                alertController2.message = @"该分组名已存在，请输入其他分组名称～";
+                [self.viewController presentViewController:alertController2 animated:YES completion:nil];
+                return;
+            }
+        }
+        
+         NSDictionary * dataDic = [BBUserDefaults getUserDic];
+        [_contactMoel addNewGroupWithUserId:dataDic[@"id"] name:_groupNameTextField.text orderBy:_dataArray.count + 1];
+    
+    }];
+    UIAlertAction *  cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:sureAction];
+    [alertController addAction:cancelAction];
+    [self.viewController presentViewController:alertController animated:YES completion:nil];
+}
 
 - (void)sectionButtonPressed:(UIButton *)sender
 {

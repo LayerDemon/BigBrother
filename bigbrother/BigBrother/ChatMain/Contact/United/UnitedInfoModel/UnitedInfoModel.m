@@ -64,26 +64,24 @@
 }
 
 //创建门派活动
-- (void)createUnitedActivityWithGroupId:(NSString *)groupId creator:(NSString *)creator name:(NSString *)name startTime:(NSString *)startTime endTime:(NSString *)endTime location:(NSString *)location cost:(NSString *)cost content:(NSString *)content images:(NSArray *)images
+- (void)createUnitedActivityWithGroupId:(NSInteger)groupId creator:(NSInteger)creator name:(NSString *)name startTime:(NSString *)startTime endTime:(NSString *)endTime location:(NSString *)location cost:(NSInteger)cost content:(NSString *)content images:(NSArray *)images
 {
     NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
-    [dataDic setObject:groupId forKey:@"groupId"];
-    [dataDic setObject:creator forKey:@"creator"];
+    [dataDic setObject:@(groupId) forKey:@"groupId"];
+    [dataDic setObject:@(creator) forKey:@"creator"];
     [dataDic setObject:name forKey:@"name"];
+    
+//    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    
+//    NSDate * dateO = [dateFormatter dateFromString:startTime];
+//    NSDate * dateT = [dateFormatter dateFromString:endTime];
+    
     [dataDic setObject:startTime forKey:@"startTime"];
     [dataDic setObject:endTime forKey:@"endTime"];
     [dataDic setObject:location forKey:@"location"];
-    [dataDic setObject:cost forKey:@"cost"];
+    [dataDic setObject:@(cost) forKey:@"cost"];
     [dataDic setObject:content forKey:@"content"];
-//    [dataDic setObject:images forKey:@"images"];
-//    [dataDic setObject:[groupId JSONString]forKey:@"groupId"];
-//    [dataDic setObject:[creator JSONString]forKey:@"creator"];
-//    [dataDic setObject:[name JSONString]forKey:@"name"];
-//    [dataDic setObject:[startTime JSONString] forKey:@"startTime"];
-//    [dataDic setObject:[endTime JSONString]forKey:@"endTime"];
-//    [dataDic setObject:[location JSONString] forKey:@"location"];
-//    [dataDic setObject:[cost JSONString]forKey:@"cost"];
-//    [dataDic setObject:[content JSONString] forKey:@"content"];
     [dataDic setObject:images forKey:@"images"];
     
     NSString * resultString = [NSString jsonStringWithDictionary:dataDic];
@@ -91,7 +89,7 @@
      NSLog(@"dataDic -- %@",dataDic);
     NSLog(@"dataString -- %@",resultString);
     NSDictionary * resultDic = @{@"json":resultString};
-   
+    NSLog(@"DATADiC -- %@",resultDic);
     [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/add" params:resultDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"createUnitedActivityData -- %@",responseObj);
         self.createUnitedActivityData = responseObj;

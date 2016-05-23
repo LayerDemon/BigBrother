@@ -10,4 +10,6 @@
 
 @interface SetSpeakViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary      * unitedDetailDic;
+
 @end

@@ -16,6 +16,10 @@
 
 @property (strong, nonatomic) id        friendsRequestData;
 
+@property (strong, nonatomic) id        addNewGroupsData;
+@property (strong, nonatomic) id        deleteGroupsData;
+@property (strong, nonatomic) id        editGroupData;
+
 @end
 
 @implementation ContactModel
@@ -165,5 +169,57 @@
     }];
 }
 
+//新增分类
+- (void)addNewGroupWithUserId:(NSString *)userId name:(NSString *)name orderBy:(NSInteger)orderBy
+{
+    NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
+    [dataDic setObject:userId forKey:@"userId"];
+    [dataDic setObject:name forKey:@"name"];
+    [dataDic setObject:@(orderBy) forKey:@"orderBy"];
+    
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends/groups/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"dataDic -- %@",responseObj);
+        self.addNewGroupsData = responseObj;
+        
+    } failAction:^(NSError *error, id responseObj) {
+        NSLog(@"error -- %@",error.localizedDescription);
+    }];
+}
+
+//删除分类
+- (void)deleteGroupWithFriendsGroupId:(NSString *)friendsGroupId userId:(NSString *)userId
+{
+    NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
+    [dataDic setObject:userId forKey:@"userId"];
+    [dataDic setObject:friendsGroupId forKey:@"friendsGroupId"];
+    
+    NSLog(@"wocaonima -- %@",dataDic);
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends/groups/delete" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"delete -- %@",responseObj);
+        self.deleteGroupsData = responseObj;
+        
+    } failAction:^(NSError *error, id responseObj) {
+        NSLog(@"error -- %@",error.localizedDescription);
+    }];
+}
+
+//编辑分类
+- (void)editGroupWithFriendsGroupId:(NSString *)friendsGroupId userId:(NSString *)userId name:(NSString *)name orderBy:(NSInteger)orderBy
+{
+    NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
+    [dataDic setObject:userId forKey:@"userId"];
+    [dataDic setObject:friendsGroupId forKey:@"friendsGroupId"];
+    [dataDic setObject:@(orderBy) forKey:@"orderBy"];
+    [dataDic setObject:name forKey:@"name"];
+    
+    NSLog(@"wocaonima -- %@",dataDic);
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends/groups/modify" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"delete -- %@",responseObj);
+        self.editGroupData = responseObj;
+        
+    } failAction:^(NSError *error, id responseObj) {
+        NSLog(@"error -- %@",error.localizedDescription);
+    }];
+}
 
 @end

@@ -31,6 +31,7 @@
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
             label.clipsToBounds = YES;
+            label.layer.borderWidth = 0;
             [self.contentView addSubview:label];
             label;
         });

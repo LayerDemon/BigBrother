@@ -17,6 +17,11 @@
 		2D08123E1CEB6B2B004AEB77 /* add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D08123D1CEB6B2B004AEB77 /* add@3x.png */; };
 		2D0F21E21CEA14C10014B0A1 /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0F21E11CEA14C10014B0A1 /* AddFriendTableViewCell.m */; };
 		2D0F21E41CEA26C00014B0A1 /* add_person@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D0F21E31CEA26C00014B0A1 /* add_person@3x.png */; };
+		2D1D51C21CF00F64003C7E23 /* SetMemberRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D51C11CF00F64003C7E23 /* SetMemberRankViewController.m */; };
+		2D1D51C71CF014A5003C7E23 /* SetRankNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D51C61CF014A5003C7E23 /* SetRankNameViewController.m */; };
+		2D1D51CD1CF01503003C7E23 /* SetLowerRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D51CC1CF01503003C7E23 /* SetLowerRankViewController.m */; };
+		2D1D51D01CF02829003C7E23 /* SetRankNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D51CF1CF02829003C7E23 /* SetRankNameTableViewCell.m */; };
+		2D1D51D41CF02EA4003C7E23 /* EditRankNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D51D31CF02EA4003C7E23 /* EditRankNameViewController.m */; };
 		2D359D981CE7840C00F85F24 /* icon_jt01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D359D961CE7840C00F85F24 /* icon_jt01@3x.png */; };
 		2D359D991CE7840C00F85F24 /* icon_jt02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D359D971CE7840C00F85F24 /* icon_jt02@3x.png */; };
 		2D359D9C1CE7874700F85F24 /* AddFriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D359D9B1CE7874700F85F24 /* AddFriendsModel.m */; };
@@ -608,6 +613,16 @@
 		2D0F21E01CEA14C10014B0A1 /* AddFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendTableViewCell.h; sourceTree = "<group>"; };
 		2D0F21E11CEA14C10014B0A1 /* AddFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableViewCell.m; sourceTree = "<group>"; };
 		2D0F21E31CEA26C00014B0A1 /* add_person@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_person@3x.png"; sourceTree = "<group>"; };
+		2D1D51C01CF00F64003C7E23 /* SetMemberRankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMemberRankViewController.h; sourceTree = "<group>"; };
+		2D1D51C11CF00F64003C7E23 /* SetMemberRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMemberRankViewController.m; sourceTree = "<group>"; };
+		2D1D51C51CF014A5003C7E23 /* SetRankNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetRankNameViewController.h; sourceTree = "<group>"; };
+		2D1D51C61CF014A5003C7E23 /* SetRankNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetRankNameViewController.m; sourceTree = "<group>"; };
+		2D1D51CB1CF01503003C7E23 /* SetLowerRankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLowerRankViewController.h; sourceTree = "<group>"; };
+		2D1D51CC1CF01503003C7E23 /* SetLowerRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLowerRankViewController.m; sourceTree = "<group>"; };
+		2D1D51CE1CF02829003C7E23 /* SetRankNameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetRankNameTableViewCell.h; sourceTree = "<group>"; };
+		2D1D51CF1CF02829003C7E23 /* SetRankNameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetRankNameTableViewCell.m; sourceTree = "<group>"; };
+		2D1D51D21CF02EA4003C7E23 /* EditRankNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditRankNameViewController.h; sourceTree = "<group>"; };
+		2D1D51D31CF02EA4003C7E23 /* EditRankNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditRankNameViewController.m; sourceTree = "<group>"; };
 		2D359D961CE7840C00F85F24 /* icon_jt01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_jt01@3x.png"; sourceTree = "<group>"; };
 		2D359D971CE7840C00F85F24 /* icon_jt02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_jt02@3x.png"; sourceTree = "<group>"; };
 		2D359D9A1CE7874700F85F24 /* AddFriendsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsModel.h; sourceTree = "<group>"; };
@@ -1594,6 +1609,36 @@
 			path = "门派活动";
 			sourceTree = "<group>";
 		};
+		2D1D51C31CF01496003C7E23 /* 设置等级头衔 */ = {
+			isa = PBXGroup;
+			children = (
+				2D1D51D11CF02E93003C7E23 /* 编辑等级名称 */,
+				2D1D51C51CF014A5003C7E23 /* SetRankNameViewController.h */,
+				2D1D51C61CF014A5003C7E23 /* SetRankNameViewController.m */,
+				2D1D51CE1CF02829003C7E23 /* SetRankNameTableViewCell.h */,
+				2D1D51CF1CF02829003C7E23 /* SetRankNameTableViewCell.m */,
+			);
+			path = "设置等级头衔";
+			sourceTree = "<group>";
+		};
+		2D1D51C41CF01496003C7E23 /* 设置下级头衔 */ = {
+			isa = PBXGroup;
+			children = (
+				2D1D51CB1CF01503003C7E23 /* SetLowerRankViewController.h */,
+				2D1D51CC1CF01503003C7E23 /* SetLowerRankViewController.m */,
+			);
+			path = "设置下级头衔";
+			sourceTree = "<group>";
+		};
+		2D1D51D11CF02E93003C7E23 /* 编辑等级名称 */ = {
+			isa = PBXGroup;
+			children = (
+				2D1D51D21CF02EA4003C7E23 /* EditRankNameViewController.h */,
+				2D1D51D31CF02EA4003C7E23 /* EditRankNameViewController.m */,
+			);
+			path = "编辑等级名称";
+			sourceTree = "<group>";
+		};
 		2D359DA01CE8BCE100F85F24 /* UnitedInfoModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1687,6 +1732,10 @@
 		2DCA9EAB1CEE185600FA7458 /* 设置成员头衔 */ = {
 			isa = PBXGroup;
 			children = (
+				2D1D51C31CF01496003C7E23 /* 设置等级头衔 */,
+				2D1D51C41CF01496003C7E23 /* 设置下级头衔 */,
+				2D1D51C01CF00F64003C7E23 /* SetMemberRankViewController.h */,
+				2D1D51C11CF00F64003C7E23 /* SetMemberRankViewController.m */,
 			);
 			path = "设置成员头衔";
 			sourceTree = "<group>";
@@ -4073,8 +4122,10 @@
 				2D8AFF4C1CE23E91009B7F24 /* UnitedViewController.m in Sources */,
 				B81E56DB1C7EED9B00E34A91 /* QNDomain.m in Sources */,
 				8C63E56C1CE05B6B00B4EC1D /* MJRefreshBackNormalFooter.m in Sources */,
+				2D1D51CD1CF01503003C7E23 /* SetLowerRankViewController.m in Sources */,
 				8C0D24801CEC6B6F00C7BE5E /* MoneyTreeViewController.m in Sources */,
 				B89A0CBB1C79B8C30072A6A8 /* AFImageDownloader.m in Sources */,
+				2D1D51D41CF02EA4003C7E23 /* EditRankNameViewController.m in Sources */,
 				2D08122D1CEB560D004AEB77 /* ManagerUnitedViewController.m in Sources */,
 				8C1861FA1CDF378900632CDC /* UIImageView+WebCache.m in Sources */,
 				B81E56DF1C7EED9B00E34A91 /* QNDnspodFree.m in Sources */,
@@ -4246,6 +4297,7 @@
 				B89A0CDA1C79D81C0072A6A8 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8C1864521CDF9CC700632CDC /* EMCDDeviceManagerBase.m in Sources */,
 				B8C4602A1C8581B30060528D /* MyAuthViewController.m in Sources */,
+				2D1D51C71CF014A5003C7E23 /* SetRankNameViewController.m in Sources */,
 				B87F5F9D1C7CAABF00D2EEA8 /* FactoryProductTableViewCell.m in Sources */,
 				8C63E5731CE05B6B00B4EC1D /* UIScrollView+MJExtension.m in Sources */,
 				B88443921C82F91F002766FE /* ForgetPasswordViewController.m in Sources */,
@@ -4289,6 +4341,7 @@
 				8C1861EF1CDF378900632CDC /* SDWebImageCompat.m in Sources */,
 				8C63E51A1CE055F800B4EC1D /* ChatViewCell.m in Sources */,
 				B89A0CBD1C79B8C30072A6A8 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				2D1D51C21CF00F64003C7E23 /* SetMemberRankViewController.m in Sources */,
 				2D8AFF4B1CE23E91009B7F24 /* NewFriendsViewController.m in Sources */,
 				B8A46EB41C88412F001117B4 /* UserWithDrawViewController.m in Sources */,
 				B89681F01C7B04E300E7A8E6 /* CarProductTableViewCell.m in Sources */,
@@ -4310,6 +4363,7 @@
 				8C63E56D1CE05B6B00B4EC1D /* MJRefreshBackStateFooter.m in Sources */,
 				B89A0CA31C79B8B50072A6A8 /* AFURLResponseSerialization.m in Sources */,
 				8C6B05E31CE567BF003188E1 /* EaseRecordView.m in Sources */,
+				2D1D51D01CF02829003C7E23 /* SetRankNameTableViewCell.m in Sources */,
 				8C63E56E1CE05B6B00B4EC1D /* MJRefreshGifHeader.m in Sources */,
 				B89A0CA41C79B8B50072A6A8 /* AFURLSessionManager.m in Sources */,
 				8C18644E1CDF9CC700632CDC /* EMCDDeviceManager+Media.m in Sources */,
