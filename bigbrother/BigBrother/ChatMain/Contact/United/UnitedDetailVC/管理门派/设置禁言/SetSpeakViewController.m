@@ -7,10 +7,13 @@
 //
 
 #import "SetSpeakViewController.h"
+#import "UnitedInfoModel.h"
 
 @interface SetSpeakViewController ()
 
-@property (strong, nonatomic) UISwitch      * mainSwitch;
+@property (strong, nonatomic) UISwitch              * mainSwitch;
+
+@property (strong, nonatomic) UnitedInfoModel       * unitedInfoModel;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -35,13 +38,53 @@
 
 - (void)dealloc
 {
+    [_unitedInfoModel removeObserver:self forKeyPath:@"setSpeakData"];
+}
 
+#pragma mark -- observe
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"setSpeakData"]) {
+        UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:nil message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        NSDictionary    * dataDic = _unitedInfoModel.setSpeakData;
+        if ([dataDic[@"data"][@"success"] integerValue] == 1) {
+            if (_mainSwitch.on) {
+                alertController.message = @"门派禁言成功～";
+            }else{
+                alertController.message = @"门派解除禁言成功～";
+            }
+            [self presentViewController:alertController animated:YES completion:nil];
+            [self performSelector:@selector(alertControllerDismissWithAlertController:) withObject:alertController afterDelay:1];
+        }else{
+            if (_mainSwitch.on) {
+                alertController.message = @"门派禁言设置失败～";
+            }else{
+                alertController.message = @"门派解除禁言失败～";
+            }
+            
+            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alertController addAction:sureAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+    }
+}
+
+#pragma mark -- alterController dismiss
+- (void)alertControllerDismissWithAlertController:(UIAlertController *)alertController
+{
+    [alertController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
-
+    _unitedInfoModel = ({
+        UnitedInfoModel * model = [[UnitedInfoModel alloc] init];
+        [model addObserver:self forKeyPath:@"setSpeakData" options:NSKeyValueObservingOptionNew context:nil];
+        model;
+    });
 }
 
 - (void)initializeUserInterface
@@ -65,6 +108,14 @@
     _mainSwitch = ({
         UISwitch * mySwitch = [[UISwitch alloc] initWithFrame:FLEXIBLE_FRAME(270, 10, 30, 20)];
         mySwitch.center = CGPointMake(FLEXIBLE_NUM(285), FLEXIBLE_NUM(20));
+        [mySwitch addTarget:self action:@selector(mySwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
+        if (_unitedDetailDic) {
+            if ([_unitedDetailDic[@"status"] isEqualToString:@"BANNED"]) {
+                mySwitch.on = YES;
+            }else{
+                mySwitch.on = NO;
+            }
+        }
         [optionView addSubview:mySwitch];
         mySwitch;
     });
@@ -75,6 +126,17 @@
     bottomLabel.textColor = [UIColor grayColor];
 }
 
+
+#pragma mark -- methods
+- (void)mySwitchValueChanged:(UISwitch *)mySwitch
+{
+    NSDictionary * dataDic = [BBUserDefaults getUserDic];
+    if (mySwitch.on) {
+        [_unitedInfoModel setUnitedSpearkWithGroupId:_unitedDetailDic[@"id"] userId:dataDic[@"id"] isBan:@"true"];
+    }else{
+        [_unitedInfoModel setUnitedSpearkWithGroupId:_unitedDetailDic[@"id"] userId:dataDic[@"id"] isBan:@"false"];
+    }
+}
 
 #pragma mark -- create label
 - (UILabel *)createLabelWithText:(NSString *)text font:(CGFloat)font subView:(UIView *)subView

@@ -121,7 +121,7 @@
 {
     NSDictionary * dataDic = [BBUserDefaults getUserDic];
     
-    [_unitedInfoModel createUnitedActivityWithGroupId:_unitedDic[@"id"] creator:dataDic[@"id"] name:_unitedNameTextField.text startTime:_startTimeTextField.text endTime:_endTimeTextField.text location:_unitedAddressTextField.text cost:_unitedMoneyTextField.text content:_unitedContentTextView.text images:@[@{@"url":_imageString,@"orderBy":@"1"}]];
+    [_unitedInfoModel createUnitedActivityWithGroupId:[_unitedDic[@"id"] integerValue] creator:[dataDic[@"id"] integerValue] name:_unitedNameTextField.text startTime:@"2013-04-13 12:36:54" endTime:@"2013-04-14 12:36:54" location:_unitedAddressTextField.text cost:[_unitedMoneyTextField.text integerValue] content:_unitedContentTextView.text images:@[@{@"url":_imageString,@"orderBy":@(1)}]];
 }
 
 

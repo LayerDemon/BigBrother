@@ -10,7 +10,8 @@
 #import "UnitedTableViewCell.h"
 @interface SetManagerViewController () <UITableViewDelegate,UITableViewDataSource>
 
-@property (strong, nonatomic) UITableView      * tableView;
+@property (strong, nonatomic) UITableView               * tableView;
+@property (strong, nonatomic) NSMutableArray            * dataArray;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -25,6 +26,15 @@ static NSString * identify = @"Cell";
     [self initializeUserInterface];
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.navigationItem.title = @"设置管理员";
+    }
+    return self;
+}
+
 - (void)dealloc
 {
 
@@ -33,14 +43,19 @@ static NSString * identify = @"Cell";
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
-
+    NSArray * memberArray = _unitedDetailDic[@"members"];
+    for (int i = 0; i < [memberArray count]; i ++) {
+        if ([memberArray[i][@"role"] isEqualToString:@"ADMIN"]) {
+            [_dataArray addObject:memberArray[i]];
+        }
+    }
+    
 }
 
 - (void)initializeUserInterface
 {
     self.view.backgroundColor = THEMECOLOR_BACK;
     [self setEdgesForExtendedLayout:UIRectEdgeBottom];
-    
         
     _tableView = ({
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H) style:UITableViewStylePlain];
@@ -58,15 +73,16 @@ static NSString * identify = @"Cell";
 #pragma mark -- <UITableViewDelegate,UITableViewDataSource>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UnitedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    NSDictionary * dataDic = _dataArray[indexPath.row];
     
-//    cell.headImageView
-//    cell.groupNameLabel
+    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
+    cell.groupNameLabel.text = dataDic[@"nameInGroup"];
     
     return cell;
 }

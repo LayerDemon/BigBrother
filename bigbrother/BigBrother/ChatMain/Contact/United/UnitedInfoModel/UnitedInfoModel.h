@@ -30,7 +30,7 @@
 - (void)getUnitedActivityWithGroupId:(NSString *)groupId page:(NSString *)page;
 
 //创建门派活动
-- (void)createUnitedActivityWithGroupId:(NSString *)groupId creator:(NSString *)creator name:(NSString *)name startTime:(NSString *)startTime endTime:(NSString *)endTime location:(NSString *)location cost:(NSString *)cost content:(NSString *)content images:(NSArray *)images;
+- (void)createUnitedActivityWithGroupId:(NSInteger)groupId creator:(NSInteger)creator name:(NSString *)name startTime:(NSString *)startTime endTime:(NSString *)endTime location:(NSString *)location cost:(NSInteger)cost content:(NSString *)content images:(NSArray *)images;
 
 //退出门派
 - (void)exitUnitedWithGroupId:(NSString *)groupId userId:(NSString *)userId;

@@ -10,6 +10,7 @@
 #import "ManagerUnitedViewController.h"
 #import "SetManagerViewController.h"
 #import "SetSpeakViewController.h"
+#import "SetMemberRankViewController.h"
 
 @interface ManagerUnitedViewController ()
 
@@ -81,6 +82,7 @@
     //设置成员头衔
     UIButton * setMemberButton = [self createButtonWithTitle:@"设置成员头衔"];
     setMemberButton.frame = FLEXIBLE_FRAME(0, max_Y, 320, 40);
+    [setMemberButton addTarget:self action:@selector(setMemberButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -88,13 +90,22 @@
 - (void)setManagerButtonPressed:(UIButton *)sender
 {
     SetManagerViewController * setManagerVC = [[SetManagerViewController alloc] init];
+    setManagerVC.unitedDetailDic = _unitedDetailDic;
     [self.navigationController pushViewController:setManagerVC animated:YES];
 }
 
 - (void)setSpearkButtonPressed:(UIButton *)sender
 {
     SetSpeakViewController * setSpeakVC = [[SetSpeakViewController alloc] init];
+    setSpeakVC.unitedDetailDic = _unitedDetailDic;
     [self.navigationController pushViewController:setSpeakVC animated:YES];
+}
+
+- (void)setMemberButtonPressed:(UIButton *)sender
+{
+    SetMemberRankViewController * setMemberVC = [[SetMemberRankViewController alloc] init];
+    setMemberVC.unitedDetailDic = _unitedDetailDic;
+    [self.navigationController pushViewController:setMemberVC animated:YES];
 }
 
 #pragma mrak -- my methods
