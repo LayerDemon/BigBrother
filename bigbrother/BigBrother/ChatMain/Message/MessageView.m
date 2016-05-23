@@ -105,6 +105,7 @@
         label.backgroundColor = [UIColor clearColor];
         label.text = NSLocalizedString(@"network.disconnection", @"Network disconnection");
         [_networkStateView addSubview:label];
+        _networkStateView.hidden = YES;
     }
     return _networkStateView;
 }
@@ -258,6 +259,17 @@
                           if (!message2) {
                               [needRemoveConversations removeObject:obj2];
                               [needRemoveConversations removeObject:obj2];
+                          }
+                          
+                          if ([obj1.conversationId isEqualToString:@"sys_user1"]) {
+                              [needRemoveConversations removeObject:obj1];
+                              [needRemoveConversations addObject:obj1];
+                              
+                          }
+                          
+                          if ([obj2.conversationId isEqualToString:@"sys_user1"]) {
+                              [needRemoveConversations removeObject:obj2];
+                              [needRemoveConversations addObject:obj2];
                           }
                           
                           if(message1.timestamp > message2.timestamp) {

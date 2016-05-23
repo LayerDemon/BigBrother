@@ -22,6 +22,7 @@
 
 @property (strong, nonatomic, readonly) id        getUnitedRankData;
 @property (strong, nonatomic, readonly) id        changeRankNameData;
+@property (strong, nonatomic, readonly) NSDictionary *joinData;
 
 //获取门派资料
 - (void)getUnitedInfoWithId:(NSString *)idString limit:(NSString *)limit;
@@ -50,5 +51,10 @@
 - (void)getUnitedRankWithGroupId:(NSString *)groupId;
 //修改等级名称
 - (void)changeUnitedRankNameWithUserId:(NSString *)userId groupGradeId:(NSString *)groupGradeId name:(NSString *)name;
+
+/**
+ *  申请加入群
+ */
+- (void)postJoinDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId message:(NSString *)message;
 
 @end

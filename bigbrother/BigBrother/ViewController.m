@@ -231,6 +231,9 @@ static NSString *kGroupName = @"GroupName";
             case EMMessageBodyTypeText:
             {
                 messageStr = ((EMTextMessageBody *)messageBody).text;
+                if ([message.conversationId isEqualToString:@"sys_user1"]) {
+                    messageStr = @"你又一条新的请求~";
+                }
             }
                 break;
             case EMMessageBodyTypeImage:

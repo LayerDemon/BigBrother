@@ -11,6 +11,7 @@
 #import "AddFriendTableViewCell.h"
 #import "UnitedTableViewCell.h"
 #import "FriendDetailViewController.h"
+#import "UnitedDetailViewController.h"
 
 #define TOPBUT_TAG 5100
 
@@ -205,7 +206,7 @@
             cell = [[UnitedTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:unitIdentfiy];
         }
         NSDictionary * dataDic = _dataArray[indexPath.row];
-        
+        cell.dataDic = dataDic;
         [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.groupNameLabel.text = dataDic[@"name"];
@@ -225,7 +226,15 @@
         friendDetailVC.currentUserDic = cell.dataDic;
         [self.navigationController pushViewController:friendDetailVC animated:YES];
     }else{                      //门派
-    
+        UnitedTableViewCell *cell = (UnitedTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        UnitedDetailViewController * unitedDeailVC = [[UnitedDetailViewController alloc] init];
+        unitedDeailVC.unitedDic = cell.dataDic;
+        if ([cell.dataDic[@"role"] isEqualToString:@"USER"]) {
+            unitedDeailVC.pushMark = 1;
+        }else{
+            unitedDeailVC.pushMark = 0;
+        }
+        [self.navigationController pushViewController:unitedDeailVC animated:YES];
     }
     
 }

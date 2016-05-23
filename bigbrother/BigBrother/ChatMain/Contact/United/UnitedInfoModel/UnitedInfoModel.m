@@ -24,6 +24,7 @@
 
 @property (strong, nonatomic) id        getUnitedRankData;
 @property (strong, nonatomic) id        changeRankNameData;
+@property (strong, nonatomic) NSDictionary *joinData;
 
 @end
 
@@ -245,6 +246,24 @@
     }];
 }
 
+/**
+ *  申请加入群
+ */
+- (void)postJoinDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId message:(NSString *)message
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/groups/apply",BASE_URL];
+    if ([NSString isBlankStringWithString:message]) {
+        message = @"";
+    }
+    NSDictionary *tempDic = @{@"userId":userId,@"groupId":groupId,@"message":message};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.joinData = resultDic[@"data"];
+        }
+    }];
+}
 
 
 @end

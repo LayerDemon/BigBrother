@@ -10,6 +10,8 @@
 
 @interface UnitedTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) NSDictionary *dataDic;
+
 @property (strong, nonatomic) UIImageView       * headImageView;
 @property (strong, nonatomic) UILabel           * groupNameLabel;
 

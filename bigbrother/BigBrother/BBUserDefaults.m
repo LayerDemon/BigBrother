@@ -46,6 +46,8 @@ static NSString *FirshLuanchSaveKey = @"FirshLuanchSaveKey";
     [self setUserPhone:nil];
     [self setUserPassword:nil];
     [self setIsLogin:NO];
+    //删除数据库
+    [CACHE_MANAGER deleteDatabseWithDbname:DBNAME];
     EMError *error = [[EMClient sharedClient] logout:YES];
     if (!error) {
         NSLog(@"退出成功");

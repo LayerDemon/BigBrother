@@ -15,16 +15,28 @@
 
 @interface UnitedDetailViewController ()
 
+@property (strong, nonatomic) UIButton *joinBtn;
+
 @property (strong, nonatomic) UnitedInfoModel       * unitedInfoModel;
 @property (strong, nonatomic) NSDictionary          * unitedDetailDic;
-
 @property (strong, nonatomic) NSDateFormatter       * dateFormater;
+@property (assign, nonatomic) BOOL isJoinGroup;
+@property (strong, nonatomic) NSDictionary *userDic;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
 @end
 
 @implementation UnitedDetailViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.userDic = [BBUserDefaults getUserDic];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +48,7 @@
 {
     [_unitedInfoModel removeObserver:self forKeyPath:@"unitedDetailData"];
     [_unitedInfoModel removeObserver:self forKeyPath:@"exitUnitedData"];
+    [_unitedInfoModel removeObserver:self forKeyPath:@"joinData"];
 }
 
 #pragma mark -- observe
@@ -43,17 +56,28 @@
 {
     if ([keyPath isEqualToString:@"unitedDetailData"]) {
         _unitedDetailDic = _unitedInfoModel.unitedDetailData[@"data"];
-        [self initializeUserInterface];
+        [GROUPCACHE_MANAGER getGroupDicWithGroupId:_unitedDetailDic[@"id"] completed:^(id responseObject, NSError *error) {
+            if (!error) {
+                self.isJoinGroup = YES;
+            }
+            [self initializeUserInterface];
+        }];
+        
     }
     
     if ([keyPath isEqualToString:@"exitUnitedData"]) {
         
+    }
+    
+    if ([keyPath isEqualToString:@"joinData"]) {
+        [self joinDataParse];
     }
 }
 
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
+    self.isJoinGroup = NO;
     self.view.backgroundColor = THEMECOLOR_BACK;
     [self setEdgesForExtendedLayout:UIRectEdgeBottom];
     
@@ -71,6 +95,7 @@
         UnitedInfoModel * model = [[UnitedInfoModel alloc] init];
         [model addObserver:self forKeyPath:@"unitedDetailData" options:NSKeyValueObservingOptionNew context:nil];
         [model addObserver:self forKeyPath:@"exitUnitedData" options:NSKeyValueObservingOptionNew context:nil];
+        [model addObserver:self forKeyPath:@"joinData" options:NSKeyValueObservingOptionNew context:nil];
         [model getUnitedInfoWithId:_unitedDic[@"id"] limit:@"10000"];
         model;
     });
@@ -113,6 +138,7 @@
     unitedMemberBut.frame = FLEXIBLE_FRAME(0, 150, 320, 40);
     [unitedMemberBut addTarget:self action:@selector(unitedMemberButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
+    
     //成员数量
     UILabel * memberNumLabel = [self createLabelWithText:[NSString stringWithFormat:@"%ld人",[_unitedDetailDic[@"members"] count]] font:FLEXIBLE_NUM(13) subView:unitedMemberBut];
     memberNumLabel.frame = FLEXIBLE_FRAME(260, 0, 30, 40);
@@ -136,8 +162,16 @@
     addMemberButton.frame = FLEXIBLE_FRAME(15 + 50 * memberArray.count, 5, 40, 40);
     [addMemberButton setImage:[UIImage imageNamed:@"add_person@3x"] forState:UIControlStateNormal];
     
-    NSInteger max_Y = 255;
+    //整理门派成员模块到一个视图，方便移动
+    UIView *unitedMemberSuperView = [[UIView alloc]initWithFrame:CGRectMake(0,FLEXIBLE_NUM(150),MAINSCRREN_W,unitedMemberBut.frame.size.height+unitedMemberBGView.frame.size.height)];
+    unitedMemberSuperView.backgroundColor = [UIColor whiteColor];
+    [unitedMemberBut setOriginY:0];
+    [unitedMemberSuperView addSubview:unitedMemberBut];
+    [unitedMemberBGView setOriginY:CGRectGetMaxY(unitedMemberBut.frame)];
+    [unitedMemberSuperView addSubview:unitedMemberBGView];
+    [self.view addSubview:unitedMemberSuperView];
     
+    NSInteger max_Y = 255;
     if (_pushMark == 0) {
         //管理门派
         UIButton * managerUnitedButton = [self createButtonWithTitle:@"管理门派"];
@@ -162,10 +196,47 @@
     [unitedIntrLabel sizeToFit];
     unitedIntrView.frame = CGRectMake(0, FLEXIBLE_NUM(345), MAINSCRREN_W, CGRectGetMaxY(unitedIntrLabel.frame) + 10);
     
+    //整理门派介绍到一个界面
+    UIView *unitedIntrSuperView = [[UIView alloc]initWithFrame:CGRectMake(0, FLEXIBLE_NUM(max_Y),MAINSCRREN_W,unitedIntrButton.frame.size.height+unitedIntrView.frame.size.height)];
+    unitedIntrSuperView.backgroundColor = [UIColor whiteColor];
+    [unitedIntrButton setOriginY:0];
+    [unitedIntrSuperView addSubview:unitedIntrButton];
+    [unitedIntrView setOriginY:CGRectGetMaxY(unitedIntrButton.frame)];
+    [unitedIntrSuperView addSubview:unitedIntrView];
+    [self.view addSubview:unitedIntrSuperView];
+    
     //退出门派
     UIButton * exitUnitedButton = [self createButtonWithTitle:@"退出门派"];
-    exitUnitedButton.frame = CGRectMake(0, CGRectGetMaxY(unitedIntrView.frame) + 10, MAINSCRREN_W, FLEXIBLE_NUM(40));
+    exitUnitedButton.frame = CGRectMake(0, CGRectGetMaxY(unitedIntrSuperView.frame) + 10, MAINSCRREN_W, FLEXIBLE_NUM(40));
     [exitUnitedButton addTarget:self action:@selector(exitUnitedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    if (!self.isJoinGroup) {
+        [unitedMemberSuperView setOriginY:CGRectGetMaxY(unitedActivityBut.frame)+FLEXIBLE_NUM(10)];
+        [unitedIntrSuperView setOriginY:CGRectGetMaxY(unitedMemberSuperView.frame)+FLEXIBLE_NUM(10)];
+        exitUnitedButton.hidden = YES;
+        addMemberButton.hidden = YES;
+        [self.view addSubview:self.joinBtn];
+    }
+}
+
+#pragma mark -- getter
+- (UIButton *)joinBtn
+{
+    if (!_joinBtn) {
+        UIButton *joinBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        joinBtn.frame = CGRectMake(0,0,MAINSCRREN_W-FLEXIBLE_NUM(40),FLEXIBLE_NUM(35));
+        [joinBtn setTitle:@"申请加群" forState:UIControlStateNormal];
+        [joinBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [joinBtn setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
+        [joinBtn addTarget:self action:@selector(joinBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+        joinBtn.backgroundColor = BB_BlueColor;
+        joinBtn.center = CGPointMake(MAINSCRREN_W/2, MAINSCRREN_H-NAVBAR_H-FLEXIBLE_NUM(28)-joinBtn.frame.size.height/2);
+        joinBtn.layer.cornerRadius = FLEXIBLE_NUM(4);
+        joinBtn.layer.masksToBounds = YES;
+        _joinBtn = joinBtn;
+    }
+    return _joinBtn;
 }
 
 #pragma mark -- button pressed
@@ -227,6 +298,13 @@
     }
 }
 
+//申请加群
+- (void)joinBtnPressed:(UIButton *)sender
+{
+    [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [self.unitedInfoModel postJoinDataWithGroupId:_unitedDetailDic[@"id"] userId:self.userDic[@"id"] message:@"让我加入吧~"];
+}
+
 #pragma mrak -- my methods
 - (UIButton *)createButtonWithTitle:(NSString *)title
 {
@@ -277,6 +355,17 @@
     view.backgroundColor = color;
     [subView addSubview:view];
     return view;
+}
+
+
+#pragma mark - 数据处理
+- (void)joinDataParse
+{
+    [self.joinBtn stopAnimationWithTitle:@"已发送申请"];
+    self.joinBtn.backgroundColor = [UIColor whiteColor];
+    self.joinBtn.layer.borderColor = _999999.CGColor;
+    [self.joinBtn setTitleColor:_999999 forState:UIControlStateNormal];
+    self.joinBtn.userInteractionEnabled = NO;
 }
 
 

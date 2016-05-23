@@ -152,7 +152,7 @@ static NSString * identify = @"Cell";
 #pragma mark - NewFriendsTableViewCellDelegate
 - (void)newFriendsCell:(NewFriendsTableViewCell *)cell clickedAgreeBtn:(UIButton *)sender
 {
-    [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.requestDic = cell.dataDic;
     
     self.requestType = self.requestDic[@"requestType"];
@@ -162,13 +162,11 @@ static NSString * identify = @"Cell";
     else if ([self.requestType isEqualToString:HandleType_GROUP_APPLY]){
         [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"id"] action:HandleAction_ACCEPT];
     }
-    
-    
 }
 
 - (void)newFriendsCell:(NewFriendsTableViewCell *)cell clickedRefuseBtn:(UIButton *)sender
 {
-    [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.requestDic = cell.dataDic;
     self.requestType = self.requestDic[@"requestType"];
     if ([self.requestType isEqualToString:HandleType_FRIEND_APPLY]) {
