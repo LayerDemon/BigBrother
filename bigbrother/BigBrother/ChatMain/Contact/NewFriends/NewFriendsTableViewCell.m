@@ -44,6 +44,7 @@
             button.layer.cornerRadius = FLEXIBLE_NUM(5);
             button.layer.borderColor = BB_NaviColor.CGColor;
             button.layer.borderWidth = FLEXIBLE_NUM(1);
+            [button addTarget:self action:@selector(agreeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             button;
         });
         _refuseButton = ({
@@ -53,6 +54,7 @@
             button.layer.cornerRadius = FLEXIBLE_NUM(5);
             button.layer.borderColor = BB_NaviColor.CGColor;
             button.layer.borderWidth = FLEXIBLE_NUM(0.8);
+            [button addTarget:self action:@selector(refuseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             button;
         });
         _stateLabel = ({
@@ -134,6 +136,17 @@
     }else{
         self.stateLabel.text = @"未知~";
     }
+}
+
+#pragma mark -  按钮
+- (void)agreeButtonPressed:(UIButton *)sender
+{
+    [self.delegate newFriendsCell:self clickedAgreeBtn:sender];
+}
+
+- (void)refuseButtonPressed:(UIButton *)sender
+{
+    [self.delegate newFriendsCell:self clickedRefuseBtn:sender];
 }
 
 @end

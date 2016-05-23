@@ -17,7 +17,7 @@
 @property (strong, nonatomic) UISegmentedControl    *segmentedControl;
 @property (strong, nonatomic) MessageView           *messageView;//消息界面
 @property (strong, nonatomic) ContactView           *contactView;       //聊天界面
-@property (strong, nonatomic) NotLoginView                *loginView;//登录界面
+@property (strong, nonatomic) NotLoginView          *loginView;//登录界面
 
 @end
 
@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadChatMainDataSource) name:@"reloadChatMainDataSource" object:nil];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [self initializeDataSource];
     [self initializeUserInterface];
@@ -68,14 +68,13 @@
 #pragma mark - 数据初始化
 - (void)initializeDataSource
 {
-
-
+    [self indexDidChangeForSegmentedControl:self.segmentedControl];
 }
 
 #pragma mark - 视图初始化
 - (void)initializeUserInterface
 {
-    [self indexDidChangeForSegmentedControl:self.segmentedControl];
+    
 }
 #pragma mark - 各种Getter
 - (UISegmentedControl *)segmentedControl
@@ -128,10 +127,11 @@
     }
     if (SegC.selectedSegmentIndex == 0){
         NSLog(@"message");
-        [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self.messageView removeFromSuperview];
         [self.messageView addWithSuperView:self.view];
+        
     }else{
-        [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self.contactView removeFromSuperview];
         [self.view addSubview:self.contactView];
         NSLog(@"address");
         

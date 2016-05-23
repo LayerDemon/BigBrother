@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class NewFriendsTableViewCell;
+
+@protocol NewFriendsTableViewCellDelegate <NSObject>
+
+- (void)newFriendsCell:(NewFriendsTableViewCell *)cell clickedAgreeBtn:(UIButton *)sender;
+- (void)newFriendsCell:(NewFriendsTableViewCell *)cell clickedRefuseBtn:(UIButton *)sender;
+
+@end
+
 @interface NewFriendsTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) NSDictionary *dataDic;
+
+@property (assign, nonatomic) id<NewFriendsTableViewCellDelegate>delegate;
 
 @property (strong, nonatomic) UIImageView       * headImageView;
 @property (strong, nonatomic) UILabel           * userNameLabel;

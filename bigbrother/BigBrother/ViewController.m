@@ -91,14 +91,14 @@ static NSString *kGroupName = @"GroupName";
 #pragma mark - 自定义方法
 - (void)loginEaseMob
 {
-    //登录环信
-//    NSDictionary *userDic = [BBUserDefaults getUserDic];
-//    EMError *error = [[EMClient sharedClient] loginWithUsername:userDic[@"imNumber"] password:[BBUserDefaults getUserPassword]];
-//    if (error) {
-//        [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
-//    }else{
-//        [BYToastView showToastWithMessage:@"聊天服务器连接成功~"];
-//    }
+//    登录环信
+    NSDictionary *userDic = [BBUserDefaults getUserDic];
+    EMError *error = [[EMClient sharedClient] loginWithUsername:userDic[@"imNumber"] password:[BBUserDefaults getUserPassword]];
+    if (error) {
+        [BYToastView showToastWithMessage:@"聊天服务器连接失败~"];
+    }else{
+        [BYToastView showToastWithMessage:@"聊天服务器连接成功~"];
+    }
 }
 
 -(void)setupUnreadMessageCount

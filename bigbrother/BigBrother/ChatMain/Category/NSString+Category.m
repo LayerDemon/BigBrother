@@ -29,6 +29,14 @@
     return [NSString stringWithFormat:@"%@",number];
 }
 
++ (NSString *)jsonStringWithDate:(NSDate *)date
+{
+    NSDateFormatter *format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyy-M-dd HH:mm:ss"];
+    
+    return [NSString stringWithFormat:@"%@",[format stringFromDate:date]];
+}
+
 +(NSString *) jsonStringWithDictionary:(NSDictionary *)dictionary{
     NSArray *keys = [dictionary allKeys];
     NSMutableString *reString = [NSMutableString string];
@@ -60,6 +68,9 @@
         value = [self jsonStringWithArray:object];
     }else if ([object isKindOfClass:[NSNumber class]]){
         value = [self jsonStringWithNumber:object];
+    }else if ([object isKindOfClass:[NSDate class]]){
+        value = [self jsonStringWithDate:object];
+        
     }
     return value;
 }

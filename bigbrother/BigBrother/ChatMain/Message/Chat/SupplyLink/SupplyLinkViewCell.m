@@ -30,7 +30,9 @@
 #pragma mark - 加载数据
 - (void)reloadWithDataDic:(NSDictionary *)dataDic
 {
-
+    self.dataDic = dataDic;
+    self.titleLabel.text = dataDic[@"title"];
+    self.timeLabel.text = dataDic[@"createdTime"];
 }
 
 #pragma mark - 按钮方法

@@ -65,6 +65,9 @@
         NSDictionary * dataDic = responseObj;
         NSLog(@"dataDic -- %@",dataDic);
         self.allGroupData = responseObj;
+        NSArray *groupList = self.allGroupData[@"data"];
+        [GROUPCACHE_MANAGER createGroupListCacheWithGroupList:groupList];
+        
         
     } failAction:^(NSError *error, id responseObj) {
         NSLog(@"error -- %@",error.localizedDescription);

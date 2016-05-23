@@ -55,6 +55,7 @@
     }
     [indicatorView removeFromSuperview];
     self.userInteractionEnabled = YES;
+    self.viewController.view.userInteractionEnabled = YES;
 }
 
 
@@ -82,7 +83,10 @@
             }
             [button stopAnimationWithTitle:nil];
             button.superview.userInteractionEnabled = YES;
-            [BYToastView showToastWithMessage:errorMessage];
+            if (errorMessage) {
+                [BYToastView showToastWithMessage:errorMessage];
+            }
+            button.viewController.view.userInteractionEnabled = YES;
         }
     });
 }

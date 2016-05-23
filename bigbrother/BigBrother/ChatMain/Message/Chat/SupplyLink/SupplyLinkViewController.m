@@ -8,19 +8,41 @@
 
 #import "SupplyLinkViewController.h"
 #import "SupplyLinkViewCell.h"
+#import "ChatModel.h"
 
 @interface SupplyLinkViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
+@property (strong, nonatomic) ChatModel *model;
+@property (strong, nonatomic) NSDictionary *useDic;
+@property (strong, nonatomic) NSMutableArray *listArray;
+@property (assign, nonatomic) NSInteger currentPage;
+@property (assign, nonatomic) NSInteger pageCount;
+
 @end
 
 @implementation SupplyLinkViewController
+
+- (void)dealloc
+{
+    [_model removeObserver:self forKeyPath:@"supplyLinkData"];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.useDic = [BBUserDefaults getUserDic];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    [self loadNavBarView];
     [self initializeDataSource];
     [self initializeUserInterface];
 }
@@ -28,7 +50,9 @@
 #pragma mark - 数据初始化
 - (void)initializeDataSource
 {
-    
+    self.listArray = [NSMutableArray array];
+    [self startTitleIndicator];
+    [self downRefreshData];
 }
 
 #pragma mark - 视图初始化
@@ -52,14 +76,32 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
+        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upRefreshData)];
     }
     return _tableView;
+}
+
+- (ChatModel *)model
+{
+    if (!_model) {
+        _model = [[ChatModel alloc]init];
+        [_model addObserver:self forKeyPath:@"supplyLinkData" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    return _model;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"supplyLinkData"]) {
+        [self supplyLinkDataParse];
+    }
 }
 
 #pragma mark - <UITableViewDataSource,UITableViewDelegate>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.listArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,7 +112,7 @@
         cell = [[SupplyLinkViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
     
-    [cell reloadWithDataDic:nil];
+    [cell reloadWithDataDic:self.listArray[indexPath.row]];
     
     return cell;
 }
@@ -82,7 +124,40 @@
 }
 
 #pragma mark - 自定义方法
+- (void)downRefreshData
+{
+    [self.tableView.mj_footer resetNoMoreData];
+    
+    [self.model getSupplyLinkDataWithSupplyDemandType:@"PROVIDE" creator:self.useDic[@"id"] status:@"NOT_AUDITED" page:1 pageSize:PAGESIZE_NORMAL];
+}
 
+- (void)upRefreshData
+{
+    self.currentPage++;
+    [self.model getSupplyLinkDataWithSupplyDemandType:@"PROVIDE" creator:self.useDic[@"id"] status:@"NOT_AUDITED" page:self.currentPage pageSize:PAGESIZE_NORMAL];
+}
 
+#pragma mark - 数据处理
+- (void)supplyLinkDataParse
+{
+    [self stopTitleIndicator];
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+    
+    if ([self.model.supplyLinkData[@"pageSize"] integerValue] == PAGESIZE_NORMAL) {
+        self.currentPage = [self.model.supplyLinkData[@"page"] integerValue];
+        self.pageCount = [self.model.supplyLinkData[@"totalPages"] integerValue];
+    }
+    
+    if (self.currentPage == 1) {
+        self.listArray = [NSMutableArray arrayWithArray:self.model.supplyLinkData[@"content"]];
+    }else{
+        [self.listArray addObjectsFromArray:self.model.supplyLinkData[@"content"]];
+    }
+    if (self.pageCount <= self.currentPage) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
+    [self.tableView reloadData];
+}
 
 @end

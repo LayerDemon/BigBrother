@@ -200,14 +200,18 @@
             title = @"标题";
         }
         NSMutableAttributedString *attriTitle;
-        attriTitle = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"【%@】%@",product.isSupply?@"供应":@"需求",title]];
-        [attriTitle addAttribute:NSForegroundColorAttributeName
-                           value:(id)BB_BlueColor.CGColor
-                           range:NSMakeRange(0, 4)];
+        NSString *styleStr = product.isSupply?@"供应":@"需求";
+        NSString *tempStr = [NSString stringWithFormat:@"【%@】%@",styleStr,title];
+        attriTitle = [[NSMutableAttributedString alloc] initWithString:tempStr];
+        
         
         [attriTitle addAttribute:NSForegroundColorAttributeName
-                           value:(id)RGBColor(50, 50, 50).CGColor
-                           range:NSMakeRange(4, attriTitle.length-4)];
+                           value:BB_BlueColor
+                           range:[tempStr rangeOfString:[NSString stringWithFormat:@"【%@】",styleStr]]];
+        [attriTitle addAttribute:NSForegroundColorAttributeName
+                           value:RGBColor(50, 50, 50)
+                           range:[tempStr rangeOfString:title]];
+        
         titleString = attriTitle;
         
         NSString *timeTmpString = product.createTime;

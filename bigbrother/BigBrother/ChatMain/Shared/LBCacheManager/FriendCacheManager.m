@@ -152,7 +152,7 @@ typedef NS_ENUM(NSInteger, FriendCacheErrorCode) {
                 if (insertRsult) {
                     [tempArray addObject:friendDic];
                 }
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshFriendsVC" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadChatMainDataSource" object:nil];
                 completed(tempArray,nil);
             }
         }else{
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSInteger, FriendCacheErrorCode) {
             [CACHE_MANAGER executeDeleteWithDbname:DBNAME tablename:TABLENAME_FRIENDLIST condition_map:@{@"id":friendDic[@"id"]}];
             NSMutableArray *tempArray = [NSMutableArray arrayWithArray:responseObject];
             [tempArray removeObject:friendDic];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshFriendsVC" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadChatMainDataSource" object:nil];
             completed(tempArray,nil);
         }else{
             completed(responseObject,error);
@@ -195,7 +195,7 @@ typedef NS_ENUM(NSInteger, FriendCacheErrorCode) {
                 [tempArray replaceObjectAtIndex:index withObject:friendDic];
             }
             completed(tempArray,nil);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshFriendsVC" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadChatMainDataSource" object:nil];
         }else{
             completed(responseObject,error);
         }

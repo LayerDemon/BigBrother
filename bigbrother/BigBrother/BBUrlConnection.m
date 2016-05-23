@@ -162,7 +162,7 @@ static QNUploadManager *imageUploadManager;
 }
 
 //获取我发布的信息  个人中心 内 供需信息展示
-+(void):(NSMutableDictionary *)params complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
++(void)getAllMyPostInfoListWithParams:(NSMutableDictionary *)params complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
     NSString *urlString = @"http://121.42.161.141:8080/rent-car/api/user/personal/post";
     
     NSString *userID = [BBUserDefaults getUserID];
@@ -812,6 +812,7 @@ static QNUploadManager *imageUploadManager;
             }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
         complete(nil,@"服务器无响应");
         NSLog(@"error %@",error);
     }];
@@ -861,8 +862,8 @@ static QNUploadManager *imageUploadManager;
         id object = [string objectFromJSONString];
         NSLog(@"错误信息%@",object);
         NSLog(@"-douban-%@",object[@"data"]);
-        complete(nil,@"服务器无响应");
         NSString *errorMessage = object[@"data"][@"message"];
+        complete(nil,errorMessage);
         if (!errorMessage) {
             errorMessage = @"服务器无响应";
         }

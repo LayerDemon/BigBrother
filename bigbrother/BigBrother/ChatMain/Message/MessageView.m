@@ -33,8 +33,10 @@
 {
     self = [super init];
     if (self) {
-        self.frame = CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H);
+//        self.frame = CGRectMake(0,0,MAINSCRREN_W,MAINSCRREN_H-NAVBAR_H-TABBAR_H);
+        self.frame = CGRectMake(0, 64, MAINSCRREN_W, MAINSCRREN_H-64-48);
         self.backgroundColor = [UIColor whiteColor];
+//        self.autoresizesSubviews = NO;
         [self initializeDataSource];
         [self initializeUserInterface];
     }
@@ -51,8 +53,8 @@
 
 - (void)removeFromSuperview
 {
-    [super removeFromSuperview];
     [self unregisterNotifications];
+    [super removeFromSuperview];
 }
 
 #pragma mark - registerNotifications
@@ -80,7 +82,8 @@
 #pragma mark - 视图初始化
 - (void)initializeUserInterface
 {
-    [self networkStateView];
+//    [self networkStateView];
+    [self addSubview:self.networkStateView];
     [self addSubview:self.tableView];
 }
 #pragma mark - 各种Getter
@@ -88,7 +91,7 @@
 - (UIView *)networkStateView
 {
     if (!_networkStateView) {
-        _networkStateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
+        _networkStateView = [[UIView alloc] initWithFrame:CGRectMake(0,0, self.tableView.frame.size.width, 44)];
         _networkStateView.backgroundColor = [UIColor colorWithRed:255 / 255.0 green:199 / 255.0 blue:199 / 255.0 alpha:0.5];
         _networkStateView.backgroundColor = [UIColor redColor];
         
@@ -109,12 +112,16 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:self.bounds];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+        _tableView.contentInset = UIEdgeInsetsZero;
         _tableView.rowHeight = FLEXIBLE_NUM(47);
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc]init];
-        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
+        _tableView.tableHeaderView = [[UIView alloc]init];
+        _tableView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+//        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
+//        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
     }
     return _tableView;
 }

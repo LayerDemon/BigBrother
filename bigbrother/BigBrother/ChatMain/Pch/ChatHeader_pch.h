@@ -144,15 +144,16 @@
 
 //网络请求
 #define BASE_URL @"http://121.42.161.141:8080/rent-car/api"
-
-
+#define PAGESIZE_NORMAL 10
 
 //缓存
+#import "GroupCacheManager.h"
 #import "FriendCacheManager.h"
 #import "LBCacheManager.h"
 #import "FMDatabase.h"//缓存sql
 #define CACHE_MANAGER [LBCacheManager sharedManager]//缓存管理
 #define FRIENDCACHE_MANAGER [FriendCacheManager sharedManager]//好友缓存管理
+#define GROUPCACHE_MANAGER [GroupCacheManager sharedManager]//群缓存
 #define DBNAME [NSString dbnameString]//数据库名
 #define TABLENAME_FRIENDLIST @"friendList"//表名
 #define TABLENAME_GROUPLIST @"groupList"

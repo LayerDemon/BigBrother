@@ -15,6 +15,7 @@
 #import "EMCDDeviceManager.h"
 #import "EaseMessageReadManager.h"
 #import "MoneyTreeViewController.h"
+#import "SupplyLinkViewController.h"
 
 
 #define kToolBarH 48
@@ -384,13 +385,15 @@
 //供应链接
 - (void)clickedSupplyLinkBtn:(UIButton *)sender
 {
-
+    SupplyLinkViewController *supplyLinkVC = [[SupplyLinkViewController alloc]init];
+    [self.navigationController pushViewController:supplyLinkVC animated:YES];
 }
 
 //团购链接
 - (void)clickedGroupBuyLinkBtn:(UIButton *)sender
 {
-
+    SupplyLinkViewController *supplyLinkVC = [[SupplyLinkViewController alloc]init];
+    [self.navigationController pushViewController:supplyLinkVC animated:YES];
 }
 
 //门派活动
@@ -990,6 +993,7 @@
 {
     if (aError) {
         [AppDelegate showHintLabelWithMessage:@"消息发送错误~"];
+        aMessage.status = EMMessageStatusFailed;
         NSLog(@"%@",aError);
     }
     __weak ChatViewController *weakSelf = self;

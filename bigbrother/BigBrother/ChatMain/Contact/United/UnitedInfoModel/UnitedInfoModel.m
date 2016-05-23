@@ -67,13 +67,20 @@
 - (void)createUnitedActivityWithGroupId:(NSString *)groupId creator:(NSString *)creator name:(NSString *)name startTime:(NSString *)startTime endTime:(NSString *)endTime location:(NSString *)location cost:(NSString *)cost content:(NSString *)content images:(NSArray *)images
 {
     NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
-    [dataDic setObject:groupId forKey:@"groupId"];
-    [dataDic setObject:creator forKey:@"creator"];
+    [dataDic setObject:@([groupId integerValue]) forKey:@"groupId"];
+    [dataDic setObject:@([creator integerValue]) forKey:@"creator"];
     [dataDic setObject:name forKey:@"name"];
-    [dataDic setObject:startTime forKey:@"startTime"];
-    [dataDic setObject:endTime forKey:@"endTime"];
+    NSDateFormatter *format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateStr = @"2016-07-01 18:00:00";
+    NSString *dateStr1 = @"2016-08-01 18:00:00";
+    NSDate *date = [format dateFromString:dateStr];
+    NSDate *date1 = [format dateFromString:dateStr1];
+    
+    [dataDic setObject:date forKey:@"startTime"];
+    [dataDic setObject:date1 forKey:@"endTime"];
     [dataDic setObject:location forKey:@"location"];
-    [dataDic setObject:cost forKey:@"cost"];
+    [dataDic setObject:@([cost integerValue]) forKey:@"cost"];
     [dataDic setObject:content forKey:@"content"];
 //    [dataDic setObject:images forKey:@"images"];
 //    [dataDic setObject:[groupId JSONString]forKey:@"groupId"];
@@ -90,6 +97,16 @@
     
      NSLog(@"dataDic -- %@",dataDic);
     NSLog(@"dataString -- %@",resultString);
+    
+//    NSString *jsonString = nil;
+//    NSError *error;
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDic options:0 error:&error];
+//    if (!jsonData) {
+//        NSLog(@"Got an error: %@", error);
+//    } else {
+//        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    }
+    
     NSDictionary * resultDic = @{@"json":resultString};
    
     [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/add" params:resultDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
@@ -98,6 +115,16 @@
         
     } failAction:^(NSError *error, id responseObj) {
         NSLog(@"error -- %@",error.localizedDescription);
+        NSData *data = [[error userInfo] objectForKey:@"com.alamofire.serialization.response.error.data"];
+        NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        id object = [string objectFromJSONString];
+        NSLog(@"错误信息%@",object);
+        NSLog(@"-douban-%@",object[@"data"]);
+        NSString *errorMessage = object[@"data"][@"message"];
+        if (!errorMessage) {
+            errorMessage = @"服务器无响应";
+        }
+        [BYToastView showToastWithMessage:errorMessage];
     }];
 }
 
