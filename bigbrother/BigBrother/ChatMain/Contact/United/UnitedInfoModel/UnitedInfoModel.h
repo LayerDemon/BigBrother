@@ -23,6 +23,7 @@
 @property (strong, nonatomic, readonly) id        getUnitedRankData;
 @property (strong, nonatomic, readonly) id        changeRankNameData;
 @property (strong, nonatomic, readonly) NSDictionary *joinData;
+@property (strong, nonatomic, readonly) NSDictionary *inviteData;
 
 //获取门派资料
 - (void)getUnitedInfoWithId:(NSString *)idString limit:(NSString *)limit;
@@ -56,5 +57,9 @@
  *  申请加入群
  */
 - (void)postJoinDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId message:(NSString *)message;
+/**
+ *  邀请入群
+ */
+- (void)getInviteDataWithUserToInviteId:(NSNumber *)userToInviteId userId:(NSNumber *)userId groupId:(NSNumber *)groupId;
 
 @end

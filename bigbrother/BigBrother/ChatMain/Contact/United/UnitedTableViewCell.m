@@ -19,6 +19,9 @@
             imageView.layer.cornerRadius = FLEXIBLE_NUM(17.5);
             imageView.clipsToBounds = YES;
             [self.contentView addSubview:imageView];
+            imageView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headTapGestureRecognizer:)];
+            [imageView addGestureRecognizer:tapGesture];
             imageView;
         });
         
@@ -31,8 +34,14 @@
         
     }
     return self;
-    
-    
+}
+
+#pragma mark - 点击头像
+- (void)headTapGestureRecognizer:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        [self.delegate unitedTableViewCell:self clickedHeadImageView:_headImageView];
+    }
 }
 
 @end

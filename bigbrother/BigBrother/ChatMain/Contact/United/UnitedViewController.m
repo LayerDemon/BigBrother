@@ -11,8 +11,9 @@
 #import "ContactModel.h"
 #import "UnitedTableViewCell.h"
 #import "UnitedDetailViewController.h"
+#import "ChatViewController.h"
 
-@interface UnitedViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface UnitedViewController () <UITableViewDelegate,UITableViewDataSource,UnitedTableViewCellDelegate>
 
 @property (strong, nonatomic) UISearchBar                       * searchBar;
 @property (strong, nonatomic) ContactModel                      * contactModel;
@@ -225,6 +226,7 @@ static NSString * identify = @"Cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UnitedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    cell.delegate = self;
     NSDictionary * dataDic;
     if (tableView == self.tableView) {
         dataDic = _groupArray[indexPath.section][indexPath.row];
@@ -234,7 +236,7 @@ static NSString * identify = @"Cell";
     [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.groupNameLabel.text = dataDic[@"name"];
-    
+    cell.dataDic = dataDic;
     return cell;
 }
 
@@ -282,7 +284,6 @@ static NSString * identify = @"Cell";
     [self.navigationController pushViewController:unitedDeailVC animated:YES];
 }
 
-
 #pragma mark -- create label
 - (UILabel *)createLabelWithText:(NSString *)text font:(CGFloat)font subView:(UIView *)subView
 {
@@ -313,5 +314,15 @@ static NSString * identify = @"Cell";
     return view;
 }
 
+#pragma mark - UnitedTableViewCellDelegate
+- (void)unitedTableViewCell:(UnitedTableViewCell *)cell clickedHeadImageView:(UIImageView *)imageView
+{
+    //    发送消息
+    ChatViewController *chatVC = [[ChatViewController alloc]init];
+    EMConversation *conversation = [MANAGER_CHAT getConversation:cell.dataDic[@"chatGroupId"] type:EMConversationTypeGroupChat createIfNotExist:YES];
+    chatVC.conversation = conversation;
+    chatVC.chatDic = cell.dataDic;
+    [self.navigationController pushViewController:chatVC animated:YES];
+}
 
 @end

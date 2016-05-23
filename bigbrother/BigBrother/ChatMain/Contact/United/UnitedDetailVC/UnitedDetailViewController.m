@@ -12,6 +12,7 @@
 #import "UnitedMemberViewController.h"
 #import "UnitedInfoModel.h"
 #import "ExitUnitedViewController.h"
+#import "GroupInviteViewController.h"
 
 @interface UnitedDetailViewController ()
 
@@ -243,8 +244,11 @@
 //邀请入群
 - (void)addMemberButtonPressed:(UIButton *)sender
 {
-    
+    GroupInviteViewController *groupInviteVC = [[GroupInviteViewController alloc]init];
+    groupInviteVC.groupDic = _unitedDetailDic;
+    [self.navigationController pushViewController:groupInviteVC animated:YES];
 }
+
 
 //门派活动
 - (void)unitedActivityButtonPressed:(UIButton *)sender

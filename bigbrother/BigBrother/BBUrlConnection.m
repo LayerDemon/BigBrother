@@ -812,9 +812,17 @@ static QNUploadManager *imageUploadManager;
             }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        complete(nil,@"服务器无响应");
-        NSLog(@"error %@",error);
+        NSData *data = [[error userInfo] objectForKey:@"com.alamofire.serialization.response.error.data"];
+        NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        id object = [string objectFromJSONString];
+        NSLog(@"错误信息%@",object);
+        NSLog(@"-douban-%@",object[@"data"]);
+        NSString *errorMessage = object[@"data"][@"message"];
+        complete(nil,errorMessage);
+        if (!errorMessage) {
+            errorMessage = @"服务器无响应";
+        }
+        [UIButton stopAllButtonAnimationWithErrorMessage:errorMessage];
     }];
     return task;
 }

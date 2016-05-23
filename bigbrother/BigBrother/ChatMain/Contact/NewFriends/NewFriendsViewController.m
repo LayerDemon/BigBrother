@@ -139,7 +139,7 @@ static NSString * identify = @"Cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //跳转到用户详情
+//    //跳转到用户详情
     NewFriendsTableViewCell *cell = (NewFriendsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     FriendDetailViewController *friendDetailVC = [[FriendDetailViewController alloc]init];
 //    NSDictionary *applyUserDic = @{@"id":cell.dataDic[@"userId"],@"avatar":cell.dataDic[@"avatar"],@"nickname":cell.dataDic[@"nickname"]};
@@ -160,7 +160,7 @@ static NSString * identify = @"Cell";
         [self.newFriendModel postFriendHandleDataWithUserId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_ACCEPT];
     }
     else if ([self.requestType isEqualToString:HandleType_GROUP_APPLY]){
-        [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"id"] action:HandleAction_ACCEPT];
+        [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"targetId"] action:HandleAction_ACCEPT];
     }
 }
 
@@ -173,7 +173,7 @@ static NSString * identify = @"Cell";
         [self.newFriendModel postFriendHandleDataWithUserId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_REJECT];
     }
     else if ([self.requestType isEqualToString:HandleType_GROUP_APPLY]){
-        [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"id"] action:HandleAction_REJECT];
+        [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"targetId"] action:HandleAction_REJECT];
     }
     
 }

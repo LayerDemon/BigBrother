@@ -25,6 +25,7 @@
 @property (strong, nonatomic) id        getUnitedRankData;
 @property (strong, nonatomic) id        changeRankNameData;
 @property (strong, nonatomic) NSDictionary *joinData;
+@property (strong, nonatomic) NSDictionary *inviteData;
 
 @end
 
@@ -265,5 +266,23 @@
     }];
 }
 
+
+/**
+ *  邀请入群
+ */
+- (void)getInviteDataWithUserToInviteId:(NSNumber *)userToInviteId userId:(NSNumber *)userId groupId:(NSNumber *)groupId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/groups/invite",BASE_URL];
+    
+    NSDictionary *tempDic = @{@"userId":userId,@"groupId":groupId,@"userToInviteId":userToInviteId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.inviteData = resultDic[@"data"];
+        }
+    }];
+}
 
 @end

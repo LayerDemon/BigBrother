@@ -65,6 +65,11 @@
 		8C0B2A901CED61A500EF4C2E /* SupplyLinkViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B2A8F1CED61A500EF4C2E /* SupplyLinkViewCell.xib */; };
 		8C0B2A931CEDC58600EF4C2E /* mc_sendfail_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B2A911CEDC58600EF4C2E /* mc_sendfail_btn.png */; };
 		8C0B2A941CEDC58600EF4C2E /* mc_sendfail_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B2A921CEDC58600EF4C2E /* mc_sendfail_btn@2x.png */; };
+		8C0B7F311CF34C6400423627 /* GroupInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B7F301CF34C6400423627 /* GroupInviteViewController.m */; };
+		8C0B7F341CF34DF700423627 /* GroupInviteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B7F331CF34DF700423627 /* GroupInviteViewCell.m */; };
+		8C0B7F361CF34E0A00423627 /* GroupInviteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B7F351CF34E0A00423627 /* GroupInviteViewCell.xib */; };
+		8C0B7F391CF3529100423627 /* GISectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B7F381CF3529100423627 /* GISectionHeaderView.m */; };
+		8C0B7F3B1CF352D000423627 /* GISectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0B7F3A1CF352D000423627 /* GISectionHeaderView.xib */; };
 		8C0D24621CEC104A00C7BE5E /* NotLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D24611CEC104A00C7BE5E /* NotLoginView.m */; };
 		8C0D24641CEC105900C7BE5E /* NotLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D24631CEC105900C7BE5E /* NotLoginView.xib */; };
 		8C0D24691CEC608300C7BE5E /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D24681CEC608300C7BE5E /* clear.png */; };
@@ -694,6 +699,14 @@
 		8C0B2A8F1CED61A500EF4C2E /* SupplyLinkViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupplyLinkViewCell.xib; sourceTree = "<group>"; };
 		8C0B2A911CEDC58600EF4C2E /* mc_sendfail_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mc_sendfail_btn.png; sourceTree = "<group>"; };
 		8C0B2A921CEDC58600EF4C2E /* mc_sendfail_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mc_sendfail_btn@2x.png"; sourceTree = "<group>"; };
+		8C0B7F2F1CF34C6400423627 /* GroupInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupInviteViewController.h; sourceTree = "<group>"; };
+		8C0B7F301CF34C6400423627 /* GroupInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupInviteViewController.m; sourceTree = "<group>"; };
+		8C0B7F321CF34DF700423627 /* GroupInviteViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupInviteViewCell.h; sourceTree = "<group>"; };
+		8C0B7F331CF34DF700423627 /* GroupInviteViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupInviteViewCell.m; sourceTree = "<group>"; };
+		8C0B7F351CF34E0A00423627 /* GroupInviteViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupInviteViewCell.xib; sourceTree = "<group>"; };
+		8C0B7F371CF3529100423627 /* GISectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GISectionHeaderView.h; sourceTree = "<group>"; };
+		8C0B7F381CF3529100423627 /* GISectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GISectionHeaderView.m; sourceTree = "<group>"; };
+		8C0B7F3A1CF352D000423627 /* GISectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GISectionHeaderView.xib; sourceTree = "<group>"; };
 		8C0D24601CEC104A00C7BE5E /* NotLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotLoginView.h; sourceTree = "<group>"; };
 		8C0D24611CEC104A00C7BE5E /* NotLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotLoginView.m; sourceTree = "<group>"; };
 		8C0D24631CEC105900C7BE5E /* NotLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotLoginView.xib; sourceTree = "<group>"; };
@@ -1660,6 +1673,7 @@
 		2D359DA41CE8BD3000F85F24 /* UnitedDetailVC */ = {
 			isa = PBXGroup;
 			children = (
+				8C0B7F2E1CF34C3A00423627 /* 邀请群成员 */,
 				2D0785331CECC5D8001B57A8 /* 退出门派 */,
 				2D0812281CEB55FB004AEB77 /* 管理门派 */,
 				2D0812291CEB55FB004AEB77 /* 门派成员 */,
@@ -1811,6 +1825,21 @@
 				8C0A07751CE21B0E00889CF6 /* EaseEmotionManager.m */,
 			);
 			path = Emoji;
+			sourceTree = "<group>";
+		};
+		8C0B7F2E1CF34C3A00423627 /* 邀请群成员 */ = {
+			isa = PBXGroup;
+			children = (
+				8C0B7F2F1CF34C6400423627 /* GroupInviteViewController.h */,
+				8C0B7F301CF34C6400423627 /* GroupInviteViewController.m */,
+				8C0B7F371CF3529100423627 /* GISectionHeaderView.h */,
+				8C0B7F381CF3529100423627 /* GISectionHeaderView.m */,
+				8C0B7F3A1CF352D000423627 /* GISectionHeaderView.xib */,
+				8C0B7F321CF34DF700423627 /* GroupInviteViewCell.h */,
+				8C0B7F331CF34DF700423627 /* GroupInviteViewCell.m */,
+				8C0B7F351CF34E0A00423627 /* GroupInviteViewCell.xib */,
+			);
+			path = "邀请群成员";
 			sourceTree = "<group>";
 		};
 		8C0D247A1CEC6B2D00C7BE5E /* GroupActivityLink */ = {
@@ -3968,6 +3997,7 @@
 				8C18641E1CDF9C4C00632CDC /* groupPrivateHeader@2x.png in Resources */,
 				8C1863B51CDF9C4C00632CDC /* chatBar_more_card.png in Resources */,
 				8C1863EB1CDF9C4C00632CDC /* chatBar_more_cameraSelected.png in Resources */,
+				8C0B7F3B1CF352D000423627 /* GISectionHeaderView.xib in Resources */,
 				2D359D991CE7840C00F85F24 /* icon_jt02@3x.png in Resources */,
 				8C63E5CE1CE09FA900B4EC1D /* emoji_tab4@2x.png in Resources */,
 				8C1863991CDF9C4C00632CDC /* VoiceSearchFeedback012.png in Resources */,
@@ -4012,6 +4042,7 @@
 				8C12C9DC1CEA1FBE0067AA9B /* FriendDetailViewCell.xib in Resources */,
 				8C18641D1CDF9C4C00632CDC /* group_participant_addHL@2x.png in Resources */,
 				8C1863DD1CDF9C4C00632CDC /* chatBar_colorMore_audioCall@2x.png in Resources */,
+				8C0B7F361CF34E0A00423627 /* GroupInviteViewCell.xib in Resources */,
 				8C1863A51CDF9C4C00632CDC /* VoiceSearchFeedback018.png in Resources */,
 				8C1863D11CDF9C4C00632CDC /* chatBar_more.png in Resources */,
 				8C63E59D1CE09A8B00B4EC1D /* chat_more_btn@2x.png in Resources */,
@@ -4253,6 +4284,7 @@
 				8C18644D1CDF9CC700632CDC /* EMAudioRecorderUtil.m in Sources */,
 				2D8AFF491CE23E91009B7F24 /* ContactView.m in Sources */,
 				B8445FE11C8E73B8003E66C8 /* FactoryPostDetailViewController.m in Sources */,
+				8C0B7F341CF34DF700423627 /* GroupInviteViewCell.m in Sources */,
 				B8958AEA1C7C096200ACE5E6 /* WholeHouseRentProduct.m in Sources */,
 				8C63E5311CE0589400B4EC1D /* PreviewImageViewController.m in Sources */,
 				B8958AF31C7C3A9C00ACE5E6 /* PopUpSelectedView.m in Sources */,
@@ -4318,6 +4350,7 @@
 				8C1861901CDF35E300632CDC /* FlexibleFrame.m in Sources */,
 				B89A0CC91C79C0350072A6A8 /* HelpDriveProduct.m in Sources */,
 				B8A6AF551C8C181400DC84BC /* UIActionSheet+Blocks.m in Sources */,
+				8C0B7F391CF3529100423627 /* GISectionHeaderView.m in Sources */,
 				B87F5F991C7CA58400D2EEA8 /* FactorySquareViewController.m in Sources */,
 				B89A0CDA1C79D81C0072A6A8 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8C1864521CDF9CC700632CDC /* EMCDDeviceManagerBase.m in Sources */,
@@ -4386,6 +4419,7 @@
 				B8A46EAA1C871622001117B4 /* UserChargeViewController.m in Sources */,
 				8C63E5351CE058DD00B4EC1D /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				B801314E1C80021D0070612B /* WholeHouseSellPostToViewController.m in Sources */,
+				8C0B7F311CF34C6400423627 /* GroupInviteViewController.m in Sources */,
 				8C63E56D1CE05B6B00B4EC1D /* MJRefreshBackStateFooter.m in Sources */,
 				B89A0CA31C79B8B50072A6A8 /* AFURLResponseSerialization.m in Sources */,
 				8C6B05E31CE567BF003188E1 /* EaseRecordView.m in Sources */,
