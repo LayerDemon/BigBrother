@@ -1202,7 +1202,7 @@
 //        if (self.groupRemarks.length) {
 //            [userDic setObject:self.groupRemarks forKey:@"nickname"];
 //        }
-        NSDictionary *ext = @{@"groupPojo":TESTGROUP_DIC,@"userPojo":[BBUserDefaults getUserDic]};
+        NSDictionary *ext = @{@"groupPojo":self.chatDic,@"userPojo":[BBUserDefaults getUserDic]};
         return ext;
     }
     NSDictionary *ext = @{@"userFromPojo":[BBUserDefaults getUserDic],@"userToPojo":self.chatDic};

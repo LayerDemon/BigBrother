@@ -120,8 +120,8 @@
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc]init];
         _tableView.tableHeaderView = [[UIView alloc]init];
-        _tableView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
-//        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
+//        _tableView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
 //        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
     }
     return _tableView;

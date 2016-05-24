@@ -118,7 +118,8 @@
     self.agreeButton.hidden = ![status isEqualToString:@"NOT_HANDLED"];
     self.refuseButton.hidden = ![status isEqualToString:@"NOT_HANDLED"];
     self.stateLabel.hidden = [status isEqualToString:@"NOT_HANDLED"];
-    if ([status isEqualToString:@"ACCEPTED"]) {
+    if ([status isEqualToString:@"ACCEPTED"] ||
+        [status isEqualToString:@"OTHER_ADMIN_ACCEPTED"]) {
         self.stateLabel.text = @"已同意~";
     }
     else if ([status isEqualToString:@"REJECTED"]){
@@ -133,7 +134,8 @@
             self.stateLabel.hidden = NO;
             self.stateLabel.text = @"待处理~";
         }
-    }else{
+    }
+    else{
         self.stateLabel.text = @"未知~";
     }
 }

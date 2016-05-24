@@ -24,6 +24,7 @@
 @property (strong, nonatomic, readonly) id        getUnitedRankData;
 @property (strong, nonatomic, readonly) id        changeRankNameData;
 @property (strong, nonatomic, readonly) NSDictionary *joinData;
+@property (strong, nonatomic, readonly) NSDictionary *inviteData;
 
 @property (strong, nonatomic, readonly) id        checkUnitedDetailData;
 @property (strong, nonatomic, readonly) id        signUpActivityData;
@@ -61,6 +62,10 @@
  *  申请加入群
  */
 - (void)postJoinDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId message:(NSString *)message;
+/**
+ *  邀请入群
+ */
+- (void)getInviteDataWithUserToInviteId:(NSNumber *)userToInviteId userId:(NSNumber *)userId groupId:(NSNumber *)groupId;
 
 //群活动详情
 - (void)checkUnitedActivityDetailInfoWithId:(NSString *)activityId;
