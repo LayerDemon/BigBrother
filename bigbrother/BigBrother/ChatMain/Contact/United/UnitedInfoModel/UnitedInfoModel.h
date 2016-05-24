@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic, readonly) id        unitedDetailData;
 @property (strong, nonatomic, readonly) id        unitedActivityData;
+@property (strong, nonatomic, readonly) id        createUnitedActivityData;
 @property (strong, nonatomic, readonly) id        exitUnitedData;
 @property (strong, nonatomic, readonly) id        dismissUnitedData;
 @property (strong, nonatomic, readonly) id        transterUnitedData;
@@ -23,6 +24,10 @@
 @property (strong, nonatomic, readonly) id        getUnitedRankData;
 @property (strong, nonatomic, readonly) id        changeRankNameData;
 @property (strong, nonatomic, readonly) NSDictionary *joinData;
+
+@property (strong, nonatomic, readonly) id        checkUnitedDetailData;
+@property (strong, nonatomic, readonly) id        signUpActivityData;
+
 
 //获取门派资料
 - (void)getUnitedInfoWithId:(NSString *)idString limit:(NSString *)limit;
@@ -56,5 +61,10 @@
  *  申请加入群
  */
 - (void)postJoinDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId message:(NSString *)message;
+
+//群活动详情
+- (void)checkUnitedActivityDetailInfoWithId:(NSString *)activityId;
+//报名群活动
+- (void)signUpUnitedActivityWithActivityId:(NSString *)activityId userId:(NSString *)userId;
 
 @end

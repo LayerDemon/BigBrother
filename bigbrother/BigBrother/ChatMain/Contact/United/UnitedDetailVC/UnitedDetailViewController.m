@@ -12,6 +12,7 @@
 #import "UnitedMemberViewController.h"
 #import "UnitedInfoModel.h"
 #import "ExitUnitedViewController.h"
+#import "AddUnitedMemberViewController.h"
 
 @interface UnitedDetailViewController ()
 
@@ -243,7 +244,8 @@
 //邀请入群
 - (void)addMemberButtonPressed:(UIButton *)sender
 {
-    
+    AddUnitedMemberViewController * addUnitedVC = [[AddUnitedMemberViewController alloc] init];
+    [self.navigationController pushViewController:addUnitedVC animated:YES];
 }
 
 //门派活动

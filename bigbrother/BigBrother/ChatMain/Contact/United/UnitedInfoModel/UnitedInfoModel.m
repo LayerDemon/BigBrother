@@ -26,6 +26,9 @@
 @property (strong, nonatomic) id        changeRankNameData;
 @property (strong, nonatomic) NSDictionary *joinData;
 
+@property (strong, nonatomic) id        checkUnitedDetailData;
+@property (strong, nonatomic) id        signUpActivityData;
+
 @end
 
 @implementation UnitedInfoModel
@@ -53,7 +56,7 @@
     NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
     [dataDic setObject:page forKey:@"page"];
     [dataDic setObject:groupId forKey:@"groupId"];
-//    [dataDic setObject:@"10" forKey:@"pageSize"];
+    [dataDic setObject:@"10" forKey:@"pageSize"];
     [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/all" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"getActivity -- %@",responseObj);
         self.unitedActivityData = responseObj;
@@ -265,5 +268,35 @@
     }];
 }
 
+//群活动详情
+- (void)checkUnitedActivityDetailInfoWithId:(NSString *)activityId
+{
+    NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
+    [dataDic setObject:activityId forKey:@"id"];
+    
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/detail" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"changeRankNameData -- %@",responseObj);
+        self.checkUnitedDetailData = responseObj;
+        
+    } failAction:^(NSError *error, id responseObj) {
+        NSLog(@"error -- %@",error.localizedDescription);
+    }];
+}
+
+//报名群活动
+- (void)signUpUnitedActivityWithActivityId:(NSString *)activityId userId:(NSString *)userId
+{
+    NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
+    [dataDic setObject:activityId forKey:@"activityId"];
+    [dataDic setObject:userId forKey:@"userId"];
+    
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/join" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"changeRankNameData -- %@",responseObj);
+        self.signUpActivityData = responseObj;
+        
+    } failAction:^(NSError *error, id responseObj) {
+        NSLog(@"error -- %@",error.localizedDescription);
+    }];
+}
 
 @end

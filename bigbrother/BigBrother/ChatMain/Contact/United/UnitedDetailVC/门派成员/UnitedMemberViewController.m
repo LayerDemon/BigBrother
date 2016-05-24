@@ -9,11 +9,14 @@
 #import "UnitedMemberViewController.h"
 #import "UnitedMember2TableViewCell.h"
 
-@interface UnitedMemberViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface UnitedMemberViewController () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating>
 
 @property (strong, nonatomic) UITableView       * tableView;
 @property (strong, nonatomic) NSArray           * dataArray;
 @property (strong, nonatomic) NSArray           * colorArray;
+
+@property (strong, nonatomic) UISearchController                * searchController;
+@property (strong, nonatomic) NSArray                           * filterData;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -52,10 +55,9 @@ static NSString * identify = @"Cell";
 - (void)initializeUserInterface
 {
     self.view.backgroundColor = THEMECOLOR_BACK;
-    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
         
     _tableView = ({
-        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, FLEXIBLE_NUM(40), MAINSCRREN_W, MAINSCRREN_H - 64 - FLEXIBLE_NUM(40)) style:UITableViewStylePlain];
+        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.rowHeight = FLEXIBLE_NUM(47);
@@ -65,6 +67,29 @@ static NSString * identify = @"Cell";
         tableView;
     });
     [_tableView registerClass:[UnitedMember2TableViewCell class] forCellReuseIdentifier:identify];
+    
+    // 并把 searchDisplayController 和当前 controller 关联起来
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    _searchController.searchResultsUpdater = self;
+    _searchController.dimsBackgroundDuringPresentation = YES;
+    _searchController.hidesNavigationBarDuringPresentation = YES;
+    _searchController.obscuresBackgroundDuringPresentation = NO;
+    _searchController.searchBar.frame = FLEXIBLE_FRAME(10, 8, 300, 34);
+    _searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    for (UIView *subview in _searchController.searchBar.subviews) {
+        for(UIView* grandSonView in subview.subviews){
+            if ([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+                grandSonView.alpha = 0.0f;
+            }else if([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarTextField")] ){
+                NSLog(@"Keep textfiedld bkg color");
+            }else{
+                grandSonView.alpha = 0.0f;
+            }
+        }//for cacheViews
+    }//subviews
+
 }
 
 #pragma mark -- <<UITableViewDelegate,UITableViewDataSource>
@@ -76,6 +101,9 @@ static NSString * identify = @"Cell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (_searchController.active) {
+        return _filterData.count;
+    }
     return _memberArray.count;
 }
 
@@ -83,7 +111,12 @@ static NSString * identify = @"Cell";
 {
     UnitedMember2TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSDictionary * dataDic = _memberArray[indexPath.row];
+    NSDictionary * dataDic;
+    if (_searchController.active) {
+        dataDic = _filterData[indexPath.row];
+    }else{
+        dataDic = _memberArray[indexPath.row];
+    }
     [cell.headImageView  sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
     cell.statusLabel.text = dataDic[@"gradeName"];
     if ([dataDic[@"role"] isEqualToString:@"OWNER"]) {
@@ -97,5 +130,19 @@ static NSString * identify = @"Cell";
     
     return cell;
 }
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = [self.searchController.searchBar text];
+    NSMutableArray * resultArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _memberArray.count; i ++) {
+        if ([_memberArray[i][@"nameInGroup"] containsString:searchString]) {
+            [resultArray addObject:_memberArray[i]];
+        }
+    }
+    _filterData = resultArray;
+    //刷新表格
+    [self.tableView reloadData];
+}
+
 
 @end

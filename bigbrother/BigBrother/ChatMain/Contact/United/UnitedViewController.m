@@ -12,7 +12,7 @@
 #import "UnitedTableViewCell.h"
 #import "UnitedDetailViewController.h"
 
-@interface UnitedViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface UnitedViewController () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating>
 
 @property (strong, nonatomic) UISearchBar                       * searchBar;
 @property (strong, nonatomic) ContactModel                      * contactModel;
@@ -21,7 +21,7 @@
 @property (strong, nonatomic) NSArray                           * dataArray;
 
 
-@property (strong, nonatomic) UISearchDisplayController         * searchDisplayController;
+@property (strong, nonatomic) UISearchController                * searchController;
 @property (strong, nonatomic) NSArray                           * filterData;
 
 
@@ -99,7 +99,7 @@ static NSString * identify = @"Cell";
 - (void)initializeUserInterface
 {
     self.view.backgroundColor = THEMECOLOR_BACK;
-    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
+//    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
     
         //返回title
     UIBarButtonItem * barbutton = [[UIBarButtonItem alloc] init];
@@ -108,7 +108,7 @@ static NSString * identify = @"Cell";
 
     
     _tableView = ({
-        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H - 64) style:UITableViewStyleGrouped];
+        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H) style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.rowHeight = FLEXIBLE_NUM(50);
@@ -121,26 +121,17 @@ static NSString * identify = @"Cell";
     });
     [_tableView registerClass:[UnitedTableViewCell class] forCellReuseIdentifier:identify];
     
-    //topView
-    UIView  * topView = [self createViewWithBackColor:[UIColor whiteColor] subView:self.view];
-    topView.frame = FLEXIBLE_FRAME(0, 0, 320, 50);
-//
-//    //搜索按钮
-//    UIButton * searchBut = [self createButtonWithTitle:@"  搜索" font:FLEXIBLE_NUM(13) subView:topView];
-//    searchBut.frame = FLEXIBLE_FRAME(30, 10, 260, 30);
-//    searchBut.backgroundColor = RGBACOLOR(241, 241, 241, 1);
-//    searchBut.layer.cornerRadius = FLEXIBLE_NUM(15);
-//    searchBut.clipsToBounds = YES;
-//    [searchBut setImage:[UIImage imageNamed:@"icon_sous"] forState:UIControlStateNormal];
-//    [searchBut setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    // 并把 searchDisplayController 和当前 controller 关联起来
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    _searchController.searchResultsUpdater = self;
+    _searchController.dimsBackgroundDuringPresentation = YES;
+    _searchController.hidesNavigationBarDuringPresentation = YES;
+    _searchController.obscuresBackgroundDuringPresentation = NO;
+    _searchController.searchBar.frame = FLEXIBLE_FRAME(10, 8, 300, 34);
+    _searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:FLEXIBLE_FRAME(0, 8, 320, 34)];
-    searchBar.placeholder = @"搜索";
-    searchBar.backgroundColor = [UIColor whiteColor];
-    searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    [topView addSubview:searchBar];
-    
-    for (UIView *subview in searchBar.subviews) {
+    for (UIView *subview in _searchController.searchBar.subviews) {
         for(UIView* grandSonView in subview.subviews){
             if ([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
                 grandSonView.alpha = 0.0f;
@@ -151,20 +142,6 @@ static NSString * identify = @"Cell";
             }
         }//for cacheViews
     }//subviews
-    
-    // 添加 searchbar 到 headerview
-    self.tableView.tableHeaderView = topView;
-    
-    // 用 searchbar 初始化 SearchDisplayController
-    // 并把 searchDisplayController 和当前 controller 关联起来
-    _searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-    
-    // searchResultsDataSource 就是 UITableViewDataSource
-    _searchDisplayController.searchResultsDataSource = self;
-    // searchResultsDelegate 就是 UITableViewDelegate
-    _searchDisplayController.searchResultsDelegate = self;
-    _searchDisplayController.searchResultsTableView.rowHeight = FLEXIBLE_NUM(50);
-    [_searchDisplayController.searchResultsTableView registerClass:[UnitedTableViewCell class] forCellReuseIdentifier:identify];
     
     //创建门派
     UIBarButtonItem * rightBut = [[UIBarButtonItem alloc] initWithTitle:@"创建门派" style:UIBarButtonItemStyleDone target:self action:@selector(createUnitedButtonPressed:)];
@@ -192,33 +169,21 @@ static NSString * identify = @"Cell";
 #pragma mark -- <UITableViewDelegate,UITableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.tableView) {
-        return _groupArray.count;
-    }else{
+    if (self.searchController.active) {
         return 1;
+    }else{
+        return _groupArray.count;;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
-        return [_groupArray[section] count];
-    }else{
-        // 谓词搜索
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self contains [cd] %@",_searchDisplayController.searchBar.text];
-//        
-//        
-//        _filterData =  [[NSArray alloc] initWithArray:[_dataArray filteredArrayUsingPredicate:predicate]];
-        
-        NSMutableArray * resultArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < _dataArray.count; i ++) {
-            if ([_dataArray[i][@"name"] containsString:_searchDisplayController.searchBar.text]) {
-                [resultArray addObject:_dataArray[i]];
-            }
-        }
-        _filterData = resultArray;
+    if (self.searchController.active) {
+       
         NSLog(@"wocaonimab -- %@",_filterData);
         return _filterData.count;
+    }else{
+        return [_groupArray[section] count];
     }
 }
 
@@ -226,10 +191,10 @@ static NSString * identify = @"Cell";
 {
     UnitedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
     NSDictionary * dataDic;
-    if (tableView == self.tableView) {
-        dataDic = _groupArray[indexPath.section][indexPath.row];
+    if (self.searchController.active) {
+         dataDic = _filterData[indexPath.row];
     }else{
-        dataDic = _filterData[indexPath.row];
+         dataDic = _groupArray[indexPath.section][indexPath.row];
     }
     [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -238,17 +203,31 @@ static NSString * identify = @"Cell";
     return cell;
 }
 
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = [self.searchController.searchBar text];
+    NSMutableArray * resultArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _dataArray.count; i ++) {
+        if ([_dataArray[i][@"name"] containsString:searchString]) {
+            [resultArray addObject:_dataArray[i]];
+        }
+    }
+    _filterData = resultArray;
+    //刷新表格
+    [self.tableView reloadData];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
-       return FLEXIBLE_NUM(40);
+    if (self.searchController.active) {
+        return 0;
+    }else{
+        return FLEXIBLE_NUM(40);
     }
-    return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
+    if (!self.searchController.active) {
         UIView * headView = [self createViewWithBackColor:[UIColor clearColor] subView:nil];
         headView.frame = FLEXIBLE_FRAME(0, 0, 320, 40);
         
@@ -267,7 +246,7 @@ static NSString * identify = @"Cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UnitedDetailViewController * unitedDeailVC = [[UnitedDetailViewController alloc] init];
-    if (tableView == self.tableView) {
+     if (!self.searchController.active) {
         unitedDeailVC.unitedDic = _groupArray[indexPath.section][indexPath.row];
         unitedDeailVC.pushMark = indexPath.section;
     }else{
@@ -277,9 +256,13 @@ static NSString * identify = @"Cell";
         }else{
             unitedDeailVC.pushMark = 0;
         }
+        self.searchController.searchBar.hidden = YES;
     }
-   
     [self.navigationController pushViewController:unitedDeailVC animated:YES];
+    [self.searchController dismissViewControllerAnimated:YES completion:^{
+         self.searchController.searchBar.hidden = NO;
+         self.searchController.searchBar.text = @"";
+    }];
 }
 
 
