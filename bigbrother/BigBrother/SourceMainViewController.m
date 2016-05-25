@@ -420,7 +420,7 @@ static float recommandTitleViewHeight = 45.f;
             if (!cell) {
                 cell = [[CarProductTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CarProductTableViewCellIdentifier0001];
             }
-//            cell.product = carP;
+            cell.product = carP;
             return cell;
         }else if ([product isKindOfClass:[HouseProduct class]]){
             HouseProduct *houseP = (HouseProduct *)product;
@@ -429,7 +429,7 @@ static float recommandTitleViewHeight = 45.f;
             if (!cell) {
                 cell = [[HouseProductTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:HouseProductTableViewCellIdentifier0001];
             }
-//            cell.product = houseP;
+            cell.product = houseP;
             return cell;
         }else if ([product isKindOfClass:[FactoryProduct class]]){
             FactoryProduct *factoryP = (FactoryProduct *)product;
@@ -438,7 +438,7 @@ static float recommandTitleViewHeight = 45.f;
             if (!cell) {
                 cell = [[FactoryProductTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:FactoryProductTableViewCellIdentifier0001];
             }
-//            cell.product = factoryP;
+            cell.product = factoryP;
             return cell;
         }else{
             return [UITableViewCell new];
