@@ -165,14 +165,14 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, FLEXIBLE_NUM(6))];
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, FLEXIBLE_NUM(5))];
     lineView.backgroundColor = ARGB_COLOR(242, 242, 242, 1);
     return lineView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return FLEXIBLE_NUM(6);
+    return FLEXIBLE_NUM(5);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -190,7 +190,7 @@
         return;
     }
     
-#warning --- 测试
+//#warning --- 测试
     NSDictionary *testDic = [dataArray firstObject];
     [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.model postAddDataWithUserId:self.userDic[@"id"] friendId:self.currentUserDic[@"id"] message:@"加一下好友呗~" friendsGroupId:testDic[@"id"]];

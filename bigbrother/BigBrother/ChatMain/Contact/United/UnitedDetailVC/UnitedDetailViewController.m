@@ -22,7 +22,6 @@
 @property (strong, nonatomic) NSDictionary          * unitedDetailDic;
 @property (strong, nonatomic) NSDateFormatter       * dateFormater;
 @property (assign, nonatomic) BOOL isJoinGroup;
-@property (strong, nonatomic) NSDictionary *userDic;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -270,6 +269,8 @@
 {
     UnitedMemberViewController * unitedMemberVC = [[UnitedMemberViewController alloc] init];
     unitedMemberVC.memberArray = _unitedDetailDic[@"members"];
+    unitedMemberVC.groupDic = _unitedDetailDic;
+    unitedMemberVC.userDic = self.userDic;
     [self.navigationController pushViewController:unitedMemberVC animated:YES];
 }
 

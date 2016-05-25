@@ -8,8 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+@class FriendDetailViewCell;
+
+@protocol FriendDetailViewCellDelegate <NSObject>
+
+- (void)friendDetailViewCell:(FriendDetailViewCell *)cell didChangedSwitchValue:(UISwitch *)switchView;
+
+@end
+
 @interface FriendDetailViewCell : UITableViewCell
+
+
+@property (assign, nonatomic) id<FriendDetailViewCellDelegate>delegate;
 
 - (void)loadWithTitle:(NSString *)title DataDic:(NSDictionary *)dataDic;
 
+
+/**
+ *  刷新群资料
+ */
+- (void)reloadGroupWithTitle:(NSString *)title dataDic:(NSDictionary *)dataDic;
 @end

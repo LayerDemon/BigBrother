@@ -24,10 +24,17 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17780526455" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f7Q-ef-DFs">
-                    <rect key="frame" x="69" y="37" width="243" height="14"/>
+                    <rect key="frame" x="69" y="41" width="243" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.71372549019607845" green="0.71372549019607845" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男    上海" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x4c-oH-0R2">
+                    <rect key="frame" x="106" y="17" width="206" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.71372549019999998" green="0.71372549019999998" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -38,6 +45,7 @@
                 <outlet property="headBtn" destination="R7c-CM-8UC" id="sGD-1X-LmY"/>
                 <outlet property="nameLabel" destination="jBn-Ei-irN" id="vgD-hF-sl0"/>
                 <outlet property="numberLabel" destination="f7Q-ef-DFs" id="Rnn-ti-HVL"/>
+                <outlet property="topSummaryLabel" destination="x4c-oH-0R2" id="cja-lv-I7M"/>
             </connections>
             <point key="canvasLocation" x="469" y="246.5"/>
         </view>

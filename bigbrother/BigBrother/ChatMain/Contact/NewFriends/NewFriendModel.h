@@ -27,4 +27,9 @@
  *  加入门派请求处理
  */
 - (void)postGroupHandleDataWithAdminId:(NSNumber *)adminId userId:(NSNumber *)userId groupId:(NSNumber *)groupId action:(NSString *)action;
+
+/**
+ *  门派邀请请求处理
+ */
+- (void)postGroupInviteHandleDataWithUserId:(NSNumber *)userId requestId:(NSNumber *)requestId action:(NSString *)action;
 @end

@@ -61,4 +61,25 @@
     }];
 }
 
+/**
+ *  门派邀请请求处理
+ */
+- (void)postGroupInviteHandleDataWithUserId:(NSNumber *)userId requestId:(NSNumber *)requestId action:(NSString *)action
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/groups/invite/handle",BASE_URL];
+    NSDictionary *tempDic = @{@"userId":userId,@"requestId":requestId,@"action":action};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            if ([action isEqualToString:HandleAction_ACCEPT]) {
+                self.agreeData = resultDic;
+            }else{
+                self.refuseData = resultDic;
+            }
+        }
+    }];
+}
+
+
 @end

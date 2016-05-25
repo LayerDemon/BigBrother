@@ -8,6 +8,7 @@
 
 #import "UnitedMemberViewController.h"
 #import "UnitedMember2TableViewCell.h"
+#import "GuserDetailViewController.h"
 
 @interface UnitedMemberViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -53,9 +54,10 @@ static NSString * identify = @"Cell";
 {
     self.view.backgroundColor = THEMECOLOR_BACK;
     [self setEdgesForExtendedLayout:UIRectEdgeBottom];
+    self.automaticallyAdjustsScrollViewInsets = YES;
         
     _tableView = ({
-        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, FLEXIBLE_NUM(40), MAINSCRREN_W, MAINSCRREN_H - 64 - FLEXIBLE_NUM(40)) style:UITableViewStylePlain];
+        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, MAINSCRREN_W, MAINSCRREN_H - 64) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.rowHeight = FLEXIBLE_NUM(47);
@@ -84,6 +86,7 @@ static NSString * identify = @"Cell";
     UnitedMember2TableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identify];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary * dataDic = _memberArray[indexPath.row];
+    cell.dataDic = dataDic;
     [cell.headImageView  sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
     cell.statusLabel.text = dataDic[@"gradeName"];
     if ([dataDic[@"role"] isEqualToString:@"OWNER"]) {
@@ -96,6 +99,17 @@ static NSString * identify = @"Cell";
     cell.userNameLabel.text = dataDic[@"nameInGroup"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UnitedMember2TableViewCell *cell = (UnitedMember2TableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    GuserDetailViewController *guserDetailVC = [[GuserDetailViewController alloc]init];
+    guserDetailVC.currentUserDic = cell.dataDic;
+    guserDetailVC.groupDic = self.groupDic;
+    guserDetailVC.userDic = self.userDic;
+    [self.navigationController pushViewController:guserDetailVC animated:YES];
 }
 
 @end

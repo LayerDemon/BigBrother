@@ -280,6 +280,11 @@ static NSString * identify = @"Cell";
             unitedDeailVC.pushMark = 0;
         }
     }
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:[BBUserDefaults getUserDic]];
+    NSString *tempRole = unitedDeailVC.pushMark ? @"ADMIN" : @"USER";
+    NSString *roleStr = [NSString isBlankStringWithString:unitedDeailVC.unitedDic[@"role"]] ? tempRole : unitedDeailVC.unitedDic[@"role"];
+    [tempDic setObject:roleStr forKey:@"role"];
+    unitedDeailVC.userDic = tempDic;
    
     [self.navigationController pushViewController:unitedDeailVC animated:YES];
 }

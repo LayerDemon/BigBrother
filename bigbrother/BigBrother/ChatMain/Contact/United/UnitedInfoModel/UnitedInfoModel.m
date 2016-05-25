@@ -26,6 +26,9 @@
 @property (strong, nonatomic) id        changeRankNameData;
 @property (strong, nonatomic) NSDictionary *joinData;
 @property (strong, nonatomic) NSDictionary *inviteData;
+@property (strong, nonatomic) NSDictionary *guserInfoData;
+@property (strong, nonatomic) NSDictionary *setAdminData;
+
 
 @end
 
@@ -281,6 +284,59 @@
     [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
         if (!errorString) {
             self.inviteData = resultDic[@"data"];
+        }
+    }];
+}
+
+
+/**
+ *  获取成员资料
+ */
+- (void)postGuserInfoDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/members/detail",BASE_URL];
+    
+    NSDictionary *tempDic = @{@"userId":userId,@"groupId":groupId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.guserInfoData = resultDic[@"data"];
+        }
+    }];
+}
+
+/**
+ *  批量设置管理员
+ *
+ */
+- (void)postSetAdminDataWithOwnerId:(NSNumber *)ownerId userIds:(NSString *)userIds groupId:(NSNumber *)groupId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/admins/add",BASE_URL];
+    
+    NSDictionary *tempDic = @{@"ownerId":ownerId,@"userIds":userIds,@"groupId":groupId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.setAdminData = resultDic[@"data"];
+        }
+    }];
+}
+
+/**
+ *  移除管理员
+ */
+- (void)postRemoveAdminDataWithOwnerId:(NSNumber *)ownerId adminId:(NSNumber *)adminId groupId:(NSNumber *)groupId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/admins/remove",BASE_URL];
+    
+    NSDictionary *tempDic = @{@"ownerId":ownerId,@"adminId":adminId,@"groupId":groupId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.removeAdminData = resultDic[@"data"];
         }
     }];
 }

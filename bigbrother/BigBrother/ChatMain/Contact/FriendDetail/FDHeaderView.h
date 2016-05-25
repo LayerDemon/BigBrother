@@ -12,4 +12,5 @@
 
 - (void)loadWithDataDic:(NSDictionary *)dataDic;
 
+- (void)reloadGroupWithDataDic:(NSDictionary *)dataDic;
 @end

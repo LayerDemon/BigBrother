@@ -53,6 +53,9 @@
 		2DD0FBD91C9EE6EF0046F4C4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBD81C9EE6EF0046F4C4 /* libsqlite3.tbd */; };
 		2DD0FBDC1C9EEE680046F4C4 /* LTMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD0FBDB1C9EEE680046F4C4 /* LTMessageTableViewCell.m */; };
 		2DF062DE1CE4C0910066896F /* AddFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF062DD1CE4C0910066896F /* AddFriendsViewController.m */; };
+		8C05692B1CF498AE0035D412 /* GUDFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0569271CF498AE0035D412 /* GUDFooterView.m */; };
+		8C05692C1CF498AE0035D412 /* GUDFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0569281CF498AE0035D412 /* GUDFooterView.xib */; };
+		8C05692D1CF498AE0035D412 /* GuserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C05692A1CF498AE0035D412 /* GuserDetailViewController.m */; };
 		8C060BB41CF1A488002027BA /* NewFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C060BB31CF1A488002027BA /* NewFriendModel.m */; };
 		8C0A07691CE2196E00889CF6 /* EaseSDKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A07681CE2196E00889CF6 /* EaseSDKHelper.m */; };
 		8C0A076C1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A076B1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m */; };
@@ -338,6 +341,7 @@
 		8C377E601CE38A5E00A737DD /* chat_receiver_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */; };
 		8C377E631CE38A6700A737DD /* chat_sender_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E611CE38A6700A737DD /* chat_sender_bg.png */; };
 		8C377E641CE38A6700A737DD /* chat_sender_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E621CE38A6700A737DD /* chat_sender_bg@2x.png */; };
+		8C638C141CF5A643006C67B7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C638C131CF5A643006C67B7 /* RootViewController.m */; };
 		8C63E5141CE055F700B4EC1D /* ChatFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5071CE055F700B4EC1D /* ChatFrameModel.m */; };
 		8C63E5151CE055F800B4EC1D /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E5091CE055F700B4EC1D /* ChatMessageModel.m */; };
 		8C63E5161CE055F800B4EC1D /* ChatMoreInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C63E50B1CE055F700B4EC1D /* ChatMoreInputView.m */; };
@@ -678,6 +682,11 @@
 		2DD0FBDB1C9EEE680046F4C4 /* LTMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTMessageTableViewCell.m; sourceTree = "<group>"; };
 		2DF062DC1CE4C0910066896F /* AddFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsViewController.h; sourceTree = "<group>"; };
 		2DF062DD1CE4C0910066896F /* AddFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsViewController.m; sourceTree = "<group>"; };
+		8C0569261CF498AE0035D412 /* GUDFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUDFooterView.h; sourceTree = "<group>"; };
+		8C0569271CF498AE0035D412 /* GUDFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUDFooterView.m; sourceTree = "<group>"; };
+		8C0569281CF498AE0035D412 /* GUDFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GUDFooterView.xib; sourceTree = "<group>"; };
+		8C0569291CF498AE0035D412 /* GuserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuserDetailViewController.h; sourceTree = "<group>"; };
+		8C05692A1CF498AE0035D412 /* GuserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuserDetailViewController.m; sourceTree = "<group>"; };
 		8C060BB21CF1A488002027BA /* NewFriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFriendModel.h; sourceTree = "<group>"; };
 		8C060BB31CF1A488002027BA /* NewFriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFriendModel.m; sourceTree = "<group>"; };
 		8C0A07671CE2196E00889CF6 /* EaseSDKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseSDKHelper.h; sourceTree = "<group>"; };
@@ -1073,6 +1082,8 @@
 		8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_receiver_bg@2x.png"; sourceTree = "<group>"; };
 		8C377E611CE38A6700A737DD /* chat_sender_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_sender_bg.png; sourceTree = "<group>"; };
 		8C377E621CE38A6700A737DD /* chat_sender_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_bg@2x.png"; sourceTree = "<group>"; };
+		8C638C121CF5A643006C67B7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		8C638C131CF5A643006C67B7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		8C63E5061CE055F700B4EC1D /* ChatFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatFrameModel.h; sourceTree = "<group>"; };
 		8C63E5071CE055F700B4EC1D /* ChatFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatFrameModel.m; sourceTree = "<group>"; };
 		8C63E5081CE055F700B4EC1D /* ChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageModel.h; sourceTree = "<group>"; };
@@ -1614,6 +1625,7 @@
 				2D08122F1CEB5620004AEB77 /* UnitedMemberViewController.m */,
 				2D0785301CECAF65001B57A8 /* UnitedMember2TableViewCell.h */,
 				2D0785311CECAF65001B57A8 /* UnitedMember2TableViewCell.m */,
+				8C0569251CF498AE0035D412 /* GuserDetail */,
 			);
 			path = "门派成员";
 			sourceTree = "<group>";
@@ -1810,6 +1822,18 @@
 				2D0F21E11CEA14C10014B0A1 /* AddFriendTableViewCell.m */,
 			);
 			path = AddFriends;
+			sourceTree = "<group>";
+		};
+		8C0569251CF498AE0035D412 /* GuserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8C0569261CF498AE0035D412 /* GUDFooterView.h */,
+				8C0569271CF498AE0035D412 /* GUDFooterView.m */,
+				8C0569281CF498AE0035D412 /* GUDFooterView.xib */,
+				8C0569291CF498AE0035D412 /* GuserDetailViewController.h */,
+				8C05692A1CF498AE0035D412 /* GuserDetailViewController.m */,
+			);
+			path = GuserDetail;
 			sourceTree = "<group>";
 		};
 		8C0A076D1CE21B0E00889CF6 /* Emoji */ = {
@@ -3442,6 +3466,8 @@
 				B8B6127F1C7D54F30036A019 /* 个人中心 */,
 				B89A0C661C79904C0072A6A8 /* AppDelegate.h */,
 				B89A0C671C79904C0072A6A8 /* AppDelegate.m */,
+				8C638C121CF5A643006C67B7 /* RootViewController.h */,
+				8C638C131CF5A643006C67B7 /* RootViewController.m */,
 				B89A0C691C79904C0072A6A8 /* ViewController.h */,
 				B89A0C6A1C79904C0072A6A8 /* ViewController.m */,
 				B89A0C851C799A910072A6A8 /* SourceMainViewController.h */,
@@ -3828,7 +3854,7 @@
 				TargetAttributes = {
 					B89A0C5F1C79904C0072A6A8 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 6QTLMHM7TY;
+						DevelopmentTeam = MGNV857KZS;
 					};
 				};
 			};
@@ -4068,6 +4094,7 @@
 				8C1863B81CDF9C4C00632CDC /* chatBar_more_cardSelected@2x.png in Resources */,
 				8C1864021CDF9C4C00632CDC /* chat_sender_audio_playing_000.png in Resources */,
 				8C63E5C11CE09FA900B4EC1D /* emoji_tab0Press@3x.png in Resources */,
+				8C05692C1CF498AE0035D412 /* GUDFooterView.xib in Resources */,
 				8C63E5C01CE09FA900B4EC1D /* emoji_tab0Press@2x.png in Resources */,
 				8C1863A71CDF9C4C00632CDC /* VoiceSearchFeedback019.png in Resources */,
 				8C18642E1CDF9C4C00632CDC /* tabbarBackground.png in Resources */,
@@ -4187,6 +4214,7 @@
 				B81E56DF1C7EED9B00E34A91 /* QNDnspodFree.m in Sources */,
 				8C9773651CEAB9020013EC9B /* FMResultSet.m in Sources */,
 				8C1861EE1CDF378900632CDC /* SDImageCache.m in Sources */,
+				8C638C141CF5A643006C67B7 /* RootViewController.m in Sources */,
 				B8C460141C8523350060528D /* TOCropViewControllerTransitioning.m in Sources */,
 				B81E56B01C7EEB9000E34A91 /* QNSessionManager.m in Sources */,
 				8C63E56F1CE05B6B00B4EC1D /* MJRefreshNormalHeader.m in Sources */,
@@ -4343,6 +4371,7 @@
 				B89A0CF21C79E9250072A6A8 /* CarEnterViewController.m in Sources */,
 				B8AB500F1C8ABCED005DD27D /* MyPostInfo.m in Sources */,
 				2D8AFF4A1CE23E91009B7F24 /* NewFriendsTableViewCell.m in Sources */,
+				8C05692B1CF498AE0035D412 /* GUDFooterView.m in Sources */,
 				2D8AFF501CE23EFD009B7F24 /* NetworkingManager.m in Sources */,
 				B89A0CDC1C79D81C0072A6A8 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				8C1861F11CDF378900632CDC /* SDWebImageDownloader.m in Sources */,
@@ -4416,6 +4445,7 @@
 				B8958AE71C7C018B00ACE5E6 /* SingleRoomRentProduct.m in Sources */,
 				2D359D9C1CE7874700F85F24 /* AddFriendsModel.m in Sources */,
 				B8B612991C7D95170036A019 /* UIButton+Block.m in Sources */,
+				8C05692D1CF498AE0035D412 /* GuserDetailViewController.m in Sources */,
 				B8A46EAA1C871622001117B4 /* UserChargeViewController.m in Sources */,
 				8C63E5351CE058DD00B4EC1D /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				B801314E1C80021D0070612B /* WholeHouseSellPostToViewController.m in Sources */,
@@ -4563,7 +4593,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = BigBrother/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4573,7 +4603,7 @@
 					"$(PROJECT_DIR)/BigBrother/ChatMain/HeightTech/HyphenateSDK/3rdparty/VoiceConvert/opencore-amrwb",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4588,7 +4618,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = BigBrother/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4598,7 +4628,7 @@
 					"$(PROJECT_DIR)/BigBrother/ChatMain/HeightTech/HyphenateSDK/3rdparty/VoiceConvert/opencore-amrwb",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -22,6 +22,8 @@
 #import <UIKit/UIKit.h>
 //通用类
 #import "AppDelegate.h"
+#import "ViewController.h"
+
 #import <AVFoundation/AVFoundation.h>//
 #import "FlexibleFrame.h"//比例适配
 #import "JSONKit.h"//json解析

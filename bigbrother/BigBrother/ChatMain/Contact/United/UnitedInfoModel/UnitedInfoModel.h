@@ -24,6 +24,8 @@
 @property (strong, nonatomic, readonly) id        changeRankNameData;
 @property (strong, nonatomic, readonly) NSDictionary *joinData;
 @property (strong, nonatomic, readonly) NSDictionary *inviteData;
+@property (strong, nonatomic, readonly) NSDictionary *guserInfoData;
+@property (strong, nonatomic, readonly) NSDictionary *setAdminData;
 
 //获取门派资料
 - (void)getUnitedInfoWithId:(NSString *)idString limit:(NSString *)limit;
@@ -62,4 +64,17 @@
  */
 - (void)getInviteDataWithUserToInviteId:(NSNumber *)userToInviteId userId:(NSNumber *)userId groupId:(NSNumber *)groupId;
 
+/**
+ *  获取成员资料
+ */
+- (void)postGuserInfoDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId;
+/**
+ *  批量设置管理员
+ *
+ */
+- (void)postSetAdminDataWithOwnerId:(NSNumber *)ownerId userIds:(NSString *)userIds groupId:(NSNumber *)groupId;
+/**
+ *  移除管理员
+ */
+- (void)postRemoveAdminDataWithOwnerId:(NSNumber *)ownerId adminId:(NSNumber *)adminId groupId:(NSNumber *)groupId;
 @end
