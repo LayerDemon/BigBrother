@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 
+#import "RootViewController.h"
+
 #import "EMSDK.h"
 
 @interface AppDelegate ()
@@ -67,9 +69,11 @@
     
     
     //
-    ViewController *vc = [ViewController new];
+    ViewController *vc = [[ViewController alloc] init];
     
     NSDictionary *navigationBarTitleTextAttributes = @{NSForegroundColorAttributeName:BB_Navigation_FontColor,NSFontAttributeName:[UIFont boldSystemFontOfSize:18]};
+    
+//    RootViewController *navi = [[RootViewController alloc]initWithRootViewController:vc];
     
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
     
@@ -79,6 +83,9 @@
     navi.navigationBar.barTintColor = BB_NaviColor;
     navi.navigationBar.tintColor = BB_WhiteColor;
     navi.navigationBar.barStyle = UIBarStyleBlack;
+    
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
     self.window.rootViewController = navi;
     [self.window makeKeyAndVisible];
     return YES;

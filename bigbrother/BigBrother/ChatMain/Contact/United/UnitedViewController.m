@@ -260,6 +260,13 @@ static NSString * identify = @"Cell";
         }
         self.searchController.searchBar.hidden = YES;
     }
+
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:[BBUserDefaults getUserDic]];
+    NSString *tempRole = unitedDeailVC.pushMark ? @"ADMIN" : @"USER";
+    NSString *roleStr = [NSString isBlankStringWithString:unitedDeailVC.unitedDic[@"role"]] ? tempRole : unitedDeailVC.unitedDic[@"role"];
+    [tempDic setObject:roleStr forKey:@"role"];
+    unitedDeailVC.userDic = tempDic;
+   
     [self.navigationController pushViewController:unitedDeailVC animated:YES];
     [self.searchController dismissViewControllerAnimated:YES completion:^{
          self.searchController.searchBar.hidden = NO;

@@ -162,6 +162,9 @@ static NSString * identify = @"Cell";
     else if ([self.requestType isEqualToString:HandleType_GROUP_APPLY]){
         [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"targetId"] action:HandleAction_ACCEPT];
     }
+    else if ([self.requestType isEqualToString:HandleType_GROUP_INVITE]){
+        [self.newFriendModel postGroupInviteHandleDataWithUserId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_ACCEPT];
+    }
 }
 
 - (void)newFriendsCell:(NewFriendsTableViewCell *)cell clickedRefuseBtn:(UIButton *)sender
@@ -175,7 +178,9 @@ static NSString * identify = @"Cell";
     else if ([self.requestType isEqualToString:HandleType_GROUP_APPLY]){
         [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"targetId"] action:HandleAction_REJECT];
     }
-    
+    else if ([self.requestType isEqualToString:HandleType_GROUP_INVITE]){
+        [self.newFriendModel postGroupInviteHandleDataWithUserId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_REJECT];
+    }
 }
 
 #pragma mark - 数据处理

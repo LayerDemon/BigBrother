@@ -36,6 +36,7 @@
 #import "FactoryProduct.h"
 
 
+
 @interface SourceMainViewController () <UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -562,6 +563,12 @@ static float recommandTitleViewHeight = 45.f;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setUpNavigation];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    [self setUpNavigation];
 }
 
 - (void)didReceiveMemoryWarning {

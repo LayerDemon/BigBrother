@@ -34,7 +34,7 @@ static NSString *kGroupName = @"GroupName";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    SourceMainViewController *sourceMainVC = [SourceMainViewController new];
+    SourceMainViewController *sourceMainVC = [[SourceMainViewController alloc]init];
     
     ChatMainViewController *chatMainVC = [ChatMainViewController new];
 //    UINavigationController *chatMainNC = [[UINavigationController alloc]initWithRootViewController:chatMainVC];
@@ -65,7 +65,8 @@ static NSString *kGroupName = @"GroupName";
     self.viewControllers = @[sourceMainVC,chatMainVC,userMainVC];
     self.tabBar.tintColor= BB_Tabbar_SelectedColor;
     self.delegate = self;
-    self.tabBar.selectedImageTintColor = BB_Tabbar_SelectedColor;
+
+    self.tabBar.tintColor = BB_Tabbar_SelectedColor;
     
     
     //注册环信

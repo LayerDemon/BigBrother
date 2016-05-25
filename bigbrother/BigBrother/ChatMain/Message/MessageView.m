@@ -280,6 +280,12 @@
                       }];
     
     ret = [[NSMutableArray alloc] initWithArray:sorte];
+    if (ret.count == 1) {
+        EMConversation *conversation = [ret firstObject];
+        if ([conversation.conversationId isEqualToString:@"sys_user1"]) {
+            [needRemoveConversations addObject:conversation];
+        }
+    }
     
     if (needRemoveConversations.count > 0) {
         [[EMClient sharedClient].chatManager deleteConversations:needRemoveConversations deleteMessages:YES];

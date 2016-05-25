@@ -10,6 +10,8 @@
 
 @interface UnitedMember2TableViewCell : UITableViewCell
 
+@property (strong, nonatomic) NSDictionary *dataDic;
+
 @property (strong, nonatomic) UIImageView       * headImageView;
 @property (strong, nonatomic) UILabel           * statusLabel;
 @property (strong, nonatomic) UILabel           * userNameLabel;

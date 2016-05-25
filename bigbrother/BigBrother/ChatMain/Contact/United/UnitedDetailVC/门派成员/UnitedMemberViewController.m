@@ -8,6 +8,7 @@
 
 #import "UnitedMemberViewController.h"
 #import "UnitedMember2TableViewCell.h"
+#import "GuserDetailViewController.h"
 
 @interface UnitedMemberViewController () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating>
 
@@ -57,22 +58,42 @@ static NSString * identify = @"Cell";
     NSMutableArray * managerArray = [NSMutableArray array];
     for (int i = 0; i < _memberArray.count; i ++) {
         if ([_memberArray[i][@"role"] isEqualToString:@"USER"]) {
-            [userArray addObject:_memberArray[i]];
+            BOOL isExit = NO;
+            for (int j = 0; j < userArray.count; j ++) {
+                if ([userArray[j][@"section"] isEqualToString:_memberArray[i][@"grade"]]) {
+                    isExit = YES;
+                    NSMutableDictionary * mutableDic = [[NSMutableDictionary alloc] init];
+                    NSMutableArray * mutableArray = [[NSMutableArray alloc] initWithArray:userArray[j][@"array"]];
+                    [mutableArray addObject:_memberArray[i]];
+                    
+                    [mutableDic setObject:_memberArray[i][@"grade"] forKey:@"grade"];
+                    [mutableDic setObject:mutableArray forKey:@"array"];
+                    
+                    [userArray replaceObjectAtIndex:j withObject:mutableDic];
+                }
+            }
+            if (!isExit) {
+                NSMutableDictionary * newDataDic = [[NSMutableDictionary alloc] init];
+                [newDataDic setObject:_memberArray[i][@"grade"] forKey:@"grade"];
+                [newDataDic setObject:@[_memberArray[i]] forKey:@"array"];
+            }
         }else{
-            
             [managerArray addObject:_memberArray[i]];
         }
     }
-    [_dataArray addObject:userArray];
     [_dataArray addObject:managerArray];
+    [_dataArray addObjectsFromArray:userArray];
+    NSLog(@"dataArray --- %@",_dataArray);
 }
 
 - (void)initializeUserInterface
 {
     self.view.backgroundColor = THEMECOLOR_BACK;
+    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
+    self.automaticallyAdjustsScrollViewInsets = YES;
         
     _tableView = ({
-        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H) style:UITableViewStylePlain];
+        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, MAINSCRREN_W, MAINSCRREN_H - 64) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.rowHeight = FLEXIBLE_NUM(47);
@@ -122,7 +143,7 @@ static NSString * identify = @"Cell";
     if (_searchController.active) {
         return _filterData.count;
     }
-    return _memberArray.count;
+    return [_dataArray[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,8 +154,9 @@ static NSString * identify = @"Cell";
     if (_searchController.active) {
         dataDic = _filterData[indexPath.row];
     }else{
-        dataDic = _memberArray[indexPath.row];
+        dataDic = _dataArray[indexPath.section][indexPath.row];
     }
+    cell.dataDic = dataDic;
     [cell.headImageView  sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
     cell.statusLabel.text = dataDic[@"gradeName"];
     if ([dataDic[@"role"] isEqualToString:@"OWNER"]) {
@@ -148,6 +170,7 @@ static NSString * identify = @"Cell";
     
     return cell;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -166,10 +189,30 @@ static NSString * identify = @"Cell";
         headerTitleLabel.textColor = [UIColor grayColor];
         headerTitleLabel.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(10)];
         if (section == 0) {
-            headerTitleLabel.text = @"群主管理员";
+            headerTitleLabel.text = [NSString stringWithFormat:@"    群主、管理员(%ld人)",[_dataArray[section] count]];
+        }else{
+            headerTitleLabel.text = [NSString stringWithFormat:@"    %@(%ld人)",_dataArray[section][@"grade"],[_dataArray[section][@"array"] count]];
         }
         return headerTitleLabel;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UnitedMember2TableViewCell *cell = (UnitedMember2TableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    GuserDetailViewController *guserDetailVC = [[GuserDetailViewController alloc]init];
+    guserDetailVC.currentUserDic = cell.dataDic;
+    guserDetailVC.groupDic = self.groupDic;
+    guserDetailVC.userDic = self.userDic;
+    if (_searchController.active) {
+        self.searchController.searchBar.hidden = YES;
+    }
+    [self.navigationController pushViewController:guserDetailVC animated:YES];
+    [self.searchController dismissViewControllerAnimated:YES completion:^{
+        self.searchController.searchBar.hidden = NO;
+        self.searchController.searchBar.text = @"";
+    }];
 }
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
@@ -184,6 +227,5 @@ static NSString * identify = @"Cell";
     //刷新表格
     [self.tableView reloadData];
 }
-
 
 @end

@@ -10,6 +10,9 @@
 
 @interface UnitedMemberViewController : UIViewController
 
+
+@property (strong, nonatomic) NSDictionary *groupDic;
 @property (strong, nonatomic) NSArray       * memberArray;
+@property (strong, nonatomic) NSDictionary *userDic;
 
 @end

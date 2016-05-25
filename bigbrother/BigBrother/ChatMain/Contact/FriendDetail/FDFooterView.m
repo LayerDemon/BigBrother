@@ -36,6 +36,13 @@
 #pragma mark - 加载数据
 - (void)loadWithDataDic:(NSDictionary *)dataDic
 {
+    NSDictionary *userDic = [BBUserDefaults getUserDic];
+    if ([dataDic[@"id"] integerValue] == [userDic[@"id"] integerValue]) {
+        self.firstBtn.hidden = YES;
+        self.secondBtn.hidden = YES;
+        return;
+    }
+    
     [FRIENDCACHE_MANAGER getFriendDicWithUid:dataDic[@"id"] completed:^(id responseObject, NSError *error) {
         if (!error) {
             //如果是好友

@@ -24,8 +24,13 @@
 
 @property (strong, nonatomic) id        getUnitedRankData;
 @property (strong, nonatomic) id        changeRankNameData;
+@property (strong, nonatomic) id        changeTitleData;
+
 @property (strong, nonatomic) NSDictionary *joinData;
 @property (strong, nonatomic) NSDictionary *inviteData;
+@property (strong, nonatomic) NSDictionary *guserInfoData;
+@property (strong, nonatomic) NSDictionary *setAdminData;
+
 
 @property (strong, nonatomic) id        checkUnitedDetailData;
 @property (strong, nonatomic) id        signUpActivityData;
@@ -250,6 +255,24 @@
     }];
 }
 
+//设置专属名称
+- (void)setNiuBiNickNameWithOperator:(NSString *)operator userId:(NSString *)userId groupId:(NSString *)groupId title:(NSString *)title
+{
+    NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
+    [dataDic setObject:operator forKey:@"operator"];
+    [dataDic setObject:userId forKey:@"userId"];
+    [dataDic setObject:groupId forKey:@"groupId"];
+    [dataDic setObject:title forKey:@"title"];
+    
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/grades/changeTitle" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"changeTitleData -- %@",responseObj);
+        self.changeTitleData = responseObj;
+        
+    } failAction:^(NSError *error, id responseObj) {
+        NSLog(@"error -- %@",error.localizedDescription);
+    }];
+}
+
 /**
  *  申请加入群
  */
@@ -317,5 +340,60 @@
         }
     }];
 }
+
+
+/**
+ *  获取成员资料
+ */
+- (void)postGuserInfoDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/members/detail",BASE_URL];
+    
+    NSDictionary *tempDic = @{@"userId":userId,@"groupId":groupId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.guserInfoData = resultDic[@"data"];
+        }
+    }];
+}
+
+/**
+ *  批量设置管理员
+ *
+ */
+- (void)postSetAdminDataWithOwnerId:(NSNumber *)ownerId userIds:(NSString *)userIds groupId:(NSNumber *)groupId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/admins/add",BASE_URL];
+    
+    NSDictionary *tempDic = @{@"ownerId":ownerId,@"userIds":userIds,@"groupId":groupId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.setAdminData = resultDic[@"data"];
+        }
+    }];
+}
+
+/**
+ *  移除管理员
+ */
+- (void)postRemoveAdminDataWithOwnerId:(NSNumber *)ownerId adminId:(NSNumber *)adminId groupId:(NSNumber *)groupId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/admins/remove",BASE_URL];
+    
+    NSDictionary *tempDic = @{@"ownerId":ownerId,@"adminId":adminId,@"groupId":groupId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.removeAdminData = resultDic[@"data"];
+        }
+    }];
+}
+
+
 
 @end

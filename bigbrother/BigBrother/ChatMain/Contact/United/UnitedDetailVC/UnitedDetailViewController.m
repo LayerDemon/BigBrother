@@ -23,7 +23,6 @@
 @property (strong, nonatomic) NSDictionary          * unitedDetailDic;
 @property (strong, nonatomic) NSDateFormatter       * dateFormater;
 @property (assign, nonatomic) BOOL isJoinGroup;
-@property (strong, nonatomic) NSDictionary *userDic;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -67,13 +66,33 @@
         
     }
     
-    if ([keyPath isEqualToString:@"exitUnitedData"]) {
-        
-    }
-    
     if ([keyPath isEqualToString:@"joinData"]) {
         [self joinDataParse];
     }
+    
+    
+    if ([keyPath isEqualToString:@"exitUnitedData"]) {
+           UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:nil message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        NSDictionary    * dataDic = _unitedInfoModel.exitUnitedData;
+        if ([dataDic[@"code"] integerValue] == 0) {
+            alertController.message = @"退出门派成功～";
+            [self presentViewController:alertController animated:YES completion:nil];
+            [self performSelector:@selector(alertControllerDismissWithAlertController:) withObject:alertController afterDelay:1];
+        }else{
+            alertController.message = @"退出门派失败～";
+            UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alertController addAction:sureAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+    }
+}
+
+#pragma mark -- alterController dismiss
+- (void)alertControllerDismissWithAlertController:(UIAlertController *)alertController
+{
+    [alertController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -- initialize
@@ -273,6 +292,8 @@
 {
     UnitedMemberViewController * unitedMemberVC = [[UnitedMemberViewController alloc] init];
     unitedMemberVC.memberArray = _unitedDetailDic[@"members"];
+    unitedMemberVC.groupDic = _unitedDetailDic;
+    unitedMemberVC.userDic = self.userDic;
     [self.navigationController pushViewController:unitedMemberVC animated:YES];
 }
 

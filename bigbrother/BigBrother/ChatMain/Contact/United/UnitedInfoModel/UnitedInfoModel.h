@@ -23,8 +23,12 @@
 
 @property (strong, nonatomic, readonly) id        getUnitedRankData;
 @property (strong, nonatomic, readonly) id        changeRankNameData;
+@property (strong, nonatomic, readonly) id        changeTitleData;
+
 @property (strong, nonatomic, readonly) NSDictionary *joinData;
 @property (strong, nonatomic, readonly) NSDictionary *inviteData;
+@property (strong, nonatomic, readonly) NSDictionary *guserInfoData;
+@property (strong, nonatomic, readonly) NSDictionary *setAdminData;
 
 @property (strong, nonatomic, readonly) id        checkUnitedDetailData;
 @property (strong, nonatomic, readonly) id        signUpActivityData;
@@ -58,6 +62,9 @@
 //修改等级名称
 - (void)changeUnitedRankNameWithUserId:(NSString *)userId groupGradeId:(NSString *)groupGradeId name:(NSString *)name;
 
+//设置专属名称
+- (void)setNiuBiNickNameWithOperator:(NSString *)operator userId:(NSString *)userId groupId:(NSString *)groupId title:(NSString *)title;
+
 /**
  *  申请加入群
  */
@@ -66,6 +73,20 @@
  *  邀请入群
  */
 - (void)getInviteDataWithUserToInviteId:(NSNumber *)userToInviteId userId:(NSNumber *)userId groupId:(NSNumber *)groupId;
+
+/**
+ *  获取成员资料
+ */
+- (void)postGuserInfoDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId;
+/**
+ *  批量设置管理员
+ *
+ */
+- (void)postSetAdminDataWithOwnerId:(NSNumber *)ownerId userIds:(NSString *)userIds groupId:(NSNumber *)groupId;
+/**
+ *  移除管理员
+ */
+- (void)postRemoveAdminDataWithOwnerId:(NSNumber *)ownerId adminId:(NSNumber *)adminId groupId:(NSNumber *)groupId;
 
 //群活动详情
 - (void)checkUnitedActivityDetailInfoWithId:(NSString *)activityId;

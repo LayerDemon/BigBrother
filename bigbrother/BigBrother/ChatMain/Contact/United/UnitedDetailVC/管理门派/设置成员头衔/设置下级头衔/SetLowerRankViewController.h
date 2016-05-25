@@ -11,5 +11,6 @@
 @interface SetLowerRankViewController : UIViewController
 
 @property (strong, nonatomic) NSDictionary  * unitedDetailDic;
+@property (strong, nonatomic) NSArray       * memberArray;
 
 @end
