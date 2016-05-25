@@ -377,6 +377,7 @@
             }
             globalCode = code;
             [BYToastView showToastWithMessage:@"验证码发送成功"];
+            codeTextField.text = globalCode;
             [self codeButtonCountDownAnimated];
             NSLog(@"getEntryCodeComplete: %@",globalCode);
         }];
