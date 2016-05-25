@@ -14,7 +14,7 @@
 #import "FriendDetailViewController.h"
 
 #define SECTION_TAG 2300
-@interface ContactView () <UITableViewDelegate,UITableViewDataSource>
+@interface ContactView () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating,UISearchControllerDelegate,UISearchBarDelegate>
 
 @property (strong, nonatomic) UITableView               * tableView;
 @property (strong, nonatomic) ContactModel              * contactMoel;
@@ -25,7 +25,12 @@
 @property (strong, nonatomic) UITextField               * groupNameTextField;
 @property (strong, nonatomic) UITextField               * editGroupNameTextField;
 
-@property (strong, nonatomic) UISearchDisplayController * searchDisplayController;
+@property (strong, nonatomic) NSMutableArray            * dataSource;
+@property (strong, nonatomic) UISearchController        * searchController;
+@property (strong, nonatomic) NSArray                   * filterData;
+
+@property (strong, nonatomic) UIView                    * topView;
+@property (strong, nonatomic) UIView                    * footView;
 
 @end
 
@@ -57,13 +62,21 @@ static NSString * identify = @"Cell";
 {
     if ([keyPath isEqualToString:@"allFriendsData"]) {
         _allFriendsArray = _contactMoel.allFriendsData[@"data"];
+        if (!_dataSource) {
+            _dataSource = [[NSMutableArray alloc] init];
+        }
+        [_dataSource removeAllObjects];
+        //筛选出全部好友
+        for (int j = 0; j < _allFriendsArray.count; j ++) {
+            [_dataSource addObjectsFromArray:_allFriendsArray[j][@"friends"]];
+        }
+        
         if (!_dataArray) {
             _dataArray = [[NSMutableArray alloc] init];
         }
         [_dataArray removeAllObjects];
         [_dataArray addObjectsFromArray:_contactMoel.allFriendsData[@"data"]];
         
-        //
         if (!_selectedArray) {
             _selectedArray = [[NSMutableArray alloc] init];
         }
@@ -172,19 +185,44 @@ static NSString * identify = @"Cell";
 {
     self.backgroundColor = THEMECOLOR_BACK;
     
-    UIView * topView = [self createViewWithBackColor:[UIColor whiteColor] subView:self];
+    UIView * topView = [self createViewWithBackColor:[UIColor whiteColor] subView:nil];
     topView.frame = FLEXIBLE_FRAME(0, 0, 320, 105);
+    _topView = topView;
+    
+    NSArray * titleArray = [NSArray arrayWithObjects:@"新朋友",@"门派", nil];
+    for (int i = 0; i < 2; i ++) {
+        UIButton * topButton = [self createButtonWithTitle:nil font:0 subView:topView];
+        topButton.frame = FLEXIBLE_FRAME(80 + 120 * i, 50, 40, 50);
+        if (i == 0) {
+            [topButton addTarget:self action:@selector(newFriendsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        }else{
+            [topButton addTarget:self action:@selector(unitsedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        UIImageView * imageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(5, 0, 30, 30)];
+        imageView.image = [UIImage imageNamed:titleArray[i]];
+        [topButton addSubview:imageView];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        UILabel * titleLabel = [self createLabelWithText:titleArray[i] font:FLEXIBLE_NUM(12) subView:topButton];
+        titleLabel.frame = FLEXIBLE_FRAME(0, 30, 40, 20);
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.textColor = [UIColor blackColor];
+    }
+
     
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, FLEXIBLE_NUM(110), MAINSCRREN_W, MAINSCRREN_H-64-48 - FLEXIBLE_NUM(110)) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H-64-48) style:UITableViewStylePlain];
         _tableView.rowHeight = FLEXIBLE_NUM(47);
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.backgroundColor = [UIColor clearColor];
+        [self addSubview:_tableView];
         
         UIView * footerView = [[UIView alloc] initWithFrame:FLEXIBLE_FRAME(0, 0, 320, 50)];
         footerView.backgroundColor = [UIColor clearColor];
+        _footView = footerView;
         
         //添加分组
         UIButton * addGroupButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -206,68 +244,38 @@ static NSString * identify = @"Cell";
     [_tableView registerClass:[ContactTableViewCell class] forCellReuseIdentifier:identify];
     
     //搜索按钮
-    UIButton * searchBut = [self createButtonWithTitle:@"  搜索" font:FLEXIBLE_NUM(13) subView:topView];
-    searchBut.frame = FLEXIBLE_FRAME(30, 10, 260, 30);
-    searchBut.backgroundColor = RGBACOLOR(241, 241, 241, 1);
-    searchBut.layer.cornerRadius = FLEXIBLE_NUM(15);
-    searchBut.clipsToBounds = YES;
-    [searchBut setImage:[UIImage imageNamed:@"icon_sous"] forState:UIControlStateNormal];
-    [searchBut setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    UIButton * searchBut = [self createButtonWithTitle:@"  搜索" font:FLEXIBLE_NUM(13) subView:topView];
+//    searchBut.frame = FLEXIBLE_FRAME(30, 10, 260, 30);
+//    searchBut.backgroundColor = RGBACOLOR(241, 241, 241, 1);
+//    searchBut.layer.cornerRadius = FLEXIBLE_NUM(15);
+//    searchBut.clipsToBounds = YES;
+//    [searchBut setImage:[UIImage imageNamed:@"icon_sous"] forState:UIControlStateNormal];
+//    [searchBut setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
-//    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:FLEXIBLE_FRAME(0, 8, 320, 34)];
-//    searchBar.placeholder = @"搜索";
-//    searchBar.backgroundColor = [UIColor whiteColor];
-//    searchBar.searchBarStyle = UISearchBarStyleMinimal;
-//    [topView addSubview:searchBar];
-//    
-//    for (UIView *subview in searchBar.subviews) {
-//        for(UIView* grandSonView in subview.subviews){
-//            if ([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
-//                grandSonView.alpha = 0.0f;
-//            }else if([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarTextField")] ){
-//                NSLog(@"Keep textfiedld bkg color");
-//            }else{
-//                grandSonView.alpha = 0.0f;
-//            }
-//        }//for cacheViews
-//    }//subviews
-//    
-//    // 添加 searchbar 到 headerview
-//    self.tableView.tableHeaderView = topView;
-//    
-//    // 用 searchbar 初始化 SearchDisplayController
-//    // 并把 searchDisplayController 和当前 controller 关联起来
-//    _searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self.viewController];
-//    
-//    // searchResultsDataSource 就是 UITableViewDataSource
-//    _searchDisplayController.searchResultsDataSource = self;
-//    // searchResultsDelegate 就是 UITableViewDelegate
-//    _searchDisplayController.searchResultsDelegate = self;
-//    _searchDisplayController.searchResultsTableView.rowHeight = FLEXIBLE_NUM(50);
-//    [_searchDisplayController.searchResultsTableView registerClass:[ContactTableViewCell class] forCellReuseIdentifier:identify];
-//    
-    NSArray * titleArray = [NSArray arrayWithObjects:@"新朋友",@"门派", nil];
-    for (int i = 0; i < 2; i ++) {
-        UIButton * topButton = [self createButtonWithTitle:nil font:0 subView:topView];
-        topButton.frame = FLEXIBLE_FRAME(80 + 120 * i, 50, 40, 50);
-        if (i == 0) {
-            [topButton addTarget:self action:@selector(newFriendsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        }else{
-            [topButton addTarget:self action:@selector(unitsedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        }
-        
-        UIImageView * imageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(5, 0, 30, 30)];
-        imageView.image = [UIImage imageNamed:titleArray[i]];
-        [topButton addSubview:imageView];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        
-        UILabel * titleLabel = [self createLabelWithText:titleArray[i] font:FLEXIBLE_NUM(12) subView:topButton];
-        titleLabel.frame = FLEXIBLE_FRAME(0, 30, 40, 20);
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.textColor = [UIColor blackColor];
-    }
+    // 并把 searchDisplayController 和当前 controller 关联起来
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    _searchController.searchResultsUpdater = self;
+    _searchController.delegate = self;
+    _searchController.dimsBackgroundDuringPresentation = YES;
+    _searchController.hidesNavigationBarDuringPresentation = YES;
+    _searchController.obscuresBackgroundDuringPresentation = NO;
+    _searchController.searchBar.frame = FLEXIBLE_FRAME(0, 10, 320, 30);
+    _searchController.searchBar.delegate = self;
+    _searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    [topView addSubview:_searchController.searchBar];
+    self.tableView.tableHeaderView = topView;
     
-    [self addSubview:self.tableView];
+    for (UIView *subview in _searchController.searchBar.subviews) {
+        for(UIView* grandSonView in subview.subviews){
+            if ([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+                grandSonView.alpha = 0.0f;
+            }else if([grandSonView isKindOfClass:NSClassFromString(@"UISearchBarTextField")] ){
+                NSLog(@"Keep textfiedld bkg color");
+            }else{
+                grandSonView.alpha = 0.0f;
+            }
+        }//for cacheViews
+    }//subviews
 }
 
 #pragma mark -- 长按手势
@@ -280,11 +288,11 @@ static NSString * identify = @"Cell";
     NSLog(@"wocaonimaIndex  -- %ld",index);
     
     
-    NSString * messageString = [NSString stringWithFormat:@"请选择你对分类“%@”的操作",_dataArray[index][@"name"]];
-     UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"分类管理" message:messageString preferredStyle:UIAlertControllerStyleActionSheet];
-     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"修改该分类" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-         NSString * titleString= [NSString stringWithFormat:@"修改分类“%@”",_dataArray[index][@"name"]];
-         UIAlertController  * editAlterController = [UIAlertController alertControllerWithTitle:titleString message:@"请输入新的分类名" preferredStyle:UIAlertControllerStyleAlert];
+    NSString * messageString = [NSString stringWithFormat:@"请选择你对分组“%@”的操作",_dataArray[index][@"name"]];
+     UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"分组管理" message:messageString preferredStyle:UIAlertControllerStyleActionSheet];
+     UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"修改该分组" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         NSString * titleString= [NSString stringWithFormat:@"修改分组“%@”",_dataArray[index][@"name"]];
+         UIAlertController  * editAlterController = [UIAlertController alertControllerWithTitle:titleString message:@"请输入新的分组名" preferredStyle:UIAlertControllerStyleAlert];
          [editAlterController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
              _editGroupNameTextField = textField;
          }];
@@ -298,16 +306,14 @@ static NSString * identify = @"Cell";
         [self.viewController presentViewController:editAlterController animated:YES completion:nil];
     }];
     [alertController addAction:sureAction];
-    UIAlertAction * delAction = [UIAlertAction actionWithTitle:@"删除该分类" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        UIAlertController  * editAlterController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该分类下还有好友，移除好友后才能删除分类～" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * delAction = [UIAlertAction actionWithTitle:@"删除该分组" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController  * delAlterController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"该分类下还有好友，移除好友后才能删除分组～" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction * sureAction2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
           
         }];
-        UIAlertAction *  cancelAction2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        [editAlterController addAction:sureAction2];
-        [editAlterController addAction:cancelAction2];
-        if ([_dataArray[index][@"friends"] count] > 0) {
-            [self.viewController presentViewController:editAlterController animated:YES completion:nil];
+        [delAlterController addAction:sureAction2];
+        if ([_allFriendsArray[index][@"friends"] count] > 0) {
+            [self.viewController presentViewController:delAlterController animated:YES completion:nil];
             return ;
         }
         
@@ -323,19 +329,29 @@ static NSString * identify = @"Cell";
 #pragma mark - <UITableViewDataSource,UITableViewDelegate>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (_searchController.active) {
+        return 1;
+    }
     return _dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (_searchController.active) {
+        return _filterData.count;
+    }
     return [_dataArray[section][@"friends"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    NSDictionary  * dataDic = _dataArray[indexPath.section][@"friends"][indexPath.row][@"friend"];
-    
+    NSDictionary  * dataDic;
+    if (_searchController.active) {
+        dataDic = _filterData[indexPath.row][@"friend"];
+    }else{
+        dataDic = _dataArray[indexPath.section][@"friends"][indexPath.row][@"friend"];
+    }
     cell.dataDic = dataDic;
     
     [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dataDic[@"avatar"]]] placeholderImage:PLACEHOLER_IMA];
@@ -346,66 +362,77 @@ static NSString * identify = @"Cell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (_searchController.active) {
+        return 0;
+    }
     return  FLEXIBLE_NUM(40);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIButton * headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    headerButton.frame = FLEXIBLE_FRAME(0, 0, 320, 40);
-    headerButton.tag = SECTION_TAG + section;
-    headerButton.backgroundColor = [UIColor whiteColor];
-    [headerButton addTarget:self action:@selector(sectionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILongPressGestureRecognizer * longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
-    [headerButton addGestureRecognizer:longPressGesture];
-
-    
-    UILabel * headerTitleLabel = [self createLabelWithText:_allFriendsArray[section][@"name"] font:FLEXIBLE_NUM(13) subView:headerButton];
-    headerTitleLabel.frame = FLEXIBLE_FRAME(40, 0, 150, 40);
-    
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(15, 13, 14, 14)];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    if ([_selectedArray[section] integerValue] == 0) {
-         imageView.image = [UIImage imageNamed:@"icon_jt01@3x"];
-        UIView * lineView = [self createViewWithBackColor:THEMECOLOR_LINE subView:headerButton];
-        lineView.frame = FLEXIBLE_FRAME(0, 39, 320, 1);
-    }else{
-        imageView.image = [UIImage imageNamed:@"icon_jt02@3x"];
+    if (!_searchController.active) {
+        UIButton * headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        headerButton.frame = FLEXIBLE_FRAME(0, 0, 320, 40);
+        headerButton.tag = SECTION_TAG + section;
+        headerButton.backgroundColor = [UIColor whiteColor];
+        [headerButton addTarget:self action:@selector(sectionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILongPressGestureRecognizer * longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
+        [headerButton addGestureRecognizer:longPressGesture];
+        
+        
+        UILabel * headerTitleLabel = [self createLabelWithText:_allFriendsArray[section][@"name"] font:FLEXIBLE_NUM(13) subView:headerButton];
+        headerTitleLabel.frame = FLEXIBLE_FRAME(40, 0, 150, 40);
+        
+        UIImageView * imageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(15, 13, 14, 14)];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        if ([_selectedArray[section] integerValue] == 0) {
+            imageView.image = [UIImage imageNamed:@"icon_jt01@3x"];
+            UIView * lineView = [self createViewWithBackColor:THEMECOLOR_LINE subView:headerButton];
+            lineView.frame = FLEXIBLE_FRAME(0, 39, 320, 1);
+        }else{
+            imageView.image = [UIImage imageNamed:@"icon_jt02@3x"];
+        }
+        [headerButton addSubview:imageView];
+         return headerButton;
     }
-    [headerButton addSubview:imageView];
-    
-    return headerButton;
+    return nil;
 }
 
-////tableView footer
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return FLEXIBLE_NUM(50);
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    UIView * footerView = [[UIView alloc] initWithFrame:FLEXIBLE_FRAME(0, 0, 320, 50)];
-//    footerView.backgroundColor = [UIColor clearColor];
-//    
-//    //添加分组
-//    UIButton * addGroupButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    addGroupButton.backgroundColor = [UIColor whiteColor];
-//    addGroupButton.frame = FLEXIBLE_FRAME(0, 10, 320, 40);
-//    [addGroupButton addTarget:self action:@selector(addGroupButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    [footerView addSubview:addGroupButton];
-//    
-//    UILabel * titleLabel = [self createLabelWithText:@"添加分组" font:FLEXIBLE_NUM(13) subView:addGroupButton];
-//    titleLabel.frame = FLEXIBLE_FRAME(40, 0, 100, 40);
-//    
-//    UILabel * addLabel = [self createLabelWithText:@"＋" font:FLEXIBLE_NUM(20) subView:addGroupButton];
-//    addLabel.frame = FLEXIBLE_FRAME(0, 0, 40, 40);
-//    addLabel.textAlignment = NSTextAlignmentCenter;
-//    addLabel.textColor = [UIColor lightGrayColor];
-//    
-//    return footerView;
-//}
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = [self.searchController.searchBar text];
+    NSMutableArray * resultArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _dataSource.count; i ++) {
+        if ([_dataSource[i][@"friend"][@"nickname"] containsString:searchString]) {
+            [resultArray addObject:_dataSource[i]];
+        }
+    }
+    _filterData = resultArray;
+    _tableView.tableHeaderView = nil;
+    _tableView.tableFooterView = [[UIView alloc] init];
+    //刷新表格
+    [self.tableView reloadData];
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController
+{
+    [_searchController.searchBar endEditing:YES];
+}
+
+- (void)didDismissSearchController:(UISearchController *)searchController
+{
+//    [_searchController.searchBar endEditing:YES];
+//    [_topView addSubview:_searchController.searchBar];
+    _tableView.tableHeaderView = _topView;
+    _tableView.tableFooterView = _footView;
+    [_searchController.searchBar endEditing:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar endEditing:YES];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic, readonly) id        unitedDetailData;
 @property (strong, nonatomic, readonly) id        unitedActivityData;
+@property (strong, nonatomic, readonly) id        createUnitedActivityData;
 @property (strong, nonatomic, readonly) id        exitUnitedData;
 @property (strong, nonatomic, readonly) id        dismissUnitedData;
 @property (strong, nonatomic, readonly) id        transterUnitedData;
@@ -26,6 +27,10 @@
 @property (strong, nonatomic, readonly) NSDictionary *inviteData;
 @property (strong, nonatomic, readonly) NSDictionary *guserInfoData;
 @property (strong, nonatomic, readonly) NSDictionary *setAdminData;
+
+@property (strong, nonatomic, readonly) id        checkUnitedDetailData;
+@property (strong, nonatomic, readonly) id        signUpActivityData;
+
 
 //获取门派资料
 - (void)getUnitedInfoWithId:(NSString *)idString limit:(NSString *)limit;
@@ -77,4 +82,10 @@
  *  移除管理员
  */
 - (void)postRemoveAdminDataWithOwnerId:(NSNumber *)ownerId adminId:(NSNumber *)adminId groupId:(NSNumber *)groupId;
+
+//群活动详情
+- (void)checkUnitedActivityDetailInfoWithId:(NSString *)activityId;
+//报名群活动
+- (void)signUpUnitedActivityWithActivityId:(NSString *)activityId userId:(NSString *)userId;
+
 @end
