@@ -12,7 +12,7 @@
 @interface UnitedMemberViewController () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating>
 
 @property (strong, nonatomic) UITableView       * tableView;
-@property (strong, nonatomic) NSArray           * dataArray;
+@property (strong, nonatomic) NSMutableArray    * dataArray;
 @property (strong, nonatomic) NSArray           * colorArray;
 
 @property (strong, nonatomic) UISearchController                * searchController;
@@ -50,6 +50,21 @@ static NSString * identify = @"Cell";
 - (void)initializeDataSource
 {
     _colorArray = @[ARGB_COLOR(254, 217, 110, 1),ARGB_COLOR(150, 220, 116, 1),ARGB_COLOR(202, 202, 202, 1)];
+    
+    _dataArray = [NSMutableArray array];
+    
+    NSMutableArray * userArray = [NSMutableArray array];
+    NSMutableArray * managerArray = [NSMutableArray array];
+    for (int i = 0; i < _memberArray.count; i ++) {
+        if ([_memberArray[i][@"role"] isEqualToString:@"USER"]) {
+            [userArray addObject:_memberArray[i]];
+        }else{
+            
+            [managerArray addObject:_memberArray[i]];
+        }
+    }
+    [_dataArray addObject:userArray];
+    [_dataArray addObject:managerArray];
 }
 
 - (void)initializeUserInterface
@@ -95,7 +110,10 @@ static NSString * identify = @"Cell";
 #pragma mark -- <<UITableViewDelegate,UITableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (_searchController.active) {
+        return 1;
+    }
+    return _dataArray.count;
 }
 
 
@@ -129,6 +147,29 @@ static NSString * identify = @"Cell";
     cell.userNameLabel.text = dataDic[@"nameInGroup"];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (_searchController.active) {
+        return 0;
+    }
+    return FLEXIBLE_NUM(20);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (_searchController.active) {
+        return nil;
+    }else{
+        UILabel * headerTitleLabel = [[UILabel alloc] initWithFrame:FLEXIBLE_FRAME(0, 0, 320, 20)];
+        headerTitleLabel.textColor = [UIColor grayColor];
+        headerTitleLabel.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(10)];
+        if (section == 0) {
+            headerTitleLabel.text = @"群主管理员";
+        }
+        return headerTitleLabel;
+    }
 }
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {

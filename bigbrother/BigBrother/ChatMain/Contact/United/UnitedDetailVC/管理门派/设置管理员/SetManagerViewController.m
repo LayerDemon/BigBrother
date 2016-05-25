@@ -8,6 +8,8 @@
 
 #import "SetManagerViewController.h"
 #import "UnitedTableViewCell.h"
+#import "AddUnitedManagerViewController.h"
+
 @interface SetManagerViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView               * tableView;
@@ -56,7 +58,12 @@ static NSString * identify = @"Cell";
 {
     self.view.backgroundColor = THEMECOLOR_BACK;
     [self setEdgesForExtendedLayout:UIRectEdgeBottom];
-        
+    
+        //返回title
+    UIBarButtonItem * barbutton = [[UIBarButtonItem alloc] init];
+    barbutton.title = @"";
+    self.navigationItem.backBarButtonItem = barbutton;
+
     _tableView = ({
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H) style:UITableViewStylePlain];
         tableView.delegate = self;
@@ -98,8 +105,23 @@ static NSString * identify = @"Cell";
     
     UIButton * addManagerButton = [self createButtonWithTitle:@"添加管理员"];
     addManagerButton.frame = FLEXIBLE_FRAME(0, 5, 320, 40);
+    [addManagerButton addTarget:self action:@selector(addManagerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:addManagerButton];
     return backView;
+}
+
+- (void)addManagerButtonPressed:(UIButton *)sender
+{
+    AddUnitedManagerViewController * addVC = [[AddUnitedManagerViewController alloc] init];
+    NSMutableArray * resultArray = [NSMutableArray array];
+    for (int i = 0; i < [_unitedDetailDic[@"members"] count]; i ++) {
+        if ([_unitedDetailDic[@"members"][i][@"role"] isEqualToString:@"USER"]) {
+            [resultArray addObject:_unitedDetailDic[@"members"][i]];
+        }
+    }
+    addVC.memberArray = resultArray;
+    addVC.unitedDic = _unitedDetailDic;
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 #pragma mrak -- my methods
