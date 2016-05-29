@@ -9,6 +9,7 @@
 #import "ChatFrameModel.h"
 #import "NSString+Extension.h"
 #import "ChatSupplyLinkView.h"
+#import "ChatMoneyTreeView.h"
 
 #define timeH FLEXIBLE_NUM(36)
 #define padding FLEXIBLE_NUM(8)
@@ -178,7 +179,8 @@
     switch (resultValue) {
         case 1://摇钱树
         {
-            textRealSize = CGSizeMake(100, 100);
+            ChatMoneyTreeView *moneyTreeView = [[ChatMoneyTreeView alloc]init];
+            textRealSize = moneyTreeView.frame.size;
         }
             break;
         case 2://供应链接

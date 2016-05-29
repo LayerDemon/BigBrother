@@ -139,6 +139,7 @@
         self.fileLocalPath = voiceBody.localPath;
         self.fileURLPath = voiceBody.remotePath;
     }
+
     
     NSDictionary *ext = message.ext;
     NSInteger resultValue = [ext[@"resultValue"] integerValue];
