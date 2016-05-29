@@ -14,7 +14,7 @@
 #import "FriendDetailViewController.h"
 
 #define SECTION_TAG 2300
-@interface ContactView () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating,UISearchControllerDelegate,UISearchBarDelegate>
+@interface ContactView () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating,UISearchControllerDelegate>
 
 @property (strong, nonatomic) UITableView               * tableView;
 @property (strong, nonatomic) ContactModel              * contactMoel;
@@ -184,31 +184,6 @@ static NSString * identify = @"Cell";
 - (void)initializeUserInterface
 {
     self.backgroundColor = THEMECOLOR_BACK;
-    
-    UIView * topView = [self createViewWithBackColor:[UIColor whiteColor] subView:nil];
-    topView.frame = FLEXIBLE_FRAME(0, 0, 320, 105);
-    _topView = topView;
-    
-    NSArray * titleArray = [NSArray arrayWithObjects:@"新朋友",@"门派", nil];
-    for (int i = 0; i < 2; i ++) {
-        UIButton * topButton = [self createButtonWithTitle:nil font:0 subView:topView];
-        topButton.frame = FLEXIBLE_FRAME(80 + 120 * i, 50, 40, 50);
-        if (i == 0) {
-            [topButton addTarget:self action:@selector(newFriendsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        }else{
-            [topButton addTarget:self action:@selector(unitsedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        }
-        
-        UIImageView * imageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(5, 0, 30, 30)];
-        imageView.image = [UIImage imageNamed:titleArray[i]];
-        [topButton addSubview:imageView];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        
-        UILabel * titleLabel = [self createLabelWithText:titleArray[i] font:FLEXIBLE_NUM(12) subView:topButton];
-        titleLabel.frame = FLEXIBLE_FRAME(0, 30, 40, 20);
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.textColor = [UIColor blackColor];
-    }
 
     
     if (!_tableView) {
@@ -243,15 +218,6 @@ static NSString * identify = @"Cell";
     }
     [_tableView registerClass:[ContactTableViewCell class] forCellReuseIdentifier:identify];
     
-    //搜索按钮
-//    UIButton * searchBut = [self createButtonWithTitle:@"  搜索" font:FLEXIBLE_NUM(13) subView:topView];
-//    searchBut.frame = FLEXIBLE_FRAME(30, 10, 260, 30);
-//    searchBut.backgroundColor = RGBACOLOR(241, 241, 241, 1);
-//    searchBut.layer.cornerRadius = FLEXIBLE_NUM(15);
-//    searchBut.clipsToBounds = YES;
-//    [searchBut setImage:[UIImage imageNamed:@"icon_sous"] forState:UIControlStateNormal];
-//    [searchBut setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    
     // 并把 searchDisplayController 和当前 controller 关联起来
     _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     _searchController.searchResultsUpdater = self;
@@ -259,11 +225,10 @@ static NSString * identify = @"Cell";
     _searchController.dimsBackgroundDuringPresentation = YES;
     _searchController.hidesNavigationBarDuringPresentation = YES;
     _searchController.obscuresBackgroundDuringPresentation = NO;
-    _searchController.searchBar.frame = FLEXIBLE_FRAME(0, 10, 320, 30);
-    _searchController.searchBar.delegate = self;
+    _searchController.searchBar.frame = FLEXIBLE_FRAME(0, 0, 320, 40);
     _searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    [topView addSubview:_searchController.searchBar];
-    self.tableView.tableHeaderView = topView;
+    _searchController.searchBar.backgroundColor = [UIColor whiteColor];
+    self.tableView.tableHeaderView = _searchController.searchBar;
     
     for (UIView *subview in _searchController.searchBar.subviews) {
         for(UIView* grandSonView in subview.subviews){
@@ -365,6 +330,9 @@ static NSString * identify = @"Cell";
     if (_searchController.active) {
         return 0;
     }
+    if (section == 0) {
+        return FLEXIBLE_NUM(110);
+    }
     return  FLEXIBLE_NUM(40);
 }
 
@@ -394,7 +362,42 @@ static NSString * identify = @"Cell";
             imageView.image = [UIImage imageNamed:@"icon_jt02@3x"];
         }
         [headerButton addSubview:imageView];
-         return headerButton;
+        
+        if (section == 0) {
+            UIView * topView = [self createViewWithBackColor:[UIColor clearColor] subView:nil];
+            topView.frame = FLEXIBLE_FRAME(0, 0, 320, 110);
+            
+            UIView * topBackView = [self createViewWithBackColor:[UIColor whiteColor] subView:topView];
+            topBackView.frame = FLEXIBLE_FRAME(0, 0, 320, 65);
+            
+            NSArray * titleArray = [NSArray arrayWithObjects:@"新朋友",@"门派", nil];
+            for (int i = 0; i < 2; i ++) {
+                UIButton * topButton = [self createButtonWithTitle:nil font:0 subView:topBackView];
+                topButton.frame = FLEXIBLE_FRAME(80 + 120 * i, 5, 40, 50);
+                if (i == 0) {
+                    [topButton addTarget:self action:@selector(newFriendsButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                }else{
+                    [topButton addTarget:self action:@selector(unitsedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                
+                UIImageView * imageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(5, 0, 30, 30)];
+                imageView.image = [UIImage imageNamed:titleArray[i]];
+                [topButton addSubview:imageView];
+                imageView.contentMode = UIViewContentModeScaleAspectFit;
+                
+                UILabel * titleLabel = [self createLabelWithText:titleArray[i] font:FLEXIBLE_NUM(12) subView:topButton];
+                titleLabel.frame = FLEXIBLE_FRAME(0, 30, 40, 20);
+                titleLabel.textAlignment = NSTextAlignmentCenter;
+                titleLabel.textColor = [UIColor blackColor];
+            }
+            headerButton.frame = FLEXIBLE_FRAME(0, 70, 320, 40);
+            [topView addSubview:headerButton];
+            return topView;
+            
+        }else{
+            return headerButton;
+        }
+       
     }
     return nil;
 }
@@ -408,30 +411,16 @@ static NSString * identify = @"Cell";
             [resultArray addObject:_dataSource[i]];
         }
     }
-    _filterData = resultArray;
-    _tableView.tableHeaderView = nil;
+    _tableView.tableFooterView = nil;
     _tableView.tableFooterView = [[UIView alloc] init];
+    _filterData = resultArray;
     //刷新表格
     [self.tableView reloadData];
 }
 
-- (void)willDismissSearchController:(UISearchController *)searchController
-{
-    [_searchController.searchBar endEditing:YES];
-}
-
 - (void)didDismissSearchController:(UISearchController *)searchController
 {
-//    [_searchController.searchBar endEditing:YES];
-//    [_topView addSubview:_searchController.searchBar];
-    _tableView.tableHeaderView = _topView;
     _tableView.tableFooterView = _footView;
-    [_searchController.searchBar endEditing:YES];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    [searchBar endEditing:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -56,6 +56,8 @@
 		2DD0FBD71C9EE6E60046F4C4 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBD61C9EE6E60046F4C4 /* libstdc++.6.0.9.tbd */; };
 		2DD0FBD91C9EE6EF0046F4C4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD0FBD81C9EE6EF0046F4C4 /* libsqlite3.tbd */; };
 		2DD0FBDC1C9EEE680046F4C4 /* LTMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD0FBDB1C9EEE680046F4C4 /* LTMessageTableViewCell.m */; };
+		2DD49A581CF5D38500B8FFA8 /* AddUnitedManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD49A571CF5D38500B8FFA8 /* AddUnitedManagerViewController.m */; };
+		2DD49A5B1CF6038600B8FFA8 /* EditUnitedMemberRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD49A5A1CF6038600B8FFA8 /* EditUnitedMemberRankViewController.m */; };
 		2DE5FA451CF33F920001F750 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5FA441CF33F920001F750 /* DatePickerView.m */; };
 		2DE5FA491CF358180001F750 /* icon_time2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE5FA461CF358180001F750 /* icon_time2@3x.png */; };
 		2DE5FA4A1CF358180001F750 /* icon_user01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE5FA471CF358180001F750 /* icon_user01@3x.png */; };
@@ -699,6 +701,10 @@
 		2DD0FBD81C9EE6EF0046F4C4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2DD0FBDA1C9EEE680046F4C4 /* LTMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMessageTableViewCell.h; sourceTree = "<group>"; };
 		2DD0FBDB1C9EEE680046F4C4 /* LTMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTMessageTableViewCell.m; sourceTree = "<group>"; };
+		2DD49A561CF5D38500B8FFA8 /* AddUnitedManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUnitedManagerViewController.h; sourceTree = "<group>"; };
+		2DD49A571CF5D38500B8FFA8 /* AddUnitedManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUnitedManagerViewController.m; sourceTree = "<group>"; };
+		2DD49A591CF6038600B8FFA8 /* EditUnitedMemberRankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUnitedMemberRankViewController.h; sourceTree = "<group>"; };
+		2DD49A5A1CF6038600B8FFA8 /* EditUnitedMemberRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUnitedMemberRankViewController.m; sourceTree = "<group>"; };
 		2DE5FA431CF33F920001F750 /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
 		2DE5FA441CF33F920001F750 /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
 		2DE5FA461CF358180001F750 /* icon_time2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_time2@3x.png"; sourceTree = "<group>"; };
@@ -1695,6 +1701,8 @@
 			children = (
 				2D1D51CB1CF01503003C7E23 /* SetLowerRankViewController.h */,
 				2D1D51CC1CF01503003C7E23 /* SetLowerRankViewController.m */,
+				2DD49A591CF6038600B8FFA8 /* EditUnitedMemberRankViewController.h */,
+				2DD49A5A1CF6038600B8FFA8 /* EditUnitedMemberRankViewController.m */,
 			);
 			path = "设置下级头衔";
 			sourceTree = "<group>";
@@ -1827,6 +1835,8 @@
 			children = (
 				2DCA9EAE1CEE18A000FA7458 /* SetManagerViewController.h */,
 				2DCA9EAF1CEE18A000FA7458 /* SetManagerViewController.m */,
+				2DD49A561CF5D38500B8FFA8 /* AddUnitedManagerViewController.h */,
+				2DD49A571CF5D38500B8FFA8 /* AddUnitedManagerViewController.m */,
 			);
 			path = "设置管理员";
 			sourceTree = "<group>";
@@ -3933,7 +3943,7 @@
 				TargetAttributes = {
 					B89A0C5F1C79904C0072A6A8 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = MGNV857KZS;
+						DevelopmentTeam = NN7B8X2LU6;
 					};
 				};
 			};
@@ -4388,6 +4398,7 @@
 				B8A6AF471C8C083500DC84BC /* PostOnTopViewController.m in Sources */,
 				B81E56E51C7EED9B00E34A91 /* QNHex.m in Sources */,
 				B8C460171C8523350060528D /* TOCropOverlayView.m in Sources */,
+				2DD49A581CF5D38500B8FFA8 /* AddUnitedManagerViewController.m in Sources */,
 				2D359DA31CE8BD0500F85F24 /* UnitedInfoModel.m in Sources */,
 				B89A0C681C79904C0072A6A8 /* AppDelegate.m in Sources */,
 				2D359DA71CE8BD9000F85F24 /* UnitedDetailViewController.m in Sources */,
@@ -4515,6 +4526,7 @@
 				B81E56E01C7EED9B00E34A91 /* QNHijackingDetectWrapper.m in Sources */,
 				8C1862701CDF9BF600632CDC /* NSDate+Category.m in Sources */,
 				B81E56E21C7EED9B00E34A91 /* QNResolver.m in Sources */,
+				2DD49A5B1CF6038600B8FFA8 /* EditUnitedMemberRankViewController.m in Sources */,
 				B8C4601A1C8523350060528D /* TOCropView.m in Sources */,
 				8C1864331CDF9C4C00632CDC /* wav.mm in Sources */,
 				B81E56AB1C7EEB9000E34A91 /* QNPHAssetFile.m in Sources */,
@@ -4605,8 +4617,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhouguo Cao (769F96298P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhouguo Cao (769F96298P)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu Jiapeng Yinglian Technology Co., Ltd. (NN7B8X2LU6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu Jiapeng Yinglian Technology Co., Ltd. (NN7B8X2LU6)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -4630,7 +4642,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "78eca7ab-bf32-4310-8533-2df3dbdfbaa3";
+				PROVISIONING_PROFILE = "6deda04a-f2d2-445c-903e-7e17d922ea42";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4653,7 +4665,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhouguo Cao (769F96298P)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu Jiapeng Yinglian Technology Co., Ltd. (NN7B8X2LU6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhouguo Cao (769F96298P)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -4671,7 +4683,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "78eca7ab-bf32-4310-8533-2df3dbdfbaa3";
+				PROVISIONING_PROFILE = "6deda04a-f2d2-445c-903e-7e17d922ea42";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4696,9 +4708,9 @@
 					"$(PROJECT_DIR)/BigBrother/ChatMain/HeightTech/HyphenateSDK/3rdparty/VoiceConvert/opencore-amrwb",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr2;
+				PRODUCT_BUNDLE_IDENTIFIER = NN7B8X2LU6.BigBrotherHaha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6deda04a-f2d2-445c-903e-7e17d922ea42";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4721,9 +4733,9 @@
 					"$(PROJECT_DIR)/BigBrother/ChatMain/HeightTech/HyphenateSDK/3rdparty/VoiceConvert/opencore-amrwb",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr2;
+				PRODUCT_BUNDLE_IDENTIFIER = NN7B8X2LU6.BigBrotherHaha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6deda04a-f2d2-445c-903e-7e17d922ea42";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

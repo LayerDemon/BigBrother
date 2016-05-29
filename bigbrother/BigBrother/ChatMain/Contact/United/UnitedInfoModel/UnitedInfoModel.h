@@ -23,6 +23,8 @@
 
 @property (strong, nonatomic, readonly) id        getUnitedRankData;
 @property (strong, nonatomic, readonly) id        changeRankNameData;
+@property (strong, nonatomic, readonly) id        changeTitleData;
+
 @property (strong, nonatomic, readonly) NSDictionary *joinData;
 @property (strong, nonatomic, readonly) NSDictionary *inviteData;
 @property (strong, nonatomic, readonly) NSDictionary *guserInfoData;
@@ -59,6 +61,9 @@
 - (void)getUnitedRankWithGroupId:(NSString *)groupId;
 //修改等级名称
 - (void)changeUnitedRankNameWithUserId:(NSString *)userId groupGradeId:(NSString *)groupGradeId name:(NSString *)name;
+
+//设置专属名称
+- (void)setNiuBiNickNameWithOperator:(NSString *)operator userId:(NSString *)userId groupId:(NSString *)groupId title:(NSString *)title;
 
 /**
  *  申请加入群

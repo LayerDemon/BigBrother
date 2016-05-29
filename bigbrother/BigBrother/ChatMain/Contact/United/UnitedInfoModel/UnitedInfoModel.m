@@ -24,6 +24,8 @@
 
 @property (strong, nonatomic) id        getUnitedRankData;
 @property (strong, nonatomic) id        changeRankNameData;
+@property (strong, nonatomic) id        changeTitleData;
+
 @property (strong, nonatomic) NSDictionary *joinData;
 @property (strong, nonatomic) NSDictionary *inviteData;
 @property (strong, nonatomic) NSDictionary *guserInfoData;
@@ -253,6 +255,24 @@
     }];
 }
 
+//设置专属名称
+- (void)setNiuBiNickNameWithOperator:(NSString *)operator userId:(NSString *)userId groupId:(NSString *)groupId title:(NSString *)title
+{
+    NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
+    [dataDic setObject:operator forKey:@"operator"];
+    [dataDic setObject:userId forKey:@"userId"];
+    [dataDic setObject:groupId forKey:@"groupId"];
+    [dataDic setObject:title forKey:@"title"];
+    
+    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/grades/changeTitle" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"changeTitleData -- %@",responseObj);
+        self.changeTitleData = responseObj;
+        
+    } failAction:^(NSError *error, id responseObj) {
+        NSLog(@"error -- %@",error.localizedDescription);
+    }];
+}
+
 /**
  *  申请加入群
  */
@@ -373,5 +393,7 @@
         }
     }];
 }
+
+
 
 @end

@@ -13,7 +13,7 @@
 @interface UnitedMemberViewController () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating>
 
 @property (strong, nonatomic) UITableView       * tableView;
-@property (strong, nonatomic) NSArray           * dataArray;
+@property (strong, nonatomic) NSMutableArray    * dataArray;
 @property (strong, nonatomic) NSArray           * colorArray;
 
 @property (strong, nonatomic) UISearchController                * searchController;
@@ -51,6 +51,39 @@ static NSString * identify = @"Cell";
 - (void)initializeDataSource
 {
     _colorArray = @[ARGB_COLOR(254, 217, 110, 1),ARGB_COLOR(150, 220, 116, 1),ARGB_COLOR(202, 202, 202, 1)];
+    
+    _dataArray = [NSMutableArray array];
+    
+    NSMutableArray * userArray = [NSMutableArray array];
+    NSMutableArray * managerArray = [NSMutableArray array];
+    for (int i = 0; i < _memberArray.count; i ++) {
+        if ([_memberArray[i][@"role"] isEqualToString:@"USER"]) {
+            BOOL isExit = NO;
+            for (int j = 0; j < userArray.count; j ++) {
+                if ([userArray[j][@"section"] isEqualToString:_memberArray[i][@"grade"]]) {
+                    isExit = YES;
+                    NSMutableDictionary * mutableDic = [[NSMutableDictionary alloc] init];
+                    NSMutableArray * mutableArray = [[NSMutableArray alloc] initWithArray:userArray[j][@"array"]];
+                    [mutableArray addObject:_memberArray[i]];
+                    
+                    [mutableDic setObject:_memberArray[i][@"grade"] forKey:@"grade"];
+                    [mutableDic setObject:mutableArray forKey:@"array"];
+                    
+                    [userArray replaceObjectAtIndex:j withObject:mutableDic];
+                }
+            }
+            if (!isExit) {
+                NSMutableDictionary * newDataDic = [[NSMutableDictionary alloc] init];
+                [newDataDic setObject:_memberArray[i][@"grade"] forKey:@"grade"];
+                [newDataDic setObject:@[_memberArray[i]] forKey:@"array"];
+            }
+        }else{
+            [managerArray addObject:_memberArray[i]];
+        }
+    }
+    [_dataArray addObject:managerArray];
+    [_dataArray addObjectsFromArray:userArray];
+    NSLog(@"dataArray --- %@",_dataArray);
 }
 
 - (void)initializeUserInterface
@@ -98,7 +131,10 @@ static NSString * identify = @"Cell";
 #pragma mark -- <<UITableViewDelegate,UITableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (_searchController.active) {
+        return 1;
+    }
+    return _dataArray.count;
 }
 
 
@@ -107,7 +143,7 @@ static NSString * identify = @"Cell";
     if (_searchController.active) {
         return _filterData.count;
     }
-    return _memberArray.count;
+    return [_dataArray[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +154,7 @@ static NSString * identify = @"Cell";
     if (_searchController.active) {
         dataDic = _filterData[indexPath.row];
     }else{
-        dataDic = _memberArray[indexPath.row];
+        dataDic = _dataArray[indexPath.section][indexPath.row];
     }
     cell.dataDic = dataDic;
     [cell.headImageView  sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
@@ -135,6 +171,32 @@ static NSString * identify = @"Cell";
     return cell;
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (_searchController.active) {
+        return 0;
+    }
+    return FLEXIBLE_NUM(20);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (_searchController.active) {
+        return nil;
+    }else{
+        UILabel * headerTitleLabel = [[UILabel alloc] initWithFrame:FLEXIBLE_FRAME(0, 0, 320, 20)];
+        headerTitleLabel.textColor = [UIColor grayColor];
+        headerTitleLabel.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(10)];
+        if (section == 0) {
+            headerTitleLabel.text = [NSString stringWithFormat:@"    群主、管理员(%ld人)",[_dataArray[section] count]];
+        }else{
+            headerTitleLabel.text = [NSString stringWithFormat:@"    %@(%ld人)",_dataArray[section][@"grade"],[_dataArray[section][@"array"] count]];
+        }
+        return headerTitleLabel;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -143,7 +205,14 @@ static NSString * identify = @"Cell";
     guserDetailVC.currentUserDic = cell.dataDic;
     guserDetailVC.groupDic = self.groupDic;
     guserDetailVC.userDic = self.userDic;
+    if (_searchController.active) {
+        self.searchController.searchBar.hidden = YES;
+    }
     [self.navigationController pushViewController:guserDetailVC animated:YES];
+    [self.searchController dismissViewControllerAnimated:YES completion:^{
+        self.searchController.searchBar.hidden = NO;
+        self.searchController.searchBar.text = @"";
+    }];
 }
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {

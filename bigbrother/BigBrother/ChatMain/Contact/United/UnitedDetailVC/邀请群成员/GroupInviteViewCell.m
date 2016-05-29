@@ -10,8 +10,7 @@
 
 @interface GroupInviteViewCell ()
 
-@property (strong, nonatomic) IBOutlet UIImageView *headImgView;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+
 
 
 @end
