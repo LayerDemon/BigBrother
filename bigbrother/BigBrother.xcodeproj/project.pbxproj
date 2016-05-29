@@ -354,6 +354,7 @@
 		8C294DC31CFAE3A100ED7B57 /* ChatSupplyLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C294DC21CFAE3A100ED7B57 /* ChatSupplyLinkView.m */; };
 		8C294DC71CFAE5B500ED7B57 /* ChatSupplyLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C294DC61CFAE5B500ED7B57 /* ChatSupplyLinkView.xib */; };
 		8C294DCA1CFB072E00ED7B57 /* GroupBuyLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C294DC91CFB072E00ED7B57 /* GroupBuyLinkViewController.m */; };
+		8C294DCE1CFB34BB00ED7B57 /* MoneyTreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C294DCD1CFB34BB00ED7B57 /* MoneyTreeModel.m */; };
 		8C377E5F1CE38A5E00A737DD /* chat_receiver_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E5D1CE38A5E00A737DD /* chat_receiver_bg.png */; };
 		8C377E601CE38A5E00A737DD /* chat_receiver_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */; };
 		8C377E631CE38A6700A737DD /* chat_sender_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E611CE38A6700A737DD /* chat_sender_bg.png */; };
@@ -1121,6 +1122,8 @@
 		8C294DC61CFAE5B500ED7B57 /* ChatSupplyLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatSupplyLinkView.xib; sourceTree = "<group>"; };
 		8C294DC81CFB072E00ED7B57 /* GroupBuyLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBuyLinkViewController.h; sourceTree = "<group>"; };
 		8C294DC91CFB072E00ED7B57 /* GroupBuyLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBuyLinkViewController.m; sourceTree = "<group>"; };
+		8C294DCC1CFB34BB00ED7B57 /* MoneyTreeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyTreeModel.h; sourceTree = "<group>"; };
+		8C294DCD1CFB34BB00ED7B57 /* MoneyTreeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTreeModel.m; sourceTree = "<group>"; };
 		8C377E5D1CE38A5E00A737DD /* chat_receiver_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_receiver_bg.png; sourceTree = "<group>"; };
 		8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_receiver_bg@2x.png"; sourceTree = "<group>"; };
 		8C377E611CE38A6700A737DD /* chat_sender_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_sender_bg.png; sourceTree = "<group>"; };
@@ -1964,6 +1967,7 @@
 		8C0D247C1CEC6B2D00C7BE5E /* MoneyTree */ = {
 			isa = PBXGroup;
 			children = (
+				8C294DCB1CFB349E00ED7B57 /* Model */,
 				8C0D247E1CEC6B6F00C7BE5E /* MoneyTreeViewController.h */,
 				8C0D247F1CEC6B6F00C7BE5E /* MoneyTreeViewController.m */,
 				8C0D24811CEC6BBA00C7BE5E /* MoneyTreeView.xib */,
@@ -2767,6 +2771,15 @@
 				8C1864551CDF9D3D00632CDC /* EMErrorDefs.h */,
 			);
 			path = ErrorManager;
+			sourceTree = "<group>";
+		};
+		8C294DCB1CFB349E00ED7B57 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C294DCC1CFB34BB00ED7B57 /* MoneyTreeModel.h */,
+				8C294DCD1CFB34BB00ED7B57 /* MoneyTreeModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8C63E5051CE055F700B4EC1D /* Chat */ = {
@@ -4516,6 +4529,7 @@
 				8C1861F61CDF378900632CDC /* UIImage+GIF.m in Sources */,
 				8C63E57F1CE05CB300B4EC1D /* UIButton+Category.m in Sources */,
 				B81A11E81C8FF8C300AA6690 /* NSString+DateToString.m in Sources */,
+				8C294DCE1CFB34BB00ED7B57 /* MoneyTreeModel.m in Sources */,
 				8C63E52D1CE056A800B4EC1D /* AGEmojiPageView.m in Sources */,
 				B89A0CE91C79E0D40072A6A8 /* BaseProduct.m in Sources */,
 				B8DFAE7B1C7AB15C0019A2D5 /* BBUserDefaults.m in Sources */,
