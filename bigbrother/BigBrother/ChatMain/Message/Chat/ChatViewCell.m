@@ -9,7 +9,11 @@
 #import "ChatViewCell.h"
 //#import "ShowMapViewController.h"
 
+
+
 #define locationW FLEXIBLE_NUM(95)
+
+#define CUSTOMMESSAGEVIEW_TAG 1000
 
 @interface ChatViewCell ()
 
@@ -17,6 +21,8 @@
 @property (strong, nonatomic) UIButton *iconBtn;
 @property (strong, nonatomic) UIButton *textBtn;
 @property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) UILabel *gradeLabel;
+
 
 @end
 
@@ -110,6 +116,14 @@
     return _voiceImageView;
 }
 
+- (ChatSupplyLinkView *)supplyLinkView
+{
+    if (!_supplyLinkView) {
+        _supplyLinkView = [[ChatSupplyLinkView alloc]init];
+    }
+    return _supplyLinkView;
+}
+
 #pragma mark - 按钮方法
 //- (void)longPressGestureRecognizer:(UILongPressGestureRecognizer *)sender
 //{
@@ -133,11 +147,37 @@
             //播放音频
             [self.delegate chatViewCell:self clickedVoiceBtn:sender];
             break;
+        case EMMessageBodyTypeCustom:
+            //播放音频
+            [self clickedCustomMessageWithMessageExt:self.cellFrameModel.messageModel.messageExt];
+            break;
             
         default:
             
             break;
     }
+}
+
+- (void)clickedCustomMessageWithMessageExt:(NSDictionary *)messageExt
+{
+    NSInteger resultValue = [messageExt[@"resultValue"] integerValue];
+    
+    switch (resultValue) {
+        case 1://摇钱树
+            
+            break;
+        case 2://供应链接
+            [self.delegate chatViewCell:self clickedSupplyLinkBtn:self.textBtn];
+            break;
+        case 3://供应链接
+            [self.delegate chatViewCell:self clickedGroupLinkBtn:self.textBtn];
+            break;
+            
+        default:
+//            [AppDelegate showHintLabelWithMessage:@"已经没有更多了~"];
+            break;
+    }
+    
 }
 
 - (void)sendStateBtnPressed:(UIButton *)sender
@@ -234,10 +274,14 @@
 //获取对应类型的内容
 - (void)contentWithMessageModel:(ChatMessageModel *)messageModel
 {
-//    self.addrLabel.hidden = YES;
+    UIView *lastMessageView = [self.textBtn viewWithTag:CUSTOMMESSAGEVIEW_TAG];
+    if (lastMessageView) {
+        [lastMessageView removeFromSuperview];
+    }
     self.voiceImageView.hidden = YES;
     NSString *textBg = messageModel.isFromOther ? @"chat_receiver_bg" : @"chat_sender_bg";
     [self.textBtn setBackgroundImage:[UIImage resizeImage:textBg] forState:UIControlStateNormal];
+    [self.textBtn setImage:[[UIImage alloc] init] forState:UIControlStateNormal];
     [self.textBtn setTitle:@"" forState:UIControlStateNormal];
     
     switch (messageModel.messageBodyType) {
@@ -257,6 +301,7 @@
                 }
             }
             
+//            [self.voiceImageView startAnimating];
             if (messageModel.isMediaPlaying) {
                 [self.voiceImageView startAnimating];
             }
@@ -267,7 +312,8 @@
             break;
         case EMMessageBodyTypeCustom:
         {
-            
+            UIView *customMessageView = [self customMessageViewWithMessageExt:messageModel.messageExt];
+            [self.textBtn addSubview:customMessageView];
         }
             break;
         default:
@@ -275,6 +321,48 @@
     }
 }
 
+- (UIView *)customMessageViewWithMessageExt:(NSDictionary *)messageExt
+{
+    NSInteger resultValue = [messageExt[@"resultValue"] integerValue];
+    
+    UIView *customMessageView;
+    switch (resultValue) {
+        case 1://摇钱树
+            
+            break;
+        case 2://供应链接
+        {
+            [self.supplyLinkView reloadSupplyLinkWithDataDic:messageExt[@"customPojo"]];
+            customMessageView = self.supplyLinkView;
+//            [supplyLinkView removeFromSuperview];
+        }
+            break;
+        case 3://供应链接
+        {
+            [self.supplyLinkView reloadGroupLinkWithDataDic:messageExt[@"customPojo"]];
+            customMessageView = self.supplyLinkView;
+            //            [supplyLinkView removeFromSuperview];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    customMessageView.tag = CUSTOMMESSAGEVIEW_TAG;
+    customMessageView.userInteractionEnabled = NO;
+    return customMessageView;
+}
 
+//- (void)drawRect:(CGRect)rect
+//{
+//    [super drawRect:rect];
+//    ChatSupplyLinkView *supplyLinkView = [[ChatSupplyLinkView alloc]init];
+//    [supplyLinkView reloadSupplyLinkWithDataDic:self.cellFrameModel.messageModel.messageExt];
+////    [self addSubview:supplyLinkView];
+//    UIImage *contentImage = [supplyLinkView screenshotWithRect:supplyLinkView.bounds];
+//    [self.textBtn setImage:contentImage forState:UIControlStateNormal];
+//    [self.textBtn setBackgroundImage:contentImage forState:UIControlStateNormal];
+//}
 
 @end

@@ -21,4 +21,10 @@
 
 @property (assign, nonatomic) id<ChatMoreInputViewDelegate>delegate;
 
+@property (strong, nonatomic) IBOutlet UIButton *moneyTreeBtn;
+@property (strong, nonatomic) IBOutlet UIButton *supplyLinkBtn;
+@property (strong, nonatomic) IBOutlet UIButton *groupBuyLinkBtn;
+@property (strong, nonatomic) IBOutlet UIButton *groupActivityBtn;
+@property (strong, nonatomic) IBOutlet UILabel *groupActivityLabel;
+
 @end

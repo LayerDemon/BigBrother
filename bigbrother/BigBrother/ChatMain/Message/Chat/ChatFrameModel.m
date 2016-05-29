@@ -8,6 +8,7 @@
 
 #import "ChatFrameModel.h"
 #import "NSString+Extension.h"
+#import "ChatSupplyLinkView.h"
 
 #define timeH FLEXIBLE_NUM(36)
 #define padding FLEXIBLE_NUM(8)
@@ -117,10 +118,10 @@
     CGFloat nameFrameW = MAINSCRREN_W - padding*2 - iconFrameW;
     CGFloat nameFrameX = messageModel.isFromOther ?  CGRectGetMaxX(_iconFrame) + padding : MAINSCRREN_W-(padding*2 + iconFrameW + nameFrameW);
     CGFloat nameFrameH = FLEXIBLE_NUM(16);
-    _nameFrame = messageModel.isFromOther ? CGRectMake(nameFrameX, nameFrameY, nameFrameW, nameFrameH) : CGRectZero;
+    _nameFrame = messageModel.isFromOther ? CGRectMake(nameFrameX, nameFrameY, nameFrameW, nameFrameH) : CGRectMake(nameFrameX, nameFrameY, nameFrameW, nameFrameH);
     
     //3.内容的Frame.
-    CGFloat textFrameY = messageModel.isFromOther ? CGRectGetMaxY(_iconFrame)-padding-FLEXIBLE_NUM(5) : iconFrameY;
+    CGFloat textFrameY = messageModel.isFromOther ? CGRectGetMaxY(_iconFrame)-padding-FLEXIBLE_NUM(5) : CGRectGetMaxY(_iconFrame)-padding-FLEXIBLE_NUM(5);
     [self contentFrameWithMessageModel:messageModel frameY:textFrameY];
     
     //4.内容的insert 
@@ -178,6 +179,18 @@
         case 1://摇钱树
         {
             textRealSize = CGSizeMake(100, 100);
+        }
+            break;
+        case 2://供应链接
+        {
+            ChatSupplyLinkView *supplyLinkView = [[ChatSupplyLinkView alloc]init];
+            textRealSize = supplyLinkView.frame.size;
+        }
+            break;
+        case 3://供应链接
+        {
+            ChatSupplyLinkView *supplyLinkView = [[ChatSupplyLinkView alloc]init];
+            textRealSize = supplyLinkView.frame.size;
         }
             break;
             

@@ -346,6 +346,11 @@
 		8C1864501CDF9CC700632CDC /* EMCDDeviceManager+ProximitySensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1864461CDF9CC700632CDC /* EMCDDeviceManager+ProximitySensor.m */; };
 		8C1864511CDF9CC700632CDC /* EMCDDeviceManager+Remind.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1864481CDF9CC700632CDC /* EMCDDeviceManager+Remind.m */; };
 		8C1864521CDF9CC700632CDC /* EMCDDeviceManagerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C18644B1CDF9CC700632CDC /* EMCDDeviceManagerBase.m */; };
+		8C294DBE1CFAE25100ED7B57 /* ChatMoneyTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C294DBD1CFAE25100ED7B57 /* ChatMoneyTreeView.m */; };
+		8C294DC01CFAE2BE00ED7B57 /* ChatMoneyTreeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C294DBF1CFAE2BE00ED7B57 /* ChatMoneyTreeView.xib */; };
+		8C294DC31CFAE3A100ED7B57 /* ChatSupplyLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C294DC21CFAE3A100ED7B57 /* ChatSupplyLinkView.m */; };
+		8C294DC71CFAE5B500ED7B57 /* ChatSupplyLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C294DC61CFAE5B500ED7B57 /* ChatSupplyLinkView.xib */; };
+		8C294DCA1CFB072E00ED7B57 /* GroupBuyLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C294DC91CFB072E00ED7B57 /* GroupBuyLinkViewController.m */; };
 		8C377E5F1CE38A5E00A737DD /* chat_receiver_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E5D1CE38A5E00A737DD /* chat_receiver_bg.png */; };
 		8C377E601CE38A5E00A737DD /* chat_receiver_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */; };
 		8C377E631CE38A6700A737DD /* chat_sender_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C377E611CE38A6700A737DD /* chat_sender_bg.png */; };
@@ -1099,6 +1104,14 @@
 		8C18644B1CDF9CC700632CDC /* EMCDDeviceManagerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCDDeviceManagerBase.m; sourceTree = "<group>"; };
 		8C1864541CDF9D3D00632CDC /* EMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMError.h; sourceTree = "<group>"; };
 		8C1864551CDF9D3D00632CDC /* EMErrorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMErrorDefs.h; sourceTree = "<group>"; };
+		8C294DBC1CFAE25100ED7B57 /* ChatMoneyTreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMoneyTreeView.h; sourceTree = "<group>"; };
+		8C294DBD1CFAE25100ED7B57 /* ChatMoneyTreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMoneyTreeView.m; sourceTree = "<group>"; };
+		8C294DBF1CFAE2BE00ED7B57 /* ChatMoneyTreeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatMoneyTreeView.xib; sourceTree = "<group>"; };
+		8C294DC11CFAE3A100ED7B57 /* ChatSupplyLinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSupplyLinkView.h; sourceTree = "<group>"; };
+		8C294DC21CFAE3A100ED7B57 /* ChatSupplyLinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSupplyLinkView.m; sourceTree = "<group>"; };
+		8C294DC61CFAE5B500ED7B57 /* ChatSupplyLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatSupplyLinkView.xib; sourceTree = "<group>"; };
+		8C294DC81CFB072E00ED7B57 /* GroupBuyLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBuyLinkViewController.h; sourceTree = "<group>"; };
+		8C294DC91CFB072E00ED7B57 /* GroupBuyLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBuyLinkViewController.m; sourceTree = "<group>"; };
 		8C377E5D1CE38A5E00A737DD /* chat_receiver_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_receiver_bg.png; sourceTree = "<group>"; };
 		8C377E5E1CE38A5E00A737DD /* chat_receiver_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_receiver_bg@2x.png"; sourceTree = "<group>"; };
 		8C377E611CE38A6700A737DD /* chat_sender_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_sender_bg.png; sourceTree = "<group>"; };
@@ -1927,6 +1940,8 @@
 		8C0D247B1CEC6B2D00C7BE5E /* GroupBuyLink */ = {
 			isa = PBXGroup;
 			children = (
+				8C294DC81CFB072E00ED7B57 /* GroupBuyLinkViewController.h */,
+				8C294DC91CFB072E00ED7B57 /* GroupBuyLinkViewController.m */,
 			);
 			path = GroupBuyLink;
 			sourceTree = "<group>";
@@ -1937,6 +1952,9 @@
 				8C0D247E1CEC6B6F00C7BE5E /* MoneyTreeViewController.h */,
 				8C0D247F1CEC6B6F00C7BE5E /* MoneyTreeViewController.m */,
 				8C0D24811CEC6BBA00C7BE5E /* MoneyTreeView.xib */,
+				8C294DBC1CFAE25100ED7B57 /* ChatMoneyTreeView.h */,
+				8C294DBD1CFAE25100ED7B57 /* ChatMoneyTreeView.m */,
+				8C294DBF1CFAE2BE00ED7B57 /* ChatMoneyTreeView.xib */,
 			);
 			path = MoneyTree;
 			sourceTree = "<group>";
@@ -1949,6 +1967,9 @@
 				8C0B2A8C1CED617200EF4C2E /* SupplyLinkViewCell.h */,
 				8C0B2A8D1CED617200EF4C2E /* SupplyLinkViewCell.m */,
 				8C0B2A8F1CED61A500EF4C2E /* SupplyLinkViewCell.xib */,
+				8C294DC11CFAE3A100ED7B57 /* ChatSupplyLinkView.h */,
+				8C294DC21CFAE3A100ED7B57 /* ChatSupplyLinkView.m */,
+				8C294DC61CFAE5B500ED7B57 /* ChatSupplyLinkView.xib */,
 			);
 			path = SupplyLink;
 			sourceTree = "<group>";
@@ -4058,6 +4079,7 @@
 				8C18641B1CDF9C4C00632CDC /* group_joinpublicgroup@2x.png in Resources */,
 				8C18638F1CDF9C4C00632CDC /* VoiceSearchFeedback007.png in Resources */,
 				8C1864251CDF9C4C00632CDC /* tabbar_chatsHL@2x.png in Resources */,
+				8C294DC01CFAE2BE00ED7B57 /* ChatMoneyTreeView.xib in Resources */,
 				8C9773661CEAB9020013EC9B /* Info.plist in Resources */,
 				8C1864131CDF9C4C00632CDC /* back@2x.png in Resources */,
 				8C63E5C71CE09FA900B4EC1D /* emoji_tab2@3x.png in Resources */,
@@ -4108,6 +4130,7 @@
 				8C1863821CDF9C4C00632CDC /* chatListCellHead@2x.png in Resources */,
 				8C0D248D1CEC6E2000C7BE5E /* moneytree_bg.png in Resources */,
 				8C1862581CDF91C300632CDC /* Localizable.strings in Resources */,
+				8C294DC71CFAE5B500ED7B57 /* ChatSupplyLinkView.xib in Resources */,
 				2DA836B71CE3825F00C1E8A3 /* mr_headimg@3x.png in Resources */,
 				8C63E5DD1CE0A03000B4EC1D /* bt_search_btn@2x.png in Resources */,
 				8C1863E91CDF9C4C00632CDC /* chatBar_more_camera.png in Resources */,
@@ -4241,6 +4264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B89A0D031C79FB650072A6A8 /* FactoryPostNewViewController.m in Sources */,
+				8C294DCA1CFB072E00ED7B57 /* GroupBuyLinkViewController.m in Sources */,
 				8C63E5701CE05B6B00B4EC1D /* MJRefreshStateHeader.m in Sources */,
 				B89A0CCC1C79C8090072A6A8 /* FactoryProduct.m in Sources */,
 				B89A0CE21C79D8300072A6A8 /* UIScrollView+XYRefresh.m in Sources */,
@@ -4325,6 +4349,7 @@
 				B8A819A11C7DE27300026032 /* RentCarPostToViewController.m in Sources */,
 				8C12C9CF1CEA0FDA0067AA9B /* FriendDetailViewController.m in Sources */,
 				2D8AFF481CE23E91009B7F24 /* ContactTableViewCell.m in Sources */,
+				8C294DC31CFAE3A100ED7B57 /* ChatSupplyLinkView.m in Sources */,
 				B89A0CE61C79D83A0072A6A8 /* BYToastView.m in Sources */,
 				8C1863791CDF9C4C00632CDC /* MBProgressHUD+Add.m in Sources */,
 				B8C460151C8523350060528D /* UIImage+CropRotate.m in Sources */,
@@ -4425,6 +4450,7 @@
 				8C0A076C1CE21A6A00889CF6 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				B89A0D001C79FB580072A6A8 /* HousePostNewViewController.m in Sources */,
 				B81E56B51C7EEB9000E34A91 /* QNConfiguration.m in Sources */,
+				8C294DBE1CFAE25100ED7B57 /* ChatMoneyTreeView.m in Sources */,
 				B89A0C651C79904C0072A6A8 /* main.m in Sources */,
 				2D0785321CECAF65001B57A8 /* UnitedMember2TableViewCell.m in Sources */,
 				8C63E51B1CE055F800B4EC1D /* ChatViewController.m in Sources */,
@@ -4670,7 +4696,7 @@
 					"$(PROJECT_DIR)/BigBrother/ChatMain/HeightTech/HyphenateSDK/3rdparty/VoiceConvert/opencore-amrwb",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4695,7 +4721,7 @@
 					"$(PROJECT_DIR)/BigBrother/ChatMain/HeightTech/HyphenateSDK/3rdparty/VoiceConvert/opencore-amrwb",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -162,9 +162,9 @@
 #define TABLENAME_BLACKLIST @"blackList"
 
 //假数据
-#define TESTUSER_DIC @{@"authStatus":@"NOT_SUBMIT",@"authType":@"authType",@"avatar":@"http://y2.ifengimg.com/cmpp/2016/03/30/20/fdcb9b54-c0bd-46ec-974c-a2cad87c4a51_size16_w540_h303.jpg",@"balance":@(0),@"birthday":@"",@"createdTime":@"2016-05-10 09:33:40",@"districtFullName":@"",@"districtId":@"",@"gender":@"UNKNOWN",@"id":@(57),@"imNumber":@"1121",@"imPass":@"123456",@"isAdmin":@(0),@"isLocked":@(0),@"lastLoginTime":@"2016-05-10 20:26:58",@"nickname":@"1121",@"phoneNumber":@"17780526454",@"recommender":@"",@"username":@""};
+//#define TESTUSER_DIC @{@"authStatus":@"NOT_SUBMIT",@"authType":@"authType",@"avatar":@"http://y2.ifengimg.com/cmpp/2016/03/30/20/fdcb9b54-c0bd-46ec-974c-a2cad87c4a51_size16_w540_h303.jpg",@"balance":@(0),@"birthday":@"",@"createdTime":@"2016-05-10 09:33:40",@"districtFullName":@"",@"districtId":@"",@"gender":@"UNKNOWN",@"id":@(57),@"imNumber":@"1121",@"imPass":@"123456",@"isAdmin":@(0),@"isLocked":@(0),@"lastLoginTime":@"2016-05-10 20:26:58",@"nickname":@"1121",@"phoneNumber":@"17780526454",@"recommender":@"",@"username":@""};
 
-#define TESTGROUP_DIC @{@"id":@(1),@"name":@"傻逼后台~",@"troduction":@"傻逼后台 脑残一个~。",@"memberCount":@(2),@"status":@"activity",@"avatar":@"http://travel.cnr.cn/list/20160330/W020160330613338597321.jpg",@"capacity":@(500),@"groupNumber":@(2001),@"chatgroupid":@"194668361525756352"}
+//#define TESTGROUP_DIC @{@"id":@(1),@"name":@"傻逼后台~",@"troduction":@"傻逼后台 脑残一个~。",@"memberCount":@(2),@"status":@"activity",@"avatar":@"http://travel.cnr.cn/list/20160330/W020160330613338597321.jpg",@"capacity":@(500),@"groupNumber":@(2001),@"chatgroupid":@"194668361525756352"}
 
 
 

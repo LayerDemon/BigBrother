@@ -13,10 +13,7 @@
 
 @property (strong, nonatomic) UIImagePickerController *picker;//相机、相册
 
-@property (strong, nonatomic) IBOutlet UIButton *moneyTreeBtn;
-@property (strong, nonatomic) IBOutlet UIButton *supplyLinkBtn;
-@property (strong, nonatomic) IBOutlet UIButton *groupBuyLinkBtn;
-@property (strong, nonatomic) IBOutlet UIButton *groupActivityBtn;
+
 
 
 

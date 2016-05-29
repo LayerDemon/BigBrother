@@ -224,4 +224,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     return message;
 }
 
++ (NSDictionary *)customMessageDicWithSubMessage:(NSString *)subMessage
+                                      customPojo:(NSDictionary *)customPojo
+                                     resultValue:(NSNumber *)resultValue
+{
+    return @{@"subMessage":subMessage,@"customPojo":customPojo,@"resultValue":resultValue};
+}
+
 @end

@@ -74,6 +74,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                            messageType:(EMChatType)messageType
                             messageExt:(NSDictionary *)messageExt;
 
++ (NSDictionary *)customMessageDicWithSubMessage:(NSString *)subMessage
+                                      customPojo:(NSDictionary *)customPojo
+                                     resultValue:(NSNumber *)resultValue;
+
 #pragma mark - call
 
 @end

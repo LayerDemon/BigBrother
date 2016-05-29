@@ -22,7 +22,10 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self = [[[NSBundle mainBundle] loadNibNamed:@"SupplyLinkViewCell" owner:self options:nil] lastObject];
+        self.contentView.frame = FLEFRAME(self.contentView.frame);
         FLEXIBLE_FONT(self);
+        self.autoresizesSubviews = NO;
     }
     return self;
 }

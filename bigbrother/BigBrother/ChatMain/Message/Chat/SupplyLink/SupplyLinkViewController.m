@@ -10,7 +10,7 @@
 #import "SupplyLinkViewCell.h"
 #import "ChatModel.h"
 
-@interface SupplyLinkViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface SupplyLinkViewController ()<UITableViewDataSource,UITableViewDelegate,SupplyLinkViewCellDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -76,6 +76,7 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.tableFooterView = [[UIView alloc]init];
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
         _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upRefreshData)];
     }
@@ -110,11 +111,32 @@
     SupplyLinkViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     if (!cell) {
         cell = [[SupplyLinkViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+        cell.delegate = self;
     }
     
     [cell reloadWithDataDic:self.listArray[indexPath.row]];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identify = @"Frame";
+    SupplyLinkViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    if (!cell) {
+        cell = [[SupplyLinkViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+    }
+    
+    [cell reloadWithDataDic:self.listArray[indexPath.row]];
+    return cell.frame.size.height;
+}
+
+#pragma mark - SupplyLinkViewCellDelegate
+- (void)supplyLinkViewCell:(SupplyLinkViewCell *)cell clickedSendBtn:(UIButton *)sender
+{
+    NSDictionary *customMessageDic = [EaseSDKHelper customMessageDicWithSubMessage:@"发送了一条[供应链接]" customPojo:cell.dataDic resultValue:@(2)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"sendCustomMessage" object:customMessageDic];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - 按钮方法

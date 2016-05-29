@@ -127,17 +127,29 @@
     if (self.messageBodyType == EMMessageBodyTypeText) {
         self.text = ((EMTextMessageBody *)tempMessageBody).text;
     }
+    else if (self.messageBodyType == EMMessageBodyTypeVoice) {
+        EMVoiceMessageBody *voiceBody = (EMVoiceMessageBody *)tempMessageBody;
+//        self.voiceMessageBody = voiceBody;
+        self.mediaDuration = voiceBody.duration;
+        self.isMediaPlayed = NO;
+        if (message.ext) {
+            self.isMediaPlayed = [[message.ext objectForKey:@"isPlayed"] boolValue];
+        }
+        // 音频路径
+        self.fileLocalPath = voiceBody.localPath;
+        self.fileURLPath = voiceBody.remotePath;
+    }
     
     NSDictionary *ext = message.ext;
     NSInteger resultValue = [ext[@"resultValue"] integerValue];
     if (resultValue > 0) {
-        if (resultValue <= 1) {
-            self.messageBodyType = EMMessageBodyTypeCustom;
-            self.messageExt = message.ext;
-        }
-        else{
+        if (resultValue > 3) {
             self.messageBodyType = EMMessageBodyTypeText;
             self.text = @"[不支持的消息类型]";
+        }
+        else{
+            self.messageBodyType = EMMessageBodyTypeCustom;
+            self.messageExt = message.ext;
         }
     }
     

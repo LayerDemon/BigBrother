@@ -44,10 +44,10 @@
 /**
  *  加入门派请求处理
  */
-- (void)postGroupHandleDataWithAdminId:(NSNumber *)adminId userId:(NSNumber *)userId groupId:(NSNumber *)groupId action:(NSString *)action
+- (void)postGroupHandleDataWithAdminId:(NSNumber *)adminId requestId:(NSNumber *)requestId action:(NSString *)action
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/groups/handle",BASE_URL];
-    NSDictionary *tempDic = @{@"adminId":adminId,@"userId":userId,@"groupId":groupId,@"action":action};
+    NSDictionary *tempDic = @{@"operatorId":adminId,@"requestId":requestId,@"action":action};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
     [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {

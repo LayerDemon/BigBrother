@@ -17,6 +17,17 @@
 #import "MoneyTreeViewController.h"
 #import "SupplyLinkViewController.h"
 
+//供应链接
+#import "CarPostDetailViewController.h"
+#import "HousePostDetailViewController.h"
+#import "FactoryPostDetailViewController.h"
+#import "CarProduct.h"
+#import "HouseProduct.h"
+#import "FactoryProduct.h"
+//团购链接
+#import "GroupBuyLinkViewController.h"
+//门派活动
+#import "UnitedActivityViewController.h"
 
 #define kToolBarH 48
 #define kTextFieldH 30
@@ -24,7 +35,7 @@
 
 #define MESSAGE_REPEAT @"重发该消息？"
 
-@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PreviewImageViewControllerDelegate,ChatToolBarViewDelegate,EMChatManagerDelegate,ChatViewCellDelegate>
+@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,ChatToolBarViewDelegate,EMChatManagerDelegate,ChatViewCellDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) ChatToolBarView *toolBar;
@@ -83,7 +94,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:@"applicationDidEnterBackground" object:nil];
     
     //定位地图通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendLocationMessage:) name:@"sendLocationMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendCustomMessage:) name:@"sendCustomMessage" object:nil];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshGroupRemarks:) name:@"refreshGroupRemarks" object:nil];
     
@@ -274,7 +285,7 @@
 - (ChatToolBarView *)toolBar
 {
     if (!_toolBar) {
-        _toolBar = [[ChatToolBarView alloc]init];
+        _toolBar = [[ChatToolBarView alloc]initWithChatType:self.conversation.type];
 //        _toolBar.textField.delegate = self;
         _toolBar.delegate = self;
     }
@@ -308,70 +319,70 @@
     return cellFrameModel.cellHeight;
 }
 
-#pragma  mark UIImagePicker Delegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    //当选择的类型是图片
-    if ([type isEqualToString:@"public.image"])
-    {
-        //先把图片转成NSData
-        UIImage *dataImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        
-        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-            [self chooseWithImage:dataImage];
-        }else{
-            PreviewImageViewController *photoDetailViewController = [[PreviewImageViewController alloc]init];
-            photoDetailViewController.image = dataImage;
-            photoDetailViewController.delegate = self;
-        
-            [picker pushViewController:photoDetailViewController animated:YES];
-        }
-        
-    }
-}
-
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
-#pragma mark - PreviewImageViewControllerDelegate
-- (void)clickedCancelBtn:(UIButton *)sender
-{
-    [self.picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
-- (void)chooseWithImage:(UIImage *)image
-{
-    //图片压缩
-    NSLog(@"dataImg:%@",NSStringFromCGSize(image.size));
-    UIImage *scaleImage = image;
-    CGFloat maxWidth = MAINSCRREN_W-FLEXIBLE_NUM(8)*2;
-    if (image.size.width > MAINSCRREN_H*2 || image.size.height > MAINSCRREN_H*2) {
-        CGFloat scale = image.size.width < image.size.height ? MAINSCRREN_H*2/image.size.width : MAINSCRREN_H*2/image.size.height;
-        CGFloat width = image.size.width*scale;
-        CGFloat height = image.size.height*scale;
-        
-        CGFloat imageScale = FLEXIBLE_NUM(127)/height;
-        CGFloat imageWidth = width*imageScale;
-        
-        if (imageWidth > maxWidth) {
-            width = maxWidth/imageScale;
-        }
-        scaleImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width,height)];
-    }
-    
-//#warning -- 发送图片消息
-    [self sendImageMessage:scaleImage];
-    [self.picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
+//#pragma  mark UIImagePicker Delegate
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//{
+//    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+//    //当选择的类型是图片
+//    if ([type isEqualToString:@"public.image"])
+//    {
+//        //先把图片转成NSData
+//        UIImage *dataImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+//        
+//        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+//            [self chooseWithImage:dataImage];
+//        }else{
+//            PreviewImageViewController *photoDetailViewController = [[PreviewImageViewController alloc]init];
+//            photoDetailViewController.image = dataImage;
+//            photoDetailViewController.delegate = self;
+//        
+//            [picker pushViewController:photoDetailViewController animated:YES];
+//        }
+//        
+//    }
+//}
+//
+//-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//{
+//    [picker dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+//}
+//
+//#pragma mark - PreviewImageViewControllerDelegate
+//- (void)clickedCancelBtn:(UIButton *)sender
+//{
+//    [self.picker dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+//}
+//
+//- (void)chooseWithImage:(UIImage *)image
+//{
+//    //图片压缩
+//    NSLog(@"dataImg:%@",NSStringFromCGSize(image.size));
+//    UIImage *scaleImage = image;
+//    CGFloat maxWidth = MAINSCRREN_W-FLEXIBLE_NUM(8)*2;
+//    if (image.size.width > MAINSCRREN_H*2 || image.size.height > MAINSCRREN_H*2) {
+//        CGFloat scale = image.size.width < image.size.height ? MAINSCRREN_H*2/image.size.width : MAINSCRREN_H*2/image.size.height;
+//        CGFloat width = image.size.width*scale;
+//        CGFloat height = image.size.height*scale;
+//        
+//        CGFloat imageScale = FLEXIBLE_NUM(127)/height;
+//        CGFloat imageWidth = width*imageScale;
+//        
+//        if (imageWidth > maxWidth) {
+//            width = maxWidth/imageScale;
+//        }
+//        scaleImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width,height)];
+//    }
+//    
+////#warning -- 发送图片消息
+//    [self sendImageMessage:scaleImage];
+//    [self.picker dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+//}
 
 
 #pragma mark - ChatToolBarViewDelegate  聊天输入栏~~~~~~、
@@ -392,14 +403,19 @@
 //团购链接
 - (void)clickedGroupBuyLinkBtn:(UIButton *)sender
 {
-    SupplyLinkViewController *supplyLinkVC = [[SupplyLinkViewController alloc]init];
-    [self.navigationController pushViewController:supplyLinkVC animated:YES];
+    NSDictionary *customPojo = @{@"title":@"测试团购链接",@"url":@"http://a.hgfrfv.com/F.ZKZoR",@"createdTime":@"2016-05-29 19:07:22"};
+    NSDictionary *customMessageDic = [EaseSDKHelper customMessageDicWithSubMessage:@"发送了一条[团购链接]" customPojo:customPojo resultValue:@(3)];
+    
+    NSNotification *notif = [[NSNotification alloc]initWithName:@"sendCustomMessage" object:customMessageDic userInfo:customMessageDic];
+    [self sendCustomMessage:notif];
 }
 
 //门派活动
 - (void)clickedGroupActivityBtn:(UIButton *)sender
 {
-    
+    UnitedActivityViewController * unitedActivityVC = [[UnitedActivityViewController alloc] init];
+    unitedActivityVC.unitedDic = self.chatDic;
+    [self.navigationController pushViewController:unitedActivityVC animated:YES];
 }
 
 //点击return键
@@ -546,6 +562,39 @@
     [self showAlertViewWithTitle:nil message:MESSAGE_REPEAT buttonTitles:@[buttonTitle1,buttonTitle2]];
 }
 
+//供应链接
+- (void)chatViewCell:(ChatViewCell *)cell clickedSupplyLinkBtn:(UIButton *)sender
+{
+    //跳转到详情
+    BaseProduct *product = cell.supplyLinkView.baseProduct;
+    if ([product isKindOfClass:[CarProduct class]]) {
+        CarProduct *carP = (CarProduct *)product;
+        CarPostDetailViewController *cpdVC = [[CarPostDetailViewController alloc] init];
+        cpdVC.carProduct = carP;
+        [self.navigationController pushViewController:cpdVC animated:YES];
+    }else if ([product isKindOfClass:[HouseProduct class]]){
+        HouseProduct *houseP = (HouseProduct *)product;
+        HousePostDetailViewController *hpdVC = [[HousePostDetailViewController alloc] init];
+        hpdVC.product = houseP;
+        [self.navigationController pushViewController:hpdVC animated:YES];
+    }else if ([product isKindOfClass:[FactoryProduct class]]){
+        FactoryProduct *factoryP = (FactoryProduct *)product;
+        FactoryPostDetailViewController *fpdVC = [[FactoryPostDetailViewController alloc] init];
+        fpdVC.product = factoryP;
+        [self.navigationController pushViewController:fpdVC animated:YES];
+    }else{
+        return;
+    }
+}
+
+- (void)chatViewCell:(ChatViewCell *)cell clickedGroupLinkBtn:(UIButton *)sender
+{
+    GroupBuyLinkViewController *groupBuyLinkVC = [[GroupBuyLinkViewController alloc]init];
+    groupBuyLinkVC.dataDic = cell.supplyLinkView.dataDic;
+    [self.navigationController pushViewController:groupBuyLinkVC animated:YES];
+}
+
+//播放语音
 - (void)chatViewCell:(ChatViewCell *)cell clickedVoiceBtn:(UIButton *)sender
 {
     [cell.voiceImageView startAnimating];
@@ -571,6 +620,7 @@
     
     BOOL isPrepare = [[EaseMessageReadManager defaultManager] prepareMessageAudioModel:model updateViewCompletion:^(ChatMessageModel *prevAudioModel, ChatMessageModel *currentAudioModel) {
         if (prevAudioModel || currentAudioModel) {
+            
             [weakSelf.tableView reloadData];
         }
     }];
@@ -583,7 +633,7 @@
             [[EaseMessageReadManager defaultManager] stopMessageAudioModel];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
-                weakSelf.isPlayingAudio = NO;
+                _isPlayingAudio = NO;
                 [[EMCDDeviceManager sharedInstance] disableProximitySensor];
             });
         }];
@@ -1157,35 +1207,33 @@
     [self sendMessage:message];
 }
 
-- (void)sendImageMessage:(UIImage *)imageMessage
-{
-    EMChatType messageType = (self.conversation.type == EMConversationTypeGroupChat ? EMChatTypeGroupChat : EMChatTypeChat);
-    
-    EMMessage *tempMessage = [EaseSDKHelper sendImageMessageWithImage:imageMessage
-                                                                   to:self.conversation.conversationId
-                                                          messageType:messageType
-                                                           messageExt:[self messageExtWithConversation:self.conversation]];
-    
-    [self sendMessage:tempMessage];
-}
+//- (void)sendImageMessage:(UIImage *)imageMessage
+//{
+//    EMChatType messageType = (self.conversation.type == EMConversationTypeGroupChat ? EMChatTypeGroupChat : EMChatTypeChat);
+//    
+//    EMMessage *tempMessage = [EaseSDKHelper sendImageMessageWithImage:imageMessage
+//                                                                   to:self.conversation.conversationId
+//                                                          messageType:messageType
+//                                                           messageExt:[self messageExtWithConversation:self.conversation]];
+//    
+//    [self sendMessage:tempMessage];
+//}
 
-- (void)sendLocationMessage:(NSNotification *)notif
+- (void)sendCustomMessage:(NSNotification *)notif
 {
-    NSDictionary *dic = notif.object;
-    CGFloat latitude = [dic[@"latitude"] floatValue];
-    CGFloat longitude = [dic[@"longitude"] floatValue];
-    NSString *address = dic[@"description"];
     
-//    self.conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:self.chatDic[@"imusername"] conversationType:self.conversation.conversationType];
-    
+    NSDictionary *customMessageDic = notif.object;
     EMChatType messageType = (self.conversation.type == EMConversationTypeGroupChat ? EMChatTypeGroupChat : EMChatTypeChat);
     
-    EMMessage *tempMessage = [EaseSDKHelper sendLocationMessageWithLatitude:latitude
-                                                                  longitude:longitude
-                                                                    address:address
-                                                                         to:self.conversation.conversationId
-                                                                messageType:messageType
-                                                                 messageExt:[self messageExtWithConversation:self.conversation]];
+    
+    NSDictionary *messageExt = [self messageExtWithConversation:self.conversation];
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:messageExt];
+    [tempDic setObject:customMessageDic[@"customPojo"] forKey:@"customPojo"];
+    [tempDic setObject:customMessageDic[@"resultValue"] forKey:@"resultValue"];
+    EMMessage *tempMessage = [EaseSDKHelper sendTextMessage:customMessageDic[@"subMessage"]
+                                                         to:self.conversation.conversationId
+                                                messageType:messageType
+                                                 messageExt:tempDic];
     
     [self sendMessage:tempMessage];
 }

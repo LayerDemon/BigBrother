@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, ChatToolInputStyle) {
 
 @implementation ChatToolBarView
 
-- (instancetype)init
+- (instancetype)initWithChatType:(EMConversationType)chatType
 {
     self = [super init];
     if (self) {
@@ -48,6 +48,10 @@ typedef NS_ENUM(NSInteger, ChatToolInputStyle) {
         self.textView.delegate = self;
         ChatMoreInputView *inputView = [[ChatMoreInputView alloc]init];
         inputView.delegate = self;
+        if (chatType != EMConversationTypeGroupChat) {
+            inputView.groupActivityBtn.hidden = YES;
+            inputView.groupActivityLabel.hidden = YES;
+        }
         self.moreTempField.inputView = inputView;
         
         [self bringSubviewToFront:self.textView];

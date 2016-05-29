@@ -160,7 +160,7 @@ static NSString * identify = @"Cell";
         [self.newFriendModel postFriendHandleDataWithUserId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_ACCEPT];
     }
     else if ([self.requestType isEqualToString:HandleType_GROUP_APPLY]){
-        [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"targetId"] action:HandleAction_ACCEPT];
+        [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_ACCEPT];
     }
     else if ([self.requestType isEqualToString:HandleType_GROUP_INVITE]){
         [self.newFriendModel postGroupInviteHandleDataWithUserId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_ACCEPT];
@@ -176,7 +176,7 @@ static NSString * identify = @"Cell";
         [self.newFriendModel postFriendHandleDataWithUserId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_REJECT];
     }
     else if ([self.requestType isEqualToString:HandleType_GROUP_APPLY]){
-        [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] userId:self.requestDic[@"userId"] groupId:self.requestDic[@"targetId"] action:HandleAction_REJECT];
+        [self.newFriendModel postGroupHandleDataWithAdminId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_REJECT];
     }
     else if ([self.requestType isEqualToString:HandleType_GROUP_INVITE]){
         [self.newFriendModel postGroupInviteHandleDataWithUserId:self.userDic[@"id"] requestId:self.requestDic[@"id"] action:HandleAction_REJECT];

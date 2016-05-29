@@ -77,6 +77,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="groupActivityBtn" destination="c69-kt-MLd" id="dOy-QM-Fb8"/>
+                <outlet property="groupActivityLabel" destination="fys-Wp-Kdd" id="drF-wd-4qQ"/>
                 <outlet property="groupBuyLinkBtn" destination="o1B-jb-Fwx" id="Avk-0l-hzk"/>
                 <outlet property="moneyTreeBtn" destination="yN2-Qd-rCO" id="rqF-Mr-au8"/>
                 <outlet property="supplyLinkBtn" destination="ihY-3g-FuZ" id="jeM-4f-KIn"/>

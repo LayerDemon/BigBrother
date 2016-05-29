@@ -61,6 +61,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *voiceBtn;
 @property (strong, nonatomic) IBOutlet UIButton *recordBtn;
 
+- (instancetype)initWithChatType:(EMConversationType)chatType;
+
 - (IBAction)emojiBtnPressed:(UIButton *)sender;
 - (IBAction)moreBtnPressed:(UIButton *)sender;
 - (IBAction)voiceBtnPressed:(UIButton *)sender;

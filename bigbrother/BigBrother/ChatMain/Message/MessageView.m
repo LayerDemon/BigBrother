@@ -156,7 +156,7 @@
     ChatViewController *chatVC = [[ChatViewController alloc]init];
     chatVC.chatDic = cell.chatterDic;
     if (cell.conversation.type == EMConversationTypeGroupChat) {
-        chatVC.chatDic = TESTGROUP_DIC;
+        chatVC.chatDic = cell.chatterDic;
     }
     chatVC.conversation = cell.conversation;
     [self.viewController.navigationController pushViewController:chatVC animated:YES];
