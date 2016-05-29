@@ -9,7 +9,7 @@
 #import "UnitedMemberViewController.h"
 #import "UnitedMember2TableViewCell.h"
 #import "GuserDetailViewController.h"
-
+#import "UnitedInfoModel.h"
 @interface UnitedMemberViewController () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating>
 
 @property (strong, nonatomic) UITableView       * tableView;
@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) UISearchController                * searchController;
 @property (strong, nonatomic) NSArray                           * filterData;
+
+@property (strong, nonatomic) UnitedInfoModel       * unitedInfoModel;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -44,16 +46,25 @@ static NSString * identify = @"Cell";
 
 - (void)dealloc
 {
-
+    [_unitedInfoModel removeObserver:self forKeyPath:@"unitedDetailData"];
 }
 
-#pragma mark -- initialize
-- (void)initializeDataSource
+#pragma mark -- observe
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    _colorArray = @[ARGB_COLOR(254, 217, 110, 1),ARGB_COLOR(150, 220, 116, 1),ARGB_COLOR(202, 202, 202, 1)];
-    
-    _dataArray = [NSMutableArray array];
-    
+    if ([keyPath isEqualToString:@"unitedDetailData"]) {
+        _memberArray = _unitedInfoModel.unitedDetailData[@"data"][@"members"];
+        [self getMyData];
+        [_tableView reloadData];
+    }
+}
+
+- (void)getMyData
+{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    [_dataArray removeAllObjects];
     NSMutableArray * userArray = [NSMutableArray array];
     NSMutableArray * managerArray = [NSMutableArray array];
     for (int i = 0; i < _memberArray.count; i ++) {
@@ -84,7 +95,21 @@ static NSString * identify = @"Cell";
     }
     [_dataArray addObject:managerArray];
     [_dataArray addObjectsFromArray:userArray];
-    NSLog(@"dataArray --- %@",_dataArray);
+}
+
+#pragma mark -- initialize
+- (void)initializeDataSource
+{
+    _colorArray = @[ARGB_COLOR(254, 217, 110, 1),ARGB_COLOR(150, 220, 116, 1),ARGB_COLOR(202, 202, 202, 1)];
+    
+    [self getMyData];
+    
+    
+    _unitedInfoModel = ({
+        UnitedInfoModel * model = [[UnitedInfoModel alloc] init];
+        [model addObserver:self forKeyPath:@"unitedDetailData" options:NSKeyValueObservingOptionNew context:nil];
+        model;
+    });
 }
 
 - (void)initializeUserInterface
@@ -127,6 +152,14 @@ static NSString * identify = @"Cell";
         }//for cacheViews
     }//subviews
 
+  //notif
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeDataAndReloadDataNotif:) name:@"changeDataAndReloadDataNotif" object:nil];
+}
+
+#pragma mark -- notif
+- (void)changeDataAndReloadDataNotif:(NSNotification *)notif
+{
+    [_unitedInfoModel getUnitedInfoWithId:_groupDic[@"id"] limit:@"10000"];
 }
 
 #pragma mark -- <<UITableViewDelegate,UITableViewDataSource>

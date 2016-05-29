@@ -315,6 +315,8 @@
 //编辑管理员结果
 - (void)editAdminDataParseWithSwitchOn:(BOOL)swithOn
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeDataAndReloadDataNotif" object:nil];
+    
     [self stopTitleIndicator];
     NSMutableDictionary *tempUserDic = [NSMutableDictionary dictionaryWithDictionary:self.currentUserDic];
     NSMutableDictionary *tempGuserInfoDic = [NSMutableDictionary dictionaryWithDictionary:self.guserInfoDic];

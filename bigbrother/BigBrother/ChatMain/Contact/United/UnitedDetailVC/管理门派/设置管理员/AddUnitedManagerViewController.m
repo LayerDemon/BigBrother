@@ -9,6 +9,7 @@
 #import "AddUnitedManagerViewController.h"
 #import "GroupInviteViewCell.h"
 #import "UnitedInfoModel.h"
+#import "UnitedViewController.h"
 
 @interface AddUnitedManagerViewController () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating>
 
@@ -74,6 +75,13 @@
 - (void)alertControllerDismissWithAlertController:(UIAlertController *)alertController
 {
     [alertController dismissViewControllerAnimated:YES completion:nil];
+    for (UIViewController * vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[UnitedViewController class]]) {
+            [self.navigationController popToViewController:vc animated:YES
+             ];
+        }
+    }
+
 }
 
 

@@ -240,6 +240,15 @@
         addMemberButton.hidden = YES;
         [self.view addSubview:self.joinBtn];
     }
+    
+    //notif
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeDataAndReloadDataNotif:) name:@"changeDataAndReloadDataNotif" object:nil];
+}
+
+#pragma mark -- notif
+- (void)changeDataAndReloadDataNotif:(NSNotification *)notif
+{
+     [_unitedInfoModel getUnitedInfoWithId:_unitedDic[@"id"] limit:@"10000"];
 }
 
 #pragma mark -- getter

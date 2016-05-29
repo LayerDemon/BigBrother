@@ -81,6 +81,7 @@
 {
     SetLowerRankViewController * setLowerRankVC = [[SetLowerRankViewController alloc] init];
     setLowerRankVC.unitedDetailDic = _unitedDetailDic;
+    setLowerRankVC.memberArray = _unitedDetailDic[@"members"];
     [self.navigationController pushViewController:setLowerRankVC animated:YES];
 }
 

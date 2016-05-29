@@ -8,6 +8,7 @@
 
 #import "SetLowerRankViewController.h"
 #import "UnitedMember2TableViewCell.h"
+#import "EditUnitedMemberRankViewController.h"
 @interface SetLowerRankViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating>
 
 @property (strong, nonatomic) UITableView       * tableView;
@@ -75,6 +76,7 @@ static NSString * identify = @"Cell";
                 NSMutableDictionary * newDataDic = [[NSMutableDictionary alloc] init];
                 [newDataDic setObject:_memberArray[i][@"grade"] forKey:@"grade"];
                 [newDataDic setObject:@[_memberArray[i]] forKey:@"array"];
+                [userArray addObject:newDataDic];
             }
         }else{
             [managerArray addObject:_memberArray[i]];
@@ -142,7 +144,10 @@ static NSString * identify = @"Cell";
     if (_searchController.active) {
         return _filterData.count;
     }
-    return [_dataArray[section] count];
+    if(section == 0){
+        return [_dataArray[section] count];
+    }
+    return [_dataArray[section][@"array"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,7 +158,11 @@ static NSString * identify = @"Cell";
     if (_searchController.active) {
         dataDic = _filterData[indexPath.row];
     }else{
-        dataDic = _dataArray[indexPath.section][indexPath.row];
+        if (indexPath.section == 0) {
+            dataDic = _dataArray[indexPath.section][indexPath.row];
+        }else{
+            dataDic = _dataArray[indexPath.section][@"array"][indexPath.row];
+        }
     }
     cell.dataDic = dataDic;
     [cell.headImageView  sd_setImageWithURL:[NSURL URLWithString:dataDic[@"avatar"]] placeholderImage:PLACEHOLER_IMA];
@@ -198,6 +207,15 @@ static NSString * identify = @"Cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    EditUnitedMemberRankViewController * editUnitedVC = [[EditUnitedMemberRankViewController alloc] init];
+    editUnitedVC.unitedDic = _unitedDetailDic;
+    if (indexPath.section == 0) {
+        editUnitedVC.userDic = _dataArray[indexPath.section][indexPath.row];
+    }else{
+        editUnitedVC.userDic = _dataArray[indexPath.section][@"array"][indexPath.row];
+    }
+    [self.navigationController pushViewController:editUnitedVC animated:YES];
+    
         [self.searchController dismissViewControllerAnimated:YES completion:^{
         self.searchController.searchBar.hidden = NO;
         self.searchController.searchBar.text = @"";

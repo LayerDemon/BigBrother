@@ -45,6 +45,7 @@ static NSString * identify = @"Cell";
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
+    _dataArray = [[NSMutableArray alloc] init];
     NSArray * memberArray = _unitedDetailDic[@"members"];
     for (int i = 0; i < [memberArray count]; i ++) {
         if ([memberArray[i][@"role"] isEqualToString:@"ADMIN"]) {

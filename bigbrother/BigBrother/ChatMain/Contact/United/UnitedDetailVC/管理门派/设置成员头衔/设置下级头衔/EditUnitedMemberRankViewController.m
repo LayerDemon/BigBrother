@@ -8,6 +8,7 @@
 
 #import "EditUnitedMemberRankViewController.h"
 #import "UnitedInfoModel.h"
+#import "UnitedViewController.h"
 
 @interface EditUnitedMemberRankViewController ()
 
@@ -56,6 +57,13 @@
 - (void)alertControllerDismissWithAlertController:(UIAlertController *)alertController
 {
     [alertController dismissViewControllerAnimated:YES completion:nil];
+    for (UIViewController * vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[UnitedViewController class]]) {
+            [self.navigationController popToViewController:vc animated:YES
+             ];
+        }
+    }
+
 }
 
 #pragma mark -- initialize
@@ -85,7 +93,7 @@
         textField.textColor = [UIColor grayColor];
         textField.font = [UIFont systemFontOfSize:FLEXIBLE_NUM(13)];
         textField.placeholder = @"输入名称";
-        [backView addSubview:backView];
+        [backView addSubview:textField];
         textField;
     });
 }

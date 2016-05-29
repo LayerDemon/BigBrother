@@ -29,6 +29,8 @@
 		2D359D9F1CE8280400F85F24 /* UnitedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D359D9E1CE8280400F85F24 /* UnitedTableViewCell.m */; };
 		2D359DA31CE8BD0500F85F24 /* UnitedInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D359DA21CE8BD0500F85F24 /* UnitedInfoModel.m */; };
 		2D359DA71CE8BD9000F85F24 /* UnitedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D359DA61CE8BD9000F85F24 /* UnitedDetailViewController.m */; };
+		2D3A1EB21CFB415B00BC6350 /* CashCowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3A1EB11CFB415B00BC6350 /* CashCowDetailViewController.m */; };
+		2D3A1EB51CFB447500BC6350 /* CashCowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3A1EB41CFB447500BC6350 /* CashCowTableViewCell.m */; };
 		2D40743D1CF47A28004CF68E /* icon_qian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D40743A1CF47A28004CF68E /* icon_qian@3x.png */; };
 		2D40743E1CF47A28004CF68E /* icon_time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D40743B1CF47A28004CF68E /* icon_time@3x.png */; };
 		2D40743F1CF47A28004CF68E /* icon_wz@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D40743C1CF47A28004CF68E /* icon_wz@3x.png */; };
@@ -665,6 +667,10 @@
 		2D359DA21CE8BD0500F85F24 /* UnitedInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedInfoModel.m; sourceTree = "<group>"; };
 		2D359DA51CE8BD9000F85F24 /* UnitedDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedDetailViewController.h; sourceTree = "<group>"; };
 		2D359DA61CE8BD9000F85F24 /* UnitedDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedDetailViewController.m; sourceTree = "<group>"; };
+		2D3A1EB01CFB415B00BC6350 /* CashCowDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashCowDetailViewController.h; sourceTree = "<group>"; };
+		2D3A1EB11CFB415B00BC6350 /* CashCowDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashCowDetailViewController.m; sourceTree = "<group>"; };
+		2D3A1EB31CFB447500BC6350 /* CashCowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashCowTableViewCell.h; sourceTree = "<group>"; };
+		2D3A1EB41CFB447500BC6350 /* CashCowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashCowTableViewCell.m; sourceTree = "<group>"; };
 		2D40743A1CF47A28004CF68E /* icon_qian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_qian@3x.png"; sourceTree = "<group>"; };
 		2D40743B1CF47A28004CF68E /* icon_time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_time@3x.png"; sourceTree = "<group>"; };
 		2D40743C1CF47A28004CF68E /* icon_wz@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_wz@3x.png"; sourceTree = "<group>"; };
@@ -1748,6 +1754,17 @@
 			path = UnitedDetailVC;
 			sourceTree = "<group>";
 		};
+		2D3A1EAF1CFB412A00BC6350 /* 摇钱树详情 */ = {
+			isa = PBXGroup;
+			children = (
+				2D3A1EB01CFB415B00BC6350 /* CashCowDetailViewController.h */,
+				2D3A1EB11CFB415B00BC6350 /* CashCowDetailViewController.m */,
+				2D3A1EB31CFB447500BC6350 /* CashCowTableViewCell.h */,
+				2D3A1EB41CFB447500BC6350 /* CashCowTableViewCell.m */,
+			);
+			path = "摇钱树详情";
+			sourceTree = "<group>";
+		};
 		2D4074401CF4BE61004CF68E /* 添加门派成员 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1760,6 +1777,7 @@
 		2D8AFF371CE23E91009B7F24 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
+				2D3A1EAF1CFB412A00BC6350 /* 摇钱树详情 */,
 				2DF062DB1CE4C0810066896F /* AddFriends */,
 				2D8AFF381CE23E91009B7F24 /* ContactModel */,
 				2D8AFF3B1CE23E91009B7F24 /* ContactTableViewCell.h */,
@@ -4521,6 +4539,7 @@
 				B8C460161C8523350060528D /* TOCropViewController.m in Sources */,
 				8C1862751CDF9BF600632CDC /* UIViewController+HUD.m in Sources */,
 				2D08123C1CEB66CB004AEB77 /* CreateUnitedActivityViewController.m in Sources */,
+				2D3A1EB21CFB415B00BC6350 /* CashCowDetailViewController.m in Sources */,
 				B8A6AF531C8C181400DC84BC /* README.md in Sources */,
 				8C63E5261CE0568300B4EC1D /* LBTextView.m in Sources */,
 				8C1861F01CDF378900632CDC /* SDWebImageDecoder.m in Sources */,
@@ -4587,6 +4606,7 @@
 				B81A11E31C8FF8B500AA6690 /* WMCustomDatePicker.m in Sources */,
 				B80131481C8001E50070612B /* WholeHouseRentPostToViewController.m in Sources */,
 				B8C45FF51C8444660060528D /* AuthcationViewController.m in Sources */,
+				2D3A1EB51CFB447500BC6350 /* CashCowTableViewCell.m in Sources */,
 				2DCA9EB01CEE18A000FA7458 /* SetManagerViewController.m in Sources */,
 				B81E56DC1C7EED9B00E34A91 /* QNNetworkInfo.m in Sources */,
 				2D06861F1CF747FA00C3CA49 /* MakeOverViewController.m in Sources */,

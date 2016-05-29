@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSDictionary *groupDic;
 @property (strong, nonatomic) NSArray       * memberArray;
 @property (strong, nonatomic) NSDictionary *userDic;
+@property (strong, nonatomic) NSDictionary  * unitedDetailDic;
 
 @end

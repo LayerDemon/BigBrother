@@ -12,6 +12,7 @@
 #import "NewFriendsViewController.h"
 #import "UnitedViewController.h"
 #import "FriendDetailViewController.h"
+#import "CashCowDetailViewController.h"
 
 #define SECTION_TAG 2300
 @interface ContactView () <UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating,UISearchControllerDelegate>
@@ -184,7 +185,6 @@ static NSString * identify = @"Cell";
 - (void)initializeUserInterface
 {
     self.backgroundColor = THEMECOLOR_BACK;
-
     
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, MAINSCRREN_W, MAINSCRREN_H-64-48) style:UITableViewStylePlain];
@@ -444,6 +444,8 @@ static NSString * identify = @"Cell";
 {
     UnitedViewController * unitedVC = [[UnitedViewController alloc] init];
     [self.viewController.navigationController pushViewController:unitedVC animated:YES];
+//    CashCowDetailViewController * cashCorVC = [[CashCowDetailViewController alloc] init];
+//    [self.viewController.navigationController pushViewController:cashCorVC animated:YES];
 }
 
 
