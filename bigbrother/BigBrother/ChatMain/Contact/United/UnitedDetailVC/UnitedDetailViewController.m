@@ -93,6 +93,7 @@
 - (void)alertControllerDismissWithAlertController:(UIAlertController *)alertController
 {
     [alertController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -- initialize
@@ -309,6 +310,7 @@
             if ([membersArray[i][@"role"] isEqualToString:@"OWNER"]) {  //群主
                 ExitUnitedViewController * exitUnitedVC = [[ExitUnitedViewController alloc] init];
                 exitUnitedVC.unitedDetailDic = _unitedDetailDic;
+                exitUnitedVC.userDic = self.userDic;
                 [self.navigationController pushViewController:exitUnitedVC animated:YES];
             }else{                                                      //普通成员
                 NSString * messageString = [NSString stringWithFormat:@"你将退出门派 %@(%@)吗？",_unitedDetailDic[@"name"],_unitedDetailDic[@"groupNumber"]];

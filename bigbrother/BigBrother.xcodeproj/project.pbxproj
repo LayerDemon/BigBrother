@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D06861F1CF747FA00C3CA49 /* MakeOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D06861E1CF747FA00C3CA49 /* MakeOverViewController.m */; };
 		2D0785321CECAF65001B57A8 /* UnitedMember2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0785311CECAF65001B57A8 /* UnitedMember2TableViewCell.m */; };
 		2D0785361CECC601001B57A8 /* ExitUnitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0785351CECC601001B57A8 /* ExitUnitedViewController.m */; };
 		2D08122D1CEB560D004AEB77 /* ManagerUnitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D08122C1CEB560D004AEB77 /* ManagerUnitedViewController.m */; };
@@ -623,6 +624,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D06861D1CF747FA00C3CA49 /* MakeOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeOverViewController.h; sourceTree = "<group>"; };
+		2D06861E1CF747FA00C3CA49 /* MakeOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeOverViewController.m; sourceTree = "<group>"; };
 		2D0785301CECAF65001B57A8 /* UnitedMember2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedMember2TableViewCell.h; sourceTree = "<group>"; };
 		2D0785311CECAF65001B57A8 /* UnitedMember2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedMember2TableViewCell.m; sourceTree = "<group>"; };
 		2D0785341CECC601001B57A8 /* ExitUnitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExitUnitedViewController.h; sourceTree = "<group>"; };
@@ -1642,6 +1645,8 @@
 			children = (
 				2D0785341CECC601001B57A8 /* ExitUnitedViewController.h */,
 				2D0785351CECC601001B57A8 /* ExitUnitedViewController.m */,
+				2D06861D1CF747FA00C3CA49 /* MakeOverViewController.h */,
+				2D06861E1CF747FA00C3CA49 /* MakeOverViewController.m */,
 			);
 			path = "退出门派";
 			sourceTree = "<group>";
@@ -4570,6 +4575,7 @@
 				B8C45FF51C8444660060528D /* AuthcationViewController.m in Sources */,
 				2DCA9EB01CEE18A000FA7458 /* SetManagerViewController.m in Sources */,
 				B81E56DC1C7EED9B00E34A91 /* QNNetworkInfo.m in Sources */,
+				2D06861F1CF747FA00C3CA49 /* MakeOverViewController.m in Sources */,
 				B8958AF91C7C469200ACE5E6 /* HouseProductTableViewCell.m in Sources */,
 				8C18644C1CDF9CC700632CDC /* EMAudioPlayerUtil.m in Sources */,
 				B89A0CDB1C79D81C0072A6A8 /* TPKeyboardAvoidingTableView.m in Sources */,
@@ -4642,7 +4648,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6deda04a-f2d2-445c-903e-7e17d922ea42";
+				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4666,7 +4672,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu Jiapeng Yinglian Technology Co., Ltd. (NN7B8X2LU6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhouguo Cao (769F96298P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu Jiapeng Yinglian Technology Co., Ltd. (NN7B8X2LU6)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -4683,7 +4689,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "6deda04a-f2d2-445c-903e-7e17d922ea42";
+				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4710,8 +4716,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = NN7B8X2LU6.BigBrotherHaha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6deda04a-f2d2-445c-903e-7e17d922ea42";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -4735,8 +4741,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = NN7B8X2LU6.BigBrotherHaha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6deda04a-f2d2-445c-903e-7e17d922ea42";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

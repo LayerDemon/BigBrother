@@ -11,5 +11,6 @@
 @interface ExitUnitedViewController : UIViewController
 
 @property (strong, nonatomic) NSDictionary      * unitedDetailDic;
+@property (strong, nonatomic) NSDictionary      *userDic;
 
 @end

@@ -9,6 +9,9 @@
 #import "ExitUnitedViewController.h"
 #import "UnitedInfoModel.h"
 #import "UnitedViewController.h"
+#import "MakeOverViewController.h"
+
+#import "UnitedMemberViewController.h"
 
 @interface ExitUnitedViewController ()
 
@@ -38,7 +41,6 @@
 - (void)dealloc
 {
     [_unitedInfoModel removeObserver:self forKeyPath:@"dismissUnitedData"];
-    [_unitedInfoModel removeObserver:self forKeyPath:@"transterUnitedData"];
 }
 
 #pragma mark -- observe
@@ -59,10 +61,6 @@
             [alertController addAction:sureAction];
             [self presentViewController:alertController animated:YES completion:nil];
         }
-    }
-    
-    if ([keyPath isEqualToString:@"transterUnitedData"]) {
-        
     }
 }
 
@@ -86,7 +84,6 @@
     _unitedInfoModel = ({
         UnitedInfoModel * model = [[UnitedInfoModel alloc] init];
         [model addObserver:self forKeyPath:@"dismissUnitedData" options:NSKeyValueObservingOptionNew context:nil];
-        [model addObserver:self forKeyPath:@"transterUnitedData" options:NSKeyValueObservingOptionNew context:nil];
         model;
     });
 }
@@ -96,7 +93,11 @@
     self.view.backgroundColor = THEMECOLOR_BACK;
     [self setEdgesForExtendedLayout:UIRectEdgeBottom];
     
-    
+        //返回title
+    UIBarButtonItem * barbutton = [[UIBarButtonItem alloc] init];
+    barbutton.title = @"";
+    self.navigationItem.backBarButtonItem = barbutton;
+
     //门派成员
     UIButton * unitedMemberBut = [self createButtonWithTitle:@"你将与他们失去联系"];
     unitedMemberBut.frame = FLEXIBLE_FRAME(0, 10, 320, 40);
@@ -106,7 +107,19 @@
     unitedMemberBGView.frame = FLEXIBLE_FRAME(0, 50, 320, 55);
     
     NSArray * memberArray = _unitedDetailDic[@"members"];
+//    NSMutableArray * userArray = [[NSMutableArray alloc] init];
+//    for (int i = 0; i ; <#increment#>) {
+//        <#statements#>
+//    }
+    
+    UILabel * totalLabel = [self createLabelWithText:[NSString stringWithFormat:@"%ld人",[_unitedDetailDic[@"members"] count]] font:FLEXIBLE_NUM(12) subView:unitedMemberBut];
+    totalLabel.frame = FLEXIBLE_FRAME(240, 0, 50, 40);
+    totalLabel.textAlignment = NSTextAlignmentRight;
+    
     for (int i = 0; i < memberArray.count; i ++) {
+        if (15 + 50 * i + 50 > 310) {
+            continue;
+        }
         UIImageView * memberImageView = [[UIImageView alloc] initWithFrame:FLEXIBLE_FRAME(15 + 50 * i, 5, 40, 40)];
         memberImageView.layer.cornerRadius = FLEXIBLE_NUM(20);
         memberImageView.clipsToBounds = YES;
@@ -142,23 +155,28 @@
 #pragma mark -- button pressed
 - (void)unitedMemberButtonPressed:(UIButton *)sender
 {
-    
+    UnitedMemberViewController * unitedMemberVC = [[UnitedMemberViewController alloc] init];
+    unitedMemberVC.memberArray = _unitedDetailDic[@"members"];
+    unitedMemberVC.groupDic = _unitedDetailDic;
+    unitedMemberVC.userDic = self.userDic;
+    [self.navigationController pushViewController:unitedMemberVC animated:YES];
 }
 
 //转让
 - (void)buttonOneButtonPressed:(UIButton *)sender
 {
-    NSDictionary * dataDic = [BBUserDefaults getUserDic];
-    UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"是否确定立即解散该群？" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            _unitedInfoModel dismissUnitedWithGroupId:_unitedDetailDic[@"id"] userId:<#(NSString *)#>
-//        _unitedInfoModel transterUnitedWithGroupId:_unitedDetailDic[@"id"] userId:dataDic[@"id"] transferTo:<#(NSString *)#>
-    }];
-    UIAlertAction *  cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+
+    NSMutableArray * dataArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [_unitedDetailDic[@"members"] count]; i ++) {
+        if (![_unitedDetailDic[@"members"][i][@"role"] isEqualToString:@"OWNER"]) {
+            [dataArray addObject:_unitedDetailDic[@"members"][i]];
+        }
+    }
     
-    [alertController addAction:sureAction];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    MakeOverViewController * makeOverVC = [[MakeOverViewController alloc] init];
+    makeOverVC.memberArray = dataArray;
+    makeOverVC.unitedDetailDic = _unitedDetailDic;
+    [self.navigationController pushViewController:makeOverVC animated:YES];
 }
 
 //解散

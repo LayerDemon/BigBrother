@@ -61,7 +61,6 @@
     UIButton * setRankNameButton = [self createButtonWithTitle:@"设置等级头衔"];
     setRankNameButton.frame = FLEXIBLE_FRAME(0, 0, 320, 40);
     [setRankNameButton addTarget:self action:@selector(setRankNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-
     
     //授予下级头衔
     UIButton * setMemberRankButton = [self createButtonWithTitle:@"授予下级头衔"];
