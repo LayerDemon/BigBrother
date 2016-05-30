@@ -10,4 +10,11 @@
 
 @interface MoneyTreeModel : NSObject
 
+@property (strong, nonatomic, readonly) NSDictionary *createData;
+
+/**
+ *  创建摇钱树
+ */
+- (void)getCreateDataWithGoldCoinCount:(NSInteger)goldCoinCount sum:(NSInteger)sum receiveTarget:(NSString *)receiveTarget message:(NSString *)message creator:(NSNumber *)creator groupId:(NSNumber *)groupId;
+
 @end

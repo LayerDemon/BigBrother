@@ -7,6 +7,7 @@
 //
 
 #import "MoneyTreeViewController.h"
+#import "MoneyTreeModel.h"
 
 @interface MoneyTreeViewController ()
 
@@ -24,8 +25,12 @@
 @property (strong, nonatomic) IBOutlet UITextField *remarkField;
 
 @property (strong, nonatomic) IBOutlet UILabel *userMoneyLabel;
+@property (strong, nonatomic) IBOutlet UIButton *sendBtn;
 
+@property (strong, nonatomic) MoneyTreeModel *model;
 @property (strong, nonatomic) UIButton *lastBtn;
+@property (strong, nonatomic) NSDictionary *userDic;
+
 
 
 - (IBAction)chooseBtnPressed:(UIButton *)sender;
@@ -37,11 +42,17 @@
 
 @implementation MoneyTreeViewController
 
+- (void)dealloc
+{
+    [_model removeObserver:self forKeyPath:@"createData"];
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.fd_prefersNavigationBarHidden = YES;
+        self.userDic = [BBUserDefaults getUserDic];
     }
     return self;
 }
@@ -90,17 +101,35 @@
     }
     
     [self chooseBtnPressed:self.firstBtn];
+    NSString *userMoneyStr = [NSString stringWithFormat:@"共 %@ 点",@([BBUserDefaults getUserBalance])];
+    NSMutableAttributedString *userMoneyAttriStr = [[NSMutableAttributedString alloc] initWithString:userMoneyStr];
+    [userMoneyAttriStr addAttribute:NSForegroundColorAttributeName
+                              value:[UIColor redColor]
+                              range:[userMoneyStr rangeOfString:[NSString stringWithFormat:@"%@",@([BBUserDefaults getUserBalance])]]];
+    
+    self.userMoneyLabel.attributedText = userMoneyAttriStr;
     
 }
 #pragma mark - 各种Getter
+- (MoneyTreeModel *)model
+{
+    if (!_model) {
+        _model = [[MoneyTreeModel alloc]init];
+        [_model addObserver:self forKeyPath:@"createData" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    return _model;
+}
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"createData"]) {
+        [self createDataParse];
+    }
+}
 
 #pragma mark - 按钮方法
 
 #pragma mark - 自定义方法
-
-
-
 - (IBAction)chooseBtnPressed:(UIButton *)sender {
     if (self.lastBtn != sender) {
         self.lastBtn.selected = NO;
@@ -114,6 +143,43 @@
 }
 
 - (IBAction)sendBtnPressed:(UIButton *)sender {
+    if (!self.groupDic) {
+        [BYToastView showToastWithMessage:@"只支持门派~"];
+        return;
+    }
+    NSInteger totalCount = [self.totalCountFeild.text integerValue];
+    if (totalCount < 1) {
+        [BYToastView showToastWithMessage:@"摇钱次数必须大于1"];
+        return;
+    }
+    if (totalCount > [BBUserDefaults getUserBalance]) {
+        [BYToastView showToastWithMessage:@"余额不足~"];
+        return;
+    }
+    NSInteger sum = [self.totalMoneyField.text integerValue];
+    if (sum < 1) {
+        [BYToastView showToastWithMessage:@"总金额必须大于1"];
+        return;
+    }
     
+    
+    
+    //领取对象，ALL全部，MALE男，FEMALE女。
+    NSArray *receiveTargetsArray = @[@"ALL",@"FEMALE",@"MALE"];
+    NSInteger receiveTargetIndex = self.lastBtn.tag - BUTTON_TAG;
+    NSString *receiveTarget = receiveTargetsArray[receiveTargetIndex];
+    
+    [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [self.model getCreateDataWithGoldCoinCount:totalCount sum:sum receiveTarget:receiveTarget message:self.remarkField.text creator:self.userDic[@"id"] groupId:self.groupDic[@"id"]];
 }
+
+#pragma mark - 数据处理
+- (void)createDataParse
+{
+    [self.sendBtn stopAnimationWithTitle:@"种下摇钱树"];
+    NSDictionary *tempDic = [EaseSDKHelper customMessageDicWithSubMessage:@"种下了一棵[摇钱树]" customPojo:self.model.createData resultValue:@(1)];
+    [[NSNotificationCenter defaultCenter]  postNotificationName:@"sendCustomMessage" object:tempDic];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

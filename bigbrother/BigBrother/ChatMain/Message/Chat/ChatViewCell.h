@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChatFrameModel.h"
 #import "ChatSupplyLinkView.h"
+#import "ChatMoneyTreeView.h"
 
 @class ChatViewCell;
 
@@ -35,6 +36,7 @@
 @property (strong, nonatomic) ChatFrameModel *cellFrameModel;
 @property (strong, nonatomic) UIImageView *voiceImageView;
 @property (strong, nonatomic) ChatSupplyLinkView *supplyLinkView;//供应链接
+@property (strong, nonatomic) ChatMoneyTreeView *moneyTreeView;//摇钱树
 
 - (void)refreshWithCellFrameModel:(ChatFrameModel *)cellFrameModel;
 @end

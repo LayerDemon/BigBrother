@@ -10,4 +10,6 @@
 
 @interface MoneyTreeViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *groupDic;
+
 @end

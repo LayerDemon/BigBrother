@@ -390,6 +390,9 @@
 - (void)clickedMoneyTreeBtn:(UIButton *)sender
 {
     MoneyTreeViewController *moneyTreeVC = [[MoneyTreeViewController alloc]init];
+    if (self.conversation.type == EMConversationTypeGroupChat) {
+        moneyTreeVC.groupDic = self.chatDic;
+    }
     [self.navigationController pushViewController:moneyTreeVC animated:YES];
 }
 

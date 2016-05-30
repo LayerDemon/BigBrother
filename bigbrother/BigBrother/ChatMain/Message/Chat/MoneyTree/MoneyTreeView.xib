@@ -10,6 +10,7 @@
                 <outlet property="firstBtn" destination="bbc-cd-QyR" id="gaa-v5-54J"/>
                 <outlet property="remarkField" destination="s3u-lp-qdx" id="2LY-s4-AUv"/>
                 <outlet property="remarkLeftLabel" destination="Lig-gR-woI" id="qzH-ff-9TJ"/>
+                <outlet property="sendBtn" destination="ITb-GT-UHe" id="BUp-XP-S6l"/>
                 <outlet property="totalCountFeild" destination="mMU-lA-LRB" id="Ec8-aB-qBw"/>
                 <outlet property="totalCountLeftLabel" destination="yCQ-So-IzR" id="ITS-26-sks"/>
                 <outlet property="totalCountRightLabel" destination="UK4-SO-GSf" id="BE1-aJ-VIC"/>

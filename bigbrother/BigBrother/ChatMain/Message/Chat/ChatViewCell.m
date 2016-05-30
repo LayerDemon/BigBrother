@@ -124,6 +124,14 @@
     return _supplyLinkView;
 }
 
+- (ChatMoneyTreeView *)moneyTreeView
+{
+    if (!_moneyTreeView) {
+        _moneyTreeView = [[ChatMoneyTreeView alloc]init];
+    }
+    return _moneyTreeView;
+}
+
 #pragma mark - 按钮方法
 //- (void)longPressGestureRecognizer:(UILongPressGestureRecognizer *)sender
 //{
@@ -328,7 +336,10 @@
     UIView *customMessageView;
     switch (resultValue) {
         case 1://摇钱树
-            
+        {
+            [self.moneyTreeView reloadMoneyTreeWithDataDic:messageExt[@"customPojo"]];
+            customMessageView = self.moneyTreeView;
+        }
             break;
         case 2://供应链接
         {

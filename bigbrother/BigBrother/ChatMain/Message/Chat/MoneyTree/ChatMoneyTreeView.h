@@ -10,4 +10,9 @@
 
 @interface ChatMoneyTreeView : UIView
 
+@property (strong, nonatomic) NSDictionary *dataDic;
+
+
+- (void)reloadMoneyTreeWithDataDic:(NSDictionary *)dataDic;
+
 @end
