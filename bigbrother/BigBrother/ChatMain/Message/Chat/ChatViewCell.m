@@ -177,7 +177,7 @@
             if (self.moneyTreeView.canPick) {
                 [self.moneyTreeView startPickMoneyTree];
             }else{
-                [self.delegate chatViewCell:self clickedMoneyTreeBtn:self.textBtn];
+//                [self.delegate chatViewCell:self clickedMoneyTreeBtn:self.textBtn];
             }
         }
             break;
