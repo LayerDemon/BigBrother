@@ -60,18 +60,17 @@
 
 - (void)startTitleIndicator
 {
-    self.view.userInteractionEnabled = NO;
     UIButton *button = (UIButton *)self.navigationItem.titleView;
+    button.viewController.view.userInteractionEnabled = NO;
     [button startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 }
 
 - (void)stopTitleIndicator
 {
-    self.view.userInteractionEnabled = YES;
     UIButton *button = (UIButton *)self.navigationItem.titleView;
     
     NSLog(@"%@",button.titleLabel.text);
-
+    button.viewController.view.userInteractionEnabled = YES;
     [button stopAnimationWithTitle:button.titleLabel.text];
 }
 
@@ -281,6 +280,8 @@
         [self logOut];
     }
 }
+
+
 
 - (void)logOut
 {

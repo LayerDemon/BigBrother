@@ -21,6 +21,7 @@
 - (void)chatViewCell:(ChatViewCell *)cell clickedSendStateBtn:(UIButton *)sender;
 
 - (void)chatViewCell:(ChatViewCell *)cell clickedVoiceBtn:(UIButton *)sender;
+- (void)chatViewCell:(ChatViewCell *)cell clickedMoneyTreeBtn:(UIButton *)sender;
 - (void)chatViewCell:(ChatViewCell *)cell clickedSupplyLinkBtn:(UIButton *)sender;
 - (void)chatViewCell:(ChatViewCell *)cell clickedGroupLinkBtn:(UIButton *)sender;
 

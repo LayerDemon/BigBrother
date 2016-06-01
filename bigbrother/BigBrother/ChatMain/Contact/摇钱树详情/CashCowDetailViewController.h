@@ -10,4 +10,7 @@
 
 @interface CashCowDetailViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *moneyTreeDic;
+@property (strong, nonatomic) NSDictionary *createUserDic;
+
 @end

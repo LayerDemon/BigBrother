@@ -35,12 +35,18 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <state key="normal" backgroundImage="yqs03"/>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ldo-xo-Erd">
+                    <rect key="frame" x="0.0" y="0.0" width="247" height="102"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.23725190033783783" colorSpace="calibratedWhite"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="contentLabel" destination="6QX-Go-ev9" id="Ck3-hP-UnM"/>
                 <outlet property="countLabel" destination="ynb-Fd-nrh" id="OrX-wd-5Tc"/>
+                <outlet property="hintBtn" destination="ldo-xo-Erd" id="gL7-i2-TcU"/>
                 <outlet property="treeBtn" destination="ilT-Ya-diC" id="t0g-mE-jz2"/>
             </connections>
             <point key="canvasLocation" x="463.5" y="79"/>

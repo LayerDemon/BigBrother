@@ -79,4 +79,10 @@
     return view;
 }
 
+#pragma mark - 加载数据
+- (void)reloadWithDataDic:(NSDictionary *)dataDic
+{
+
+}
+
 @end

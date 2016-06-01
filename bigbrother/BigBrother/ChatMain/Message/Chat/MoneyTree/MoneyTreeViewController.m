@@ -170,7 +170,7 @@
     NSString *receiveTarget = receiveTargetsArray[receiveTargetIndex];
     
     [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [self.model getCreateDataWithGoldCoinCount:totalCount sum:sum receiveTarget:receiveTarget message:self.remarkField.text creator:self.userDic[@"id"] groupId:self.groupDic[@"id"]];
+    [self.model postCreateDataWithGoldCoinCount:totalCount sum:sum receiveTarget:receiveTarget message:self.remarkField.text creator:self.userDic[@"id"] groupId:self.groupDic[@"id"]];
 }
 
 #pragma mark - 数据处理

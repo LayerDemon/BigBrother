@@ -17,6 +17,9 @@
 #import "MoneyTreeViewController.h"
 #import "SupplyLinkViewController.h"
 
+//摇钱树
+#import "CashCowDetailViewController.h"
+
 //供应链接
 #import "CarPostDetailViewController.h"
 #import "HousePostDetailViewController.h"
@@ -510,52 +513,6 @@
 //    }
 }
 
-//#warning -------- 长按弹出举报选项弹框~
-////举报相关
-//- (void)chatViewCell:(ChatViewCell *)cell longPressGestureRecognizer:(UILongPressGestureRecognizer *)sender
-//{
-//    ChatMessageModel *messageModel = cell.cellFrameModel.messageModel;
-//    NSDictionary *chatterDic = messageModel.isFromOther ? messageModel.otherDic : messageModel.userDic;
-//    NSString *buttonTitle1 = [NSString stringWithFormat:@"取消%@",ACTIONSTYLE_CANCEL];
-//    NSString *buttonTitle2 = [NSString stringWithFormat:@"举报%@",ACTIONSTYLE_DESTRUCTIVE];
-//    NSString *buttonTitle3 = [NSString stringWithFormat:@"添加备忘%@",ACTIONSTYLE_NORMAL];
-//    NSMutableArray *buttonTitleArray = [NSMutableArray arrayWithArray:@[buttonTitle3,buttonTitle2,buttonTitle1]];
-//    self.longGestureCell = cell;
-//    if (![chatterDic[@"id"] isEqualToNumber:self.userDic[@"id"]]) {
-//        self.coseImage = nil;
-//        switch (messageModel.messageBodyType) {
-//            case EMMessageBodyTypeText:
-//                self.coseContent = messageModel.text;
-//                break;
-//            case EMMessageBodyTypeImage:
-//            {
-//                self.coseContent = @"";
-//                self.coseImage = [UIImage imageWithContentsOfFile:messageModel.imageMessageBody.thumbnailLocalPath];
-//            }
-//                break;
-//            case EMMessageBodyTypeLocation:
-//                self.coseContent = [NSString stringWithFormat:@"latitude:%lf,longtitude:%lf",messageModel.locationMessageBody.latitude,messageModel.locationMessageBody.longitude];
-//                break;
-//            default:
-//                self.coseContent = @"未知消息";
-//                break;
-//        }
-//        self.reportTypeId = chatterDic[@"id"];
-////        self.topicReportTypeEnum = messageModel.message.chatType == EMChatTypeGroupChat ? topicReportTypeEnum_GROUP : topicReportTypeEnum_PERSONAGE;
-//        //弹出举报框
-////        if (messageModel.message.messageType == eMessageTypeGroupChat) {
-////            [buttonTitleArray removeObject:buttonTitle3];
-////        }
-//        
-//    }else{
-//        if (messageModel.message.chatType == EMChatTypeGroupChat) {
-//            return;
-//        }
-//        [buttonTitleArray removeObject:buttonTitle2];
-//    }
-//    [self showActionSheetViewWithTitle:TITLE_ALERT message:nil buttonTitles:buttonTitleArray];
-//}
-
 //重发消息
 - (void)chatViewCell:(ChatViewCell *)cell clickedSendStateBtn:(UIButton *)sender
 {
@@ -563,6 +520,15 @@
     NSString *buttonTitle1 = [NSString stringWithFormat:@"取消%@",ACTIONSTYLE_CANCEL];
     NSString *buttonTitle2 = [NSString stringWithFormat:@"重发%@",ACTIONSTYLE_NORMAL];
     [self showAlertViewWithTitle:nil message:MESSAGE_REPEAT buttonTitles:@[buttonTitle1,buttonTitle2]];
+}
+
+//点击摇钱树详情
+- (void)chatViewCell:(ChatViewCell *)cell clickedMoneyTreeBtn:(UIButton *)sender
+{
+    CashCowDetailViewController *moneyTreeDetailVC = [[CashCowDetailViewController alloc]init];
+    moneyTreeDetailVC.moneyTreeDic = cell.moneyTreeView.dataDic;
+    moneyTreeDetailVC.createUserDic = cell.moneyTreeView.createUserDic;
+    [self.navigationController pushViewController:moneyTreeDetailVC animated:YES];
 }
 
 //供应链接

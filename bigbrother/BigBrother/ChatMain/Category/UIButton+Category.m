@@ -82,12 +82,15 @@
                 [indicatorView stopAnimating];
             }
             [button stopAnimationWithTitle:nil];
-            button.superview.userInteractionEnabled = YES;
-            if (errorMessage) {
-                [BYToastView showToastWithMessage:errorMessage];
-            }
             button.viewController.view.userInteractionEnabled = YES;
         }
+        if (errorMessage) {
+            [BYToastView showToastWithMessage:errorMessage];
+        }
+        MJRefreshHeader *mj_headerView = [WINDOW viewWithTag:MJHEADER_TAG];
+        MJRefreshHeader *mj_footerView = [WINDOW viewWithTag:MJFOOTER_TAG];
+        [mj_headerView endRefreshing];
+        [mj_footerView endRefreshing];
     });
 }
 

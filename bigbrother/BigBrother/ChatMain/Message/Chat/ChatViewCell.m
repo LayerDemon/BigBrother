@@ -168,11 +168,18 @@
 
 - (void)clickedCustomMessageWithMessageExt:(NSDictionary *)messageExt
 {
+    [WINDOW endEditing:YES];
     NSInteger resultValue = [messageExt[@"resultValue"] integerValue];
     
     switch (resultValue) {
         case 1://摇钱树
-            
+        {
+            if (self.moneyTreeView.canPick) {
+                [self.moneyTreeView startPickMoneyTree];
+            }else{
+                [self.delegate chatViewCell:self clickedMoneyTreeBtn:self.textBtn];
+            }
+        }
             break;
         case 2://供应链接
             [self.delegate chatViewCell:self clickedSupplyLinkBtn:self.textBtn];
@@ -337,7 +344,7 @@
     switch (resultValue) {
         case 1://摇钱树
         {
-            [self.moneyTreeView reloadMoneyTreeWithDataDic:messageExt[@"customPojo"]];
+            [self.moneyTreeView reloadMoneyTreeWithMessageModel:self.cellFrameModel.messageModel];
             customMessageView = self.moneyTreeView;
         }
             break;

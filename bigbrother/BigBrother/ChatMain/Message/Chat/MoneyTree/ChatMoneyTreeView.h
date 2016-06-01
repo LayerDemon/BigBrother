@@ -11,8 +11,19 @@
 @interface ChatMoneyTreeView : UIView
 
 @property (strong, nonatomic) NSDictionary *dataDic;
+@property (strong, nonatomic) NSDictionary *createUserDic;
+@property (assign, nonatomic) BOOL canPick;
 
 
-- (void)reloadMoneyTreeWithDataDic:(NSDictionary *)dataDic;
+- (void)reloadMoneyTreeWithMessageModel:(ChatMessageModel *)messageModel;
+
+///**
+// *  刷新数据源
+// */
+//- (void)reloadDataSource;
+/**
+ *  摘取摇钱树
+ */
+- (void)startPickMoneyTree;
 
 @end

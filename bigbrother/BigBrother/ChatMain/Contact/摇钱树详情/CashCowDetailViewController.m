@@ -8,10 +8,21 @@
 
 #import "CashCowDetailViewController.h"
 #import "CashCowTableViewCell.h"
+#import "MoneyTreeModel.h"
+#import "UserTreeHistoryViewController.h"
 
 @interface CashCowDetailViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView       * tableView;
+@property (strong, nonatomic) UIImageView *topImageView;
+@property (strong, nonatomic) UILabel *topTitleLabel;
+@property (strong, nonatomic) UILabel *cashDetailLabel;
+@property (strong, nonatomic) UILabel *countLabel;
+
+@property (strong, nonatomic) MoneyTreeModel *model;
+@property (strong, nonatomic) NSMutableArray *listArray;
+@property (assign, nonatomic) NSInteger currentPage;
+@property (assign, nonatomic) NSInteger pageCount;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -27,13 +38,16 @@
 
 - (void)dealloc
 {
-
+    [_model removeObserver:self forKeyPath:@"pickListData"];
 }
 
 #pragma mark -- initialize
 - (void)initializeDataSource
 {
-
+    [self setIndicatorTitle:@"摇钱树详情"];
+    self.listArray = [NSMutableArray array];
+    [self startTitleIndicator];
+    [self.model postPickListDataWithMoneyTreeId:self.moneyTreeDic[@"id"]];
 }
 
 - (void)initializeUserInterface
@@ -49,24 +63,27 @@
     topImageView.clipsToBounds = YES;
     topImageView.image = [UIImage imageNamed:@"好看2.jpg"];
     [self.view addSubview:topImageView];
+    self.topImageView = topImageView;
     
     //title
     UILabel * topTitleLabel = [self createLabelWithText:@"魔法师下的摇钱树" font:FLEXIBLE_NUM(15) subView:self.view];
     topTitleLabel.frame = FLEXIBLE_FRAME(10, 80, 300, 30);
     topTitleLabel.textColor = [UIColor blackColor];
     topTitleLabel.textAlignment = NSTextAlignmentCenter;
+    self.topTitleLabel = topTitleLabel;
     
     //cash detail
     UILabel * cashDetail = [self createLabelWithText:@"恭喜发财，红包给你" font:FLEXIBLE_NUM(12) subView:self.view];
     cashDetail.frame = FLEXIBLE_FRAME(10, 110, 300, 30);
     cashDetail.textColor = [UIColor grayColor];
     cashDetail.textAlignment = NSTextAlignmentCenter;
+    self.cashDetailLabel = cashDetail;
     
     //countLabel
     UILabel * countLabel = [self createLabelWithText:@"5次机会，4分钟被抢光" font:FLEXIBLE_NUM(13) subView:self.view];
     countLabel.frame = FLEXIBLE_FRAME(10, 140, 200, 30);
     countLabel.textColor = [UIColor grayColor];
-    
+    self.countLabel = countLabel;
     
         
     _tableView = ({
@@ -79,18 +96,37 @@
         [self.view addSubview:tableView];
         tableView;
     });
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
+    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upRefreshData)];
 
     UIButton * bottomButton = [self createButtonWithTitle:@"查看我的收获／付出记录" font:FLEXIBLE_NUM(13) subView:self.view];
     [bottomButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     bottomButton.frame = CGRectMake(0, MAINSCRREN_H - FLEXIBLE_NUM(50)-64, MAINSCRREN_W, FLEXIBLE_NUM(50));
+    bottomButton.userInteractionEnabled = YES;
     [bottomButton addTarget:self action:@selector(bottomButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
+    NSString *urlStr = [NSString isBlankStringWithString:self.createUserDic[@"avatar"]] ? @"" : self.createUserDic[@"avatar"];
+    [self.topImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:PLACEHOLDERIMAGE_USER completed:nil];
+    self.topTitleLabel.text = self.createUserDic[@"nickname"];
+    self.cashDetailLabel.text = self.moneyTreeDic[@"message"];
+    self.countLabel.text = [NSString stringWithFormat:@"%@次机会，%@分钟被抢光",self.moneyTreeDic[@"goldCoinCount"],@(2)];
 }
 
-#pragma mark -- button pressed
-- (void)bottomButtonPressed:(UIButton *)sender
+#pragma mark - getter
+- (MoneyTreeModel *)model
 {
-    
+    if (!_model) {
+        _model = [[MoneyTreeModel alloc]init];
+        [_model addObserver:self forKeyPath:@"pickListData" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    return _model;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"pickListData"]) {
+        [self pickListDataParse];
+    }
 }
 
 #pragma mark -- <UITableViewDelegate,UITableViewDataSource>
@@ -106,7 +142,15 @@
     if (!cell) {
         cell = [[CashCowTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
+    
+    
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark -- create label
@@ -137,6 +181,53 @@
     view.backgroundColor = color;
     [subView addSubview:view];
     return view;
+}
+
+
+#pragma mark -- button pressed
+- (void)bottomButtonPressed:(UIButton *)sender
+{
+    UserTreeHistoryViewController *userTreeHistoryVC = [[UserTreeHistoryViewController alloc]init];
+    userTreeHistoryVC.moneyTreeDic = self.moneyTreeDic;
+    [self.navigationController pushViewController:userTreeHistoryVC animated:YES];
+}
+
+#pragma mark - 自定义方法
+- (void)downRefreshData
+{
+    [self.tableView.mj_footer resetNoMoreData];
+    [self.model postPickListDataWithMoneyTreeId:self.moneyTreeDic[@"id"]];
+}
+
+- (void)upRefreshData
+{
+    self.currentPage++;
+    [self.model postPickListDataWithMoneyTreeId:self.moneyTreeDic[@"id"]];
+}
+
+
+//摘取列表
+- (void)pickListDataParse
+{
+    [self stopTitleIndicator];
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+//    self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@""]];
+    
+    if ([self.model.pickListData[@"pageSize"] integerValue] == PAGESIZE_NORMAL) {
+        self.currentPage = [self.model.pickListData[@"page"] integerValue];
+        self.pageCount = [self.model.pickListData[@"totalPages"] integerValue];
+    }
+    
+    if (self.currentPage == 1) {
+        self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@"content"]];
+    }else{
+        [self.listArray addObjectsFromArray:self.model.pickListData[@"content"]];
+    }
+    if (self.pageCount <= self.currentPage) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
+    [self.tableView reloadData];
 }
 
 @end
