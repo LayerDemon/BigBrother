@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, FriendCacheErrorCode) {
 //获取好友列表从网络
 - (void)getfriendListWithCompleted:(completed)completed
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/friends",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/friends"];
     __weak FriendCacheManager *weakSelf = self;
     [NetworkingManager postWithURL:urlStr params:@{@"userId":[BBUserDefaults getUserID]} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSDictionary * dataDic = responseObj;

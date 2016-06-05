@@ -10,6 +10,8 @@
 
 @interface UserTreeHistoryViewCell : UITableViewCell
 
-- (void)reloadWithDataDic:(NSDictionary *)dataDic;
+- (void)reloadPickHistoryWithDataDic:(NSDictionary *)dataDic;
+
+- (void)reloadPlanHistoryWithDataDic:(NSDictionary *)dataDic;
 
 @end

@@ -33,9 +33,22 @@
 }
 
 #pragma mark - 加载数据
-- (void)reloadWithDataDic:(NSDictionary *)dataDic
+- (void)reloadPickHistoryWithDataDic:(NSDictionary *)dataDic
 {
+    self.titleLabel.text = dataDic[@"nickname"];
+    self.timeLabel.text = dataDic[@"createdTime"];
+    self.moneyLabel.text = dataDic[@"sum"];
+    NSInteger goldCoinCount = [dataDic[@"goldCoinCount"] integerValue];
+    NSInteger leftCoinCount = [dataDic[@"leftCoinCount"] integerValue];
+    self.countLabel.text = [NSString stringWithFormat:@"%@/%@次",@(goldCoinCount-leftCoinCount),@(goldCoinCount)];
+}
 
+- (void)reloadPlanHistoryWithDataDic:(NSDictionary *)dataDic
+{
+    self.titleLabel.text = @"种下摇钱树";
+    self.timeLabel.text = dataDic[@"createdTime"];
+    self.moneyLabel.text = dataDic[@"money"];
+    self.countLabel.text = @"";
 }
 
 @end

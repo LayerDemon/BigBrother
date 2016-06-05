@@ -21,8 +21,8 @@
 
 @property (strong, nonatomic) MoneyTreeModel *model;
 @property (strong, nonatomic) NSMutableArray *listArray;
-@property (assign, nonatomic) NSInteger currentPage;
-@property (assign, nonatomic) NSInteger pageCount;
+//@property (assign, nonatomic) NSInteger currentPage;
+//@property (assign, nonatomic) NSInteger pageCount;
 
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
@@ -97,7 +97,7 @@
         tableView;
     });
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downRefreshData)];
-    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upRefreshData)];
+//    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upRefreshData)];
 
     UIButton * bottomButton = [self createButtonWithTitle:@"查看我的收获／付出记录" font:FLEXIBLE_NUM(13) subView:self.view];
     [bottomButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -109,7 +109,7 @@
     [self.topImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:PLACEHOLDERIMAGE_USER completed:nil];
     self.topTitleLabel.text = self.createUserDic[@"nickname"];
     self.cashDetailLabel.text = self.moneyTreeDic[@"message"];
-    self.countLabel.text = [NSString stringWithFormat:@"%@次机会，%@分钟被抢光",self.moneyTreeDic[@"goldCoinCount"],@(2)];
+    self.countLabel.text = [NSString stringWithFormat:@"%@次机会，%@分钟被抢光",self.moneyTreeDic[@"goldCoinCount"],@"*"];
 }
 
 #pragma mark - getter
@@ -132,7 +132,7 @@
 #pragma mark -- <UITableViewDelegate,UITableViewDataSource>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.listArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,6 +143,7 @@
         cell = [[CashCowTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     
+    [cell reloadWithDataDic:self.listArray[indexPath.row]];
     
     
     return cell;
@@ -199,11 +200,11 @@
     [self.model postPickListDataWithMoneyTreeId:self.moneyTreeDic[@"id"]];
 }
 
-- (void)upRefreshData
-{
-    self.currentPage++;
-    [self.model postPickListDataWithMoneyTreeId:self.moneyTreeDic[@"id"]];
-}
+//- (void)upRefreshData
+//{
+//    self.currentPage++;
+//    [self.model postPickListDataWithMoneyTreeId:self.moneyTreeDic[@"id"]];
+//}
 
 
 //摘取列表
@@ -211,23 +212,58 @@
 {
     [self stopTitleIndicator];
     [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
+//    [self.tableView.mj_footer endRefreshing];
 //    self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@""]];
-    
-    if ([self.model.pickListData[@"pageSize"] integerValue] == PAGESIZE_NORMAL) {
-        self.currentPage = [self.model.pickListData[@"page"] integerValue];
-        self.pageCount = [self.model.pickListData[@"totalPages"] integerValue];
-    }
-    
-    if (self.currentPage == 1) {
-        self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@"content"]];
-    }else{
-        [self.listArray addObjectsFromArray:self.model.pickListData[@"content"]];
-    }
-    if (self.pageCount <= self.currentPage) {
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-    }
+    self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@"content"]];
     [self.tableView reloadData];
+    
+    
+    if ([self.moneyTreeDic[@"leftCoinCount"] integerValue] > 0) {
+        self.countLabel.text = [NSString stringWithFormat:@"%@次机会，还剩%@次机会",self.moneyTreeDic[@"goldCoinCount"],self.moneyTreeDic[@"leftCoinCount"]];
+    }else{
+        NSDictionary *tempDic = [self.listArray firstObject];
+        NSString *createTimeStr = self.moneyTreeDic[@"createdTime"];
+        NSString *endTimeStr = tempDic[@"createdTime"];
+        
+        NSDateFormatter *format = [[NSDateFormatter alloc]init];
+        [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSDate *createdTime = [format dateFromString:createTimeStr];
+        NSDate *endTime = [format dateFromString:endTimeStr];
+        NSTimeInterval time=[endTime timeIntervalSinceDate:createdTime];
+        
+        int days = ((int)time)/(3600*24);
+        
+        int hours = ((int)time)%(3600*24)/3600;
+        
+        int minutes = ((int)time)%(3600*24)%3600/60;
+        
+        int seconds = ((int)time)%(3600*24)%3600%60;
+        
+        NSString *daysStr = days > 0 ? [NSString stringWithFormat:@"%@天",@(days)] : @"";
+        NSString *hoursStr = hours > 0 ? [NSString stringWithFormat:@"%@时",@(hours)] : @"";
+        NSString *minutesStr = minutes > 0 ? [NSString stringWithFormat:@"%@分",@(minutes)] : @"";
+        NSString *secondsStr = seconds > 0 ? [NSString stringWithFormat:@"%@秒",@(seconds)] : @"";
+        
+        NSString *dateContent = [[NSString alloc] initWithFormat:@"%@%@%@%@",daysStr,hoursStr,minutesStr,secondsStr];
+        
+        self.countLabel.text = [NSString stringWithFormat:@"%@次机会，%@被抢光",self.moneyTreeDic[@"goldCoinCount"],dateContent];
+    }
+    
+    
+//    if ([self.model.pickListData[@"pageSize"] integerValue] == PAGESIZE_NORMAL) {
+//        self.currentPage = [self.model.pickListData[@"page"] integerValue];
+//        self.pageCount = [self.model.pickListData[@"totalPages"] integerValue];
+//    }
+//    
+//    if (self.currentPage == 1) {
+//        self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@"content"]];
+//    }else{
+//        [self.listArray addObjectsFromArray:self.model.pickListData[@"content"]];
+//    }
+//    if (self.pageCount <= self.currentPage) {
+//        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//    }
+    
 }
 
 @end

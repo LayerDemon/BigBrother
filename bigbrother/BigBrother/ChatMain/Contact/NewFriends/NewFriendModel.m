@@ -25,7 +25,7 @@
  */
 - (void)postFriendHandleDataWithUserId:(NSNumber *)userId requestId:(NSNumber *)requestId action:(NSString *)action
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/friends/handle",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/requests/friends/handle"];
     NSDictionary *tempDic = @{@"userId":userId,@"requestId":requestId,@"action":action,@"addFriend":@"YES"};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
@@ -46,7 +46,7 @@
  */
 - (void)postGroupHandleDataWithAdminId:(NSNumber *)adminId requestId:(NSNumber *)requestId action:(NSString *)action
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/groups/handle",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/requests/groups/handle"];
     NSDictionary *tempDic = @{@"operatorId":adminId,@"requestId":requestId,@"action":action};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
@@ -66,7 +66,7 @@
  */
 - (void)postGroupInviteHandleDataWithUserId:(NSNumber *)userId requestId:(NSNumber *)requestId action:(NSString *)action
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/groups/invite/handle",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/requests/groups/invite/handle"];
     NSDictionary *tempDic = @{@"userId":userId,@"requestId":requestId,@"action":action};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     

@@ -21,7 +21,8 @@
 //搜索好友
 - (void)searchFriendsWithTerms:(NSString *)terms
 {
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends/search" params:@{@"terms":terms} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    NSString *urlStr = [NSString  stringWithFormat:@"/im/friends/search"];
+    [NetworkingManager postWithURL:urlStr params:@{@"terms":terms} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSDictionary * dataDic = responseObj;
         NSLog(@"searchFriend -- %@",dataDic);
         self.searchFriendsData = responseObj;
@@ -34,7 +35,8 @@
 //搜索门派
 - (void)searchGroupsWithTerms:(NSString *)terms
 {
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/search" params:@{@"terms":terms} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    NSString *urlStr = [NSString  stringWithFormat:@"/im/groups/search"];
+    [NetworkingManager postWithURL:urlStr params:@{@"terms":terms} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSDictionary * dataDic = responseObj;
         NSLog(@"searchGroup -- %@",dataDic);
         self.searchGroupsData = responseObj;

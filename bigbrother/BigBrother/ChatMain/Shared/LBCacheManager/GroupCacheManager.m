@@ -52,7 +52,7 @@
     NSNumber *uid = [BBUserDefaults getUserDic][@"id"];
     
     __weak GroupCacheManager *weakSelf = self;
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/all" params:@{@"userId":uid} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/all" params:@{@"userId":uid} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSDictionary * dataDic = responseObj;
         NSLog(@"dataDic -- %@",dataDic);
 //        self.allGroupData = responseObj;

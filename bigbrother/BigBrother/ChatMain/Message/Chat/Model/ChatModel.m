@@ -25,7 +25,7 @@
  */
 - (void)getSupplyLinkDataWithSupplyDemandType:(NSString *)supplyDemandType creator:(NSString *)creator status:(NSString *)status page:(NSInteger)page pageSize:(NSInteger)pageSize
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/user/personal/post",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/user/personal/post"];
     NSDictionary *tempDic = @{@"supplyDemandType":supplyDemandType,@"creator":creator,@"status":status,@"page":@(page),@"pageSize":@(pageSize)};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     

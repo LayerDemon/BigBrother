@@ -27,7 +27,7 @@
 //获取所有的好友
 - (void)getAllFriendWithUserId:(NSString *)userId
 {
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends" params:@{@"userId":userId} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/friends" params:@{@"userId":userId} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSDictionary * dataDic = responseObj;
         NSLog(@"dataDic -- %@",dataDic);
         self.allFriendsData = responseObj;
@@ -65,7 +65,7 @@
 //获取我的所有门派
 - (void)getAllGroupsWithUserId:(NSString *)userId
 {
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/all" params:@{@"userId":userId} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/all" params:@{@"userId":userId} successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSDictionary * dataDic = responseObj;
         NSLog(@"dataDic -- %@",dataDic);
         self.allGroupData = responseObj;
@@ -88,7 +88,7 @@
     [dataDic setObject:friendsGroupId forKey:@"friendsGroupId"];
     [dataDic setObject:addFriend forKey:@"addFriend"];
 
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/requests/friends/handle" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/requests/friends/handle" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"old data -- %@",responseObj);
         NSDictionary * dataDic = responseObj;
         NSLog(@"dataDic -- %@",dataDic);
@@ -106,7 +106,7 @@
     [dataDic setObject:userId forKey:@"userId"];
     [dataDic setObject:limit forKey:@"limit"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/requests/all" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/requests/all" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"getAllRequest -- %@",responseObj);
         self.friendsRequestData = responseObj;
         
@@ -124,7 +124,7 @@
     [dataDic setObject:message forKey:@"message"];
     [dataDic setObject:friendsGroupId forKey:@"friendsGroupId"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/requests/friends/apply" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/requests/friends/apply" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"old data -- %@",responseObj);
         NSDictionary * dataDic = responseObj;
         NSLog(@"dataDic -- %@",dataDic);
@@ -142,7 +142,7 @@
     NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
     [dataDic setObject:imNumber forKey:@"imNumber"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/requests/friends/find" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/requests/friends/find" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"old data -- %@",responseObj);
         NSDictionary * dataDic = responseObj;
         NSLog(@"dataDic -- %@",dataDic);
@@ -163,7 +163,7 @@
     [dataDic setObject:name forKey:@"name"];
     [dataDic setObject:introduction forKey:@"introduction"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"dataDic -- %@",responseObj);
         self.createGroupData = responseObj;
         
@@ -180,7 +180,7 @@
     [dataDic setObject:name forKey:@"name"];
     [dataDic setObject:@(orderBy) forKey:@"orderBy"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends/groups/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/friends/groups/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"dataDic -- %@",responseObj);
         self.addNewGroupsData = responseObj;
         
@@ -197,7 +197,7 @@
     [dataDic setObject:friendsGroupId forKey:@"friendsGroupId"];
     
     NSLog(@"wocaonima -- %@",dataDic);
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends/groups/delete" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/friends/groups/delete" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"delete -- %@",responseObj);
         self.deleteGroupsData = responseObj;
         
@@ -216,7 +216,7 @@
     [dataDic setObject:name forKey:@"name"];
     
     NSLog(@"wocaonima -- %@",dataDic);
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/friends/groups/modify" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/friends/groups/modify" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"delete -- %@",responseObj);
         self.editGroupData = responseObj;
         

@@ -46,7 +46,7 @@
     [dataDic setObject:idString forKey:@"id"];
     [dataDic setObject:limit forKey:@"limit"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/detail" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/detail" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"getUnitedDetailInfo -- %@",responseObj);
         self.unitedDetailData = responseObj;
         
@@ -63,7 +63,7 @@
     [dataDic setObject:page forKey:@"page"];
     [dataDic setObject:groupId forKey:@"groupId"];
     [dataDic setObject:@"10" forKey:@"pageSize"];
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/all" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/activities/all" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"getActivity -- %@",responseObj);
         self.unitedActivityData = responseObj;
         
@@ -96,14 +96,14 @@
 //    NSError *error;
 //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDic options:0 error:&error];
 //    if (!jsonData) {
-//        NSLog(@"Got an error: %@", error);
+//        NSLog(@"Got an error: ", error);
 //    } else {
 //        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 //    }
     
     NSDictionary * resultDic = @{@"json":resultString};
     NSLog(@"DATADiC -- %@",resultDic);
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/add" params:resultDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/activities/add" params:resultDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"createUnitedActivityData -- %@",responseObj);
         self.createUnitedActivityData = responseObj;
         
@@ -112,8 +112,8 @@
         NSData *data = [[error userInfo] objectForKey:@"com.alamofire.serialization.response.error.data"];
         NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         id object = [string objectFromJSONString];
-        NSLog(@"错误信息%@",object);
-        NSLog(@"-douban-%@",object[@"data"]);
+        NSLog(@"错误信息 %@",object);
+        NSLog(@"-douban- %@",object[@"data"]);
         NSString *errorMessage = object[@"data"][@"message"];
         if (!errorMessage) {
             errorMessage = @"服务器无响应";
@@ -128,7 +128,7 @@
     NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
     [dataDic setObject:groupId forKey:@"groupId"];
     [dataDic setObject:userId forKey:@"userId"];
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/quit" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/quit" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"exitUnitedData -- %@",responseObj);
         self.exitUnitedData = responseObj;
         
@@ -143,7 +143,7 @@
     NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
     [dataDic setObject:groupId forKey:@"groupId"];
     [dataDic setObject:userId forKey:@"userId"];
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/dismiss" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/dismiss" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"dismissUnitedData -- %@",responseObj);
         self.dismissUnitedData = responseObj;
         
@@ -161,12 +161,12 @@
     [dataDic setObject:userId forKey:@"userId"];
     [dataDic setObject:transferTo forKey:@"transferTo"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/transfer" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"transterUnitedData -- %@",responseObj);
+    [NetworkingManager postWithURL:@"/im/groups/transfer" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"transterUnitedData ------- %@",responseObj);
         self.transterUnitedData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
-        NSLog(@"error -- %@",error.localizedDescription);
+        NSLog(@"error -------- %@",error.localizedDescription);
     }];
 }
 
@@ -179,12 +179,12 @@
     [dataDic setObject:userIds forKey:@"userIds"];
     [dataDic setObject:ownerId forKey:@"ownerId"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/admins/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"addAdminData -- %@",responseObj);
+    [NetworkingManager postWithURL:@"/im/groups/admins/add" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"addAdminData -------- %@",responseObj);
         self.addAdminData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
-        NSLog(@"error -- %@",error.localizedDescription);
+        NSLog(@"error -------- %@",error.localizedDescription);
     }];
 }
 
@@ -196,12 +196,12 @@
     [dataDic setObject:adminId forKey:@"adminId"];
     [dataDic setObject:ownerId forKey:@"ownerId"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/admins/remove" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"removeAdminData -- %@",responseObj);
+    [NetworkingManager postWithURL:@"/im/groups/admins/remove" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"removeAdminData -------- %@",responseObj);
         self.removeAdminData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
-        NSLog(@"error -- %@",error.localizedDescription);
+        NSLog(@"error ------- %@",error.localizedDescription);
     }];
 }
 
@@ -213,12 +213,12 @@
     [dataDic setObject:userId forKey:@"userId"];
     [dataDic setObject:isBan forKey:@"isBan"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/ban" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"setSpeakData -- %@",responseObj);
+    [NetworkingManager postWithURL:@"/im/groups/ban" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"setSpeakData ------- %@",responseObj);
         self.setSpeakData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
-        NSLog(@"error -- %@",error.localizedDescription);
+        NSLog(@"error ------- %@",error.localizedDescription);
     }];
 }
 
@@ -229,12 +229,12 @@
     NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
     [dataDic setObject:groupId forKey:@"groupId"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/grades" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"getUnitedRankData -- %@",responseObj);
+    [NetworkingManager postWithURL:@"/im/groups/grades" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"getUnitedRankData ------- %@",responseObj);
         self.getUnitedRankData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
-        NSLog(@"error -- %@",error.localizedDescription);
+        NSLog(@"error ------- %@",error.localizedDescription);
     }];
 }
 
@@ -246,12 +246,12 @@
     [dataDic setObject:userId forKey:@"userId"];
     [dataDic setObject:name forKey:@"name"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/grades/modify" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"changeRankNameData -- %@",responseObj);
+    [NetworkingManager postWithURL:@"/im/groups/grades/modify" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"changeRankNameData ------- %@",responseObj);
         self.changeRankNameData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
-        NSLog(@"error -- %@",error.localizedDescription);
+        NSLog(@"error ------- %@",error.localizedDescription);
     }];
 }
 
@@ -264,12 +264,12 @@
     [dataDic setObject:groupId forKey:@"groupId"];
     [dataDic setObject:title forKey:@"title"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/grades/changeTitle" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"changeTitleData -- %@",responseObj);
+    [NetworkingManager postWithURL:@"/im/groups/grades/changeTitle" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"changeTitleData ------- %@",responseObj);
         self.changeTitleData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
-        NSLog(@"error -- %@",error.localizedDescription);
+        NSLog(@"error ------- %@",error.localizedDescription);
     }];
 }
 
@@ -278,7 +278,7 @@
  */
 - (void)postJoinDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId message:(NSString *)message
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/groups/apply",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/requests/groups/apply"];
     if ([NSString isBlankStringWithString:message]) {
         message = @"";
     }
@@ -298,12 +298,12 @@
     NSMutableDictionary * dataDic = [[NSMutableDictionary alloc] init];
     [dataDic setObject:activityId forKey:@"id"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/detail" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
-        NSLog(@"changeRankNameData -- %@",responseObj);
+    [NetworkingManager postWithURL:@"/im/groups/activities/detail" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+        NSLog(@"changeRankNameData ------- %@",responseObj);
         self.checkUnitedDetailData = responseObj;
         
     } failAction:^(NSError *error, id responseObj) {
-        NSLog(@"error -- %@",error.localizedDescription);
+        NSLog(@"error ------- %@",error.localizedDescription);
     }];
 }
 
@@ -314,7 +314,7 @@
     [dataDic setObject:activityId forKey:@"activityId"];
     [dataDic setObject:userId forKey:@"userId"];
     
-    [NetworkingManager postWithURL:@"http://121.42.161.141:8080/rent-car/api/im/groups/activities/join" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
+    [NetworkingManager postWithURL:@"/im/groups/activities/join" params:dataDic successAction:^(NSURLSessionDataTask *operation, id responseObj) {
         NSLog(@"changeRankNameData -- %@",responseObj);
         self.signUpActivityData = responseObj;
         
@@ -328,7 +328,7 @@
  */
 - (void)getInviteDataWithUserToInviteId:(NSNumber *)userToInviteId userId:(NSNumber *)userId groupId:(NSNumber *)groupId
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/requests/groups/invite",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/requests/groups/invite"];
     
     NSDictionary *tempDic = @{@"userId":userId,@"groupId":groupId,@"userToInviteId":userToInviteId};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
@@ -347,7 +347,7 @@
  */
 - (void)postGuserInfoDataWithGroupId:(NSNumber *)groupId userId:(NSNumber *)userId
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/members/detail",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/groups/members/detail"];
     
     NSDictionary *tempDic = @{@"userId":userId,@"groupId":groupId};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
@@ -365,7 +365,7 @@
  */
 - (void)postSetAdminDataWithOwnerId:(NSNumber *)ownerId userIds:(NSString *)userIds groupId:(NSNumber *)groupId
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/admins/add",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/groups/admins/add"];
     
     NSDictionary *tempDic = @{@"ownerId":ownerId,@"userIds":userIds,@"groupId":groupId};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
@@ -382,7 +382,7 @@
  */
 - (void)postRemoveAdminDataWithOwnerId:(NSNumber *)ownerId adminId:(NSNumber *)adminId groupId:(NSNumber *)groupId
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/groups/admins/remove",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/groups/admins/remove"];
     
     NSDictionary *tempDic = @{@"ownerId":ownerId,@"adminId":adminId,@"groupId":groupId};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];

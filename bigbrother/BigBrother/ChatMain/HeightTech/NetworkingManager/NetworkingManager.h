@@ -17,13 +17,13 @@ typedef void(^FailBlock)(NSError * error, id responseObj);
 + (void)postWithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
 
 
-+ (void)getWithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
-
-+ (void)putWithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
-
-
-+ (void)post2WithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
-
-+ (void)get2WithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
+//+ (void)getWithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
+//
+//+ (void)putWithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
+//
+//
+//+ (void)post2WithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
+//
+//+ (void)get2WithURL:(NSString *)url params:(NSDictionary *)params successAction:(SuccessBlock)success failAction:(FailBlock)failure;
 
 @end

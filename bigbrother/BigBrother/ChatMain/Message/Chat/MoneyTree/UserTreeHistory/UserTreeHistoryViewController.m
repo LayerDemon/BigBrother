@@ -109,7 +109,7 @@
 #pragma mark - <UITableViewDataSource,UITableViewDelegate>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.listArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,6 +119,14 @@
     if (!cell) {
         cell = [[UserTreeHistoryViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
+    
+    NSDictionary *tempDic = self.listArray[indexPath.row];
+    if (self.topView.lastBtn.tag-BUTTON_TAG == 0) {
+        [cell reloadPickHistoryWithDataDic:tempDic];
+    }else{
+        [cell reloadPlanHistoryWithDataDic:tempDic];
+    }
+    
     return cell;
 }
 
@@ -152,11 +160,10 @@
 - (void)downRefreshData
 {
     [self.tableView.mj_footer resetNoMoreData];
-    
     if (self.topView.lastBtn.tag-BUTTON_TAG == 0) {
-        [self.model postPickHistoryDataWithMoneyTreeId:self.moneyTreeDic[@"id"] userId:self.userDic[@"id"]];
+        [self.model postPickHistoryDataWithCreator:self.userDic[@"id"] page:1 pageSize:PAGESIZE_NORMAL];
     }else{
-        [self.model postPickHistoryDataWithMoneyTreeId:self.moneyTreeDic[@"id"] userId:self.userDic[@"id"]];
+        [self.model postPlantHistoryDataWithUserId:self.userDic[@"id"] page:1 pageSize:PAGESIZE_NORMAL];
     }
 }
 
@@ -164,9 +171,9 @@
 {
     self.currentPage++;
     if (self.topView.lastBtn.tag-BUTTON_TAG == 0) {
-        [self.model postPickHistoryDataWithMoneyTreeId:self.moneyTreeDic[@"id"] userId:self.userDic[@"id"]];
+        [self.model postPickHistoryDataWithCreator:self.userDic[@"id"] page:self.currentPage pageSize:PAGESIZE_NORMAL];
     }else{
-        [self.model postPickHistoryDataWithMoneyTreeId:self.moneyTreeDic[@"id"] userId:self.userDic[@"id"]];
+        [self.model postPlantHistoryDataWithUserId:self.userDic[@"id"] page:self.currentPage pageSize:PAGESIZE_NORMAL];
     }
 }
 

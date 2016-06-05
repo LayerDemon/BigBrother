@@ -42,11 +42,14 @@
 /**
  *  获取个人的领取记录
  */
-- (void)postPickHistoryDataWithMoneyTreeId:(NSNumber *)moneyTreeId userId:(NSNumber *)userId;
+- (void)postPickHistoryDataWithCreator:(NSNumber *)creator page:(NSInteger)page pageSize:(NSInteger)pageSize;
 
 
 
-
+/**
+ *  获取用户付出记录（）
+ */
+- (void)postPlantHistoryDataWithUserId:(NSNumber *)userId page:(NSInteger)page pageSize:(NSInteger)pageSize;
 
 
 

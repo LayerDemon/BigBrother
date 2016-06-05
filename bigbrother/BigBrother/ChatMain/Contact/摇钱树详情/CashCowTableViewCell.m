@@ -82,7 +82,11 @@
 #pragma mark - 加载数据
 - (void)reloadWithDataDic:(NSDictionary *)dataDic
 {
-
+    NSString *urlStr = [NSString isBlankStringWithString:dataDic[@"avatar"]] ? @"" : dataDic[@"avatar"];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:PLACEHOLDERIMAGE_USER completed:nil];
+    self.userNameLabel.text = dataDic[@"nickname"];
+    self.timeLabel.text = dataDic[@"createdTime"];
+    self.numLabel.text = [NSString stringWithFormat:@"%@点",dataDic[@"money"]];
 }
 
 @end

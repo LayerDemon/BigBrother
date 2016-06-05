@@ -28,7 +28,7 @@
 - (void)postCreateDataWithGoldCoinCount:(NSInteger)goldCoinCount sum:(NSInteger)sum receiveTarget:(NSString *)receiveTarget message:(NSString *)message creator:(NSNumber *)creator groupId:(NSNumber *)groupId
 {
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/moneytrees/add",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/add"];
     NSDictionary *tempDic = @{@"goldCoinCount":@(goldCoinCount),@"sum":@(sum),@"receiveTarget":receiveTarget,@"message":message,@"creator":creator,@"groupId":groupId};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
@@ -44,7 +44,7 @@
  */
 - (void)postMoneyTreeDataWithMoneyTreeId:(NSNumber *)treeId
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/moneytrees/get",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/get"];
     NSDictionary *tempDic = @{@"id":treeId};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
@@ -60,7 +60,7 @@
  */
 - (void)postPickDataWithMoneyTreeId:(NSNumber *)moneyTreeId operator:(NSNumber *)operatorId
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/moneytrees/clicks/add",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/clicks/add"];
     NSDictionary *tempDic = @{@"moneyTreeId":moneyTreeId,@"operator":operatorId};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
@@ -79,7 +79,7 @@
  */
 - (void)postPickListDataWithMoneyTreeId:(NSNumber *)moneyTreeId
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/moneytrees/clicks/list",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/clicks/list"];
     NSDictionary *tempDic = @{@"moneyTreeId":moneyTreeId};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
@@ -94,10 +94,10 @@
 /**
  *  获取个人的领取记录
  */
-- (void)postPickHistoryDataWithMoneyTreeId:(NSNumber *)moneyTreeId userId:(NSNumber *)userId
+- (void)postPickHistoryDataWithCreator:(NSNumber *)creator page:(NSInteger)page pageSize:(NSInteger)pageSize
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/im/moneytrees/clicks/listForUser",BASE_URL];
-    NSDictionary *tempDic = @{@"moneyTreeId":moneyTreeId,@"userId":userId};
+    NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/clicks/listForUser"];
+    NSDictionary *tempDic = @{@"creator":creator,@"page":@(page),@"pageSize":@(pageSize)};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
     [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
@@ -109,11 +109,27 @@
 }
 
 /**
+ *  获取用户付出记录（）
+ */
+- (void)postPlantHistoryDataWithUserId:(NSNumber *)userId page:(NSInteger)page pageSize:(NSInteger)pageSize
+{
+    NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/getUserTreeList"];
+    NSDictionary *tempDic = @{@"userId":userId,@"page":@(page),@"pageSize":@(pageSize)};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        if (!errorString) {
+            self.plantHistoryData = resultDic[@"data"];
+        }
+    }];
+}
+
+/**
  *  用户信息
  */
 - (void)postUserInfoDataWithUid:(NSNumber *)uid
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/users/get",BASE_URL];
+    NSString *urlStr = [NSString stringWithFormat:@"/users/get"];
     NSDictionary *tempDic = @{@"id":uid};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     

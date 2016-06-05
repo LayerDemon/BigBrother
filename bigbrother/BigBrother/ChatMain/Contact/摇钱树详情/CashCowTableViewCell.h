@@ -16,4 +16,6 @@
 @property (strong, nonatomic) UILabel           * timeLabel;
 @property (strong, nonatomic) UILabel           * numLabel;
 
+- (void)reloadWithDataDic:(NSDictionary *)dataDic;
+
 @end
