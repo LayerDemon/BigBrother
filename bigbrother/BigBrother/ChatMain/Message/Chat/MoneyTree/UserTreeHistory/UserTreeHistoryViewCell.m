@@ -37,18 +37,18 @@
 {
     self.titleLabel.text = dataDic[@"nickname"];
     self.timeLabel.text = dataDic[@"createdTime"];
-    self.moneyLabel.text = dataDic[@"sum"];
-    NSInteger goldCoinCount = [dataDic[@"goldCoinCount"] integerValue];
-    NSInteger leftCoinCount = [dataDic[@"leftCoinCount"] integerValue];
-    self.countLabel.text = [NSString stringWithFormat:@"%@/%@次",@(goldCoinCount-leftCoinCount),@(goldCoinCount)];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@",dataDic[@"money"]];
+    self.countLabel.text = @"";
 }
 
 - (void)reloadPlanHistoryWithDataDic:(NSDictionary *)dataDic
 {
     self.titleLabel.text = @"种下摇钱树";
     self.timeLabel.text = dataDic[@"createdTime"];
-    self.moneyLabel.text = dataDic[@"money"];
-    self.countLabel.text = @"";
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@",dataDic[@"sum"]];
+    NSInteger goldCoinCount = [dataDic[@"goldCoinCount"] integerValue];
+    NSInteger leftCoinCount = [dataDic[@"leftCoinCount"] integerValue];
+    self.countLabel.text = [NSString stringWithFormat:@"%@/%@次",@(goldCoinCount-leftCoinCount),@(goldCoinCount)];
 }
 
 @end

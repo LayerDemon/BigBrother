@@ -96,7 +96,7 @@
  */
 - (void)postPickHistoryDataWithCreator:(NSNumber *)creator page:(NSInteger)page pageSize:(NSInteger)pageSize
 {
-    NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/clicks/listForUser"];
+    NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/clicks/getUserTreeListForReceive"];
     NSDictionary *tempDic = @{@"creator":creator,@"page":@(page),@"pageSize":@(pageSize)};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
@@ -114,7 +114,7 @@
 - (void)postPlantHistoryDataWithUserId:(NSNumber *)userId page:(NSInteger)page pageSize:(NSInteger)pageSize
 {
     NSString *urlStr = [NSString stringWithFormat:@"/im/moneytrees/getUserTreeList"];
-    NSDictionary *tempDic = @{@"userId":userId,@"page":@(page),@"pageSize":@(pageSize)};
+    NSDictionary *tempDic = @{@"creator":userId,@"page":@(page),@"pageSize":@(pageSize)};
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
     [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {

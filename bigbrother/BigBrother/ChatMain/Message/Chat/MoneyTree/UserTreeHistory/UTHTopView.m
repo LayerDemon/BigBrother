@@ -34,6 +34,8 @@
         self.autoresizesSubviews = NO;
         self.headImgView.layer.cornerRadius = self.headImgView.frame.size.height/2;
         self.headImgView.layer.masksToBounds = YES;
+        
+        
     }
     return self;
 }
@@ -45,6 +47,34 @@
     NSString *urlStr = [NSString isBlankStringWithString:userDic[@"avatar"]] ? @"" : userDic[@"avatar"];
     [self.headImgView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:PLACEHOLDERIMAGE_USER completed:nil];
     self.nameLabel.text = userDic[@"nickname"];
+    if (self.lastBtn.tag-BUTTON_TAG == 0) {
+        [self reloadPickHistoryWithDataDic:dataDic];
+    }else{
+        [self reloadPlanHistoryWithDataDic:dataDic];
+    }
+}
+
+- (void)reloadPickHistoryWithDataDic:(NSDictionary *)dataDic
+{
+    NSString *moneyCountStr = [NSString stringWithFormat:@"%@点",dataDic[@"userMoneySum"]];
+    NSMutableAttributedString *moneyAttriStr = [[NSMutableAttributedString alloc] initWithString:moneyCountStr];
+    [moneyAttriStr addAttribute:NSFontAttributeName
+                          value:[UIFont systemFontOfSize:FLEXIBLE_NUM(20)]
+                          range:[moneyCountStr rangeOfString:@"点"]];
+    self.moneyCountLabel.attributedText = moneyAttriStr;
+    
+    self.pickCountLabel.text = [NSString stringWithFormat:@"共摇到钱币：%@次",dataDic[@"pageResult"][@"totalElements"]];
+}
+
+- (void)reloadPlanHistoryWithDataDic:(NSDictionary *)dataDic
+{
+    NSString *moneyCountStr = [NSString stringWithFormat:@"%@点",dataDic[@"userMoneySum"]];
+    NSMutableAttributedString *moneyAttriStr = [[NSMutableAttributedString alloc] initWithString:moneyCountStr];
+    [moneyAttriStr addAttribute:NSFontAttributeName
+                          value:[UIFont systemFontOfSize:FLEXIBLE_NUM(20)]
+                          range:[moneyCountStr rangeOfString:@"点"]];
+    self.moneyCountLabel.attributedText = moneyAttriStr;
+    self.pickCountLabel.text = [NSString stringWithFormat:@"种下摇钱树：%@棵",dataDic[@"pageResult"][@"totalElements"]];
 }
 
 #pragma mark - 按钮方法

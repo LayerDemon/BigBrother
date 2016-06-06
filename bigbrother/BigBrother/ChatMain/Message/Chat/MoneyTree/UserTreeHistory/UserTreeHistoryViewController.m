@@ -30,6 +30,7 @@
 - (void)dealloc
 {
     [_model removeObserver:self forKeyPath:@"pickHistoryData"];
+    [_model removeObserver:self forKeyPath:@"plantHistoryData"];
 }
 
 - (instancetype)init
@@ -53,6 +54,7 @@
 #pragma mark - 数据初始化
 - (void)initializeDataSource
 {
+    self.listArray = [NSMutableArray array];
     [self setIndicatorTitle:@"付出与收获记录"];
     [self.topView topBtnPressed:self.topView.firstBtn];
 }
@@ -95,6 +97,7 @@
     if (!_model) {
         _model = [[MoneyTreeModel alloc]init];
         [_model addObserver:self forKeyPath:@"pickHistoryData" options:NSKeyValueObservingOptionNew context:nil];
+        [_model addObserver:self forKeyPath:@"plantHistoryData" options:NSKeyValueObservingOptionNew context:nil];
     }
     return _model;
 }
@@ -102,6 +105,9 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"pickHistoryData"]) {
+        [self historyDataParse];
+    }
+    if ([keyPath isEqualToString:@"plantHistoryData"]) {
         [self historyDataParse];
     }
 }
@@ -184,21 +190,25 @@
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     
-    NSDictionary *histroyDic = (self.topView.lastBtn.tag-BUTTON_TAG) ? self.model.pickHistoryData : self.model.plantHistoryData;
+    NSDictionary *historyDic = (self.topView.lastBtn.tag-BUTTON_TAG) ? self.model.plantHistoryData : self.model.pickHistoryData;
+    NSDictionary *pageResultDic = historyDic[@"pageResult"];
     
-    if ([histroyDic[@"pageSize"] integerValue] == PAGESIZE_NORMAL) {
-        self.currentPage = [histroyDic[@"page"] integerValue];
-        self.pageCount = [histroyDic[@"totalPages"] integerValue];
+    if ([pageResultDic[@"pageSize"] integerValue] == PAGESIZE_NORMAL) {
+        self.currentPage = [pageResultDic[@"page"] integerValue];
+        self.pageCount = [pageResultDic[@"totalPages"] integerValue];
     }
     
     if (self.currentPage == 1) {
-        self.listArray = [NSMutableArray arrayWithArray:histroyDic[@"content"]];
+        self.listArray = [NSMutableArray arrayWithArray:pageResultDic[@"content"]];
     }else{
-        [self.listArray addObjectsFromArray:histroyDic[@"content"]];
+        [self.listArray addObjectsFromArray:pageResultDic[@"content"]];
     }
     if (self.pageCount <= self.currentPage) {
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
     }
+    
+    [self.topView reloadWithDataDic:historyDic];
+    
     [self.tableView reloadData];
 }
 

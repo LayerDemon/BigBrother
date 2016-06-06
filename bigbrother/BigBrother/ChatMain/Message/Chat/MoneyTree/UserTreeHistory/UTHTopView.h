@@ -24,7 +24,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *secondBtn;
 @property (strong, nonatomic) UIButton *lastBtn;
 
+
 - (void)reloadWithDataDic:(NSDictionary *)dataDic;
+//- (void)reloadPickHistoryWithDataDic:(NSDictionary *)dataDic;
+//
+//- (void)reloadPlanHistoryWithDataDic:(NSDictionary *)dataDic;
 - (IBAction)topBtnPressed:(UIButton *)sender;
 
 
