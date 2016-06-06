@@ -12,6 +12,8 @@
 #import "FDFooterView.h"
 #import "ChatViewController.h"
 
+#import "MyPostListViewController.h"
+
 #import "FriendModel.h"
 
 
@@ -178,6 +180,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        MyPostListViewController *mplVC = [[MyPostListViewController alloc] init];
+        mplVC.isProvide = YES;
+        mplVC.currentUserDic = self.currentUserDic;
+        [self.navigationController pushViewController:mplVC animated:YES];
+    }
 }
 
 #pragma mark - FDFooterViewDelegate

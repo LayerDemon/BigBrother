@@ -167,8 +167,10 @@ static QNUploadManager *imageUploadManager;
 +(void)getAllMyPostInfoListWithParams:(NSMutableDictionary *)params complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
     NSString *urlString = @"/user/personal/post";
     
-    NSString *userID = [BBUserDefaults getUserID];
-    [params setObject:userID forKey:@"creator"];
+    if (!params[@"creator"]) {
+        NSString *userID = [BBUserDefaults getUserID];
+        [params setObject:userID forKey:@"creator"];
+    }
     [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
 }
 

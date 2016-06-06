@@ -59,6 +59,15 @@
     
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.currentUserDic = [BBUserDefaults getUserDic];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -261,6 +270,7 @@
     [params setObject:@"NOT_AUDITED" forKey:@"status"];
     [params setObject:@(index) forKey:@"page"];
     [params setObject:@"20" forKey:@"pageSize"];
+    [params setObject:self.currentUserDic[@"id"] forKey:@"creator"];
     
     [BBUrlConnection getAllMyPostInfoListWithParams:params complete:^(NSDictionary *resultDic, NSString *errorString) {
         [unAuthContentTableView endDownRefresh];
@@ -308,6 +318,7 @@
     [params setObject:@"AUDIT_PASSED" forKey:@"status"];
     [params setObject:@(index) forKey:@"page"];
     [params setObject:@"20" forKey:@"pageSize"];
+    [params setObject:self.currentUserDic[@"id"] forKey:@"creator"];
     
     [BBUrlConnection getAllMyPostInfoListWithParams:params complete:^(NSDictionary *resultDic, NSString *errorString) {
         [showingContentTableView endDownRefresh];
@@ -355,6 +366,7 @@
     [params setObject:@"FINISHED" forKey:@"status"];
     [params setObject:@(index) forKey:@"page"];
     [params setObject:@"20" forKey:@"pageSize"];
+    [params setObject:self.currentUserDic[@"id"] forKey:@"creator"];
     
     [BBUrlConnection getAllMyPostInfoListWithParams:params complete:^(NSDictionary *resultDic, NSString *errorString) {
         [doneContentTableView endDownRefresh];
@@ -404,6 +416,7 @@
     [params setObject:@"NOT_AUDITED" forKey:@"status"];
     [params setObject:@(index) forKey:@"page"];
     [params setObject:@"20" forKey:@"pageSize"];
+    [params setObject:self.currentUserDic[@"id"] forKey:@"creator"];
     
     [BBUrlConnection getAllMyPostInfoListWithParams:params complete:^(NSDictionary *resultDic, NSString *errorString) {
         [unAuthContentTableView endDownRefresh];
@@ -451,6 +464,7 @@
     [params setObject:@"AUDIT_PASSED" forKey:@"status"];
     [params setObject:@(index) forKey:@"page"];
     [params setObject:@"20" forKey:@"pageSize"];
+    [params setObject:self.currentUserDic[@"id"] forKey:@"creator"];
     
     [BBUrlConnection getAllMyPostInfoListWithParams:params complete:^(NSDictionary *resultDic, NSString *errorString) {
         [showingContentTableView endDownRefresh];
@@ -498,6 +512,7 @@
     [params setObject:@"FINISHED" forKey:@"status"];
     [params setObject:@(index) forKey:@"page"];
     [params setObject:@"20" forKey:@"pageSize"];
+    [params setObject:self.currentUserDic[@"id"] forKey:@"creator"];
     
     [BBUrlConnection getAllMyPostInfoListWithParams:params complete:^(NSDictionary *resultDic, NSString *errorString) {
         [doneContentTableView endDownRefresh];

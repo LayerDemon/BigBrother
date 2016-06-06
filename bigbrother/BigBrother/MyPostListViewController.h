@@ -11,5 +11,6 @@
 @interface MyPostListViewController : UIViewController
 
 @property (nonatomic,assign) BOOL isProvide;
+@property (strong, nonatomic) NSDictionary *currentUserDic;
 
 @end
