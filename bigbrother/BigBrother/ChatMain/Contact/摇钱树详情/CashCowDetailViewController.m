@@ -214,7 +214,7 @@
     [self.tableView.mj_header endRefreshing];
 //    [self.tableView.mj_footer endRefreshing];
 //    self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@""]];
-    self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@"content"]];
+    self.listArray = [NSMutableArray arrayWithArray:self.model.pickListData[@"pageResult"][@"content"]];
     [self.tableView reloadData];
     
     

@@ -84,7 +84,8 @@
 {
     NSString *urlStr = [NSString isBlankStringWithString:dataDic[@"avatar"]] ? @"" : dataDic[@"avatar"];
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:PLACEHOLDERIMAGE_USER completed:nil];
-    self.userNameLabel.text = dataDic[@"nickname"];
+    NSString *nicknameStr = [NSString isBlankStringWithString:dataDic[@"nickname"]] ? @"" : dataDic[@"nickname"];
+    self.userNameLabel.text = nicknameStr;
     self.timeLabel.text = dataDic[@"createdTime"];
     self.numLabel.text = [NSString stringWithFormat:@"%@点",dataDic[@"money"]];
 }

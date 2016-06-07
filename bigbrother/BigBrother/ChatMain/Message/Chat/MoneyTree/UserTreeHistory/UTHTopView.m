@@ -56,7 +56,7 @@
 
 - (void)reloadPickHistoryWithDataDic:(NSDictionary *)dataDic
 {
-    NSString *moneyCountStr = [NSString stringWithFormat:@"%@点",dataDic[@"userMoneySum"]];
+    NSString *moneyCountStr = [NSString stringWithFormat:@"%@点",dataDic[@"userAccount"]];
     NSMutableAttributedString *moneyAttriStr = [[NSMutableAttributedString alloc] initWithString:moneyCountStr];
     [moneyAttriStr addAttribute:NSFontAttributeName
                           value:[UIFont systemFontOfSize:FLEXIBLE_NUM(20)]
