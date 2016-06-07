@@ -169,8 +169,10 @@
     NSInteger receiveTargetIndex = self.lastBtn.tag - BUTTON_TAG;
     NSString *receiveTarget = receiveTargetsArray[receiveTargetIndex];
     
+    NSString *remarkStr = [NSString isBlankStringWithString:self.remarkField.text] ? @"恭喜发财，大吉大利~" : self.remarkField.text;
+    
     [sender startAnimationWithIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [self.model postCreateDataWithGoldCoinCount:totalCount sum:sum receiveTarget:receiveTarget message:self.remarkField.text creator:self.userDic[@"id"] groupId:self.groupDic[@"id"]];
+    [self.model postCreateDataWithGoldCoinCount:totalCount sum:sum receiveTarget:receiveTarget message:remarkStr creator:self.userDic[@"id"] groupId:self.groupDic[@"id"]];
 }
 
 #pragma mark - 数据处理
