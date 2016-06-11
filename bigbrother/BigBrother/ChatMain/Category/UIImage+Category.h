@@ -16,3 +16,4 @@
 + (UIImage *)getBlurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur;
 - (UIImage *)blurredImageWithRadius:(CGFloat)radius iterations:(NSUInteger)iterations tintColor:(UIColor *)tintColor;
 @end
+

@@ -241,6 +241,16 @@ static NSString * identify = @"Cell";
             }
         }//for cacheViews
     }//subviews
+    
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAllFriendsNotif:) name:@"getAllFriendsNotif" object:nil];
+}
+
+#pragma mark -- notif
+- (void)getAllFriendsNotif:(NSNotification *)notif
+{
+    NSDictionary * dataDic = [BBUserDefaults getUserDic];
+    [_contactMoel getAllFriendWithUserId:dataDic[@"id"]];
 }
 
 #pragma mark -- 长按手势
@@ -430,6 +440,7 @@ static NSString * identify = @"Cell";
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     FriendDetailViewController *friendDetailVC = [[FriendDetailViewController alloc]init];
     friendDetailVC.currentUserDic = cell.dataDic;
+    friendDetailVC.sectionName = _allFriendsArray[indexPath.section][@"name"];
     [self.viewController.navigationController pushViewController:friendDetailVC animated:YES];
 }
 

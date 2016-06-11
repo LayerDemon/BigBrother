@@ -16,5 +16,7 @@
 
 @property (strong, nonatomic) NSDictionary *currentUserDic;
 @property (assign, nonatomic) BOOL isChatPush;//是否是chatpush过来的。
+@property (strong, nonatomic) NSString  * sectionName;
+
 
 @end

@@ -61,6 +61,9 @@
 		2DD0FBDC1C9EEE680046F4C4 /* LTMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD0FBDB1C9EEE680046F4C4 /* LTMessageTableViewCell.m */; };
 		2DD49A581CF5D38500B8FFA8 /* AddUnitedManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD49A571CF5D38500B8FFA8 /* AddUnitedManagerViewController.m */; };
 		2DD49A5B1CF6038600B8FFA8 /* EditUnitedMemberRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD49A5A1CF6038600B8FFA8 /* EditUnitedMemberRankViewController.m */; };
+		2DDBB8E31D071930000CE9E4 /* ChangeSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBB8E21D071930000CE9E4 /* ChangeSectionViewController.m */; };
+		2DDBB8E91D071EEE000CE9E4 /* ChangeSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBB8E81D071EEE000CE9E4 /* ChangeSectionTableViewCell.m */; };
+		2DDBB8EB1D0720CA000CE9E4 /* 对.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDBB8EA1D0720CA000CE9E4 /* 对.png */; };
 		2DE5FA451CF33F920001F750 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5FA441CF33F920001F750 /* DatePickerView.m */; };
 		2DE5FA491CF358180001F750 /* icon_time2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE5FA461CF358180001F750 /* icon_time2@3x.png */; };
 		2DE5FA4A1CF358180001F750 /* icon_user01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE5FA471CF358180001F750 /* icon_user01@3x.png */; };
@@ -720,6 +723,11 @@
 		2DD49A571CF5D38500B8FFA8 /* AddUnitedManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUnitedManagerViewController.m; sourceTree = "<group>"; };
 		2DD49A591CF6038600B8FFA8 /* EditUnitedMemberRankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUnitedMemberRankViewController.h; sourceTree = "<group>"; };
 		2DD49A5A1CF6038600B8FFA8 /* EditUnitedMemberRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUnitedMemberRankViewController.m; sourceTree = "<group>"; };
+		2DDBB8E11D071930000CE9E4 /* ChangeSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSectionViewController.h; sourceTree = "<group>"; };
+		2DDBB8E21D071930000CE9E4 /* ChangeSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSectionViewController.m; sourceTree = "<group>"; };
+		2DDBB8E71D071EEE000CE9E4 /* ChangeSectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSectionTableViewCell.h; sourceTree = "<group>"; };
+		2DDBB8E81D071EEE000CE9E4 /* ChangeSectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSectionTableViewCell.m; sourceTree = "<group>"; };
+		2DDBB8EA1D0720CA000CE9E4 /* 对.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "对.png"; sourceTree = "<group>"; };
 		2DE5FA431CF33F920001F750 /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
 		2DE5FA441CF33F920001F750 /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
 		2DE5FA461CF358180001F750 /* icon_time2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_time2@3x.png"; sourceTree = "<group>"; };
@@ -1905,6 +1913,17 @@
 			name = "聊天Cells";
 			sourceTree = "<group>";
 		};
+		2DDBB8E01D071920000CE9E4 /* 移动分组 */ = {
+			isa = PBXGroup;
+			children = (
+				2DDBB8E11D071930000CE9E4 /* ChangeSectionViewController.h */,
+				2DDBB8E21D071930000CE9E4 /* ChangeSectionViewController.m */,
+				2DDBB8E71D071EEE000CE9E4 /* ChangeSectionTableViewCell.h */,
+				2DDBB8E81D071EEE000CE9E4 /* ChangeSectionTableViewCell.m */,
+			);
+			path = "移动分组";
+			sourceTree = "<group>";
+		};
 		2DE5FA421CF33F920001F750 /* DatePickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2028,6 +2047,7 @@
 		8C12C9CC1CEA0FC90067AA9B /* FriendDetail */ = {
 			isa = PBXGroup;
 			children = (
+				2DDBB8E01D071920000CE9E4 /* 移动分组 */,
 				8CF263881CEB16D60098CF6D /* Model */,
 				8C12C9CD1CEA0FDA0067AA9B /* FriendDetailViewController.h */,
 				8C12C9CE1CEA0FDA0067AA9B /* FriendDetailViewController.m */,
@@ -2292,6 +2312,7 @@
 		8C18624E1CDF79C900632CDC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2DDBB8EA1D0720CA000CE9E4 /* 对.png */,
 				2D40743A1CF47A28004CF68E /* icon_qian@3x.png */,
 				2D40743B1CF47A28004CF68E /* icon_time@3x.png */,
 				2D40743C1CF47A28004CF68E /* icon_wz@3x.png */,
@@ -4133,6 +4154,7 @@
 				8C0D24911CEC6E2000C7BE5E /* moneytree_choose_btn_sel.png in Resources */,
 				8C1863AD1CDF9C4C00632CDC /* call_out_h.png in Resources */,
 				8C1863971CDF9C4C00632CDC /* VoiceSearchFeedback011.png in Resources */,
+				2DDBB8EB1D0720CA000CE9E4 /* 对.png in Resources */,
 				8C63E5C41CE09FA900B4EC1D /* emoji_tab1Press@2x.png in Resources */,
 				8C6B05DE1CE485EE003188E1 /* chatbar_record_sel.png in Resources */,
 				8C18640F1CDF9C4C00632CDC /* account@2x.png in Resources */,
@@ -4472,6 +4494,7 @@
 				B89A0C681C79904C0072A6A8 /* AppDelegate.m in Sources */,
 				2D359DA71CE8BD9000F85F24 /* UnitedDetailViewController.m in Sources */,
 				B8A6AF561C8C181400DC84BC /* UIAlertView+Blocks.m in Sources */,
+				2DDBB8E91D071EEE000CE9E4 /* ChangeSectionTableViewCell.m in Sources */,
 				B8C4602D1C8581C10060528D /* MyMessageViewController.m in Sources */,
 				B81E56B41C7EEB9000E34A91 /* QNFileRecorder.m in Sources */,
 				B884438F1C82DA3C002766FE /* RegisterViewController.m in Sources */,
@@ -4534,6 +4557,7 @@
 				B89A0C651C79904C0072A6A8 /* main.m in Sources */,
 				2D0785321CECAF65001B57A8 /* UnitedMember2TableViewCell.m in Sources */,
 				8C63E51B1CE055F800B4EC1D /* ChatViewController.m in Sources */,
+				2DDBB8E31D071930000CE9E4 /* ChangeSectionViewController.m in Sources */,
 				8C0B2A8B1CED58BD00EF4C2E /* SupplyLinkViewController.m in Sources */,
 				8C63E5791CE05BE800B4EC1D /* UIImage+UIImageExt.m in Sources */,
 				2D359D9F1CE8280400F85F24 /* UnitedTableViewCell.m in Sources */,
@@ -4716,7 +4740,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
+				PROVISIONING_PROFILE = "b3260c00-1376-46a9-a537-24d88cedbc0b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4757,7 +4781,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
+				PROVISIONING_PROFILE = "b3260c00-1376-46a9-a537-24d88cedbc0b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4784,8 +4808,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = NN7B8X2LU6.BigBrotherHaha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "b3260c00-1376-46a9-a537-24d88cedbc0b";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -4809,8 +4833,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = NN7B8X2LU6.BigBrotherHaha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "b3260c00-1376-46a9-a537-24d88cedbc0b";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

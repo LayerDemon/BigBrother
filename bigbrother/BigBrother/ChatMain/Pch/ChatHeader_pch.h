@@ -145,7 +145,8 @@
 #define MESSAGE_NOTLOCATION @"定位需要打开定位服务~\n设置- >隐私- >定位服务"
 
 //网络请求
-#define BASE_URL @"http://115.28.30.107/rent-car/api"
+//#define BASE_URL @"http://115.28.30.107/rent-car/api"
+#define BASE_URL @"http://115.28.30.107:8002/rent-car/api"
 
 #define PAGESIZE_NORMAL 10
 
