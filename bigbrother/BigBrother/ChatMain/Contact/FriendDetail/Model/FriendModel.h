@@ -13,6 +13,9 @@
 @property (strong, nonatomic, readonly) NSDictionary *friendInfoData;
 @property (strong, nonatomic, readonly) NSDictionary *addData;
 @property (strong, nonatomic, readonly) NSDictionary *sectionListData;
+@property (strong, nonatomic, readonly) NSDictionary *changeSectionData;
+
+
 
 //根据手机号查询用户信息
 - (void)postFriendInfoDataWithPhoneNumber:(NSNumber *)phoneNumber;
@@ -28,4 +31,8 @@
 
 //获取全部分组
 - (void)postSectionListDataWithUserId:(id)userId;
+
+//移动分组
+- (void)changeSectionWithUserId:(NSString *)userId friendId:(NSString *)friendId friendsGroupId:(NSString *)friendsGroupId;
+
 @end

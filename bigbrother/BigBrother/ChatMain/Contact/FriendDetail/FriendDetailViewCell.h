@@ -20,6 +20,8 @@
 
 
 @property (assign, nonatomic) id<FriendDetailViewCellDelegate>delegate;
+@property (strong, nonatomic) NSString                  * sectionNameString;
+
 
 - (void)loadWithTitle:(NSString *)title DataDic:(NSDictionary *)dataDic;
 
@@ -28,4 +30,5 @@
  *  刷新群资料
  */
 - (void)reloadGroupWithTitle:(NSString *)title dataDic:(NSDictionary *)dataDic;
+
 @end

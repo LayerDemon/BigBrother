@@ -13,6 +13,7 @@
 #import "ChatViewController.h"
 
 #import "MyPostListViewController.h"
+#import "ChangeSectionViewController.h"
 
 #import "FriendModel.h"
 
@@ -24,8 +25,10 @@
 @property (strong, nonatomic) FDFooterView *footerView;
 
 @property (strong, nonatomic) FriendModel *model;
-@property (strong, nonatomic) NSArray *titleArray;
-@property (strong, nonatomic) NSDictionary *userDic;
+@property (strong, nonatomic) NSArray       *titleArray;
+@property (strong, nonatomic) NSDictionary  *userDic;
+
+@property (strong, nonatomic) NSArray       * sectionListArray;
 
 @end
 
@@ -61,11 +64,21 @@
 - (void)initializeDataSource
 {
     [self setIndicatorTitle:@"个人资料"];
-    self.titleArray = @[@"他的供求信息",@"地区",@"性别",@"个性签名"];
+    self.titleArray = @[@"他的供求信息",@"地区",@"性别",@"个性签名",@"分组"];
     [self.model postFriendInfoDataWithUid:self.currentUserDic[@"id"]];
     [self startTitleIndicator];
     
     [self.model postSectionListDataWithUserId:self.userDic[@"id"]];//获取所有分组
+    
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSectionNameNotif:) name:@"changeSectionNameNotif" object:nil];
+}
+
+#pragma mark -- notif
+- (void)changeSectionNameNotif:(NSNotification *)notif
+{
+    _sectionName = notif.object;
+    [_tableView reloadData];
 }
 
 #pragma mark - 视图初始化
@@ -128,7 +141,7 @@
         [self addDataParse];
     }
     if ([keyPath isEqualToString:@"sectionListData"]) {
-//        [self sectionListDataParse];
+        [self sectionListDataParse];
     }
     if ([keyPath isEqualToString:@"deleteData"]) {
         [self deleteDataParse];
@@ -153,6 +166,7 @@
     if (!cell) {
         cell = [[FriendDetailViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
+    cell.sectionNameString = _sectionName;
     [cell loadWithTitle:self.titleArray[indexPath.section] DataDic:self.currentUserDic];
 
     return cell;
@@ -185,6 +199,14 @@
         mplVC.isProvide = YES;
         mplVC.currentUserDic = self.currentUserDic;
         [self.navigationController pushViewController:mplVC animated:YES];
+    }else if (indexPath.section == 4){
+        ChangeSectionViewController * changeSectionVC = [[ChangeSectionViewController alloc] init];
+        changeSectionVC.sectionString = _sectionName;
+        changeSectionVC.userDic = _currentUserDic;
+        if (_sectionListArray) {
+            changeSectionVC.sectionArray = _sectionListArray;
+        }
+        [self.navigationController pushViewController:changeSectionVC animated:YES];
     }
 }
 
@@ -260,6 +282,13 @@
     //刷新好友列表
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadChatMainDataSource" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+//获取所有好友分组
+- (void)sectionListDataParse
+{
+    _sectionListArray = self.model.sectionListData[@"data"];
 }
 
 @end

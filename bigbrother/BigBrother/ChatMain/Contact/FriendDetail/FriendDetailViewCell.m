@@ -36,6 +36,7 @@
 #pragma makr - 加载数据
 - (void)loadWithTitle:(NSString *)title DataDic:(NSDictionary *)dataDic
 {
+//    NSLog(@"dataDic -- %@",dataDic);
     self.titleLabel.text = title;
     self.detailLabel.textColor = _333333;
     self.detailLabel.textAlignment = NSTextAlignmentRight;
@@ -61,6 +62,8 @@
             [self.detailLabel setHeight:signSize.height];
         }
         self.detailLabel.text = signStr;
+    }else if ([title isEqualToString:@"分组"]){
+        self.detailLabel.text = _sectionNameString;
     }else{
         self.detailLabel.text = @"";
     }
@@ -125,7 +128,6 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.detailLabel.text = @"";
     }
-    
     [self.detailLabel setOriginX:self.contentView.frame.size.width-FLEXIBLE_NUM(8)-self.detailLabel.frame.size.width];
 }
 

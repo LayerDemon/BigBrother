@@ -18,6 +18,8 @@
 @property (strong, nonatomic) ContactModel  * contactModel;
 @property (strong, nonatomic) NSString      * imageUrlString;
 
+@property (strong, nonatomic) UILabel       * stateLabel;
+
 - (void)initializeDataSource;
 - (void)initializeUserInterface;
 @end
@@ -110,13 +112,30 @@
     _textView = ({
         UITextView * textView = [[UITextView alloc] initWithFrame:FLEXIBLE_FRAME(25, 185, 270, 100)];
         textView.layer.cornerRadius = FLEXIBLE_NUM(5);
-        textView.delegate = self;
         textView.textColor = [UIColor grayColor];
+        textView.delegate = self;
         textView.font = [UIFont boldSystemFontOfSize:FLEXIBLE_NUM(13)];
         [self.view addSubview:textView];
         textView;
     });
-    
+ 
+    _stateLabel = ({
+        UILabel * label = [self createLabelWithText:@"写点门派介绍" font:FLEXIBLE_NUM(13) subView:_textView];
+        label.textColor = [UIColor lightGrayColor];
+        label.frame = FLEXIBLE_FRAME(5, 0, 100, 35);
+        label;
+    });
+}
+
+#pragma mark -- textView value changed
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.text.length == 0) {
+        _stateLabel.hidden = NO;
+    }else{
+        _stateLabel.hidden = YES;
+    }
+
 }
 
 #pragma mark -- button pressed
@@ -124,16 +143,31 @@
 {
     NSDictionary * dataDic = [BBUserDefaults getUserDic];
     NSLog(@"dataDic -- %@",dataDic);
+     UIAlertController  * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertController addAction:sureAction];
+ 
+    if (!_imageUrlString) {
+        alertController.message = @"你还未选择图片～";
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    if (_unitedTextField.text.length == 0) {
+        alertController.message = @"你还未输入门派名称～";
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    
+    if (_textView.text.length == 0) {
+        alertController.message = @"你还未输入门派介绍～";
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
     
     [_contactModel createUnitedWithUserId:dataDic[@"id"] avatar:_imageUrlString name:_unitedTextField.text introduction:_textView.text];
 }
-
-#pragma mark -- <UITextViewDelegate>
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    
-}
-
 
 - (void)chooseHeadImageView
 {
@@ -206,10 +240,6 @@
             NSLog(@"wocao -- %@",imageUrl);
             _imageUrlString = imageUrl;
         }];
-//        _headImageView.image = image;
-//        _headImage = image;
-//        [_indicatorView startAnimating];
-//        [_userInfoModel changeImageWithUrl:BASE_URL fileImages:@[image] name:nil params:@{@"method":@"mk.user_center.editMemberAvatar.post",@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]}];
     }
 }
 

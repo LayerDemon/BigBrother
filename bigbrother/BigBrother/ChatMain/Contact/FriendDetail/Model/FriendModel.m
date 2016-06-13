@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSDictionary *addData;
 @property (strong, nonatomic) NSDictionary *deleteData;
 @property (strong, nonatomic) NSDictionary *sectionListData;
+@property (strong, nonatomic) NSDictionary *changeSectionData;
 
 @end
 
@@ -82,14 +83,27 @@
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
     
     [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        NSLog(@"sectionList -- %@",resultDic);
         if (!errorString) {
             self.sectionListData = resultDic;
         }
     }];
 }
 
-
-
+//移动分组
+- (void)changeSectionWithUserId:(NSString *)userId friendId:(NSString *)friendId friendsGroupId:(NSString *)friendsGroupId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"/im/friends/move"];
+    NSDictionary *tempDic = @{@"userId":userId,@"friendId":friendId,@"friendsGroupId":friendsGroupId};
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+    
+    [BBUrlConnection loadPostAfNetWorkingWithUrl:urlStr andParameters:paramsDic complete:^(NSDictionary *resultDic, NSString *errorString) {
+        NSLog(@"move section -- %@",resultDic);
+        if (!errorString) {
+            self.changeSectionData = resultDic;
+        }
+    }];
+}
 
 
 @end
