@@ -4008,7 +4008,7 @@
 				TargetAttributes = {
 					B89A0C5F1C79904C0072A6A8 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = NN7B8X2LU6;
+						DevelopmentTeam = MGNV857KZS;
 					};
 				};
 			};
@@ -4782,9 +4782,9 @@
 					"$(PROJECT_DIR)/BigBrother/ChatMain/HeightTech/HyphenateSDK/3rdparty/VoiceConvert/opencore-amrwb",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = NN7B8X2LU6.BigBrotherHaha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -4807,9 +4807,9 @@
 					"$(PROJECT_DIR)/BigBrother/ChatMain/HeightTech/HyphenateSDK/3rdparty/VoiceConvert/opencore-amrwb",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = NN7B8X2LU6.BigBrotherHaha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "375a9fed-6cf4-46ed-b506-77ff630ab551";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -32,6 +32,8 @@
 
 @property (nonatomic,copy) NSString *phoneNumber;
 
+@property (nonatomic,copy) NSString *imNumber;
+
 @property (nonatomic,assign) BOOL isSupply;
 
 @property (nonatomic,copy) NSString *title;
