@@ -158,6 +158,7 @@
     currentCityID = cityID;
     if (self.isToSetDefaultCity) {
         [BBUserDefaults setCityDictionary:@{@"id":@(cityID),@"name":cityName}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadSourceMainData" object:nil];
     }else{
         if (self.completeBlock) {
             self.completeBlock(currentCityID,cityName);

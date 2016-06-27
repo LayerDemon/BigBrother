@@ -926,6 +926,7 @@
     decriptionTextView.returnKeyType = UIReturnKeyNext;
     decriptionTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
     decriptionTextView.autocorrectionType = UITextAutocorrectionTypeNo;
+    decriptionTextView.delegate = self;
     [view addSubview:decriptionTextView];
     
     view.frame = (CGRect){0,offset,WIDTH(contentView),BOTTOM(decriptionTextView)+10};

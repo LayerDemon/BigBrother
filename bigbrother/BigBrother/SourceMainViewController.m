@@ -50,9 +50,16 @@
     NSMutableArray *recommandProductionDaraArray;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSourceMainData) name:@"reloadSourceMainData" object:nil];
     
     UIView *topFixView = [[UIView alloc] init];
     topFixView.frame = CGRectZero;
@@ -250,7 +257,9 @@ static float recommandTitleViewHeight = 45.f;
 }
 
 -(void)getrecommandList{
-    [BBUrlConnection getRecommandListComplete:^(NSDictionary *resultDic, NSString *errorString) {
+    NSDictionary *cityDic = [BBUserDefaults getCityDictionary];
+    
+    [BBUrlConnection getRecommandListWithCityId:cityDic[@"id"] complete:^(NSDictionary *resultDic, NSString *errorString) {
         if (errorString) {
             [BYToastView showToastWithMessage:errorString];
             return;
@@ -494,6 +503,7 @@ static float recommandTitleViewHeight = 45.f;
         }
         [BBUserDefaults setCityDictionary:@{@"id":@(cityID),@"name":cityName}];
         [self setUpNavigation];
+        
     }];
 }
 
@@ -574,6 +584,11 @@ static float recommandTitleViewHeight = 45.f;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)reloadSourceMainData
+{
+    [self initWithRecommandView];
 }
 
 @end

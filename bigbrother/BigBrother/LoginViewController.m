@@ -73,7 +73,7 @@
     userLoginNameTextField.delegate = self;
     userLoginNameTextField.returnKeyType = UIReturnKeyDone;
     userLoginNameTextField.keyboardType = UIKeyboardTypePhonePad;
-    userLoginNameTextField.placeholder = @"手机号码";
+    userLoginNameTextField.placeholder = @"邮箱";
     [userLoginNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [userLoginNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
     userLoginNameTextField.layer.cornerRadius = 2.f;
@@ -171,11 +171,11 @@
 -(void)loginButtonClick{
     NSString *loginNameString = userLoginNameTextField.text;
     if (!loginNameString || [loginNameString isEqualToString:@""]) {
-        [BYToastView showToastWithMessage:@"手机号码不能为空"];
+        [BYToastView showToastWithMessage:@"邮箱不能为空"];
         return;
     }
     if (![XYTools checkString:loginNameString canEmpty:NO]) {
-        [BYToastView showToastWithMessage:@"输入的手机号码不能包含特殊字符"];
+        [BYToastView showToastWithMessage:@"输入的邮箱不能包含特殊字符"];
         return;
     }
     
@@ -228,10 +228,13 @@
             [BBUserDefaults setUserID:idString];
             [BBUserDefaults setIsLogin:YES];
             [BBUserDefaults setUserPassword:passwordString];
-            NSString *phoneNumber = dataDic[@"phoneNumber"];
+            NSString *phoneNumber = dataDic[@"userEmail"];
             if (phoneNumber && [phoneNumber isKindOfClass:[NSString class]]) {
                 [BBUserDefaults setUserPhone:phoneNumber];
             }
+            
+//            [BBUserDefaults setUserEmail:loginNameString];
+            
             NSString *lastLoginTime = dataDic[@"lastLoginTime"];
             if (lastLoginTime && [lastLoginTime isKindOfClass:[NSString class]]) {
                 [BBUserDefaults setUserLastLoginTime:lastLoginTime];

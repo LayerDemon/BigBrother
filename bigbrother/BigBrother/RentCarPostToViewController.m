@@ -672,6 +672,7 @@
     [needButton setSelected:YES];
     [provideButton setSelected:NO];
     [self reloadViews];
+    
 }
 
 #pragma mark - 关键字界面 view
@@ -712,6 +713,7 @@
         int yOff = (int)(i / 3);
         
         UITextField *textField = [[UITextField alloc] init];
+    
         textField.frame = (CGRect){
             10+(textFiledWidth+textFiledBetweenWidth)*xOff,
             HEIGHT(noteLabel) + textFiledBetweenHeight + (35+textFiledBetweenHeight)*yOff,
@@ -1089,6 +1091,7 @@
     [view addSubview:lineSepView];
     
     decriptionTextView = [[UITextView alloc] init];
+    decriptionTextView.delegate = self;
     decriptionTextView.backgroundColor = [UIColor whiteColor];
     decriptionTextView.frame = (CGRect){10,HEIGHT(noteLabel)+10,WIDTH(view)-10,200};
     decriptionTextView.textColor = RGBColor(100, 100, 100);
@@ -1191,6 +1194,7 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     if (!uploadImageArray){
         uploadImageArray = [NSMutableArray array];

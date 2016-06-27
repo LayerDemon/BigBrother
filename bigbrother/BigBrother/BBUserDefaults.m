@@ -99,9 +99,11 @@ static NSString *UIDSaveKey = @"UIDSaveKey";
     return userID;
 }
 
-static NSString *UserPhoneSaveKey = @"UserPhoneSaveKey";
+//static NSString *UserPhoneSaveKey = @"UserPhoneSaveKey";
+
+static NSString *UserEmailSaveKey = @"UserPhoneSaveKey";
 +(void)setUserPhone:(NSString *)phone{
-    NSString *saveKey = UserPhoneSaveKey;
+    NSString *saveKey = UserEmailSaveKey;
     NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
     if (!phone || [phone isEqualToString:@""]) {
         [userdefaults removeObjectForKey:saveKey];
@@ -111,7 +113,25 @@ static NSString *UserPhoneSaveKey = @"UserPhoneSaveKey";
     [userdefaults synchronize];
 }
 +(NSString *)getUserPhone{
-    NSString *saveKey = UserPhoneSaveKey;
+    NSString *saveKey = UserEmailSaveKey;
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    return [userdefaults objectForKey:saveKey];
+}
+
+//static NSString *UserEmailSaveKey = @"UserPhoneSaveKey";
++(void)setUserEmail:(NSString *)phone{
+    NSString *saveKey = UserEmailSaveKey;
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    if (!phone || [phone isEqualToString:@""]) {
+        [userdefaults removeObjectForKey:saveKey];
+    }else{
+        [userdefaults setObject:phone forKey:saveKey];
+    }
+    [userdefaults synchronize];
+}
+
++(NSString *)getUserEmail{
+    NSString *saveKey = UserEmailSaveKey;
     NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
     return [userdefaults objectForKey:saveKey];
 }

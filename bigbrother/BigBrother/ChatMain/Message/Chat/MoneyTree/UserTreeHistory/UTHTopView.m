@@ -63,18 +63,18 @@
                           range:[moneyCountStr rangeOfString:@"点"]];
     self.moneyCountLabel.attributedText = moneyAttriStr;
     
-    self.pickCountLabel.text = [NSString stringWithFormat:@"共摇到钱币：%@次",dataDic[@"pageResult"][@"totalElements"]];
+    self.pickCountLabel.text = [NSString stringWithFormat:@"共摇到钱币：%@次",dataDic[@"totalElements"]];
 }
 
 - (void)reloadPlanHistoryWithDataDic:(NSDictionary *)dataDic
 {
-    NSString *moneyCountStr = [NSString stringWithFormat:@"%@点",dataDic[@"userMoneySum"]];
+    NSString *moneyCountStr = [NSString stringWithFormat:@"%@点",dataDic[@"userAccount"]];
     NSMutableAttributedString *moneyAttriStr = [[NSMutableAttributedString alloc] initWithString:moneyCountStr];
     [moneyAttriStr addAttribute:NSFontAttributeName
                           value:[UIFont systemFontOfSize:FLEXIBLE_NUM(20)]
                           range:[moneyCountStr rangeOfString:@"点"]];
     self.moneyCountLabel.attributedText = moneyAttriStr;
-    self.pickCountLabel.text = [NSString stringWithFormat:@"种下摇钱树：%@棵",dataDic[@"pageResult"][@"totalElements"]];
+    self.pickCountLabel.text = [NSString stringWithFormat:@"种下摇钱树：%@棵",dataDic[@"totalElements"]];
 }
 
 #pragma mark - 按钮方法

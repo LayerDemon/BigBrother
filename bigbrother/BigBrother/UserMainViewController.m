@@ -91,24 +91,24 @@
     }
     NSString *phoneNum = [BBUserDefaults getUserPhone];
     if (!phoneNum) {
-        NSLog(@"错误 ,手机号码不能为空");
+        NSLog(@"错误 ,邮箱不能为空");
         return;
     }
-    [BBUrlConnection getUserInfoWithPhone:phoneNum complete:^(NSDictionary *resultDic, NSString *errorString) {
+    [BBUrlConnection getUserInfoWithEmail:phoneNum complete:^(NSDictionary *resultDic, NSString *errorString) {
         if (errorString) {
             return;
         }
         if ([resultDic[@"code"] intValue] != 0) {
             return;
         }
-        NSArray *dataArray = resultDic[@"data"];
-        if (!dataArray || ![dataArray isKindOfClass:[NSArray class]]) {
+        NSDictionary *dataArray = resultDic[@"data"];
+        if (!dataArray || ![dataArray isKindOfClass:[NSDictionary class]]) {
             return;
         }
         if (dataArray.count <= 0) {
             return;
         }
-        NSDictionary *userInfo = dataArray[0];
+        NSDictionary *userInfo = dataArray;
         
         NSString *idstring = userInfo[@"id"];
         
@@ -124,10 +124,12 @@
             [BBUserDefaults setUserNickName:nicknameString];
         }
         
-        NSString *phoneNumString = userInfo[@"phoneNumber"];
+        NSString *phoneNumString = userInfo[@"userEmail"];
         if (phoneNumString && [phoneNumString isKindOfClass:[NSString class]]) {
             [BBUserDefaults setUserPhone:phoneNumString];
         }
+        
+        [BBUserDefaults setUserEmail:phoneNum];
         
         NSString *imageUrlString = userInfo[@"avatar"];
         if (imageUrlString && [imageUrlString isKindOfClass:[NSString class]]) {
@@ -437,7 +439,7 @@
             dailySignButton.userInteractionEnabled = YES;
         }];
     }];
-    NSString *loginNameString = [BBUserDefaults getUserPhone];
+    NSString *loginNameString = [BBUserDefaults getUserEmail];
     if (!loginNameString || [loginNameString isEqualToString:@""]) {
         [BYToastView showToastWithMessage:@"签到失败,请重新登录"];
         [self resetToUnLoginStatus];
@@ -480,10 +482,13 @@
             [BBUserDefaults setUserID:idString];
             [BBUserDefaults setIsLogin:YES];
             
-            NSString *phoneNumber = dataDic[@"phoneNumber"];
+            NSString *phoneNumber = dataDic[@"userEmail"];
             if (phoneNumber && [phoneNumber isKindOfClass:[NSString class]]) {
                 [BBUserDefaults setUserPhone:phoneNumber];
+                
             }
+        
+            [BBUserDefaults setUserEmail:loginNameString];
             NSString *lastLoginTime = dataDic[@"lastLoginTime"];
             if (lastLoginTime && [lastLoginTime isKindOfClass:[NSString class]]) {
                 [BBUserDefaults setUserLastLoginTime:lastLoginTime];

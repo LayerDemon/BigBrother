@@ -84,6 +84,8 @@
 
 
 
+
+
 #pragma mark - 弹框----------------------------------------
 - (void)showAlertControlWithMessage:(NSString *)message
 {
@@ -309,5 +311,55 @@
 //        }];
 //    } onQueue:nil];
 }
+
+#pragma mark - UITextViewDelegate
+//- (UITapGestureRecognizer *)tapGesture
+//{
+//    if (!_tapGesture) {
+//        
+//    }
+//}
+
+//- (void)textViewDidBeginEditing:(UITextView *)textView
+//{
+//    textView.userInteractionEnabled = YES;
+//    for (UIGestureRecognizer *gesture in textView.gestureRecognizers) {
+//        if ([gesture isKindOfClass:[UITapGestureRecognizer class]]) {
+//            [textView removeGestureRecognizer:gesture];
+//        }
+//    }
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:textView action:@selector(textTapGestureRecognizer:)];
+//    [textView addGestureRecognizer:tapGesture];
+//}
+//
+//- (void)textViewDidEndEditing:(UITextView *)textView
+//{
+//    for (UIGestureRecognizer *gesture in textView.gestureRecognizers) {
+//        if ([gesture isKindOfClass:[UITapGestureRecognizer class]]) {
+//            [textView removeGestureRecognizer:gesture];
+//        }
+//    }
+//}
+////
+////- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+////    
+////    if ([touch.view isKindOfClass:[UIButton class]]){
+////        
+////        return NO;
+////        
+////    }
+////    
+////    return YES;
+////    
+////}
+//
+//
+//
+//- (void)textTapGestureRecognizer:(UITapGestureRecognizer *)sender
+//{
+//    
+//    [WINDOW endEditing:YES];
+//}
+
 
 @end

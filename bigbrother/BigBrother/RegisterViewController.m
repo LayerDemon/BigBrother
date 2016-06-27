@@ -69,7 +69,7 @@
     userLoginNameTextField.textColor = RGBColor(100, 100, 100);
     userLoginNameTextField.font = Font(15);
     userLoginNameTextField.returnKeyType = UIReturnKeyDone;
-    userLoginNameTextField.placeholder = @"手机号码";
+    userLoginNameTextField.placeholder = @"邮箱";
     userLoginNameTextField.keyboardType = UIKeyboardTypePhonePad;
     [userLoginNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [userLoginNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -129,7 +129,7 @@
     userRecommadPhoneTextField.font = Font(15);
     userRecommadPhoneTextField.returnKeyType = UIReturnKeyDone;
     userRecommadPhoneTextField.keyboardType = UIKeyboardTypePhonePad;
-    userRecommadPhoneTextField.placeholder = @"推荐人手机号码(选填)";
+    userRecommadPhoneTextField.placeholder = @"推荐人邮箱(选填)";
     [userRecommadPhoneTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [userRecommadPhoneTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
     userRecommadPhoneTextField.layer.cornerRadius = 2.f;
@@ -217,11 +217,11 @@
     //    return;
     NSString *loginNameString = userLoginNameTextField.text;
     if (!loginNameString || [loginNameString isEqualToString:@""]) {
-        [BYToastView showToastWithMessage:@"手机号码不能为空"];
+        [BYToastView showToastWithMessage:@"邮箱不能为空"];
         return;
     }
     if (![XYTools checkString:loginNameString canEmpty:NO]) {
-        [BYToastView showToastWithMessage:@"输入的手机号码不能包含特殊字符"];
+        [BYToastView showToastWithMessage:@"输入的邮箱不能包含特殊字符"];
         return;
     }
     
@@ -285,11 +285,12 @@
             [BYToastView showToastWithMessage:@"注册失败,请稍候再试"];
             return;
         }
-        NSString *phoneNum = dataDic[@"phoneNumber"];
+        NSString *phoneNum = dataDic[@"userEmail"];
         if (phoneNum) {
             [BYToastView showToastWithMessage:@"注册成功"];
             [BBUserDefaults resetLoginStatus];
             [BBUserDefaults setUserPhone:loginNameString];
+            [BBUserDefaults setUserEmail:loginNameString];
             [self.navigationController pushViewController:[RegistCompleteViewController new] animated:YES];
             return;
         }
@@ -307,14 +308,14 @@
         [BYToastView showToastWithMessage:@"登录名不能为空"];
         return;
     }
-    if (![XYTools checkString:phoneString canEmpty:NO]) {
-        [BYToastView showToastWithMessage:@"输入的手机号码不能包含特殊字符"];
-        return;
-    }
+//    if (![XYTools checkString:phoneString canEmpty:NO]) {
+//        [BYToastView showToastWithMessage:@"输入的手机号码不能包含特殊字符"];
+//        return;
+//    }
     globalCode = nil;
     [sendCodeButton.titleLabel.text isEqualToString:@"正在发送"];
     
-    [BBUrlConnection getUserInfoWithPhone:phoneString complete:^(NSDictionary *resultDic, NSString *errorString) {
+    [BBUrlConnection getUserInfoWithEmail:phoneString complete:^(NSDictionary *resultDic, NSString *errorString) {
         if (errorString) {
             [BYToastView showToastWithMessage:@"验证码发送失败"];
             [sendCodeButton setTitleColor:BB_BlueColor forState:UIControlStateNormal];
@@ -330,21 +331,22 @@
             return;
         }
         NSArray *dataArray = resultDic[@"data"];
-        if (!dataArray || ![dataArray isKindOfClass:[NSArray class]]) {
-            [BYToastView showToastWithMessage:@"验证码发送失败,请检查手机号码是否输入正确"];
+        if (!dataArray || ![dataArray isKindOfClass:[NSNull class]]) {
+            [BYToastView showToastWithMessage:@"验证码发送失败,请检查邮箱是否输入正确"];
             [sendCodeButton setTitleColor:BB_BlueColor forState:UIControlStateNormal];
             sendCodeButton.layer.borderColor = BB_BlueColor.CGColor;
             [sendCodeButton.titleLabel.text isEqualToString:@"重新发送"];
             return;
         }
-        if (dataArray.count >= 1) {
-            [BYToastView showToastWithMessage:@"该手机号码已经注册"];
+        if ([dataArray isKindOfClass:[NSArray class]] && dataArray.count >= 1) {
+            [BYToastView showToastWithMessage:@"该邮箱已经注册"];
             [sendCodeButton setTitleColor:BB_BlueColor forState:UIControlStateNormal];
             sendCodeButton.layer.borderColor = BB_BlueColor.CGColor;
             [sendCodeButton.titleLabel.text isEqualToString:@"重新发送"];
             return;
         }
-        [BBUrlConnection sendCodeThroughPhone:phoneString complete:^(NSDictionary *coderesultDic, NSString *errorString) {
+        //用户未注册
+        [BBUrlConnection sendCodeThroughEmail:phoneString complete:^(NSDictionary *coderesultDic, NSString *errorString) {
             if (errorString) {
                 [BYToastView showToastWithMessage:@"验证码发送失败"];
                 [sendCodeButton setTitleColor:BB_BlueColor forState:UIControlStateNormal];
@@ -367,19 +369,46 @@
                 [sendCodeButton.titleLabel.text isEqualToString:@"重新发送"];
                 return;
             }
-            NSString *code = dataDic[@"code"];
-            if (!code || [code isEqualToString:@""]) {
+            NSString *code = [NSString stringWithFormat:@"%@",dataDic[@"code"]];
+            if (!code || [NSString isBlankStringWithString:dataDic[@"code"]]) {
                 [BYToastView showToastWithMessage:@"验证码发送失败"];
                 [sendCodeButton setTitleColor:BB_BlueColor forState:UIControlStateNormal];
                 sendCodeButton.layer.borderColor = BB_BlueColor.CGColor;
                 [sendCodeButton.titleLabel.text isEqualToString:@"重新发送"];
                 return;
             }
+            //验证码生成成功~
             globalCode = code;
-            [BYToastView showToastWithMessage:@"验证码发送成功"];
-            codeTextField.text = globalCode;
-            [self codeButtonCountDownAnimated];
             NSLog(@"getEntryCodeComplete: %@",globalCode);
+            NSString *sendContext = [NSString stringWithFormat:@"您的验证码为：%@",code];
+            [BBUrlConnection sendCodeForEmail:phoneString sendContext:sendContext complete:^(NSDictionary *sendResultDic, NSString *errorString) {
+                if (errorString) {
+                    [BYToastView showToastWithMessage:@"验证码发送失败"];
+                    [sendCodeButton setTitleColor:BB_BlueColor forState:UIControlStateNormal];
+                    sendCodeButton.layer.borderColor = BB_BlueColor.CGColor;
+                    [sendCodeButton.titleLabel.text isEqualToString:@"重新发送"];
+                    return;
+                }
+                if ([sendResultDic[@"code"] intValue] != 0) {
+                    [BYToastView showToastWithMessage:@"验证码发送失败"];
+                    [sendCodeButton setTitleColor:BB_BlueColor forState:UIControlStateNormal];
+                    sendCodeButton.layer.borderColor = BB_BlueColor.CGColor;
+                    [sendCodeButton.titleLabel.text isEqualToString:@"重新发送"];
+                    return;
+                }
+                NSDictionary *dataDic = sendResultDic[@"data"];
+                if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]] || dataDic.count == 0 || [dataDic[@"success"] integerValue] != 1) {
+                    [BYToastView showToastWithMessage:@"验证码发送失败"];
+                    [sendCodeButton setTitleColor:BB_BlueColor forState:UIControlStateNormal];
+                    sendCodeButton.layer.borderColor = BB_BlueColor.CGColor;
+                    [sendCodeButton.titleLabel.text isEqualToString:@"重新发送"];
+                    return;
+                }
+                [BYToastView showToastWithMessage:@"验证码发送成功"];
+//                codeTextField.text = globalCode;
+                [self codeButtonCountDownAnimated];
+            }];
+            
         }];
     }];
 }

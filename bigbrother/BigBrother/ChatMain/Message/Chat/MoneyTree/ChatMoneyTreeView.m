@@ -64,6 +64,9 @@
     NSString *userJoinCountKey = [NSString stringWithFormat:@"%@_joinCount",userDic[@"id"]];
     NSInteger joinCount = [dataDic[userJoinCountKey] integerValue];
     NSInteger remainCount = totalCount - joinCount;
+    if (totalCount < 2) {
+        remainCount = totalCount;
+    }
 //    NSInteger count = 2 - [dataDic[@"count"] integerValue];
     if (remainCount > 0) {
         NSString *countStr = [NSString stringWithFormat:@"点击摇钱树，你还有%@次机会",@(remainCount)];

@@ -107,7 +107,7 @@
             [BBUserDefaults setUserNickName:nicknameString];
         }
         
-        NSString *phoneNumString = userInfo[@"phoneNumber"];
+        NSString *phoneNumString = userInfo[@"userEmail"];
         if (phoneNumString && [phoneNumString isKindOfClass:[NSString class]]) {
             [BBUserDefaults setUserPhone:phoneNumString];
         }

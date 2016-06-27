@@ -467,6 +467,7 @@
 		8C9773661CEAB9020013EC9B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C9773601CEAB9020013EC9B /* Info.plist */; };
 		8C9773691CEABC600013EC9B /* FriendCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9773681CEABC600013EC9B /* FriendCacheManager.m */; };
 		8CAED5F91CE6E376009CDC8B /* EaseMessageReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAED5F81CE6E376009CDC8B /* EaseMessageReadManager.m */; };
+		8CC3A0881D0EFFF400BA350E /* UITextView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3A0871D0EFFF400BA350E /* UITextView+Category.m */; };
 		8CF2638B1CEB16D60098CF6D /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2638A1CEB16D60098CF6D /* FriendModel.m */; };
 		B80131451C7FF17D0070612B /* SingleRoomRentPostToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B80131441C7FF17D0070612B /* SingleRoomRentPostToViewController.m */; };
 		B80131481C8001E50070612B /* WholeHouseRentPostToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B80131471C8001E50070612B /* WholeHouseRentPostToViewController.m */; };
@@ -1306,6 +1307,8 @@
 		8C9773681CEABC600013EC9B /* FriendCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCacheManager.m; sourceTree = "<group>"; };
 		8CAED5F71CE6E376009CDC8B /* EaseMessageReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMessageReadManager.h; sourceTree = "<group>"; };
 		8CAED5F81CE6E376009CDC8B /* EaseMessageReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMessageReadManager.m; sourceTree = "<group>"; };
+		8CC3A0861D0EFFF400BA350E /* UITextView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Category.h"; sourceTree = "<group>"; };
+		8CC3A0871D0EFFF400BA350E /* UITextView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Category.m"; sourceTree = "<group>"; };
 		8CF263891CEB16D60098CF6D /* FriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendModel.h; sourceTree = "<group>"; };
 		8CF2638A1CEB16D60098CF6D /* FriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendModel.m; sourceTree = "<group>"; };
 		B80131431C7FF17D0070612B /* SingleRoomRentPostToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleRoomRentPostToViewController.h; sourceTree = "<group>"; };
@@ -2139,6 +2142,8 @@
 				8C18621D1CDF46DD00632CDC /* NSString+Category.m */,
 				8C18621F1CDF47FC00632CDC /* UIView+Category.h */,
 				8C1862201CDF47FC00632CDC /* UIView+Category.m */,
+				8CC3A0861D0EFFF400BA350E /* UITextView+Category.h */,
+				8CC3A0871D0EFFF400BA350E /* UITextView+Category.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -4499,6 +4504,7 @@
 				B81E56B41C7EEB9000E34A91 /* QNFileRecorder.m in Sources */,
 				B884438F1C82DA3C002766FE /* RegisterViewController.m in Sources */,
 				B81E56ED1C7EFB2700E34A91 /* UIImage+Resize.m in Sources */,
+				8CC3A0881D0EFFF400BA350E /* UITextView+Category.m in Sources */,
 				B8958ADF1C7B5ED500ACE5E6 /* CarPoolProduct.m in Sources */,
 				B89A0CCF1C79D7010072A6A8 /* RentCarProduct.m in Sources */,
 				B89681F31C7B08F400E7A8E6 /* CarProduct.m in Sources */,
@@ -4808,7 +4814,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b3260c00-1376-46a9-a537-24d88cedbc0b";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4833,7 +4839,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuaEr.HuaEr1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b3260c00-1376-46a9-a537-24d88cedbc0b";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

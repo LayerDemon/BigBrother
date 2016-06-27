@@ -28,6 +28,9 @@
 +(void)setUserPhone:(NSString *)phone;
 +(NSString *)getUserPhone;
 
++(void)setUserEmail:(NSString *)phone;
++(NSString *)getUserEmail;
+
 +(void)setUserPassword:(NSString *)password;
 +(NSString *)getUserPassword;
 

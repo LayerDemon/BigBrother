@@ -666,6 +666,7 @@
     [view addSubview:lineSepView];
     
     decriptionTextView = [[UITextView alloc] init];
+    decriptionTextView.delegate = self;
     decriptionTextView.backgroundColor = [UIColor whiteColor];
     decriptionTextView.frame = (CGRect){10,HEIGHT(noteLabel)+10,WIDTH(view)-10,200};
     decriptionTextView.textColor = RGBColor(100, 100, 100);

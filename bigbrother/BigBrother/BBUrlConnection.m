@@ -100,6 +100,39 @@ static QNUploadManager *imageUploadManager;
 
 #pragma mark -
 #pragma mark 用户相关
+//根据邮箱获取用户信息
++(void)getUserInfoWithEmail:(NSString *)email complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
+    NSString *urlString = @"/users/findByuserEmail";
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:email forKey:@"userEmail"];
+    
+    [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
+}
+
+//根据手机号码发送验证码
++(void)sendCodeThroughEmail:(NSString *)email complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
+    //    NSString *urlString = @"/users/messages";
+    //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    //    [params setObject:phone forKey:@"phoneNumber"];
+    
+    NSString *urlString = @"/users/emailmessages";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:email forKey:@"userEmail"];
+    
+    [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
+}
+
+//发送邮箱
++(void)sendCodeForEmail:(NSString *)email sendContext:(NSString *)sendContext complete:(void (^)(NSDictionary *sendResultDic,NSString *errorString))complete{
+    NSString *urlString = @"/users/sendEmail";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:email forKey:@"userEmail"];
+    [params setObject:sendContext forKey:@"sendContext"];
+    
+    [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
+}
+
 //根据手机号码获取用户信息
 +(void)getUserInfoWithPhone:(NSString *)phone complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
     NSString *urlString = @"/users/list";
@@ -122,10 +155,13 @@ static QNUploadManager *imageUploadManager;
 
 //根据手机号码发送验证码
 +(void)sendCodeThroughPhone:(NSString *)phone complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
-    NSString *urlString = @"/users/messages";
+//    NSString *urlString = @"/users/messages";
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:phone forKey:@"phoneNumber"];
     
+    NSString *urlString = @"/users/emailmessages";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:phone forKey:@"phoneNumber"];
+    [params setObject:phone forKey:@"userEmail"];
     
     [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
 }
@@ -135,7 +171,7 @@ static QNUploadManager *imageUploadManager;
     NSString *urlString = [NSString stringWithFormat:@"/users/signin"];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:loginName forKey:@"phoneNumber"];
+    [params setObject:loginName forKey:@"userEmail"];
     [params setObject:password forKey:@"password"];
     [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
 }
@@ -145,10 +181,10 @@ static QNUploadManager *imageUploadManager;
     NSString *urlString = @"/users/signup";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:loginName forKey:@"phoneNumber"];
+    [params setObject:loginName forKey:@"userEmail"];
     [params setObject:password forKey:@"password"];
     if (recommandPhone && ![recommandPhone isEqualToString:@""]) {
-        [params setObject:recommandPhone forKey:@"recommender"];
+        [params setObject:recommandPhone forKey:@"recommenderEmail"];
     }
     [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
 }
@@ -374,6 +410,16 @@ static QNUploadManager *imageUploadManager;
 }
 
 #pragma mark 获取首页推荐的供需要求
++(void)getRecommandListWithCityId:(NSNumber *)cityId complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
+    NSString *urlString = @"/index/listByDistrictId";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (cityId) {
+        [params setObject:cityId forKey:@"districtId"];
+    }
+    
+    [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
+}
+
 +(void)getRecommandListComplete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
     NSString *urlString = @"/index/list";
     [self loadPostAfNetWorkingWithUrl:urlString andParameters:nil complete:complete];
@@ -410,13 +456,14 @@ static QNUploadManager *imageUploadManager;
     
     [self loadProductAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
 }
+
+
 //获取单个租车信息的相关的信息
 +(void)getRentCarInfoWithID:(int)productID complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete{
     NSString *urlString = @"/car/rent/post/get";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@(productID) forKey:@"id"];
-    
     [self loadPostAfNetWorkingWithUrl:urlString andParameters:params complete:complete];
 }
 

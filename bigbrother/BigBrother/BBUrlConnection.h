@@ -24,6 +24,13 @@
 +(NSURLSessionDataTask *)loadGetAfNetWorkingWithUrl:(NSString *)urlString andParameters:(NSMutableDictionary *)params complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete;
 #pragma mark -
 #pragma mark 用户相关
+//根据邮箱获取用户信息
++(void)getUserInfoWithEmail:(NSString *)email complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete;
+//根据邮箱发送验证码
++(void)sendCodeThroughEmail:(NSString *)email complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete;
+//发送邮箱
++(void)sendCodeForEmail:(NSString *)email sendContext:(NSString *)sendContext complete:(void (^)(NSDictionary *sendResultDic,NSString *errorString))complete;
+
 //根据手机号码获取用户信息
 +(void)getUserInfoWithPhone:(NSString *)phone complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete;
 //根据手机号码发送验证码
@@ -90,6 +97,8 @@
 
 #pragma mark 获取首页推荐的供需要求
 +(void)getRecommandListComplete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete;
+//根据地址获取
++(void)getRecommandListWithCityId:(NSNumber *)cityId complete:(void (^)(NSDictionary *resultDic,NSString *errorString))complete;
 
 
 #pragma mark - 车

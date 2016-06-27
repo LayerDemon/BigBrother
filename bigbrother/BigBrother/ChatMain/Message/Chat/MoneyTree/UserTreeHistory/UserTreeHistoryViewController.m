@@ -191,7 +191,7 @@
     [self.tableView.mj_footer endRefreshing];
     
     NSDictionary *historyDic = (self.topView.lastBtn.tag-BUTTON_TAG) ? self.model.plantHistoryData : self.model.pickHistoryData;
-    NSDictionary *pageResultDic = historyDic[@"pageResult"];
+    NSDictionary *pageResultDic = historyDic;
     
     if ([pageResultDic[@"pageSize"] integerValue] == PAGESIZE_NORMAL) {
         self.currentPage = [pageResultDic[@"page"] integerValue];

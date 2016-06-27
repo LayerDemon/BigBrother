@@ -132,7 +132,7 @@
     
     UILabel *userPhoneNoteLabel = [[UILabel alloc] init];
     userPhoneNoteLabel.frame = (CGRect){20,0,50,HEIGHT(userPhoneView)};
-    userPhoneNoteLabel.text = @"手机号";
+    userPhoneNoteLabel.text = @"邮箱";
     userPhoneNoteLabel.font = Font(15);
     userPhoneNoteLabel.textAlignment = NSTextAlignmentLeft;
     userPhoneNoteLabel.textColor = RGBColor(50, 50, 50);
@@ -140,7 +140,7 @@
     
     userPhoneLabel = [[UILabel alloc] init];
     userPhoneLabel.frame = (CGRect){WIDTH(userPhoneView)-20-150-15,0,150,HEIGHT(userPhoneView)};
-    userPhoneLabel.text = @"手机号";
+    userPhoneLabel.text = @"邮箱";
     userPhoneLabel.font = Font(15);
     userPhoneLabel.textAlignment = NSTextAlignmentRight;
     userPhoneLabel.textColor = RGBColor(50, 50, 50);
@@ -514,10 +514,11 @@ static NSArray *sexSelectDataArray;
             [BBUserDefaults setUserNickName:nicknameString];
         }
         
-        NSString *phoneNumString = userInfo[@"phoneNumber"];
+        NSString *phoneNumString = userInfo[@"userEmail"];
         if (phoneNumString && [phoneNumString isKindOfClass:[NSString class]]) {
             [BBUserDefaults setUserPhone:phoneNumString];
         }
+        
         
         NSString *imageUrlString = userInfo[@"avatar"];
         if (imageUrlString && [imageUrlString isKindOfClass:[NSString class]]) {

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (Category)<UIAlertViewDelegate,UIActionSheetDelegate>
+@interface UIViewController (Category)<UIAlertViewDelegate,UIActionSheetDelegate,UITextViewDelegate>
+
+//@property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
 
 //标题
 - (void)setIndicatorTitle:(NSString *)title;
