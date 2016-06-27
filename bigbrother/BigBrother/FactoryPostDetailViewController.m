@@ -10,6 +10,8 @@
 #import "FactoryPostNewViewController.h"
 #import "UIAlertView+Blocks.h"
 
+#import "ChatViewController.h"
+
 @interface FactoryPostDetailViewController () <UIScrollViewDelegate>
 
 @end
@@ -56,15 +58,39 @@
 }
 
 -(void)postButtonClick{
-    NSString *postNum = self.product.phoneNumber;
-    if (postNum) {
-        [[[UIAlertView alloc] initWithTitle:@"拨号确认"
-                                    message:[NSString stringWithFormat:@"确定拨号%@吗?",postNum]
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:nil]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[postNum stringByReplacingOccurrencesOfString:@"-" withString:@""]]]];
-        }], nil] show];
+//    NSString *postNum = self.product.phoneNumber;
+//    if (postNum) {
+//        [[[UIAlertView alloc] initWithTitle:@"拨号确认"
+//                                    message:[NSString stringWithFormat:@"确定拨号%@吗?",postNum]
+//                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:nil]
+//                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",[postNum stringByReplacingOccurrencesOfString:@"-" withString:@""]]]];
+//        }], nil] show];
+//    }
+    NSDictionary *userDic = [BBUserDefaults getUserDic];
+    if (!userDic) {
+        [BYToastView showToastWithMessage:@"请先登录~"];
+        return;
     }
+    
+    if ([NSString isBlankStringWithString:self.product.imNumber]) {
+        [BYToastView showToastWithMessage:@"缺少im联系方式,无法联系用户~"];
+        return;
+    }
+    
+    
+    NSString *postNum = self.product.imNumber;
+    
+    if ([postNum isEqualToString:userDic[@"imNumber"]]) {
+        [BYToastView showToastWithMessage:@"发布者是您自己哦~"];
+        return;
+    }
+    //    发送消息
+    ChatViewController *chatVC = [[ChatViewController alloc]init];
+    EMConversation *conversation = [MANAGER_CHAT getConversation:postNum type:EMConversationTypeChat createIfNotExist:YES];
+    chatVC.conversation = conversation;
+    chatVC.chatDic = self.product.creatorUserDic;
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 -(void)initViews{
@@ -140,9 +166,10 @@
             NSDictionary *dic = array[i];
             UIImageView *imageView = [[UIImageView alloc] init];
             imageView.frame = (CGRect){WIDTH(imageViewScroller)*i,0,WIDTH(imageViewScroller),HEIGHT(imageViewScroller)};
-            
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageViewTapGresture:)];
+            [imageView addGestureRecognizer:tapGesture];
             NSString *urlstring = dic[@"url"];
-            [imageView setImageWithURL:[NSURL URLWithString:urlstring] placeholderImage:[UIImage imageNamed:@"icon_defaultImageBig"]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:urlstring] placeholderImage:[UIImage imageNamed:@"icon_defaultImageBig"]];
             [imageViewScroller addSubview:imageView];
         }
     }
@@ -297,6 +324,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 点击图片
+- (void)imageViewTapGresture:(UITapGestureRecognizer *)sender
+{
+    UIImageView *imageView = (UIImageView *)sender.view;
+    [PreviewImageViewController showImage:imageView];
 }
 
 @end

@@ -25,6 +25,8 @@
 }
 
 -(instancetype)updateWithNetworkDictionary:(NSDictionary *)netDic{
+    
+    
     self.createTime = [XYTools getStringFromDic:netDic withKey:@"createdTime"];
     
     self.creator = [XYTools getLongFromDic:netDic withKey:@"creator"];
@@ -60,6 +62,12 @@
     self.communityName = [XYTools getStringFromDic:netDic withKey:@"communityName"];
     
     self.communityAddress = [XYTools getStringFromDic:netDic withKey:@"communityAddress"];
+    
+    self.imNumber = [XYTools getStringFromDic:netDic withKey:@"im_number"];
+    
+    if (self.nickname && self.imNumber) {
+        self.creatorUserDic = @{@"id":@(self.creator),@"nickname":self.nickname,@"imNumber":self.imNumber};
+    }
     
     return self;
 }

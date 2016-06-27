@@ -588,7 +588,7 @@ static float recommandTitleViewHeight = 45.f;
 
 - (void)reloadSourceMainData
 {
-    [self initWithRecommandView];
+    [self getrecommandList];
 }
 
 @end

@@ -52,6 +52,12 @@
     
     self.area = [XYTools getIntFromDic:netDic withKey:@"area"];
     
+    self.imNumber = [XYTools getStringFromDic:netDic withKey:@"im_number"];
+    
+    if (self.nickname && self.imNumber) {
+        self.creatorUserDic = @{@"id":@(self.creator),@"nickname":self.nickname,@"imNumber":self.imNumber};
+    }
+    
     return self;
 }
 

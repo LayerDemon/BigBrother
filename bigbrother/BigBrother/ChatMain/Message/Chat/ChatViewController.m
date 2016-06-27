@@ -219,7 +219,7 @@
     if ([self.chatDic[@"name"] length]) {
         self.navigationItem.title = self.chatDic[@"name"];
     }else{
-        self.navigationItem.title = [NSString stringWithFormat:@"书乡%@",self.chatDic[@"usernameId"]];
+        self.navigationItem.title = [NSString stringWithFormat:@"租车用户%@",self.chatDic[@"usernameId"]];
     }
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0,25,20);

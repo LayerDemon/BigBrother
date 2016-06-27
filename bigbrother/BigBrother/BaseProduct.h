@@ -33,6 +33,7 @@
 @property (nonatomic,copy) NSString *phoneNumber;
 
 @property (nonatomic,copy) NSString *imNumber;
+@property (nonatomic,strong) NSDictionary *creatorUserDic;
 
 @property (nonatomic,assign) BOOL isSupply;
 

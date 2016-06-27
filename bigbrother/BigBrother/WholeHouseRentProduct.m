@@ -64,6 +64,12 @@
     
     self.roomValue = [XYTools getStringFromDic:netDic withKey:@"roomValue"];
     
+    self.imNumber = [XYTools getStringFromDic:netDic withKey:@"im_number"];
+    
+    if (self.nickname && self.imNumber) {
+        self.creatorUserDic = @{@"id":@(self.creator),@"nickname":self.nickname,@"imNumber":self.imNumber};
+    }
+    
     return self;
 }
 
