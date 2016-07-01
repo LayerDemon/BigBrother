@@ -138,8 +138,11 @@ static CGRect oldframe;
     if (!_imageView) {
         _imageView = [[UIImageView alloc]initWithFrame:self.view.frame];
 //        UIImage *image = [UIImage imageNamed:@"萌妹纸"];
-        _imageView.frame = CGRectMake(0, 0,MAINSCRREN_W,MAINSCRREN_W/self.image.size.width*self.image.size.height);
-        _imageView.image = self.image;
+        if (self.image) {
+            _imageView.frame = CGRectMake(0, 0,MAINSCRREN_W,MAINSCRREN_W/self.image.size.width*self.image.size.height);
+            _imageView.image = self.image;
+        }
+        
 //        _imageView.contentMode = UIViewContentModeScaleAspectFit;
 //        _imageView.backgroundColor = [UIColor redColor];
     }

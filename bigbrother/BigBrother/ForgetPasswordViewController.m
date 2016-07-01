@@ -69,7 +69,7 @@
     userLoginNameTextField.font = Font(15);
     userLoginNameTextField.returnKeyType = UIReturnKeyDone;
     userLoginNameTextField.placeholder = @"邮箱";
-    userLoginNameTextField.keyboardType = UIKeyboardTypePhonePad;
+//    userLoginNameTextField.keyboardType = UIKeyboardTypePhonePad;
     [userLoginNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [userLoginNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
     userLoginNameTextField.layer.cornerRadius = 2.f;

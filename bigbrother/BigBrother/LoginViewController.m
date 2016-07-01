@@ -72,7 +72,7 @@
     userLoginNameTextField.tag = 100;
     userLoginNameTextField.delegate = self;
     userLoginNameTextField.returnKeyType = UIReturnKeyDone;
-    userLoginNameTextField.keyboardType = UIKeyboardTypePhonePad;
+//    userLoginNameTextField.keyboardType = UIKeyboardTypePhonePad;
     userLoginNameTextField.placeholder = @"邮箱";
     [userLoginNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [userLoginNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
